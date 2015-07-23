@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head lang="ES">
+		<title>Registro - Punto de Venta</title>
+		<meta charset="UTF-8">
+
+		<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">-->
+		<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
+		<?php include("../script/paises.js"); ?>
+	</head>
+
+	<body>
+<div>
+	<form name="formulario" class="form-horizontal" role="form" method="post" action="registros/registro_empresa_punto_venta_admin.php">
+     		<div class="modal-header">
+       		<h3 class="modal-title">
+       			<img class="img-header" src="img/pv.png"> Registro Punto de Venta
+       		</h3>
+    		</div>
+    		<div>
+	      	<div class="modal-body contenedor-form" style="width: 70%; min-width:500px">
+
+	      		<div class="form-group">
+			    	<label class="col-sm-2 control-label">Usuario: </label>
+			    	<div class="col-sm-10">
+			    		<input id="usuario" type="text" pattern="([A-Za-z0-9])+" title="El usuario sólo puede contener letras y números" class="form-control input" name="usuario_punto_venta" id="" placeholder="Usuario administrador del punto de venta" autofocus required>
+			    		<div id="disponible"></div>
+			    	</div>
+			  	</div>
+			  	<div class="form-group">
+			    	<label class="col-sm-2 control-label">Contraseña: </label>
+			    	<div class="col-sm-10">
+			    		<input type="password" pattern="([A-Za-z0-9])+" title = "La contraseña sólo puede contener letras y números" class="form-control input" name="contrasena_punto_venta" id="" placeholder="Contraseña" required>
+		         	</div>
+				  </div>
+				  <hr>
+				  <div class="form-group">
+			    	<label class="col-sm-2 control-label">Nombre: </label>
+			    	<div class="col-sm-10">
+			    		<input type="text" pattern="[A-Za-zÑñáéíóúÁÉÍÓÚ]+([ ][A-Za-zÑñáéíóúÁÉÍÓÚ]+)*" title="Ingresa sólo letras y sin espacios extras" class="form-control input" name="nombre_punto_venta" id="" placeholder="Nombre del punto de venta" required>
+		         	</div>
+				  </div>
+				  <div class="form-group">
+			    	<label class="col-sm-2 control-label">RFC: </label>
+			    	<div class="col-sm-10">
+			    		<input type="text" pattern="[A-Za-z]{4}[0-9]{6}[A-Za-z0-9]{3}" title="El RFC debe contener 4 letras, seguido de 6 números y tres caracteres de la homoclave" class="form-control input" name="rfc_punto_venta" id="" placeholder="RFC del punto de venta" required>
+		         	</div>
+				  </div>
+
+				 <div class="form-group">
+			    	<label class="col-sm-2 control-label">País: </label>
+				    <div class="col-sm-10">
+				      	<select class="form-control select select-primary" name="pais" id="select1" onchange="cambiar()">
+							<option value="0">MÉXICO</option>
+							<option value="1">EEUU</option>
+							<option value="2">CANADA</option>
+							<option value="3">JAPÓN</option>
+							<option value="4">AUSTRALIA</option>
+						</select>
+				    </div>
+			  	</div>
+				
+				<!-- Estado -->
+		 	  	<div class="form-group">
+			    	<label class="col-sm-2 control-label">Estado: </label>
+				    <div class="col-sm-10">
+				       <select class="form-control select select-primary" name="estado" id="select2">
+						</select>
+				    </div>
+			  	</div>
+				
+		 	  	<div class="form-group">
+			    	<label class="col-sm-2 control-label">Ciudad: </label>
+				    <div class="col-sm-10">
+				      	<input type="text" pattern="[A-Za-zÑñáéíóúÁÉÍÓÚ]+([ ][A-Za-zÑñáéíóúÁÉÍÓÚ]+)*" title="Ingresa sólo letras y sin espacios extras"
+ class="form-control input" name="ciudad_punto_venta" placeholder="Ciudad del punto de venta" required>	
+				    </div>
+			  	</div>
+				
+				<div class="form-group">
+			    	<label class="col-sm-2 control-label">Dirección: </label>
+			    	<div class="col-sm-10">
+			    		<textarea class="form-control input" name="direccion_punto_venta" id="" placeholder="Dirección del punto de venta" required></textarea>
+		         	</div>
+				 </div>
+				
+			  	<hr>
+			  	<center>
+			  			<input type="hidden" name="socio" value="bus_pv">
+		     			<button id="enviar" type="submit" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
+		     		</center>
+		     	</div>
+	    </div>
+	     </form>	
+	 </div>
+	</body>
+
+	<!--<script type="text/javascript" src="lib/jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>-->
+	<script type="text/javascript">
+		$('#usuario').change(function(){
+			var usuario = $('#usuario').val();
+			var params = {'usuario':usuario};
+			$.ajax({
+				type: 'POST',
+				url: 'validar/validar_usuario.php',
+				data: params,
+
+				success: function(data){
+					$('#disponible').html(data);
+				},
+				beforeSend: function(data ) {
+			    $("#disponible").html("<span class=\"label label-info\">cargando...</span>");
+			  }
+			});
+		});
+	</script>
+</html>

@@ -1,0 +1,29 @@
+body{
+	background-color: #fefefe;
+	background: url(../img/background.jpg) no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+h3{
+	color: #ffffff;
+}
+
+.contenedor-form{
+	/*box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.5);*/
+	/*border: 1px #eee solid;*/
+	width: 60%;
+	margin: 0px auto;
+}
+
+.modal-header{
+	background-color: #337ab7;
+}
+
+.modal-body{
+	background-color: #ffffff;
+}
+
+.img-header{
+	width: 60px;
+}

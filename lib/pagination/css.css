@@ -1,0 +1,73 @@
+/*
+Styles related DIRECTLY with jQuery-simple-pagination
+*/
+.simple-pagination-page-numbers a
+{
+	background-image: url('pag_fondo2.png');
+	border-radius: 3px;
+	margin-right: 10px;
+	padding: 4px;
+	width: 30px;
+	height: 30px;
+
+	display: block;
+	float: left;
+	text-align: center;
+}
+/*a
+{
+	color: #fff;
+	text-decoration: none;
+}
+/*a h1
+{
+	padding: 2rem;
+	color: red;
+	text-align: center;
+}*/
+/*a:hover
+{
+	text-decoration: underline;
+}*/
+a[class^="simple-pagination-navigation-"] + a[class^="simple-pagination-navigation-"]
+{
+	background-image: url('pag_fondo2.png');
+	border-radius: 3px;
+	margin-right: 10px;
+	padding: 4px;
+	width: 30px;
+	height: 30px;
+}
+a[class*="simple-pagination-navigation-disabled"]
+{
+	/*background-image: url('pag_fondo.png');*/
+	border-radius: 3px;
+	color: #fff;
+	cursor: default;
+	margin-right: 10px;
+	padding: 4px;
+	width: 30px;
+	height: 30px;
+}
+.simple-pagination-navigation-page:hover{
+	color: #2C3E50;
+}
+/*select
+{
+	border: 1px solid black;
+	font-size: 13px;
+}*/
+.my-navigation:after
+{
+	content: "";
+	display: table;
+	clear: both;
+}
+.my-navigation div
+{
+	float: left;
+}
+/*.my-navigation div + div
+{
+	margin-left: .5rem;
+}*/
