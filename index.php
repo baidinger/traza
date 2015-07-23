@@ -36,7 +36,14 @@
 			        		</h3>
 			      		</div>
 			      		<div>
+
 					      	<div class="modal-body">
+					      		<?php if(isset($_REQUEST['e'])){ ?>
+							  		<div class="alert alert-danger alert-dismissible" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<strong>Error!</strong> Usuario y/o contraseña incorrecto(s).
+									</div>
+							  	<?php } ?>
 					      		<div class="form-group">
 							    	<label class="col-sm-3 control-label">Usuario: </label>
 							    	<div class="col-sm-8">
@@ -50,12 +57,7 @@
 							    		<input type="password" class="form-control input" name="inputContrasena" id="inputContrasena" placeholder="Contraseña..." required>
 							    	</div>
 							  	</div>
-							  	<?php if(isset($_REQUEST['e'])){ ?>
-							  		<div class="alert alert-danger alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<strong>Error!</strong> Usuario y/o contraseña incorrecto(s).
-									</div>
-							  	<?php } ?>
+							  	
 							  	<hr>
 							  	<center>
 					      			<button type="submit" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Entrar</button>

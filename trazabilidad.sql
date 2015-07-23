@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 23, 2015 at 06:04 PM
+-- Generation Time: Jul 23, 2015 at 11:26 PM
 -- Server version: 5.5.40
 -- PHP Version: 5.4.12
 
@@ -25,19 +25,53 @@ USE `trazabilidad`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `camiones_distribuidor`
+--
+
+CREATE TABLE IF NOT EXISTS `camiones_distribuidor` (
+  `id_camion` int(11) NOT NULL AUTO_INCREMENT,
+  `placas` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_chofer` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion_camion` text COLLATE utf8_spanish_ci NOT NULL,
+  `marca` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `modelo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `id_distribuidor_fk` int(11) NOT NULL,
+  PRIMARY KEY (`id_camion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `camiones_empaque`
+--
+
+CREATE TABLE IF NOT EXISTS `camiones_empaque` (
+  `id_camion` int(11) NOT NULL AUTO_INCREMENT,
+  `placas` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_chofer` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion_camion` text COLLATE utf8_spanish_ci NOT NULL,
+  `marca` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `modelo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `id_empaque_fk` int(11) NOT NULL,
+  PRIMARY KEY (`id_camion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `distribuidor_cajas_envio`
 --
 
 CREATE TABLE IF NOT EXISTS `distribuidor_cajas_envio` (
   `id_distribuidor_cajas_envio` int(11) NOT NULL AUTO_INCREMENT,
-  `id_orden_fk` int(11) NOT NULL,
+  `id_envio_fk` int(11) NOT NULL,
   `epc_caja` varchar(16) NOT NULL,
   `epc_tarima` varchar(16) NOT NULL,
-  `numero_carro` int(11) NOT NULL,
   `enviado_dce` tinyint(1) NOT NULL,
   `recibido_dce` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_distribuidor_cajas_envio`),
-  KEY `id_orden_fk_idx` (`id_orden_fk`)
+  KEY `id_orden_fk_idx` (`id_envio_fk`),
+  KEY `id_orden_fk` (`id_envio_fk`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
@@ -168,6 +202,7 @@ CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
   `fecha_envio` date NOT NULL,
   `hora_envio` time NOT NULL,
   `fecha_entrega_envio` date NOT NULL,
+  `id_camion_fk` int(11) NOT NULL,
   `descripcion_envio` text COLLATE utf8_spanish_ci NOT NULL,
   `estado_envio` int(11) NOT NULL,
   `id_punto_venta_fk` int(11) NOT NULL,
@@ -186,6 +221,7 @@ CREATE TABLE IF NOT EXISTS `envios_empaque` (
   `fecha_envio` date NOT NULL,
   `hora_envio` time NOT NULL,
   `fecha_entrega_envio` date NOT NULL,
+  `id_camion_fk` int(11) NOT NULL,
   `descripcion_envio` text NOT NULL,
   `estado_envio` int(11) NOT NULL,
   `id_distribuidor_fk` int(11) NOT NULL,
@@ -339,6 +375,20 @@ INSERT INTO `productos` (`id_producto`, `nombre_producto`, `variedad_producto`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `productos_distribuidores`
+--
+
+CREATE TABLE IF NOT EXISTS `productos_distribuidores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_distribuidor_fk` int(11) NOT NULL,
+  `id_producto_fk` int(11) NOT NULL,
+  `precio_venta` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `productos_empaques`
 --
 
@@ -370,6 +420,23 @@ CREATE TABLE IF NOT EXISTS `productos_productores` (
   KEY `id_productor_fk_idx` (`id_productor_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `punto_venta_cajas_envio`
+--
+
+CREATE TABLE IF NOT EXISTS `punto_venta_cajas_envio` (
+  `id_punto_venta_cajas_envio` int(11) NOT NULL AUTO_INCREMENT,
+  `id_envio_fk` int(11) NOT NULL,
+  `epc_caja` varchar(16) NOT NULL,
+  `epc_tarima` varchar(16) NOT NULL,
+  `enviado_dce` tinyint(1) NOT NULL,
+  `recibido_dce` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_punto_venta_cajas_envio`),
+  KEY `punto_venta_cajas_envio_ibfk_1` (`id_envio_fk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -410,6 +477,9 @@ CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
   `apellido_usuario_distribuidor` varchar(100) NOT NULL,
   `direccion_usuario_distribuidor` text NOT NULL,
   `telefono_usuario_distribuidor` varchar(20) NOT NULL,
+  `entradas` int(11) NOT NULL DEFAULT '0',
+  `pedidos` int(11) NOT NULL DEFAULT '0',
+  `envios` int(11) NOT NULL DEFAULT '0',
   `id_usuario_fk` int(11) NOT NULL,
   `id_distribuidor_fk` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario_distribuidor`),
@@ -474,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `usuario_punto_venta` (
 -- Constraints for table `distribuidor_cajas_envio`
 --
 ALTER TABLE `distribuidor_cajas_envio`
-  ADD CONSTRAINT `distribuidor_cajas_envio_ibfk_1` FOREIGN KEY (`id_orden_fk`) REFERENCES `ordenes_distribuidor` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `distribuidor_cajas_envio_ibfk_1` FOREIGN KEY (`id_envio_fk`) REFERENCES `envios_empaque` (`id_envio`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `empresa_productores`
@@ -537,6 +607,12 @@ ALTER TABLE `productos_empaques`
 ALTER TABLE `productos_productores`
   ADD CONSTRAINT `productos_productores_ibfk_1` FOREIGN KEY (`id_productor_fk`) REFERENCES `empresa_productores` (`id_productor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `productos_productores_ibfk_2` FOREIGN KEY (`id_producto_fk`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `punto_venta_cajas_envio`
+--
+ALTER TABLE `punto_venta_cajas_envio`
+  ADD CONSTRAINT `punto_venta_cajas_envio_ibfk_1` FOREIGN KEY (`id_envio_fk`) REFERENCES `envios_distribuidor` (`id_envio`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `usuario_distribuidor`
