@@ -25,28 +25,28 @@
 		<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	</head>
 
-	<body>
+	<body style="background:url(img/fondo.jpg) no-repeat; background-size:cover">
 		<div class="pagina">
-			<div class="contenedor-logeo">
+			<div class="contenedor-logeo" >
 				<div class="login-form">
 					<form class="form-horizontal" role="form" method="post" action="mod/login.php">
 			      		<div class="modal-header">
 			        		<h3 class="titulo-header">
-			        			<img class="img-header" src="img/login.png"> Iniciar Sesión
+			        			Iniciar Sesión
 			        		</h3>
 			      		</div>
 			      		<div>
 					      	<div class="modal-body">
 					      		<div class="form-group">
-							    	<label class="col-sm-2 control-label">Usuario: </label>
-							    	<div class="col-sm-10">
+							    	<label class="col-sm-3 control-label">Usuario: </label>
+							    	<div class="col-sm-8">
 							    		<input type="text" class="form-control input" name="inputUsuario" id="inputUsuario" placeholder="Nombre de usuario..." autofocus required>
 							    	</div>
 							  	</div>
 							  	<br>
 							  	<div class="form-group">
-							    	<label class="col-sm-2 control-label">Contraseña: </label>
-							    	<div class="col-sm-10">
+							    	<label class="col-sm-3 control-label">Contraseña: </label>
+							    	<div class="col-sm-8">
 							    		<input type="password" class="form-control input" name="inputContrasena" id="inputContrasena" placeholder="Contraseña..." required>
 							    	</div>
 							  	</div>
@@ -58,15 +58,19 @@
 							  	<?php } ?>
 							  	<hr>
 							  	<center>
-					      			<button type="submit" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Aceptar</button>
+					      			<button type="submit" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Entrar</button>
 					      		</center>
+					      		<p>&nbsp;</p>
+							  	<p class="alert alert-info">
+							  		<a href="#">¿Cómo registrarme?</a> |
+									<a href="#">Términos de uso y privacidad</a> 							  	
 					      	</div>
 					    </div>
 			      	</form>
 				</div>
 			</div>
 		</div>
-
+		<span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Sistema para la Trazabilidad Agrícola Versión: 1.4,  fec. mod. 23/07/15</span>
 		<script type="text/javascript" src="lib/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 	</body>
