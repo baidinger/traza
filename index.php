@@ -63,7 +63,6 @@
 					      		<p>&nbsp;</p>
 							  	<p class="alert alert-info">
 							  		<a href="#">¿Cómo registrarme?</a> |
-							  		<a href="#">¿Cómo registrarme?</a> |
 									<a href="#">Términos de uso y privacidad</a> 
 					      	</div>
 					    </div>
