@@ -32,7 +32,7 @@
 					<form class="form-horizontal" role="form" method="post" action="mod/login.php">
 			      		<div class="modal-header">
 			        		<h3 class="titulo-header">
-			        			Iniciar Sesión
+			        			Inicio de Sesión
 			        		</h3>
 			      		</div>
 			      		<div>
@@ -63,7 +63,8 @@
 					      		<p>&nbsp;</p>
 							  	<p class="alert alert-info">
 							  		<a href="#">¿Cómo registrarme?</a> |
-									<a href="#">Términos de uso y privacidad</a> 							  	
+							  		<a href="#">¿Cómo registrarme?</a> |
+									<a href="#">Términos de uso y privacidad</a> 
 					      	</div>
 					    </div>
 			      	</form>
