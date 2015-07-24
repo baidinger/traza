@@ -47,12 +47,6 @@
 				    		<input type="text" value="<?php echo $row['direccion_productor']; ?>" class="form-control input" name="direccion_productor" id="" placeholder="Dirección del productor" required>
 			         	</div>
 					  </div>
-					  <div class="form-group">
-				    	<label class="col-sm-2 control-label">Ubicación huerta: </label>
-				    	<div class="col-sm-10">
-				    		<input type="text" value="<?php echo $row['ubicacion_huerta_productor']; ?>" class="form-control input" name="ubicacion_huerta_productor" id="" placeholder="Ubicación del productor" required>
-			         	</div>
-					  </div>
 				  	<center>
 			     		<input type="hidden" name="id_productor" value="<?php echo $row['id_productor']; ?>">
 			     	</center>

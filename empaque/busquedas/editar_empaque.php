@@ -19,7 +19,7 @@
 			" estado_empaque = '$estado', ciudad_empaque = '$ciudad',".
 			" direccion_empaque = '$direccion', cp_empaque = '$cp',".
 			" email_empaque = '$email', telefono1_empaque = '$tel1', ".
-			" telefono2_empaque = '$tel2' where id_empaque =  $id_empaque")){
+			" fecha_modificacion_emp = '".date("Y-m-d")."', telefono2_empaque = '$tel2' where id_empaque =  $id_empaque")){
 			mysql_close($conexion);
 			?>
 			<script type="text/javascript">

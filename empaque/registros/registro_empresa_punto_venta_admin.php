@@ -6,6 +6,9 @@
 	$rfc				=	strtoupper($_POST['rfc_punto_venta']);
 	$pais				=	strtoupper($_POST['pais']);
 	$estado				=	strtoupper($_POST['estado']);
+	$cp					=	$_POST['cp_pv'];
+	$tel				=	$_POST['telefono_pv'];
+	$email				=	$_POST['email_pv'];
 	$ciudad			 	=	strtoupper($_POST['ciudad_punto_venta']);
 	$direccion 			=	strtoupper($_POST['direccion_punto_venta']);
 
@@ -24,9 +27,11 @@
 				 }
 			}
 
-			if(mysql_query(" INSERT INTO empresa_punto_venta (nombre_punto_venta, rfc_punto_venta,".
-				" pais_punto_venta, estado_punto_venta, ciudad_punto_venta, direccion_punto_venta, id_usuario_que_registro) ".
-				" VALUES ('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$direccion."',".$_SESSION['id_usuario'].")"))
+			$cad = " INSERT INTO empresa_punto_venta (nombre_punto_venta, rfc_punto_venta,".
+				" pais_punto_venta, estado_punto_venta, ciudad_punto_venta, telefono_punto_venta, cp_punto_venta, email_punto_venta, direccion_punto_venta, id_usuario_que_registro, fecha_registro_pv, fecha_modificacion_pv) ".
+				" VALUES ('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$tel."','".$cp."','".$email."','".$direccion."',".$_SESSION['id_usuario'].",'".date("Y-m-d")."','".date("Y-m-d")."')";
+
+			if(mysql_query($cad))
 			{
 				$result_punto_venta = mysql_query("select id_punto_venta from empresa_punto_venta where rfc_punto_venta = '".$rfc."'");
 				if($result_punto_venta){
@@ -44,16 +49,16 @@
 				}
 				else{
 					mysql_close($conexion);
-					header ("Location: ../index.php?op=reg_error");	
+					header ("Location: ../index.php?op=reg_error_user");	
 				}
 			}
 			else{
 				mysql_close($conexion);
-				header ("Location: ../index.php?op=reg_error");
+				header ("Location: ../index.php?op=reg_error_empresa");
 			}
 		}else{
 			mysql_close($conexion);
-			header ("Location: ../index.php?op=reg_error");
+			header ("Location: ../index.php?op=reg_error_useradmin");
 		}
 
 	mysql_close($conexion);

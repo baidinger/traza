@@ -120,9 +120,6 @@
 	 </div>
 	</body>
 
-	<!--<script type="text/javascript" src="lib/jquery/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>-->
-
 		<script type="text/javascript">
 		$('#usuario').change(function(){
 			var usuario = $('#usuario').val();

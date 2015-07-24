@@ -6,7 +6,6 @@
 	$apellido			=	strtoupper($_POST['apellido_productor']);
 	$telefono			=	$_POST['telefono_productor'];
 	$direccion			=	strtoupper($_POST['direccion_productor']);
-	$ubicacion_huerta 	=	strtoupper($_POST['ubicacion_huerta_productor']);
 	$rfc				=	strtoupper($_POST['rfc_productor']);
 
 
@@ -19,6 +18,7 @@
 		//echo "bien";
 
 			$result = mysql_query("select id_usuario from usuarios where nombre_usuario = '".$usuario."'");
+			$id_usuario = "";
 			if($result){
 				 while($row = mysql_fetch_array($result)) {
 				 	$id_usuario = $row['id_usuario'];
@@ -26,9 +26,9 @@
 			}
 
 			if(mysql_query("INSERT INTO empresa_productores (nombre_productor, apellido_productor,".
-				" telefono_productor, direccion_productor, ubicacion_huerta_productor,".
-				" rfc_productor, id_usuario_fk, id_usuario_que_registro) VALUES ('".$nombre."','".$apellido."',".
-				" '".$telefono."','".$direccion."','".$ubicacion_huerta."','".$rfc."',".$id_usuario.",".$_SESSION['id_usuario'].")")){
+				" telefono_productor, direccion_productor,".
+				" rfc_productor, id_usuario_fk, id_usuario_que_registro, fecha_registro_prod, fecha_modificacion_prod) VALUES ('".$nombre."','".$apellido."',".
+				" '".$telefono."','".$direccion."','".$rfc."',".$id_usuario.",".$_SESSION['id_usuario'].",'".date("Y-m-d")."','".date("Y-m-d")."')")){
 				mysql_close($conexion);
 				header ("Location: ../index.php?op=".$regreso."");
 			}

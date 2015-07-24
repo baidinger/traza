@@ -2,7 +2,7 @@
 			include("../../mod/conexion.php");
 			$buscar = $_POST['buscar'];
 			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
-				"telefono_productor, direccion_productor, ubicacion_huerta_productor, ".
+				"telefono_productor, direccion_productor, ".
 				" rfc_productor, id_usuario_fk, estado, nombre_usuario from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_usuario_que_registro = ".$_SESSION['id_usuario']." AND (nombre_productor like '%$buscar%' OR apellido_productor like '%$buscar%')");
 			if($result_productores){
 			if(mysql_num_rows($result_productores) > 0){
@@ -111,7 +111,7 @@
         }
 
 			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
-				"telefono_productor, direccion_productor, ubicacion_huerta_productor, ".
+				"telefono_productor, direccion_productor, ".
 				" rfc_productor, nombre_usuario, contrasena_usuario from empresa_productores,usuarios where id_usuario = id_usuario_fk AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
 			
         	$i=1;

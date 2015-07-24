@@ -76,6 +76,26 @@
  class="form-control input" name="ciudad_punto_venta" placeholder="Ciudad del punto de venta" required>	
 				    </div>
 			  	</div>
+			  	 <div class="form-group">
+			    	<label class="col-sm-2 control-label">C.P: </label>
+			    	<div class="col-sm-10">
+			    		<input type="text" pattern="[0-9]{5}|[0-9]{6}|[0-9]{7}" title="Ingresa 5, 6 o 7 dígitos" class="form-control input" name="cp_pv"  placeholder="Código postal" required>
+		         	</div>
+				  </div>
+					
+				  <div class="form-group">
+			    	<label class="col-sm-2 control-label">E-mail: </label>
+			    	<div class="col-sm-10">
+			    		<input type="email" class="form-control input" name="email_pv" placeholder="Correo electrónico" required>
+		         	</div>
+				  </div>
+
+				  <div class="form-group">
+			    	<label class="col-sm-2 control-label">Teléfono: </label>
+			    	<div class="col-sm-10">
+			    		<input type="text" pattern="[0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}" title="Ingresa 10, 11, 12 y 13 dígitos" class="form-control input" name="telefono_pv" placeholder="Teléfono" required>
+		         	</div>
+				  </div>
 				
 				<div class="form-group">
 			    	<label class="col-sm-2 control-label">Dirección: </label>
