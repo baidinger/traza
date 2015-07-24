@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 24, 2015 at 12:51 AM
+-- Generation Time: Jul 24, 2015 at 02:50 AM
 -- Server version: 5.5.40
 -- PHP Version: 5.4.12
 
@@ -97,7 +97,14 @@ CREATE TABLE IF NOT EXISTS `empresa_distribuidores` (
   `fecha_modificacion_dist` date NOT NULL,
   `estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_distribuidor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `empresa_distribuidores`
+--
+
+INSERT INTO `empresa_distribuidores` (`id_distribuidor`, `nombre_distribuidor`, `rfc_distribuidor`, `pais_distribuidor`, `estado_distribuidor`, `ciudad_distribuidor`, `cp_distribuidor`, `email_distribuidor`, `tel1_distribuidor`, `tel2_distribuidor`, `direccion_distribuidor`, `id_usuario_que_registro`, `fecha_registro_dist`, `fecha_modificacion_dist`, `estado`) VALUES
+(13, 'DIST', 'CXCA900604KT0', '4', '4', 'MIKOLAITA', '99443', 'deniss@abarrotes.com', '1209340923', '', 'ASD', 1, '2015-07-24', '2015-07-24', 1);
 
 -- --------------------------------------------------------
 
@@ -122,14 +129,15 @@ CREATE TABLE IF NOT EXISTS `empresa_empaques` (
   `fecha_modificacion_emp` date NOT NULL,
   `estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_empaque`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `empresa_empaques`
 --
 
 INSERT INTO `empresa_empaques` (`id_empaque`, `nombre_empaque`, `rfc_empaque`, `pais_empaque`, `estado_empaque`, `ciudad_empaque`, `direccion_empaque`, `cp_empaque`, `email_empaque`, `telefono1_empaque`, `telefono2_empaque`, `id_usuario_que_registro`, `fecha_registro_emp`, `fecha_modificacion_emp`, `estado`) VALUES
-(1, 'SIERVO DE LA NACIÓN', 'SIRV900305KT0', '0', '13', 'EL CEÑIDOR', 'EL CEÑIDOR, MUGICA. CAR. 4 CAMINOS APATZINGÁN', '61770', 'contacto@siervodelanacion.com.mx', '4255925238', '', 1, '0000-00-00', '0000-00-00', 1);
+(1, 'SIERVO DE LA NACIÓN', 'SIRV900305KT0', '0', '13', 'EL CEÑIDOR', 'EL CEÑIDOR, MUGICA. CAR. 4 CAMINOS APATZINGÁN', '61770', 'contacto@siervodelanacion.com.mx', '4255925238', '', 1, '0000-00-00', '0000-00-00', 1),
+(13, 'EMPA', 'SVON894532JH7', '2', '1', 'MORELIA', 'ASDKL', '54223', 'siervo@siervodelanacion.com', '4531065690', '', 1, '2015-07-24', '2015-07-24', 1);
 
 -- --------------------------------------------------------
 
@@ -151,7 +159,15 @@ CREATE TABLE IF NOT EXISTS `empresa_productores` (
   `estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_productor`),
   KEY `id_usuario_fk` (`id_usuario_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `empresa_productores`
+--
+
+INSERT INTO `empresa_productores` (`id_productor`, `nombre_productor`, `apellido_productor`, `telefono_productor`, `direccion_productor`, `rfc_productor`, `id_usuario_fk`, `id_usuario_que_registro`, `fecha_registro_prod`, `fecha_modificacion_prod`, `estado`) VALUES
+(13, 'ANASTACIO', 'JIMENEZ', '4251074467', 'CONOCIDO\r\n', 'CACF909900HT6', 70, 1, '2015-07-24', '2015-07-24', 1),
+(15, 'PANCRASIO', 'JIMENEZ', '4251074467', 'CEÑIDOR, CONOCIDO', 'CACF909900HT6', 73, 1, '2015-07-24', '2015-07-24', 1);
 
 -- --------------------------------------------------------
 
@@ -175,7 +191,14 @@ CREATE TABLE IF NOT EXISTS `empresa_punto_venta` (
   `fecha_modificacion_pv` date NOT NULL,
   `estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_punto_venta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `empresa_punto_venta`
+--
+
+INSERT INTO `empresa_punto_venta` (`id_punto_venta`, `nombre_punto_venta`, `rfc_punto_venta`, `pais_punto_venta`, `estado_punto_venta`, `ciudad_punto_venta`, `telefono_punto_venta`, `cp_punto_venta`, `email_punto_venta`, `direccion_punto_venta`, `id_usuario_que_registro`, `fecha_registro_pv`, `fecha_modificacion_pv`, `estado`) VALUES
+(8, 'ALFONSO DISTRIBUIDOR', 'PTVB098855IU7', '4', '1', 'CEÑIDOR', '4531209845', '61770', 'alfonso.calderon.chavez@gmail.com', 'CEÑIDOR, CONOCIDO', 1, '2015-07-24', '2015-07-24', 1);
 
 -- --------------------------------------------------------
 
@@ -457,7 +480,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `estado_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nombre_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=86 ;
 
 --
 -- Dumping data for table `usuarios`
@@ -465,7 +488,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `contrasena_usuario`, `tipo_socio_usuario`, `nivel_autorizacion_usuario`, `fecha_creacion_usuario`, `fecha_modificacion_usuario`, `estado_usuario`) VALUES
 (1, 'ADMINEMPAQUE', '05a7b54baab0eedc17c3217a3fcafbed', 2, 1, '2015-07-09', '2015-07-01', 1),
-(67, 'PRODUCTOR1', 'b392dc4500d7490e52e44cc360a52db6', 1, 1, '2015-07-23', '2015-07-23', 1);
+(67, 'PRODUCTOR1', 'b392dc4500d7490e52e44cc360a52db6', 1, 1, '2015-07-23', '2015-07-23', 1),
+(68, 'ALFONSO1', '8bde3b962f1b08e54a32880e1dee5f3d', 1, 1, '2015-07-24', '2015-07-24', 1),
+(70, 'PRODUCTOR', 'a01bf2fd9d9a9ecc2aebfe42ca55c4f0', 1, 1, '2015-07-24', '2015-07-24', 1),
+(73, 'TONY', 'ddc5f5e86d2f85e1b1ff763aff13ce0a', 1, 1, '2015-07-24', '2015-07-24', 1),
+(77, 'EMPA', '9bd58a8b026f60ac850ecb1cd0451468', 2, 1, '2015-07-24', '2015-07-24', 1),
+(78, 'DIST', '2a6d07eef8b10b84129b42424ed99327', 3, 1, '2015-07-24', '2015-07-24', 1),
+(85, 'ROOT2', '6a2cd24438d8a22f757a6a0d2f4e7a11', 4, 1, '2015-07-24', '2015-07-24', 1);
 
 -- --------------------------------------------------------
 
@@ -487,7 +516,14 @@ CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
   PRIMARY KEY (`id_usuario_distribuidor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `usuario_distribuidor`
+--
+
+INSERT INTO `usuario_distribuidor` (`id_usuario_distribuidor`, `nombre_usuario_distribuidor`, `apellido_usuario_distribuidor`, `direccion_usuario_distribuidor`, `telefono_usuario_distribuidor`, `entradas`, `pedidos`, `envios`, `id_usuario_fk`, `id_distribuidor_fk`) VALUES
+(20, 'ADMIN', 'ADMIN', 'ADMIN', '0000000000', 1, 1, 1, 78, 13);
 
 -- --------------------------------------------------------
 
@@ -510,14 +546,15 @@ CREATE TABLE IF NOT EXISTS `usuario_empaque` (
   PRIMARY KEY (`id_receptor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_empaque_fk_idx` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `usuario_empaque`
 --
 
 INSERT INTO `usuario_empaque` (`id_receptor`, `nombre_receptor`, `apellido_receptor`, `direccion_receptor`, `telefono_receptor`, `pedidos`, `lotes`, `envios`, `superusuario`, `id_usuario_fk`, `id_empaque_fk`) VALUES
-(1, 'ALFONSO', 'CALDERÓN CHÁEZ', 'APATZINGÁN, COL. 22 DE OCTUBRE, CALLE VENUZTIANO CARRANZA', '4531064590', 1, 1, 1, 1, 1, 1);
+(1, 'ALFONSO', 'CALDERÓN CHÁEZ', 'APATZINGÁN, COL. 22 DE OCTUBRE, CALLE VENUZTIANO CARRANZA', '4531064590', 1, 1, 1, 1, 1, 1),
+(9, 'ADMIN', 'ADMIN', 'ADMIN', '0000000000', 1, 1, 1, 0, 77, 13);
 
 -- --------------------------------------------------------
 
@@ -536,7 +573,14 @@ CREATE TABLE IF NOT EXISTS `usuario_punto_venta` (
   PRIMARY KEY (`id_usuario_pv`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_usuario_punto_venta_idx` (`id_usuario_punto_venta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `usuario_punto_venta`
+--
+
+INSERT INTO `usuario_punto_venta` (`id_usuario_pv`, `id_usuario_punto_venta`, `id_usuario_fk`, `nombre_usuario_pv`, `apellidos_usuario_pv`, `telefono_usuario_pv`, `direccion_usuario_pv`) VALUES
+(8, 8, 85, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN');
 
 --
 -- Constraints for dumped tables
