@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 23, 2015 at 11:26 PM
+-- Generation Time: Jul 24, 2015 at 12:51 AM
 -- Server version: 5.5.40
 -- PHP Version: 5.4.12
 
@@ -203,6 +203,7 @@ CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
   `hora_envio` time NOT NULL,
   `fecha_entrega_envio` date NOT NULL,
   `id_camion_fk` int(11) NOT NULL,
+  `nombre_usuario_distribuidor` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion_envio` text COLLATE utf8_spanish_ci NOT NULL,
   `estado_envio` int(11) NOT NULL,
   `id_punto_venta_fk` int(11) NOT NULL,
@@ -222,6 +223,7 @@ CREATE TABLE IF NOT EXISTS `envios_empaque` (
   `hora_envio` time NOT NULL,
   `fecha_entrega_envio` date NOT NULL,
   `id_camion_fk` int(11) NOT NULL,
+  `nombre_usuario_empaque` varchar(30) NOT NULL,
   `descripcion_envio` text NOT NULL,
   `estado_envio` int(11) NOT NULL,
   `id_distribuidor_fk` int(11) NOT NULL,
