@@ -13,6 +13,7 @@
 
 	$arregloCantidades = $_POST['cantidades'];
 	$arregloUnidades = $_POST['unidades'];
+	$arregloUnitarios = $_POST['preciosUnitarios'];
 	$arregloCostos = $_POST['totalProductos'];
 	$arregloProductos = $_POST['idProductos'];
 	$costoTotalOrden = 0;
@@ -37,7 +38,7 @@
 		$idOrdenFK = $row['id_orden'];
 
 		for($i = 0; $i < count($arregloCantidades); $i++) {
-			$consulta = "INSERT INTO ordenes_distribuidor_detalles(cantidad_producto_od, unidad_producto_od, costo_producto_od, id_orden_fk, id_producto_fk) VALUES($arregloCantidades[$i], '$arregloUnidades[$i]', $arregloCostos[$i], $idOrdenFK, $arregloProductos[$i])";
+			$consulta = "INSERT INTO ordenes_distribuidor_detalles(cantidad_producto_od, unidad_producto_od, costo_unitario_od, costo_producto_od, id_orden_fk, id_producto_fk) VALUES($arregloCantidades[$i], '$arregloUnidades[$i]', $arregloUnitarios[$i], $arregloCostos[$i], $idOrdenFK, $arregloProductos[$i])";
 			mysql_query($consulta, $conexion);
 		}
 
@@ -47,7 +48,7 @@
 		if(!empty($mysqlError)){
 			header('Location: ../nuevaOrden/e');
 		} else {
-			header('Location: ../');
+			header('Location: ../historialOrdenes/');
 		}
 	}
 	else{

@@ -28,67 +28,15 @@
 	</head>
 
 	<body>
-		<!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		  	<div class="navbar-header">
-		    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-		      		<span class="sr-only">Toggle navigation</span>
-		    	</button>
-		    	<a class="navbar-brand">DISTRIBUIDOR</a>
-		  	</div>
-		  	<div class="collapse navbar-collapse" id="navbar-collapse-01">
-		  		<ul class="nav navbar-nav">
-					<li class="dropdown active">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevaOrden/">Nueva órden</a></li>
-				            <li class="divider"></li>
-				            <li><a href="../">Historial de órdenes</a></li>
-							<li class="active"><a href="#">Entrada de órdenes</a></li>
-  						</ul>
-					</li>
-					<li class="dropdown">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Pedidos <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevoEnvio/">Registrar envío</a></li>
-    						<li class="divider"></li>
-				            <li><a href="../pedidos/">Historial de pedidos</a></li>
-							<li><a href="../enviosPedidos/">Envío de pedidos</a></li>
-  						</ul>
-					</li>
-					<?php 
-						if($_SESSION['nivel_socio'] == 1){ ?>
-							<li class="dropdown">
-		  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-		    						<li><a href="../nuevoUsuario/">Nuevo usuario</a></li>
-		    						<li class="divider"></li>
-						            <li><a href="../usuarios/">Administrar usuarios</a></li>
-		  						</ul>
-							</li>
-						<?php }
-					?>
-		    	</ul>
-
-		    	<ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $_SESSION['nombre_usuario']; ?> <span class="caret"></span></a>
-		          		<ul class="dropdown-menu" role="menu">
-		            		<li><a href="../contrasena/"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-		            		<li><a href="../datosGenerales/"><span class="fui-gear"></span> &nbsp;Datos generales</a></li>
-		            		<li class="divider"></li>
-		            		<li><a href="../../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
-		          		</ul>
-			        </li>
-			    </ul>
-		  	</div>
-		</nav> -->
 		<?php 
 			include('../mod/navbar.php');
 		?>
 		<div class="contenido-general">
 			<div class="modal-header">
 				<h3 class="titulo-header">
-					<h3 class="titulo-contenido">Entrada de Órdenes</h3>
+					<h3 class="titulo-contenido">
+						<img class="img-header" src="../../img/historial_entradas.png"> Entrada de Órdenes
+					</h3>
 				</h3>
 			</div>
 			<div class="contenido-general-2">
@@ -121,51 +69,58 @@
 							    $consulta = "SELECT ords.id_orden, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estatus_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ 
-									
-									$consulta2 = "SELECT epc_caja FROM distribuidor_cajas_envio WHERE recibido_dce = 1 AND id_orden_fk = ".$row['id_orden']." LIMIT 1";
-									$resultado2 = mysql_query($consulta2);
-									while($row2 = mysql_fetch_array($resultado2)){ 
 
-										$consulta3 = "SELECT COUNT(epc_caja) AS total_enviados FROM distribuidor_cajas_envio WHERE enviado_dce = 1 AND id_orden_fk = ".$row['id_orden'];
-										$resultado3 = mysql_query($consulta3);
-										$row3 = mysql_fetch_array($resultado3);
-										$totalEnviados = $row3['total_enviados'];
+									$consulta4 = "SELECT id_envio FROM envios_empaque WHERE id_orden_fk = ".$row['id_orden']." LIMIT 1";
+									$resultado4 = mysql_query($consulta4);
+									while($row4 = mysql_fetch_array($resultado4)){
+										$idEnvioFk = $row4['id_envio'];	
 
-										$consulta3 = "SELECT COUNT(epc_caja) AS total_recibidos FROM distribuidor_cajas_envio WHERE recibido_dce = 1 AND id_orden_fk = ".$row['id_orden'];
-										$resultado3 = mysql_query($consulta3);
-										$row3 = mysql_fetch_array($resultado3);
-										$totalRecibidos = $row3['total_recibidos']; ?>
+										$consulta2 = "SELECT epc_caja FROM distribuidor_cajas_envio WHERE recibido_dce = 1 AND id_envio_fk = $idEnvioFk LIMIT 1";
+										$resultado2 = mysql_query($consulta2);
+										while($row2 = mysql_fetch_array($resultado2)){ 
 
-										<tr>
-							          		<td class="centro"><?php echo $row['id_orden']; ?></td>
-							          		<td><?php echo $row['nombre_empaque']; ?></td>
-							          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
-							          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
-							          		<td class="centro"><?php echo $totalEnviados." / ".$totalRecibidos; ?></td>
-							          		<?php
-						          				$estado = $row['estatus_orden'];
+											$consulta3 = "SELECT COUNT(epc_caja) AS total_enviados FROM distribuidor_cajas_envio WHERE enviado_dce = 1 AND id_envio_fk = $idEnvioFk";
+											$resultado3 = mysql_query($consulta3);
+											$row3 = mysql_fetch_array($resultado3);
+											$totalEnviados = $row3['total_enviados'];
 
-						          				switch($estado) {
-						          					case '1': echo "<td class='centro pendiente'>PENDIENTE</td>"; 	$verAcciones = 0; break;
-						          					case '2': echo "<td class='centro rechazado'>RECHAZADO</td>"; 	$verAcciones = 0; break;
-						          					case '3': echo "<td class='centro enviado'>ENVIADO</td>"; 		$verAcciones = 1; break;
-						          					case '4': echo "<td class='centro concretado'>CONCRETADO</td>"; $verAcciones = 0; break;
-						          					case '5': echo "<td class='centro cancelado'>CANCELADO</td>";	$verAcciones = 0; break;
-						          					case '6': echo "<td class='centro aprobado'>APROBADO</td>"; 	$verAcciones = 0; break;
-						          				}
-						          			?>
-							          		<td class="derecha">
-							          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
-							          			<?php
-							          				if($verAcciones == 1){ ?>
-							          					<button class="btn btn-danger" id="btn-cancelar" onClick="cambiarEstadoOrden('rechazar', 5, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Rechazar órden"><i class="glyphicon glyphicon-remove"></i></button>
-								        				<button class="btn btn-success" id="btn-concretar" onClick="cambiarEstadoOrden('concretar', 4, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Concretar órden"><i class="glyphicon glyphicon-ok"></i></button>
-							          				<?php }
+											$consulta3 = "SELECT COUNT(epc_caja) AS total_recibidos FROM distribuidor_cajas_envio WHERE recibido_dce = 1 AND id_envio_fk = $idEnvioFk";
+											$resultado3 = mysql_query($consulta3);
+											$row3 = mysql_fetch_array($resultado3);
+											$totalRecibidos = $row3['total_recibidos']; ?>
+
+											<tr>
+								          		<td class="centro"><?php echo $row['id_orden']; ?></td>
+								          		<td><?php echo $row['nombre_empaque']; ?></td>
+								          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
+								          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
+								          		<td class="centro"><?php echo $totalEnviados." / ".$totalRecibidos; ?></td>
+								          		<?php
+							          				$estado = $row['estatus_orden'];
+
+							          				switch($estado) {
+							          					case '1': echo "<td class='centro pendiente'>PENDIENTE</td>"; 	$verAcciones = 0; break;
+							          					case '2': echo "<td class='centro rechazado'>RECHAZADO</td>"; 	$verAcciones = 0; break;
+							          					case '3': echo "<td class='centro enviado'>ENVIADO</td>"; 		$verAcciones = 1; break;
+							          					case '4': echo "<td class='centro concretado'>CONCRETADO</td>"; $verAcciones = 0; break;
+							          					case '5': echo "<td class='centro cancelado'>CANCELADO</td>";	$verAcciones = 0; break;
+							          					case '6': echo "<td class='centro aprobado'>APROBADO</td>"; 	$verAcciones = 0; break;
+							          				}
 							          			?>
-								        	</td>
-							    	    </tr>
-								<?php 
-										$cont++; 
+								          		<td class="derecha">
+								          			<!-- <button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button> -->
+								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
+								          			<?php
+								          				if($verAcciones == 1){ ?>
+								          					<button class="btn btn-danger" id="btn-cancelar" onClick="cambiarEstadoOrden('rechazar', 5, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Rechazar órden"><i class="glyphicon glyphicon-remove"></i></button>
+									        				<button class="btn btn-success" id="btn-concretar" onClick="cambiarEstadoOrden('concretar', 4, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Concretar órden"><i class="glyphicon glyphicon-ok"></i></button>
+								          				<?php }
+								          			?>
+									        	</td>
+								    	    </tr>
+									<?php 
+											$cont++; 
+										}
 									}
 								}
 							?>

@@ -72,12 +72,52 @@
 								$id_distribuidor_fk = $row['id_usuario_distribuidor'];
 
 								$cont = 0;
-							    $consulta = "SELECT ords.id_orden, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estatus_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk ORDER BY ords.id_orden DESC";
+							    $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estatus_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk ORDER BY ords.id_orden DESC";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ ?>
 									<tr>
 						          		<td class="centro"><?php echo $row['id_orden']; ?></td>
-						          		<td><?php echo $row['nombre_empaque']; ?></td>
+						          		<td>
+						          			<?php 
+						          				$idEmpaque = $row['id_empaque'];
+
+						          				$consulta2 = "SELECT * FROM empresa_empaques WHERE id_empaque = $idEmpaque";
+						          				$resultado2 = mysql_query($consulta2);
+						          				$row2 = mysql_fetch_array($resultado2);
+						          			?>
+						          			<a href="#" class="popover-empaque" 
+						          				tabindex="0"
+						          				data-toggle="popover"
+						          				data-placement="right"
+						          				data-trigger="focus"
+						          				data-container="body"
+						          				data-html="true"
+						          				title="<center><strong><?php echo $row2['nombre_empaque']; ?></strong></center>"
+						          				data-content="<table class='table'>
+						          								<tr>
+						          									<td><strong>RFC: </strong></td>
+						          									<td><?php echo $row2['rfc_empaque']; ?></td>
+						          								</tr>
+						          								<tr>
+						          									<td><strong>Ciudad: </strong></td>
+						          									<td><?php echo $row2['ciudad_empaque']; ?></td>
+						          								</tr>
+						          								<tr>
+						          									<td><strong>Dirección: </strong></td>
+						          									<td><?php echo $row2['direccion_empaque']; ?></td>
+						          								</tr>
+						          								<tr>
+						          									<td><strong>Teléfono: </strong></td>
+						          									<td><?php echo $row2['telefono1_empaque']; ?></td>
+						          								</tr>
+						          								<tr>
+						          									<td><strong>Email: </strong></td>
+						          									<td><?php echo $row2['email_empaque']; ?></td>
+						          								</tr>
+						          							  <table>">
+						          				<?php echo $row['nombre_empaque']; ?>
+						          			</a>
+						          		</td>
 						          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
 						          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ',')	; ?></td>
 					          			<?php
@@ -123,23 +163,32 @@
 		<div class="modal fade bs-example-modal-lg" id="modalEstado" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="titulo-header">
-							<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado de la Orden</span>
-						</h3>
-					</div>
-					<div class="modal-body">
-						<label>Estado:</label>
-						<input type="hidden" name="inputIdOrden" id="inputIdOrden">
-						<select class="form-control" name="inputEstado" id="selectEstado">
-							<option value="5">CANCELADO</option>
-						</select>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
-						<button type="button" class="btn btn-primary" onclick="cambiarEstado()"><i class="glyphicon glyphicon-floppy-disk"></i> Cambiar Estado</button>
-					</div>
+					<form method="post" action="../mod/cambiar_estado_orden.php">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="titulo-header">
+								<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado de la Orden</span>
+							</h3>
+						</div>
+						<div class="modal-body">
+								<p><label>Estado:</label></p>
+								<p>
+									<select class="form-control" name="inputEstado" id="selectEstado">
+										<option value="5">CANCELADO</option>
+									</select>
+								</p>
+								<br>
+								<p><label>Motivo de Cancelación:</label></p>
+								<p>
+									<input type="hidden" name="inputIdOrden" id="inputIdOrden">
+									<textarea class="form-control" rows="4" name="inputMotivoCancelar" id="inputMotivoCancelar" placeholder="Motivo de cancelación..." required></textarea>
+								</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+							<button type="submit" class="btn btn-primary" onclick="cambiarEstado()"><i class="glyphicon glyphicon-floppy-disk"></i> Cambiar Estado</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -171,19 +220,24 @@
 
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
+			$('.popover-empaque').popover();
 
 			function buscarOrdenes(){
-				var cadena = $('#inputBuscar').val();
+				var empaqueBuscar = $('#inputBuscar').val();
 
-				if(cadena != ''){
+				if(empaqueBuscar != ''){
 					$.ajax({
 						type: 'POST',
 						url: '../mod/buscar_ordenes.php',
-						data: {'empaque':cadena},
+						data: {'empaque':empaqueBuscar},
+
+						beforeSend: function(){
+							$('.contenido-general-2').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+						},
 
 						success: function(data){
 							$('.img-header').attr('src', '../../img/buscar.png');
-							$('#lbl-titulo').text('Resultado de la búsqueda "' + cadena + '"');
+							$('#lbl-titulo').text('Resultado de la búsqueda "' + empaqueBuscar + '"');
 							$('#inputBuscar').select();
 							$('.contenido-general-2').html(data);
 						}
@@ -201,22 +255,28 @@
 				$('#modalEstado').modal('show');
 			}
 
-			function cambiarEstado(){
-				var orden = $('#inputIdOrden').val();
+			// function cambiarEstado(){
+			// 	var orden = $('#inputIdOrden').val();
+			// 	var motivo = $('#inputMotivoCancelar').val();
 
-				var respuesta = confirm("¿Desea cancelar la orden " + orden + "?");
-			    if(respuesta){
-					$.ajax({
-						type: 'POST',
-						url: '../mod/cambiar_estado_orden.php',
-						data: {'orden':orden},
+			// 	if(motivo != ''){
+			// 		var respuesta = confirm("¿Desea cancelar la orden " + orden + "?");
+			// 	    if(respuesta){
+			// 			$.ajax({
+			// 				type: 'POST',
+			// 				url: '../mod/cambiar_estado_orden.php',
+			// 				data: {'orden':orden},
 
-						success: function(data){
-							$(location).attr('href', '../historialOrdenes/');
-						}
-					});
-				}
-			}
+			// 				success: function(data){
+			// 					$(location).attr('href', '../historialOrdenes/');
+			// 				}
+			// 			});
+			// 		}
+			// 	}
+			// 	else{
+			// 		alert();
+			// 	}
+			// }
 
 			function mostrarDetalles(orden){
 				$.ajax({

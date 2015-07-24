@@ -27,82 +27,34 @@
 	</head>
 
 	<body>
-		<!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		  	<div class="navbar-header">
-		    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-		      		<span class="sr-only">Toggle navigation</span>
-		    	</button>
-		    	<a class="navbar-brand">DISTRIBUIDOR</a>
-		  	</div>
-		  	<div class="collapse navbar-collapse" id="navbar-collapse-01">
-		  		<ul class="nav navbar-nav">
-					<li class="dropdown active">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevaOrden/">Nueva órden</a></li>
-				            <li class="divider"></li>
-				            <li><a href="../">Historial de órdenes</a></li>
-							<li><a href="../entradasOrdenes/">Entrada de órdenes</a></li>
-  						</ul>
-					</li>
-					<li class="dropdown">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Pedidos <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevoEnvio/">Registrar envío</a></li>
-    						<li class="divider"></li>
-				            <li><a href="../pedidos/">Historial de pedidos</a></li>
-							<li><a href="../enviosPedidos/">Envío de pedidos</a></li>
-  						</ul>
-					</li>
-					<?php 
-						if($_SESSION['nivel_socio'] == 1){ ?>
-							<li class="dropdown">
-		  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-		    						<li><a href="../nuevoUsuario/">Nuevo usuario</a></li>
-		    						<li class="divider"></li>
-						            <li><a href="../usuarios/">Administrar usuarios</a></li>
-		  						</ul>
-							</li>
-						<?php }
-					?>
-		    	</ul>
-
-		    	<ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $_SESSION['nombre_usuario']; ?> <span class="caret"></span></a>
-		          		<ul class="dropdown-menu" role="menu">
-		            		<li><a href="../contrasena/"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-		            		<li><a href="../datosGenerales/"><span class="fui-gear"></span> &nbsp;Datos generales</a></li>
-		            		<li class="divider"></li>
-		            		<li><a href="../../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
-		          		</ul>
-			        </li>
-			    </ul>
-		  	</div>
-		</nav> -->
 		<?php 
 			include('../mod/navbar.php');
 		?>
 		<div class="contenido-general">
 			<div class="modal-header">
 				<h3 class="titulo-header">
-					<h3 class="titulo-contenido">Nueva Órden a Empaque</h3>
+					<h3 class="titulo-contenido">
+						<img class="img-header" src="../../img/nueva_orden.png"> Nueva Órden a Empaque
+					</h3>
 				</h3>
 			</div>
 			<div class="contenido-general-2">
 				<?php if(isset($_REQUEST['e'])){ ?>
 			  		<div class="alert alert-danger alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<strong>Error!</strong> Error al registrar órden.
+						<strong>Error!</strong> Error al registrar orden.
 					</div>
 			  	<?php } ?>
 			  	<br>
+			  	<?php
+			  		date_default_timezone_set("America/Mexico_City");
+					$fechaActual = date("Y-m-d");
+	 			?>
 				<form method="post" action="../mod/registrar_orden.php">
 					<div class="form-inline">
 						<table class="table">
 							<tr>
-								<td><label>Empaque: </label></td>
+								<td><label class="lbl-nueva-orden">Empaque: </label></td>
 								<td>
 									<input type="hidden" name="inputIdEmpaque" id="inputIdEmpaque">
 									<input type="text" class="form-control" name="inputNombreEmpaque" id="inputNombreEmpaque" placeholder="Empaque..." readonly required>
@@ -110,10 +62,9 @@
 								<td>
 									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalEmpaque"><i class="glyphicon glyphicon-search"></i> Buscar Empaque</a>
 								</td>
-								<td></td>
-								<td class="derecha"><label>Fecha de Entrega: </label></td>
+								<td class="derecha"><label class="lbl-nueva-orden">Fecha de Entrega Deseada: </label></td>
 								<td class="derecha">
-									<input type="date" class="form-control" name="inputFechaEntrega" id="inputFechaEntrega" required>
+									<input type="date" class="form-control" min="<?php echo $fechaActual; ?>" name="inputFechaEntrega" id="inputFechaEntrega" required>
 								</td>
 							</tr>
 						</table>
@@ -208,7 +159,7 @@
 			function buscarEmpaques(){
 				var empaqueBuscar = $('#inputBuscarEmpaque').val();
 
-				if(empaqueBuscar != ''){
+				// if(empaqueBuscar != ''){
 					var params = {'empaque':empaqueBuscar};
 
 					$.ajax({
@@ -221,7 +172,7 @@
 							$('#inputBuscarEmpaque').select();
 						}
 					});
-				}
+				// }
 			}
 
 			function seleccionarEmapque(idEmpaque, nombreEmpaque){

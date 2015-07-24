@@ -6,15 +6,15 @@
 
 	include('../../mod/conexion.php');
 
-	$consulta = "SELECT prds.id_producto, prds.nombre_producto, prds.variedad_producto, prdsepqs.precio_producto FROM productos AS prds, productos_empaques AS prdsepqs WHERE prds.id_producto = prdsepqs.id_producto_fk AND prds.id_producto = $idProducto";
+	$consulta = "SELECT prds.id_producto, prds.nombre_producto, prds.variedad_producto, prdsepqs.precio_venta FROM productos AS prds, productos_empaques AS prdsepqs WHERE prds.id_producto = prdsepqs.id_producto_fk AND prds.id_producto = $idProducto";
 	$resultado = mysql_query($consulta);
 	$row = mysql_fetch_array($resultado);
 
 	$nombreProducto = $row['nombre_producto']." ".$row['variedad_producto'];
 	$precioUnitario = number_format(0, 2, '.', '');
 	$totalProducto = number_format(0, 2, '.', '');
-	// $precioUnitario = number_format($row['precio_producto'], 2, '.', '');
-	// $totalProducto = number_format($cantProducto * $precioUnitario, 2, '.', '');
+	$precioUnitario = number_format($row['precio_venta'], 2, '.', '');
+	$totalProducto = number_format($cantProducto * $precioUnitario, 2, '.', '');
 
 	echo "<tr>".
 			"<td class='centro'>".$cantProducto."</td>".
@@ -26,6 +26,7 @@
 			"<input type='hidden' name='cantidades[]' value='".$cantProducto."'>".
 			"<input type='hidden' name='unidades[]' value='".$unidProducto."'>".
 			"<input type='hidden' name='idProductos[]' value='".$idProducto."'>".
+			"<input type='hidden' name='preciosUnitarios[]' value='".$precioUnitario."'>".
 			"<input type='hidden' name='totalProductos[]' value='".$totalProducto."'>".
 		"</tr>";
 ?>

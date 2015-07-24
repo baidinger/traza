@@ -145,8 +145,11 @@ textarea{
 .link-estado{
 	cursor: pointer;
 }
-/*
-.a-estado .pendiente{
-	color: red;
-	text-decoration: none;
-}*/
+
+#inputNombreEmpaque{
+	width: 100%;
+}
+
+.lbl-nueva-orden{
+	padding-top: 5px;
+}
