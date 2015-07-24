@@ -1,6 +1,16 @@
 body{
-	/*background-color: #CEF6CE;*/
+	background-color: #F8F8F8;
 }
+
+.body-logeo{
+	background: #7FBF22 url('../img/fondo-body.jpg') no-repeat;
+	background-position: top center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 .pagina{
   width: 100%;
   height: auto;
@@ -9,17 +19,17 @@ body{
 }
 
 .contenedor-logeo{
-  /*border-radius: 5px;*/
+  border-radius: 0px 0px 5px 5px;
   box-shadow: 0 0 5px 3px rgba(0,0,0,0.5);
   margin: 0px auto;
-  width: 450px;
+  width: 600px;
   height: auto;
 
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -200px;
-  margin-left: -225px;
+  margin-left: -300px;
 }
 
 h3.titulo-header{
@@ -37,7 +47,7 @@ h3.titulo-contenido{
 
 .modal-body, .modal-footer{
 	background-color: #F8F8F8;
-	border-radius: 5px;
+	border-radius: 0px 0px 5px 5px;
 }
 
 .img-header{
@@ -60,11 +70,20 @@ h3.titulo-contenido{
 	margin-right: 5px;
 }
 
+.fondo-body{
+	background: #7FBF22 url('../img/fondo-body.jpg') no-repeat;
+	background-position: top center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 .contenido-general{
 	background-color: #F8F8F8;
-	border-radius: 0px 0px 5px 5px;
-	border: 1px solid #333333;
-	box-shadow: 0 0 5px 3px rgba(0,0,0,0.5);
+	/*border-radius: 0px 0px 5px 5px;*/
+	/*border: 1px solid #333333;*/
+	/*box-shadow: 0 0 5px 3px rgba(0,0,0,0.5);*/
 	margin: 0px auto;
 	margin-top: 50px;
 	width: 100%;
@@ -78,6 +97,11 @@ h3.titulo-contenido{
 .div-contenedor-form{
 	margin: 0px auto;
 	width: 50%;
+}
+
+.div-buscar{
+	margin: 0px auto;
+	width: 98%;
 }
 
 a{

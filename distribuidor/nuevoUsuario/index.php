@@ -30,7 +30,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		  	<div class="navbar-header">
 		    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
 		      		<span class="sr-only">Toggle navigation</span>
@@ -79,7 +79,10 @@
 			        </li>
 			    </ul>
 		  	</div>
-		</nav>
+		</nav> -->
+		<?php 
+			include('../mod/navbar.php');
+		?>
 		<div class="contenido-general">
 			<div class="modal-header">
         		<h3 class="titulo-header">

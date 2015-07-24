@@ -25,7 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	</head>
 
-	<body style="background:url(img/fondo.jpg) no-repeat; background-size:cover">
+	<body class="body-logeo">
 		<div class="pagina">
 			<div class="contenedor-logeo" >
 				<div class="login-form">
@@ -63,7 +63,8 @@
 					      		<p>&nbsp;</p>
 							  	<p class="alert alert-info">
 							  		<a href="#">¿Cómo registrarme?</a> |
-									<a href="#">Términos de uso y privacidad</a> 
+									<a href="#">Términos de uso y privacidad</a>
+								</p>
 					      	</div>
 					    </div>
 			      	</form>
