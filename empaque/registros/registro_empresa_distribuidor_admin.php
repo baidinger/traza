@@ -32,9 +32,9 @@
 
 			if(mysql_query(" INSERT INTO empresa_distribuidores (nombre_distribuidor, rfc_distribuidor,".
 				" pais_distribuidor, estado_distribuidor, ciudad_distribuidor, cp_distribuidor,".
-				" email_distribuidor, tel1_distribuidor, tel2_distribuidor, direccion_distribuidor, id_usuario_que_registro) ".
+				" email_distribuidor, tel1_distribuidor, tel2_distribuidor, direccion_distribuidor, id_usuario_que_registro, fecha_registro_dist, fecha_modificacion_dist) ".
 				" VALUES ('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$cp.
-					"','".$email."','".$tel1."','".$tel2."','".$direccion."',".$_SESSION['id_usuario'].")"))
+					"','".$email."','".$tel1."','".$tel2."','".$direccion."',".$_SESSION['id_usuario'].",'".date("Y-m-d")."','".date("Y-m-d")."')"))
 			{
 				$result_distribuidores = mysql_query("select id_distribuidor from empresa_distribuidores where rfc_distribuidor = '".$rfc."'");
 				if($result_distribuidores){
@@ -45,8 +45,8 @@
 
 				if(mysql_query(" INSERT INTO usuario_distribuidor (nombre_usuario_distribuidor,".
 					" apellido_usuario_distribuidor, direccion_usuario_distribuidor,".
-					" telefono_usuario_distribuidor, id_usuario_fk, id_distribuidor_fk) VALUES ".
-					"('ADMIN','ADMIN','ADMIN','0000000000',".$id_usuario.",".$id_distribuidor.")"))	{			
+					" telefono_usuario_distribuidor, id_usuario_fk, id_distribuidor_fk, entradas, pedidos, envios) VALUES ".
+					"('ADMIN','ADMIN','ADMIN','0000000000',".$id_usuario.",".$id_distribuidor.",1,1,1)"))	{			
 						mysql_close($conexion);
 						header ("Location: ../index.php?op=".$regreso."");
 				}
