@@ -24,7 +24,7 @@
 	    		</h3>
 	  		</div>
 	  	</div>
-	  	<div style="width:100%; height:100%; background:#FFFFFF;">
+	  	<div>
 	  		
 
 	  		<?php 
@@ -50,13 +50,13 @@
 		   	 	</div>
 						   <br> 	 	
 	  		
-	  		<div style="width:800px; margin:0px auto;">
+	  		<div style="width:800px; padding:20px; background:white; margin:0px auto;">
 	  			<div style="width:150px; margin:0px auto;">
 	  				<button data-toggle="modal" data-target="#modalProducto" class="btn btn-primary">
-	  					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Agregar producto
+	  					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar producto
 	  				</button>
 	  			</div>
-
+	  			<hr>
 	  			<div id="tablaDetalles">
 	  				<div id="paginacion-resultados">
 		  			<table class="table table-hover">
@@ -79,8 +79,12 @@
 			      					?><tr>
 				      						<td class="centro"> <?php echo $i; ?></td>
 				      						<td class="centro"><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></td>
-				      						<td class="centro">$ <?php echo $row['precio_compra']; ?><button class="btn btn-link" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_compra']; ?>)">Cambiar</button></td>
-				      						<td class="centro">$ <?php echo $row['precio_venta']; ?><button class="btn btn-link" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_venta']; ?>)">Cambiar</button></td>
+				      						<td class="centro">$ <?php echo $row['precio_compra']; ?>
+				      							<span class="btn-link" style="font-size:12px; cursor: hand" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_compra']; ?>,1)">Cambiar</span>
+				      						</td>
+				      						<td class="centro">$ <?php echo $row['precio_venta']; ?>
+				      							<span class="btn-link" style="font-size:12px; cursor: hand" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_venta']; ?>,2)">Cambiar</span>
+				      						</td>
 				      						<td>
 						          				
 						          			</td>
@@ -126,7 +130,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h3 class="titulo-header">
-							<span id="titulo-detalles">Buscar Producto</span>
+							<img class="img-header" src="img/buscar.png"><span id="titulo-detalles">Buscar Producto</span>
 						</h3>
 					</div>
 					<div class="modal-body" style="background:#FFFFFF;">
@@ -179,7 +183,7 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h3 class="modal-title" id="myModalLabel">$$ Cambiar Precio $$</h3>
+			        <h3 class="modal-title" id="myModalLabel">Cambiar precio</h3>
 			      </div>
 			      <div class="modal-body fondo-blanco">
 			      	<div style="margin:0px auto; width:400px; height:50px;">
@@ -190,6 +194,7 @@
 						      <div class="input-group-addon">$</div>
 						      	<input type="number" step="0.01" class="form-control" min="1" id="precio_producto" name="precio_producto" placeholder="Cantidad">
 						    	<input type="hidden" name="id_productos_empaque" id="id_productos_empaque">
+						    	<input type="hidden" name="tipo" id="tipo">
 						    </div>
 						  </div>
 						  <button onclick="" class="btn btn-primary">Aceptar</button>
@@ -208,16 +213,20 @@
 	  		$('#paginacion-resultados').simplePagination();
 	  		$('.eliminar').tooltip();
 
-	  		function modalCostoShow(idOrden, costo_orden){
+	  		function modalCostoShow(idOrden, costo_orden, tipo){
 				$('#id_productos_empaque').val(idOrden);
+				$('#tipo').val(tipo);
 				$('#precio_producto').val(costo_orden);
+
 				$('#myModal').modal('show');
+				$('#precio_producto').focus();
 			}
 
 			function modificarCosto(){
 				var cost 		= 	$('#precio_producto').val();
+				var tipo 		= 	$('#tipo').val();
 				var id 			= 	$('#id_productos_empaque').val();
-				var parametros	= 	{'costo': cost, 'id':id};
+				var parametros	= 	{'costo': cost, 'id':id, 'tipo':tipo};
 
 				$.ajax({
 					type:'post',
