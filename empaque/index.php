@@ -30,7 +30,7 @@
 	<meta charset="utf-8">
 		<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="script/bootstrap.min.js"></script>
-    <link rel="icon" type="image/png" href="../img/icon.png" />
+    <link rel="icon" type="image/png" href="../img/logo_trazabilidad.png" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
@@ -130,7 +130,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $nombre_usuario ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="index.php?op=contrasena"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-            <li ><a href="index.php?op=datos_generales"><span class="fui-gear"></span> &nbsp;Datos generales</a></li>
+            <li ><a href="index.php?op=datos_generales"><span class="fui-gear"></span> &nbsp;Info. de usuario</a></li>
             <li class="divider"></li>
             <li><a href="../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
           </ul>
