@@ -1,58 +1,17 @@
 <html>
 <head>
 <link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
-		<style type="text/css"> 
-			.modal-header{
-				width:100%;
-			}
-
-			.contenedor-form{
-				width:100%;
-			}
-
-			body{
-				background: #FFFFFF;
-			}
-
-			.fondo-modal-body{
-				background: #CEF6CE;
-			}
-
-			.views{
-				background: #FFFFFF;	
-			}
-
-			.busqueda-form{
-				margin-top: 20px;
-				margin-left: 50px;
-				width:1000px;
-				float:left;
-
-			}
-
-			.formato{
-				font-size: 25px;
-				font-weight: bold;
-			}
-
-			.active{
-				font-weight: bold;
-				color:#0B6121;
-			}
-
-			.desactive{
-				font-weight: bold;
-				color:#8A0808;
-			}
-
-			.centro{
-				text-align: center;
-			}
-			</style>
-
+	
 </head>
 <body>
-<div class="contenedor-form">
+	<?php 
+			$titulo = "Búsqueda de lotes";
+			$placeholder="Buscar productor";
+			$imagen = "lotes.png";
+			include("../busquedas/formulario_busqueda.php"); ?>
+
+
+<!--<div class="contenedor-form">
 			
 	<div class="modal-header">
 		<h3 class="modal-title">
@@ -61,7 +20,7 @@
 		</div>
 	</div>
 
-	<!-- buscar -->
+	
 	<div class="busqueda-form">
 				<div class="form-group">
 			    	<label for="inputBuscar" class="col-sm-2 control-label">Buscar</label>
@@ -74,11 +33,11 @@
 			<button type="submit" class="btn btn-primary" onclick="buscar()">Buscar</button>
 		</div>
 
-<!-- -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+-->
 <div id="data">
 	
 </div>

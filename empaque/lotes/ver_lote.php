@@ -22,7 +22,7 @@
 			      			<?php
 			      				include('../../mod/conexion.php');
 			      				$id_lote = $_POST['id'];
-			      				$consulta = "select id_lote, ubicacion_huerta_productor, telefono_productor, rfc_productor, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, rango_inicial, rango_final, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND id_lote = $id_lote";
+			      				$consulta = "select id_lote, telefono_productor, rfc_productor, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote,  id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND id_lote = $id_lote";
 			      				$resultado = mysql_query($consulta);
 			      				$row = mysql_fetch_array($resultado);
 			      			?>
@@ -38,10 +38,10 @@
 					      					<td><strong>RFC:</strong></td>
 					      					<td><?php echo $row['rfc_productor']; ?> </td>
 					      				</tr>
-					      				<tr>
+					      				<!--<tr>
 					      					<td><strong>Ubicación huerta:</strong></td>
 					      					<td><?php echo $row['ubicacion_huerta_productor']; ?> </td>
-					      				</tr>
+					      				</tr>-->
 					      				<tr>
 					      					<td><strong>Teléfono:</strong></td>
 					      					<td><?php echo $row['telefono_productor']; ?> </td>
@@ -82,7 +82,7 @@
 					      					<td><strong>Costo:</strong></td>
 					      					<td>$ <?php echo $row['costo_lote']; ?></td>
 					      				</tr>
-					      				<tr>
+					      				<!--<tr>
 					      					<td><strong>Rango:</strong></td>
 					      					<td>
 					      						<?php if( strcmp($row['rango_inicial'],"") != 0) {  
@@ -90,7 +90,7 @@
 					      					  <div class="label label-danger">No asignado</div>
 					      					  <?php } ?>
 					      					</td>
-					      				</tr>
+					      				</tr>-->
 					      			</tbody>
 					      		</table>
 					      		<hr>

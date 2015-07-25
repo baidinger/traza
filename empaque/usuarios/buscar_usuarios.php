@@ -140,4 +140,7 @@
 
 			<script type="text/javascript">
 				$('#paginacion-resultados').simplePagination();
+				$(function () {
+			  		$('[data-toggle="tooltip"]').tooltip()
+				});
 			</script>

@@ -3,9 +3,6 @@
 	<head lang="ES">
 		<title>Registro - Punto de Venta</title>
 		<meta charset="UTF-8">
-
-		<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">-->
-		<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
 		<?php include("../script/paises.js"); ?>
 	</head>
 

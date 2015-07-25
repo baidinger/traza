@@ -1,13 +1,16 @@
 body{
-	background-color: #fefefe;
-	background: url(../img/background.jpg) no-repeat;
-	background-attachment: fixed;
-	background-position: center;
+	background: #7FBF22 url('../../img/fondo-body.jpg') no-repeat;
+	background-position: top center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 h3{
 	color: #ffffff;
 }
+
 
 .contenedor-form{
 	/*box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.5);*/
@@ -26,4 +29,51 @@ h3{
 
 .img-header{
 	width: 60px;
+}
+
+.modal-header{
+	width:100%;
+}
+
+.contenedor-form{
+	width:100%;
+}
+
+body{
+	background: #FFFFFF;
+}
+
+.fondo-modal-body{
+	background: #CEF6CE;
+}
+
+.views{
+	background: #FFFFFF;	
+}
+
+.busqueda-form{
+	margin-top: 20px;
+	margin-left: 50px;
+	width:600px;
+	float:left;
+
+}
+
+.formato{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.active{
+	font-weight: bold;
+	color:#0B6121;
+}
+
+.desactive{
+	font-weight: bold;
+	color:#8A0808;
+}
+
+.centro{
+	text-align: center;
 }

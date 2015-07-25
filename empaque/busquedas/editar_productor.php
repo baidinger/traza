@@ -10,7 +10,7 @@
 
 		if(mysql_query("update empresa_productores set nombre_productor = '$nombre',".
 			" apellido_productor = '$apellido', telefono_productor = '$telefono',".
-			" direccion_productor = '$direccion', ".
+			" direccion_productor = '$direccion', fecha_modificacion_prod = '".date("Y-m-d")."', ".
 			" rfc_productor = '$rfc' where id_productor =  $id_productor")){
 			mysql_close($conexion);
 			//header("Location:../index.php?op=bus_productor");	

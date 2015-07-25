@@ -5,88 +5,15 @@
 		<meta charset="UTF-8">
 		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
 
-		<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">-->
-		<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
-		
-		<style type="text/css"> 
-			.modal-header{
-				width:100%;
-			}
-
-			.contenedor-form{
-				width:100%;
-			}
-
-			body{
-				background: #FFFFFF;
-			}
-
-			.fondo-modal-body{
-				background: #CEF6CE;
-			}
-
-			.views{
-				background: #FFFFFF;	
-			}
-
-			.busqueda-form{
-				margin-top: 20px;
-				margin-left: 50px;
-				width:1000px;
-				float:left;
-
-			}
-
-			.formato{
-				font-size: 25px;
-				font-weight: bold;
-			}
-
-			.active{
-				font-weight: bold;
-				color:#0B6121;
-			}
-
-			.desactive{
-				font-weight: bold;
-				color:#8A0808;
-			}
-
-			.centro{
-				text-align: center;
-			}
-
-</style> 
+	
 	</head>
 
 	<body>
-		<div class="contenedor-form">
-			
-	  		<div class="modal-header">
-	    		<h3 class="modal-title">
-	    			<img class="img-header" src="img/distribuidor.png"> Búsqueda de Distribuidores
-	    		</h3>
-	  		</div>
-
-	  	</div>
-
-	  		  	<!-- buscar -->
-	<div class="busqueda-form">
-				<div class="form-group">
-			    	<label for="inputBuscar" class="col-sm-2 control-label">Buscar</label>
-			    	<div class="col-sm-10">
-			      		<input onkeyup="if(event.keyCode == 13) buscar();" type="text" class="form-control" id="inputBuscar" placeholder="Buscar distribuidor">
-			    	</div>
-			  	</div>
-		</div>
-<div style="float:left; margin-top: 20px; margin-left:10px;">
-			<button type="submit" class="btn btn-primary" onclick="buscar()">Buscar</button>
-		</div>
-
-<!-- -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+		<?php 
+			$titulo = "Búsqueda de distribuidor";
+			$placeholder="Buscar distribuidor";
+			$imagen = "distribuidor.png";
+			include("formulario_busqueda.php"); ?>
 <div style="clear:both"></div>
 <div id="data">
 	
@@ -119,8 +46,8 @@
 
 			buscar();
 
+			$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 	</script>
-
-	<!--<script type="text/javascript" src="lib/jquery/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>-->
 </html>

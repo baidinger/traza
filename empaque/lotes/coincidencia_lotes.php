@@ -9,7 +9,7 @@
 			          <th>Cant. kilos</th>
 			          <th>Fecha de compra</th>
 			          <th>Costo lote</th>
-			          <th>Rango</th>
+			         <!-- <th>Rango</th>-->
 			          <th>Acción</th>
 			        </tr>
 	      		</thead>
@@ -17,7 +17,7 @@
 				<?php
 				$buscar = $_POST['buscar'];
 				include('../../mod/conexion.php');
-				$consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, rango_inicial, rango_final, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where id_empaque_fk = $_SESSION[id_empaque] AND lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%' )";
+				$consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where id_empaque_fk = $_SESSION[id_empaque] AND lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%' )";
 				$result_receptores = mysql_query($consulta);
 				$i=1;
 				//$result_receptores = mysql_query("select id_receptor, id_usuario, nombre_receptor, apellido_receptor, telefono_receptor, direccion_receptor, nombre_usuario, estado_usuario, nivel_autorizacion_usuario from usuario_empaque, usuarios where usuario_empaque.id_usuario_fk = usuarios.id_usuario AND usuario_empaque.id_empaque_fk = ".$id_empaque." order by nombre_receptor ASC, apellido_receptor ASC" );
@@ -34,9 +34,9 @@
 				          	<td><?php echo $row['cant_kilos_lote']; ?></td>
 				          	<td><?php echo $row['fecha_recibo_lote']; ?></td>
 				          	<td>$ <?php echo $row['costo_lote']; ?></td>
-				          	<td>
+				          	<!--<td>
 				          	  	<?php if( strcmp($row['rango_inicial'],"") != 0) {  ?> <span class="label label-success">Asignado</span> <?php  }  ?>
-				          	</td>
+				          	</td>-->
 				          	<td>
 				          		
 				          		<a onclick="editar(<?php echo $row['id_lote'] ?>,<?php echo $row['id_productor_fk'] ?>)" data-toggle="modal" data-target="#mimodal"  href="#">
@@ -74,6 +74,8 @@
 
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
-			
+			$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 		</script>
 		

@@ -70,43 +70,40 @@
 			          	 ?></td>
 			          	<td class="centro"><?php echo $row['telefono1_empaque']; ?></td>
 
-			          	<?php 
-			          		if($row['estado'] == 1){ 
-			          	?>
-			          			<td class="centro"> <p class="active"> Activo </p> </td>
+			          	<?php if($row['estado'] == 1){ ?>
+			          			<td class="centro"> <p class="label label-success"> Activo </p> </td>
+			          	<?php }else{ ?>
+			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
+			          	<?php } ?>
 			          			<td class="centro">
-			          				<div style="width:60px; margin:0px auto;">
+			          				<div style="width:90px; margin:0px auto;">
 				          				<a style="float:left; cursor:pointer;"> 
 				          					<span onclick="editar(<?php print $row['id_empaque'] ?>)"  data-toggle="modal" data-target=" #myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 				          				</a>
 				          				<div style="width:20px; height:10px; float:left;"></div> 
 				          				<?php if( $_SESSION['id_empaque'] != $row['id_empaque']){ ?>
-				          				<a style="float:left;" href="busquedas/desactivarEmpaque.php?id=<?php echo $row['id_empaque']; ?>"> 
-				          					<span data-toggle="tooltip" data-placement="top" title="Desactivar usuario" class="activar glyphicon glyphicon-remove" aria-hidden="true"></span>
-				          				</a>
+					          				<!-- ACCION HABILITAR -->
+					          				<?php if($row['estado'] == 1){ ?>
+					          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_empaque']; ?>&status=0&rol=2"> 
+					          					<span data-toggle="tooltip" data-placement="top" title="Desactivar" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					          				</a>
+					          				<?php } else { ?>
+					          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_empaque']; ?>&status=1&rol=2"> 
+						          					<span data-toggle="tooltip" data-placement="top" title="Activar" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						          			</a>
+					          				<?php } ?>
+					          				<!--   - - - - - - - - - - - -  - - - - -  -->
+
+				          				<?php } else{ ?>
+				          				<div style="width:16px; height:10px; float:left;"></div>
 				          				<?php } ?>
+				          				<div style="width:20px; height:10px; float:left;"></div>
+				          				<a style="float:left; cursor:pointer;"> 
+					          				<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="desactivar glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+					          			</a>
 			          				</div>
 			          			</td>
-			          <?php 
-								}else{
-								?>
-									<td class="centro"> <p class="desactive"> Inactivo </p> </td>
-									<td> 
-										<div style="width:60px; margin:0px auto;">
-					          				<a  style="float:left; cursor: pointer;"> 
-					          					<span onclick="editar(<?php print $row['id_empaque'] ?>)" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
-					          				</a>
-					          				<div style="width:20px; height:10px; float:left;"></div>  
-					          				<?php if( $_SESSION['id_empaque'] != $row['id_empaque']){ ?>
-					          				<a href="busquedas/activarEmpaque.php?id=<?php echo $row['id_empaque']; ?>"> 
-					          					<span data-toggle="tooltip" data-placement="top" title="Activar usuario" class="desactivar glyphicon glyphicon-ok" aria-hidden="true"></span>
-					          				</a>
-					          				<?php } ?>
-					          			</div>
-			          			</td>
-								<?php
-								}
-			           ?>
+			          
 		        	</tr>
 		        <?php  
 		        $i=$i+1;

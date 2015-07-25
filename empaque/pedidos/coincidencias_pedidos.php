@@ -37,9 +37,9 @@
 		          <th class="centro">Número</th>
 		          <th class="izquierda">Distribuidor</th>
 		          <th class="centro">Fecha de la orden</th>
-		          <th class="centro">Fecha de entrega</th>
+		          <th class="centro">Fecha de entrega deseada</th>
 		          <th class="centro">Costo</th>
-		          <th></th>
+		         <!-- <th></th>-->
 		          <th class="centro">Operaciones</th>
 		          <th class="centro">Estado</th>
 		          <th></th>
@@ -66,17 +66,17 @@
 			          			<td class="centro">
 			          				<label>$ <?php echo $row['costo_orden']; ?></label>
 			          			</td>
-			          			<td>
+			          			<!--<td>
 			          				<button class="btn btn-link" onClick="modalCostoShow(<?php echo $row['id_orden']; ?>, <?php echo $row['costo_orden']; ?>)">Introduce precio</button>
-			          			</td>
+			          			</td>-->
 			          			<td class="centro">
 			          				<div style="width:60px; margin:0px auto;">
-				          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 6)" style="float:left; cursor:pointer;"> 
-				          					<span data-toggle="modal" data-target="#" data-toggle="tooltip" data-placement="top" title="Aprobar" class="aprobarOrden glyphicon glyphicon-ok" aria-hidden="true"></span>
+				          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 6)" style="float:left; cursor:pointer;" data-toggle="tooltip" title="Aprobar"> 
+				          					<span data-toggle="modal" data-target="#"  data-placement="top" class="aprobarOrden glyphicon glyphicon-ok" aria-hidden="true"></span>
 				          				</a>
 				          				<div style="width:20px; height:10px; float:left;"></div> 
-				          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 2)" style="float:left; cursor:pointer;"> 
-				          					<span style="color:#931111;" data-toggle="tooltip" data-placement="top" title="Rechazar" class="rechazarOrden glyphicon glyphicon-remove" aria-hidden="true"></span>
+				          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 5)" style="float:left; cursor:pointer;"> 
+				          					<span style="color:#931111;" data-toggle="tooltip" data-placement="top" title="Cancelar" class="rechazarOrden glyphicon glyphicon-remove" aria-hidden="true"></span>
 				          				</a>
 			          				</div>
 			          			</td>
@@ -87,7 +87,7 @@
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
 								</td>
-								<td></td>
+								<!--<td></td>-->
 			          			<td class="centro">---</td>
 								<td class="centro"> <span class="label label-danger">Rechazado</span></td>
 
@@ -97,7 +97,7 @@
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
 								</td>
-								<td></td>
+								<!--<td></td>-->
 			          			<td class="centro">---</td>
 								<td class="centro"> <span class="label label-info">Enviado</span> </td>
 						<?php
@@ -107,7 +107,7 @@
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
 								</td>
-								<td></td>
+								<!--<td></td>-->
 			          			<td class="centro">---</td>
 								<td class="centro"> <span class="label label-success">Concretado</span> </td>
 
@@ -117,7 +117,7 @@
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
 								</td>
-								<td></td>
+								<!--<td></td>-->
 			          			<td class="centro">---</td>
 								<td class="centro"><span class="label label-danger">Cancelado</span> </td>
 
@@ -127,7 +127,7 @@
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
 								</td>
-								<td></td>
+								<!--<td></td>-->
 			          			<td class="centro">
 				          			<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 5)" style="cursor:pointer;"> 
 				          				<span style="color:#931111;" data-toggle="tooltip" data-placement="top" title="Cancelar" class="cancelarOrden glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -171,7 +171,7 @@
 		    	<?php
 		    }
 		?>
-			<!-- Modal -->
+			<!-- Modal -
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -199,7 +199,7 @@
 			    </div>
 			  </div>
 			</div>
-
+			-->
 			<!-- Modal ORDEN-->
 			<div class="modal fade" id="myModalOrden" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog modal-lg" role="document">
@@ -226,26 +226,31 @@
 			<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h3 class="modal-title" id="myModalLabel"><div id="titulo_orden">¡Aprobar orden!</div></h3>
-			      </div>
-			      <div class="modal-body fondo-blanco">
-			        <div id="info_modal">
-			        	
+			    	<form method="POST" action="pedidos/modificarPedidos.php">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h3 class="modal-title" id="myModalLabel"><div id="titulo_orden">¡Aprobar orden!</div></h3>
+				      </div>
+				      <div class="modal-body fondo-blanco">
+				        <div id="info_modal">
+				        	
 
-			        </div>
-			        <input type="hidden" id="id">
-			      	<input type="hidden" id="estado">
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">regresar</button>
-			        <button onclick="modificarEstado()" type="button" class="btn btn-primary">Continuar</button>
-			      </div>
+				        </div>
+				        <input type="hidden" name="id" id="id">
+				      	<input type="hidden" name="estado" id="estado">
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">regresar</button>
+				        <button type="submit" class="btn btn-primary">Continuar</button>
+				      </div>
+				    </form>
 			    </div>
 			  </div>
 			</div>
 	<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 	<script type="text/javascript">
 		$('#paginacion-resultados').simplePagination();
+		$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 	</script>

@@ -2,61 +2,17 @@
 <html>
 <head>
 <link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
-		<style type="text/css"> 
-			.modal-header{
-				width:100%;
-			}
-
-			.contenedor-form{
-				width:100%;
-			}
-
-			body{
-				background: #FFFFFF;
-			}
-
-			.fondo-modal-body{
-				background: #CEF6CE;
-			}
-
-			.views{
-				background: #FFFFFF;	
-			}
-
-			.busqueda-form{
-				margin-top: 20px;
-				margin-left: 50px;
-				width:1000px;
-				float:left;
-
-			}
-
-			.formato{
-				font-size: 25px;
-				font-weight: bold;
-			}
-
-			.active{
-				font-weight: bold;
-				color:#0B6121;
-			}
-
-			.desactive{
-				font-weight: bold;
-				color:#8A0808;
-			}
-
-			.centro{
-				text-align: center;
-			}
-			</style>
-
 </head>
 <body>
 
 <div class="contenedor-form">
-			
-	  		<div class="modal-header">
+			<?php 
+			$titulo = "Búsqueda de usuarios del empaque";
+			$placeholder="Buscar usuario";
+			$imagen = "imagen.png";
+			include("../busquedas/formulario_busqueda.php"); ?>
+
+	  		<!--<div class="modal-header">
 	    		<h3 class="modal-title">
 	    			<img class="img-header" src="img/imagen.png"> Búsqueda de usuarios del empaque
 	    		</h3>
@@ -78,7 +34,7 @@
 		</div>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
+<p>&nbsp;</p>-->
 <div style="clear:both"></div>
 <div id="data">
 	

@@ -66,7 +66,7 @@
 			    		placeholder="Costo del lote" required>
 		         	</div>
 				  </div>
-				  <div class="form-group">
+				  <!--<div class="form-group">
 			    	<label class="col-sm-2 control-label">RANGO INICIAL EPC: </label>
 			    	<div class="col-sm-10">
 			    		<input type="text" class="form-control input" 
@@ -81,7 +81,7 @@
 			    		name="rango_final" id="" 
 			    		placeholder="Rango EPC final" >
 		         	</div>
-				  </div>
+				  </div>-->
 			  	<hr>
 			  	<center>
 		     			<button id="guardar" class="btn btn-primary" disabled><i  class="glyphicon glyphicon-ok"></i> Registrar</button>

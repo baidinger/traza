@@ -5,70 +5,15 @@
 		<meta charset="UTF-8">
 		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
 
-		<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">-->
-		<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
-		
-		<style type="text/css"> 
-			.modal-header{
-				width:100%;
-			}
-
-			.contenedor-form{
-				width:100%;
-			}
-
-			body{
-				background: #FFFFFF;
-			}
-
-			.fondo-modal-body{
-				background: #CEF6CE;
-			}
-
-			.fondo-blanco{
-				background:#FFFFFF;
-			}
-
-			.views{
-				background: #FFFFFF;	
-			}
-
-			.busqueda-form{
-				margin-top: 20px;
-				margin-left: 50px;
-				width:1000px;
-				float:left;
-
-			}
-
-			.formato{
-				font-size: 25px;
-				font-weight: bold;
-			}
-
-			.active{
-				font-weight: bold;
-				color:#0B6121;
-			}
-
-			.desactive{
-				font-weight: bold;
-				color:#8A0808;
-			}
-
-			.centro{
-				text-align: center;
-			}
-
-			.izquierda{
-				text-align: left;
-			}
-
-</style> 
 	</head>
 
 	<body>
-		<div class="contenedor-form">
+		<?php 
+			$titulo = "Búsqueda de pedidos";
+			$placeholder="Buscar distribuidor/número orden";
+			$imagen = "detalles_orden.png";
+			include("../busquedas/formulario_busqueda.php"); ?>
+		<!--<div class="contenedor-form">
 			
 	  		<div class="modal-header">
 	    		<h3 class="modal-title">
@@ -78,7 +23,7 @@
 
 	  	</div>
 
-	  	<!-- buscar -->
+	  	 
 	<div class="busqueda-form">
 				<div class="form-group">
 			    	<label for="inputBuscar" class="col-sm-2 control-label">Buscar</label>
@@ -91,10 +36,10 @@
 			<button type="submit" class="btn btn-primary" onclick="buscar()">Buscar</button>
 		</div>
 
-<!-- -->
+<
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
+<p>&nbsp;</p>-->
 <div style="clear:both"></div>
 <div id="data">
 
@@ -105,10 +50,7 @@
 
 
 	<script type="text/javascript">
-		$('.cancelarOrden').tooltip();
-		$('.aprobarOrden').tooltip();
-		$('.rechazarOrden').tooltip();
-
+		
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
 					var params = {'buscar':Buscar};
@@ -147,30 +89,6 @@
 			});
 		}
 
-		function modalCostoShow(idOrden, costo_orden){
-			$('#id_orden').val(idOrden);
-			$('#cantidad_costo').val(costo_orden);
-			$('#tipo_edicion').val('changeCost');
-			$('#myModal').modal('show');
-		}
-
-		function modificarCosto(){
-			var cost 		= 	$('#cantidad_costo').val();
-			var id 			= 	$('#id_orden').val();
-			var type		=	$('#tipo_edicion').val();
-			var parametros	= 	{'costo': cost, 'id':id, 'type':type};
-
-			$.ajax({
-				type:'post',
-				url:'pedidos/modificarPedidos.php',
-				data: parametros,
-				success: function(data){
-					$(location).attr('href','index.php?op=pedidos'); 
-				}
-
-			});
-		}
-
 		function modificarEstado(){
 			var id 			=	$('#id').val();
 			var estado 		=	$('#estado').val();
@@ -197,7 +115,7 @@
 			}
 			if(estado == 5){ 
 				$('#info_modal').html(
-					'<div class="alert alert-danger" role="alert"> <strong> Seguro! </strong> que deseas cancelar esta orden, ya no podrás cambiar el estado de la orden.	</div>'
+					'<div class="alert alert-danger" role="alert"> <strong> Seguro! </strong> que deseas cancelar esta orden, ya no podrás cambiar el estado de la orden.	</div><label>Motivo de cancelación:</label><textarea required class="form-control" name="motivo_cancelacion"></textarea>'
 				);
 				$('#titulo_orden').html('¡Cancelar Orden!');
 			}
@@ -210,8 +128,10 @@
 
 			$('#id').val(id);
 			$('#estado').val(estado);
+			alert(id+estado);
 			$('#infoModal').modal('show');
 		}
 
 	</script>
+	
 </html>

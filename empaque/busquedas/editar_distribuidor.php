@@ -15,7 +15,7 @@
 	$id_distribuidor			=	$_POST['id_distribuidor'];
 
 		if(mysql_query("update empresa_distribuidores set nombre_distribuidor = '$nombre',".
-			" rfc_distribuidor = '$rfc', pais_distribuidor = '$pais',".
+			" rfc_distribuidor = '$rfc', fecha_modificacion_dist ='".date("Y-m-d")."' ,pais_distribuidor = '$pais',".
 			" estado_distribuidor = '$estado', ciudad_distribuidor = '$ciudad',".
 			" direccion_distribuidor = '$direccion', cp_distribuidor = '$cp',".
 			" email_distribuidor = '$email', tel1_distribuidor = '$tel1', ".

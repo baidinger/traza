@@ -16,7 +16,7 @@
 
 		if(mysql_query("update empresa_empaques set nombre_empaque = '$nombre',".
 			" rfc_empaque = '$rfc', pais_empaque = '$pais',".
-			" estado_empaque = '$estado', ciudad_empaque = '$ciudad',".
+			" estado_empaque = '$estado',ciudad_empaque = '$ciudad',".
 			" direccion_empaque = '$direccion', cp_empaque = '$cp',".
 			" email_empaque = '$email', telefono1_empaque = '$tel1', ".
 			" fecha_modificacion_emp = '".date("Y-m-d")."', telefono2_empaque = '$tel2' where id_empaque =  $id_empaque")){

@@ -5,20 +5,24 @@
     header('Location: ../');
   }
 
-include('../mod/conexion.php');
-        $consulta = "select pedidos, lotes, envios, superusuario, nombre_empaque, id_empaque, nombre_receptor from usuario_empaque, empresa_empaques where usuario_empaque.id_empaque_fk = empresa_empaques.id_empaque AND usuario_empaque.id_usuario_fk = ".$_SESSION['id_usuario'];
-        $_empaque = mysql_query($consulta);
-         if($row = mysql_fetch_array($_empaque)) {
-           $pedidos = $row['pedidos'];
-           $envios = $row['envios'];
-           $lotes = $row['lotes'];
-           $superusuario = $row['superusuario'];
-           $_SESSION['nombre_empaque'] = $row['nombre_empaque'];
-           $nombre_usuario = $row['nombre_receptor'];
-           $_SESSION['id_empaque'] = $row['id_empaque'];
+    include('../mod/conexion.php');
+    $consulta = "select pedidos, lotes, envios, superusuario, nombre_empaque, id_empaque, nombre_receptor from usuario_empaque, empresa_empaques where usuario_empaque.id_empaque_fk = empresa_empaques.id_empaque AND usuario_empaque.id_usuario_fk = ".$_SESSION['id_usuario'];
+    $_empaque = mysql_query($consulta);
+     if($row = mysql_fetch_array($_empaque)) {
+      /**** privilegios ****/
+       $pedidos = $row['pedidos'];
+       $envios = $row['envios'];
+       $lotes = $row['lotes'];
+       $superusuario = $row['superusuario'];
 
-         }
-         mysql_close();
+      /******/
+       $_SESSION['nombre_empaque'] = $row['nombre_empaque'];
+       $_SESSION['id_empaque'] = $row['id_empaque'];
+
+       $nombre_usuario = $row['nombre_receptor'];
+
+     }
+     mysql_close();
       ?>
 <html>
 <head>
@@ -26,6 +30,7 @@ include('../mod/conexion.php');
 	<meta charset="utf-8">
 		<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="script/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="../img/icon.png" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
@@ -50,7 +55,8 @@ include('../mod/conexion.php');
         <?php if($_SESSION['nivel_socio'] == 1){ ?>
       	<!-- Registrar Empresa -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> Registrar empresa <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-th-large"></span>&nbsp;Registrar <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?op=reg_productor">Productor</a></li>
             <?php if($superusuario == 1) { ?>
@@ -64,7 +70,8 @@ include('../mod/conexion.php');
          <?php if($_SESSION['nivel_socio'] == 1){ ?>
       	<!-- Administrar cuentas -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> Administrar empresas <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Administrar registros <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?op=bus_productor">Productores</a></li>
             <li><a href="index.php?op=bus_empaque">Empaques</a></li>
@@ -72,42 +79,54 @@ include('../mod/conexion.php');
             <li><a  href="index.php?op=bus_pv">Punto de venta</a></li>
           </ul>
         </li>
-        <?php } 
-
-        if($pedidos == 1) {?>
-        <li><a href="index.php?op=pedidos">Pedidos</a></li>
-        <?php } if($envios == 1){ ?>
-        <li><a href="index.php?op=envios">Envíos</a></li>
-         <?php }
-
-        if($lotes == 1){ ?>
-          
-           <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">&nbsp;Lotes <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="index.php?op=reg_lote">Registrar lote</a></li>
-                <li class="divider"></li>
-                    <li><a href="index.php?op=admon_lotes">Administrar lotes</a></li>
-              </ul>
-          </li>
-        <?php }   ?>
-    <?php
-        if($_SESSION['nivel_socio'] == 1){ ?>
-        <li><a href="index.php?op=asig_pro_empaque">Asignar productos</a></li>
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
+        
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="index.php?op=reg_new_user">Nuevo usuario</a></li>
                 <li class="divider"></li>
                     <li><a href="index.php?op=admon_users">Administrar usuarios</a></li>
-              </ul>
-          </li>
-        <?php }   ?>
-       
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span class="glyphicon glyphicon-apple"></span> &nbsp;Mi empaque <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="index.php?op=asig_pro_empaque">Asignar productos</a></li>
+              <?php if($pedidos == 1) {?>
+              <li><a href="index.php?op=pedidos">Pedidos</a></li>
+              <?php } if($envios == 1){ ?>
+              <li><a href="index.php?op=envios">Envíos</a></li>
+               <?php }
+
+              if($lotes == 1){ ?>
+              <li class="divider"></li>
+              <li><a href="index.php?op=reg_lote">Registrar lote</a></li>
+             
+              <li><a href="index.php?op=admon_lotes">Administrar lotes</a></li>
+
+
+              <?php }   ?>      
+              <li><a href="index.php?op=informacion">Información</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span class="glyphicon glyphicon-tags"></span> &nbsp;Etiquetas <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+               <li><a href="index.php?op=#">Imprimir</a></li>
+               <li><a href="index.php?op=#">Trazabilidad</a></li>
+            </ul>
+        </li>
+          <li><a href="#">
+          <span class="glyphicon glyphicon-stats"></span> &nbsp;Estadísticas</a></li>
+      
+        <?php } ?>
 
       </ul>
        <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown active">
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $nombre_usuario ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="index.php?op=contrasena"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
@@ -187,6 +206,19 @@ if($_GET("op") == "contrasena")
 
 if($_GET("op") == "reg_new_user") 
   $("#views").load("usuarios/registro_nuevo_usuario.php");
+
+if($_GET("productor")){
+    $.ajax({
+      type: 'POST',
+      url: 'busquedas/verProductor.php',
+      data: {'id':$_GET("productor")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+}
+  //$("#views").load("busquedas/verProductor.php?productor=".$_GET("productor"));
 
 if($_GET("op") == "admon_users") 
   $("#views").load("usuarios/buscar_usuarios_empaque.php");

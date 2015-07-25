@@ -9,10 +9,14 @@
 	$ciudad					 	=	strtoupper($_POST['ciudad_punto_venta']);
 	$direccion 					=	strtoupper($_POST['direccion_punto_venta']);
 	$id_punto_venta				=	$_POST['id_punto_venta'];
+	$cp							=	$_POST['cp_pv'];
+	$tel						=	$_POST['telefono_pv'];
+	$email						=	$_POST['email_pv'];
 
 		if(mysql_query("update empresa_punto_venta set nombre_punto_venta = '$nombre',".
-			" rfc_punto_venta = '$rfc', pais_punto_venta = '$pais',".
-			" estado_punto_venta = '$estado', ciudad_punto_venta = '$ciudad',".
+			" rfc_punto_venta = '$rfc', pais_punto_venta = '$pais',cp_punto_venta = '$cp',".
+			" estado_punto_venta = '$estado', telefono_punto_venta = '$tel',email_punto_venta = '$email' ,
+			fecha_modificacion_pv='".date("Y-m-d")."' ,ciudad_punto_venta = '$ciudad',".
 			" direccion_punto_venta = '$direccion' where id_punto_venta =  $id_punto_venta")){
 			mysql_close($conexion);
 			?>

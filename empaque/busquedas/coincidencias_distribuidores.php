@@ -75,39 +75,35 @@
 			          	 ?></td>
 			          	<td class="centro"><?php echo $row['tel1_distribuidor']; ?></td>
 
-			          	<?php 
-			          		if($row['estado'] == 1){ 
-			          	?>
-			          			<td class="centro"> <p class="active"> Activo </p> </td>
-			          			<td class="centro">
-			          				<div style="width:60px; margin:0px auto;">
-				          				<a style="float:left; cursor:pointer;"> 
-				          					<span onclick="editar(<?php print $row['id_distribuidor'] ?>)"  data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
-				          				</a>
-				          				<div style="width:20px; height:10px; float:left;"></div> 
-				          				<a style="float:left;" href="busquedas/desactivarDistribuidor.php?id=<?php echo $row['id_distribuidor']; ?>"> 
-				          					<span data-toggle="tooltip" data-placement="top" title="Desactivar usuario" class=" desactivar glyphicon glyphicon-remove" aria-hidden="true"></span>
-				          				</a>
-			          				</div>
-			          			</td>
-			          <?php 
-								}else{
-								?>
-									<td class="centro"> <p class="desactive"> Inactivo </p> </td>
-									<td> 
-										<div style="width:60px; margin:0px auto;">
-					          				<a style="float:left; cursor: pointer;"> 
-					          					<span onclick="editar(<?php print $row['id_distribuidor'] ?>)"  data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
-					          				</a>
-					          				<div style="width:20px; height:10px; float:left;"></div>  
-					          				<a href="busquedas/activarDistribuidor.php?id=<?php echo $row['id_distribuidor']; ?>"> 
-					          					<span data-toggle="tooltip" data-placement="top" title="Activar usuario" class="activar glyphicon glyphicon-ok" aria-hidden="true"></span>
-					          				</a>
-					          			</div>
-			          			</td>
-								<?php
-								}
-			           ?>
+	          			<?php if($row['estado'] == 1){ ?>
+			          			<td class="centro"> <p class="label label-success"> Activo </p> </td>
+			          	<?php }else{ ?>
+			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
+			          	<?php } ?>
+	          			<td class="centro">
+	          				<div style="width:90px; margin:0px auto;">
+		          				<a style="float:left; cursor:pointer;"> 
+		          					<span onclick="editar(<?php print $row['id_distribuidor'] ?>)"  data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
+		          				</a>
+		          				<div style="width:20px; height:10px; float:left;"></div> 
+		          				<!-- ACCION HABILITAR -->
+		          				<?php if($row['estado'] == 1){ ?>
+		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_distribuidor']; ?>&status=0&rol=3"> 
+		          					<span data-toggle="tooltip" data-placement="top" title="Desactivar" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		          				</a>
+		          				<?php } else { ?>
+		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_distribuidor']; ?>&status=1&rol=3"> 
+			          					<span data-toggle="tooltip" data-placement="top" title="Activar" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			          			</a>
+		          				<?php } ?>
+		          				<!--   - - - - - - - - - - - -  - - - - -  -->
+
+		          				<div style="width:20px; height:10px; float:left;"></div> 
+		          				<a style="float:left; cursor:pointer;"> 
+		          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+		          				</a>
+	          				</div>
+	          			</td>
 		        	</tr>
 		        <?php  
 		        $i=$i+1;

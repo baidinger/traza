@@ -13,9 +13,9 @@
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
-		          <th class="centro">Usuario</th>
-		          <th class="centro">RFC</th>
+		          <th >Usuario</th>
 		          <th>Nombre  del productor</th>
+		          <th class="centro">RFC</th>
 		          <th class="centro">Teléfono</th>
 		          <!--<th class="centro">Dirección del productor</th>-->
 		          <th class="centro">Estado</th>
@@ -30,54 +30,42 @@
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
-		        		<td class="centro"><?php echo $row['nombre_usuario']; ?></td>
-		        		<td class="centro"><?php echo $row['rfc_productor']; ?></td>
+		        		<td><?php echo $row['nombre_usuario']; ?></td>
 			          	<td><?php echo $row['nombre_productor']." ".$row['apellido_productor']; ?></td>
+			          	<td class="centro"><?php echo $row['rfc_productor']; ?></td>
 			          	<td class="centro"><?php echo $row['telefono_productor']; ?></td>
 			          	<!--<td class="centro"><?php echo $row['direccion_productor']; ?></td>-->
 
-			          	<?php 
-			          		if($row['estado'] == 1){ 
-			          	?>
-			          			<td class="centro"> <p class="active"> Activo </p> </td>
+			          	<?php if($row['estado'] == 1){ ?>
+			          			<td class="centro"> <p class="label label-success"> Activo </p> </td>
+			          	<?php }else{ ?>
+			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
+			          	<?php } ?>
 			          			<td >
 									<div style="margin:0px auto; width:90px;">
-				          				<a style="float:left; cursor:pointer;"> 
-				          					<span data-toggle="modal" data-target="<?php echo '#myModal'.$i; ?>" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
+				          				<a  style="float:left; cursor:pointer;"> 
+				          					<span onclick="editar(<?php print $row['id_productor'] ?>)" data-toggle="modal" data-toggle="tooltip" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 				          				</a>
 				          				<div style="width:20px; height:10px; float:left;"></div> 
-				          				<a style="float:left;" href="busquedas/desactivarUser.php?id=<?php echo $row['id_productor']; ?>"> 
-				          					<span data-toggle="tooltip" data-placement="top" title="Desactivar usuario" class="desactivar glyphicon glyphicon-remove" aria-hidden="true"></span>
+
+				          				<!-- ACCION HABILITAR -->
+				          				<?php if($row['estado'] == 1){ ?>
+				          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_productor']; ?>&status=0&rol=1"> 
+				          					<span data-toggle="tooltip" data-placement="top" title="Desactivar" class="desactivar glyphicon glyphicon-remove" aria-hidden="true"></span>
 				          				</a>
+				          				<?php } else { ?>
+				          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_productor']; ?>&status=1&rol=1"> 
+					          					<span data-toggle="tooltip" data-placement="top" title="Activar" class="activar glyphicon glyphicon-ok" aria-hidden="true"></span>
+					          			</a>
+				          				<?php } ?>
+				          				<!--   - - - - - - - - - - - -  - - - - -  -->
+
 				          				<div style="width:20px; height:10px; float:left;"></div> 
-				          				<a style="float:left; cursor:pointer;"> 
-				          					<span onclick="showModalInfo(<?php echo $row['id_productor']; ?>)" data-toggle="tooltip" data-placement="top" title="Ver Info." class="desactivar glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+				          				<a href="index.php?productor=<?php echo $row['id_productor'];?>" style="float:left; cursor:pointer;"> 
+				          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="desactivar glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 				          				</a>
 				          			</div>
 			          			</td>
-			          <?php 
-								}else{
-								?>
-									<td class="centro"> <p class="desactive"> Inactivo </p> </td>
-									<td > 
-										<div style="margin:0px auto; width:90px;">
-											<a style="float:left; cursor: pointer;"> 
-					          					<span data-toggle="modal" data-target="<?php echo '#myModal'.$i; ?>" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
-					          				</a>
-					          				<div style="width:20px; height:10px; float:left;"></div>  
-					          				<a style="float:left;" href="busquedas/activarUser.php?id=<?php echo $row['id_productor']; ?>"> 
-					          					<span data-toggle="tooltip" data-placement="top" title="Activar usuario" class="activar glyphicon glyphicon-ok" aria-hidden="true"></span>
-					          				</a>
-					          				<div style="width:20px; height:10px; float:left;"></div> 
-				          					<a style="float:left; cursor:pointer;"> 
-				          						<span onclick="showModalInfo(<?php echo $row['id_productor']; ?>)" data-toggle="tooltip" data-placement="top" title="Ver Info." class="desactivar glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-				          					</a>
-
-										</div>
-			          			</td>
-								<?php
-								}
-			           ?>
 		        	</tr>
 		        <?php  
 		        $i=$i+1;
@@ -110,17 +98,11 @@
 		    	<?php
         }
 
-			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
-				"telefono_productor, direccion_productor, ".
-				" rfc_productor, nombre_usuario, contrasena_usuario from empresa_productores,usuarios where id_usuario = id_usuario_fk AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
 			
-        	$i=1;
-        	if($result_productores)
-			while($row = mysql_fetch_array($result_productores)) {  
 		?>
 
 			<!-- Modal -->
-			<div class="modal fade" id="<?php echo 'myModal'.$i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -129,22 +111,27 @@
 		       			<img class="img-header" src="img/imagen.png">Editar productor
 		       		</h3>
 			      </div>
-			      <div class="modal-body">
-			          <?php include("editarProductor.php"); ?>
+			      <div id="data-child" class="modal-body">
+	
 			      </div>
 			    </div>
 			  </div>
 			</div>
-
-
-		<?php  
-			$i=$i+1;
-			}
-		?>
-
-
-	<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
-
 	<script type="text/javascript">
 		$('#paginacion-resultados').simplePagination();
-		</script>
+		function editar(id){
+					var params = {'id':id};
+					$.ajax({
+						type: 'POST',
+						url: 'busquedas/editarProductor.php',
+						data: params,
+
+						success: function(data){
+							$('#data-child').html(data);
+						},
+						beforeSend: function(data ) {
+					    $("#data-child").html("<center><img src=\"img/cargando.gif\"></center>");
+					  }
+					});
+			}
+	</script>

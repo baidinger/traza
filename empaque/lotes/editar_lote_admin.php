@@ -6,27 +6,14 @@
 	$cantidad_kilos		=	$_POST['cantidad_kilos'];
 	$nombre_remitente	=	strtoupper($_POST['nombre_remitente']);
 	$costo_lote			=	$_POST['costo_lote'];
-	$rango_inicial		=	$_POST['rango_inicial'];
-	$rango_final		=	$_POST['rango_final'];
+	/*$rango_inicial		=	$_POST['rango_inicial'];
+	$rango_final		=	$_POST['rango_final'];*/
 
 	$url			=	$_POST['url'];
 
-	$ri = "";
-	$rf = "";
-    if( strcmp($rango_inicial,"") != 0) {  
-    	$ri = " ,rango_inicial = '$rango_inicial'";
-
-    }
-
-
-
-    if( strcmp($rango_final,"") != 0) {  
- 		$rf = ", rango_final = '$rango_final'";
-    }
 
      $cadena = " UPDATE lotes set id_producto_fk = $id_producto, cant_cajas_lote = $cantidad_cajas, 
-		cant_kilos_lote = $cantidad_kilos, remitente_lote = '$nombre_remitente', costo_lote = $costo_lote 
-		$ri $rf where id_lote = $id_lote"; 
+		cant_kilos_lote = $cantidad_kilos, remitente_lote = '$nombre_remitente', costo_lote = $costo_lote  where id_lote = $id_lote"; 
 
 	if(mysql_query($cadena)){
 			mysql_close($conexion);

@@ -6,66 +6,10 @@
 		<meta charset="UTF-8">
 		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
 
-		<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">-->
-		<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
-		
-		<style type="text/css"> 
-			.modal-header{
-				width:100%;
-			}
-
-			.contenedor-form{
-				width:100%;
-			}
-
-			body{
-				background: #FFFFFF;
-			}
-
-			.fondo-modal-body{
-				background: #CEF6CE;
-			}
-
-			.fondo-blanco{
-				background:#FFFFFF;
-			}
-
-			.views{
-				background: #FFFFFF;	
-			}
-
-			.busqueda-form{
-				margin-top: 20px;
-				margin-left: 50px;
-				width:1000px;
-				float:left;
-
-			}
-
-			.formato{
-				font-size: 25px;
-				font-weight: bold;
-			}
-
-			.active{
-				font-weight: bold;
-				color:#0B6121;
-			}
-
-			.desactive{
-				font-weight: bold;
-				color:#8A0808;
-			}
-
-			.centro{
-				text-align: center;
-			}
-
-</style> 
 	</head>
 
 	<body>
-
+<!--
 
 		<div class="contenedor-form">
 			
@@ -76,6 +20,7 @@
 	  		</div>
 
 	  	</div>
+	
 	  	<p>&nbsp;</p>
 			<div class="form-inline" style="width:450px; margin: 0 auto">
 				<label>Número de orden:</label>
@@ -85,9 +30,15 @@
 		<p>&nbsp;</p>
 		<hr>
 		<p style="width:90%; margin: 0 auto" class="alert alert-info">En la siguiente tabla se muestran los envíos realizados en el embarque</p>
-	
+	-->
 		<!-- buscar -->
-	<div class="busqueda-form">
+
+		<?php 
+			$titulo = "Búsqueda de envíos";
+			$placeholder="Buscar distribuidor";
+			$imagen = "envios.png";
+			include("../busquedas/formulario_busqueda.php"); ?>
+	<!--<div class="busqueda-form">
 				<div class="form-group">
 			    	<label for="inputBuscar" class="col-sm-2 control-label">Buscar</label>
 			    	<div class="col-sm-10">
@@ -99,10 +50,11 @@
 			<button type="submit" class="btn btn-primary" onclick="buscar()">Buscar</button>
 		</div>
 
-<!-- -->
+
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
+<p>&nbsp;</p>-->
+
 <div style="clear:both"></div>
 
 <div id="data">
@@ -113,7 +65,10 @@
 
 			
 	<script type="text/javascript">
-
+		$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
+		
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
 					var params = {'buscar':Buscar};

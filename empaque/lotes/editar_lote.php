@@ -11,7 +11,7 @@
 		<?php
 			include('../../mod/conexion.php');
 			$id_lote = $_POST['id'];
-			$consulta = "select id_lote, ubicacion_huerta_productor, telefono_productor, rfc_productor, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, rango_inicial, rango_final, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND id_lote = $id_lote";
+			$consulta = "select id_lote, telefono_productor, rfc_productor, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND id_lote = $id_lote";
 			$resultado = mysql_query($consulta);
 			$row = mysql_fetch_array($resultado);
 		?>
@@ -87,7 +87,7 @@
 			    		name="costo_lote" id="" 
 			    		placeholder="Costo del lote" required value="<?php print $row['costo_lote'] ?>">
 		        	</td>
-		        </tr>
+<!--		        </tr>
 		        	<td>
 		        	   	<label >RANGO INICIAL EPC: </label></td>
 			    	<td>
@@ -103,7 +103,7 @@
 			    		name="rango_final" 
 			    		placeholder="Rango EPC final" value="<?php print $row['rango_final'] ?>" >
 		        </td>
-		    </tr>
+		    </tr>-->
 		</table>
 			  	<hr>
 			  	<center>

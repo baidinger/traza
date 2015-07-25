@@ -1,21 +1,16 @@
+<?php @session_start();
+			include("../../mod/conexion.php");
+			$id = $_POST['id'];
+			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
+				"telefono_productor, direccion_productor, ".
+				" rfc_productor, nombre_usuario, contrasena_usuario from empresa_productores,usuarios where id_productor=$id AND id_usuario = id_usuario_fk AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
+        	if($result_productores)
+				if($row = mysql_fetch_array($result_productores));  
 
+ ?>
 		<form class="form-horizontal" role="form" method="post" action="busquedas/editar_productor.php">
 	    		<div>
 		      	<div class="modal-body">
-		      		<!--<div class="form-group">
-				    	<label class="col-sm-2 control-label">Usuario: </label>
-				    	<div class="col-sm-10">
-				    		<input type="text" id="usuario" value="<?php echo $row['nombre_usuario']; ?>" class="form-control input" name="usuario" placeholder="Usuario" required>
-				    		<div id="disponible"></div>
-			         	</div>
-					  </div>
-					  <div class="form-group">
-				    	<label class="col-sm-2 control-label">Contraseña: </label>
-				    	<div class="col-sm-10">
-				    		<input type="password" value="<?php echo $row['contrasena_usuario']; ?>" class="form-control input" name="contrasena" id="" placeholder="Contraseña" required>
-			         	</div>
-					  </div>
-					  <hr>-->
 					  <div class="form-group">
 				    	<label class="col-sm-2 control-label">Nombre: </label>
 				    	<div class="col-sm-10">

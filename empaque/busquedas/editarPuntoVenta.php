@@ -4,7 +4,7 @@ $id = $_POST['id'];
 	include("../../mod/conexion.php");
 
 $result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rfc_punto_venta, ".
-				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta, direccion_punto_venta, ".
+				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta,cp_punto_venta, telefono_punto_venta, email_punto_venta ,direccion_punto_venta, ".
 				" estado from empresa_punto_venta where 
 				id_punto_venta = $id AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
         	
@@ -57,11 +57,31 @@ $result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rf
 				
 	    </div>
   	</div>
-	
+	 <div class="form-group">
+    	<label class="col-sm-2 control-label">C.P: </label>
+    	<div class="col-sm-10">
+    		<input type="text" pattern="[0-9]{5}|[0-9]{6}|[0-9]{7}" title="Ingresa 5, 6 o 7 dígitos" class="form-control input" value="<?php echo $row['cp_punto_venta']?>" name="cp_pv"  placeholder="Código postal" required>
+     	</div>
+	  </div>
+		
+	  <div class="form-group">
+    	<label class="col-sm-2 control-label">E-mail: </label>
+    	<div class="col-sm-10">
+    		<input type="email" class="form-control input" name="email_pv" value="<?php echo $row['email_punto_venta']?>" placeholder="Correo electrónico" required>
+     	</div>
+	  </div>
+
+	  <div class="form-group">
+    	<label class="col-sm-2 control-label">Teléfono: </label>
+    	<div class="col-sm-10">
+    		<input type="text" pattern="[0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}" title="Ingresa 10, 11, 12 y 13 dígitos" class="form-control input" value="<?php echo $row['telefono_punto_venta']?>" name="telefono_pv" placeholder="Teléfono" required>
+     	</div>
+	  </div>
+
 	<div class="form-group">
     	<label class="col-sm-2 control-label">Dirección: </label>
     	<div class="col-sm-10">
-    		<textarea type="text" value="<?php echo $row['direccion_punto_venta']; ?>"  class="form-control input" name="direccion_punto_venta" id="" placeholder="Dirección del punto de venta" required></textarea>
+    		<textarea type="text" class="form-control input" name="direccion_punto_venta" id="" placeholder="Dirección del punto de venta" required><?php echo $row['direccion_punto_venta']; ?></textarea>
      	</div>
 	 </div>
 	 
