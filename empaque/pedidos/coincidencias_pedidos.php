@@ -23,7 +23,7 @@
 			
 
 
-	$consulta = "select id_orden,nombre_distribuidor, rfc_distribuidor, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estatus_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $id_empaque AND (nombre_distribuidor like '%$buscar%' OR id_orden  like '%$buscar%')";
+	$consulta = "select id_orden,nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estatus_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $id_empaque AND (nombre_distribuidor like '%$buscar%' OR id_orden  like '%$buscar%')";
 	$result_productores = mysql_query($consulta);
 	if(mysql_num_rows($result_productores) > 0){
 
@@ -227,7 +227,7 @@
 							}
 			           ?>
 			           <td > 
-			           	<button onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>')" class="btn btn-primary">
+			           	<button onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')" class="btn btn-primary">
 			           		<span class="glyphicon glyphicon-eye-open"></span>&nbsp;
 			           	</button>
 			           </td>

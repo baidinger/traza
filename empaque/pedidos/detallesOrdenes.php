@@ -3,6 +3,7 @@
   $des        = $_POST['descripcion'];
   $total        = $_POST['total'];
   $fecha        = $_POST['fecha'];
+  $id_usuario_distribuidor        = $_POST['usuario'];
 	include("../../mod/conexion.php");
 
 	/*echo "select id_orden_detalles, cantidad_producto_od, ".
@@ -17,16 +18,26 @@
 		"join productos ON productos.id_producto = ordenes_distribuidor_detalles.id_producto_fk ".
 		"where id_orden_fk = $id_orden");
  ?>
- <div class="alert alert-info"><h4>Descripción de orden: </h4>
-    <hr style="margin:-1px;">
-    <div style="width:100%; margin:5px auto;">
-    <?php echo $des; ?>
+ <div style="width: 60%; float:left">
+    <div class="alert alert-info"><h4>Descripción de orden: </h4></div>
+    
+
+    <div style="width:100%; margin-botom:20px">
+      <p><?php echo $des; ?></p>
     </div>
-     <hr style="margin:-1px;">
-    <div style="width:100%; margin:5px auto;">
-    Fecha de entrega deseada: <?php echo $fecha; ?>
-    </div>
+    <hr>
+</div>
+<div style="width: 30%; float:right">
+  <div class="alert alert-info" style="width:100%; ">
+      <h4>Otros datos</h4> 
+  </div>
+  <div style="width:100%; margin-botom:20px">
+    <p><strong>Fecha de entrega deseada: </strong><?php echo $fecha; ?></p>
+    <p><strong>Usuario que solicitó: </strong><?php echo $id_usuario_distribuidor; ?></p>
+  </div>
+  <hr>
  </div>
+ <div style="clear:both"></div>
  
 <br>
 <table class="table table-hover">
