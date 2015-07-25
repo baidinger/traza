@@ -20,9 +20,11 @@
 <html>
 	<head>
 		<title>Trazabilidad</title>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=0.5">
+		<link rel="shortcut icon" href="../../img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link rel='stylesheet' type='text/css' href='../../lib/pagination/css.css'/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
 	</head>
@@ -45,6 +47,7 @@
 					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del empaque..." onkeyup="if(event.keyCode == 13) buscarOrdenes();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarOrdenes();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 					<button class="btn btn-success" style="float: right;" id="btnBuscar" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<a href="../historialOrdenes/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
 			<div class="contenido-general-2">
@@ -171,18 +174,18 @@
 							</h3>
 						</div>
 						<div class="modal-body">
-								<p><label>Estado:</label></p>
-								<p>
-									<select class="form-control" name="inputEstado" id="selectEstado">
-										<option value="5">CANCELADO</option>
-									</select>
-								</p>
-								<br>
-								<p><label>Motivo de Cancelación:</label></p>
-								<p>
-									<input type="hidden" name="inputIdOrden" id="inputIdOrden">
-									<textarea class="form-control" rows="4" name="inputMotivoCancelar" id="inputMotivoCancelar" placeholder="Motivo de cancelación..." required></textarea>
-								</p>
+							<p><label>Estado:</label></p>
+							<p>
+								<select class="form-control" name="inputEstado" id="selectEstado">
+									<option value="5">CANCELADO</option>
+								</select>
+							</p>
+							<br>
+							<p><label>Motivo de Cancelación:</label></p>
+							<p>
+								<input type="hidden" name="inputIdOrden" id="inputIdOrden">
+								<textarea class="form-control" rows="4" name="inputMotivoCancelar" id="inputMotivoCancelar" placeholder="Motivo de cancelación..." required></textarea>
+							</p>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
@@ -239,6 +242,7 @@
 							$('.img-header').attr('src', '../../img/buscar.png');
 							$('#lbl-titulo').text('Resultado de la búsqueda "' + empaqueBuscar + '"');
 							$('#inputBuscar').select();
+							$('#btn-mostrar-todos').css('display', 'block');
 							$('.contenido-general-2').html(data);
 						}
 					});
@@ -254,29 +258,6 @@
 				$('#titulo-estado').text('Cambiar Estado de la Orden ' + orden);
 				$('#modalEstado').modal('show');
 			}
-
-			// function cambiarEstado(){
-			// 	var orden = $('#inputIdOrden').val();
-			// 	var motivo = $('#inputMotivoCancelar').val();
-
-			// 	if(motivo != ''){
-			// 		var respuesta = confirm("¿Desea cancelar la orden " + orden + "?");
-			// 	    if(respuesta){
-			// 			$.ajax({
-			// 				type: 'POST',
-			// 				url: '../mod/cambiar_estado_orden.php',
-			// 				data: {'orden':orden},
-
-			// 				success: function(data){
-			// 					$(location).attr('href', '../historialOrdenes/');
-			// 				}
-			// 			});
-			// 		}
-			// 	}
-			// 	else{
-			// 		alert();
-			// 	}
-			// }
 
 			function mostrarDetalles(orden){
 				$.ajax({
