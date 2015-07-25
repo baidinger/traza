@@ -29,7 +29,7 @@
 
  ?>
 
-<div id="paginacion-resultados" style="width:95%; margin:0px auto;">
+<div id="paginacion-resultados" style="width:95%; margin:0px auto; height:100%">
 	    <table class="table table-hover">
 	    	<thead>
 		        <tr>

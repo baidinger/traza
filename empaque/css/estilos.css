@@ -1,4 +1,4 @@
-body{
+.fondo{
 	background: #7FBF22 url('../../img/fondo-body.jpg') no-repeat;
 	background-position: top center;
 	-webkit-background-size: cover;
@@ -43,9 +43,6 @@ h3{
 	background: #CEF6CE;
 }
 
-.views{
-	background: #FFFFFF;	
-}
 
 .busqueda-form{
 	margin-top: 20px;

@@ -41,7 +41,7 @@
 
 
 
-	  				$result = mysql_query("select id_productos_empaque, nombre_producto, variedad_producto, precio_producto from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk join productos on productos.id_producto = productos_empaques.id_producto_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario']);
+	  				$result = mysql_query("select id_productos_empaque, nombre_producto, variedad_producto, precio_compra, precio_venta from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk join productos on productos.id_producto = productos_empaques.id_producto_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario']);
 	  				
 	  		 ?>
 
@@ -64,7 +64,8 @@
 					        <tr>
 					          <th class="centro">#</th>
 					          <th class="centro">Nombre</th>
-					          <th class="centro">Precio</th>
+					          <th class="centro">Precio compra</th>
+					          <th class="centro">Precio venta</th>
 					          <th></th>
 					          <th></th>
 					        </tr>
@@ -78,9 +79,10 @@
 			      					?><tr>
 				      						<td class="centro"> <?php echo $i; ?></td>
 				      						<td class="centro"><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></td>
-				      						<td class="centro">$ <?php echo $row['precio_producto']; ?></td>
+				      						<td class="centro">$ <?php echo $row['precio_compra']; ?><button class="btn btn-link" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_compra']; ?>)">Cambiar</button></td>
+				      						<td class="centro">$ <?php echo $row['precio_venta']; ?><button class="btn btn-link" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_venta']; ?>)">Cambiar</button></td>
 				      						<td>
-						          				<button class="btn btn-link" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_producto']; ?>)">Introduce precio</button>
+						          				
 						          			</td>
 
 				      						<td style="float:right;"> <span onclick="eliminarProducto(<?php echo $row['id_productos_empaque']; ?>)" data-toggle="tooltip" data-placement="top" title="Eliminar" style="cursor:pointer; color:#931111;" class="eliminar glyphicon glyphicon-remove" aria-hidden="true"></span></td>
