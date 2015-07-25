@@ -20,9 +20,11 @@
 <html>
 	<head>
 		<title>Trazabilidad</title>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=0.5">
+		<link rel="shortcut icon" href="../../img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link rel='stylesheet' type='text/css' href='../../lib/pagination/css.css'/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
 	</head>
@@ -30,6 +32,9 @@
 	<body>
 		<?php 
 			include('../mod/navbar.php');
+
+			if($privEntradas == 0)
+				header('Location: ../');
 		?>
 		<div class="contenido-general">
 			<div class="modal-header">

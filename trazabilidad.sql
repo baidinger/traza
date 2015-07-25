@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-07-2015 a las 08:57:04
+-- Tiempo de generación: 25-07-2015 a las 06:41:50
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -212,14 +212,15 @@ CREATE TABLE IF NOT EXISTS `empresa_punto_venta` (
   `fecha_modificacion_pv` date NOT NULL,
   `estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_punto_venta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `empresa_punto_venta`
 --
 
 INSERT INTO `empresa_punto_venta` (`id_punto_venta`, `nombre_punto_venta`, `rfc_punto_venta`, `pais_punto_venta`, `estado_punto_venta`, `ciudad_punto_venta`, `telefono_punto_venta`, `cp_punto_venta`, `email_punto_venta`, `direccion_punto_venta`, `id_usuario_que_registro`, `fecha_registro_pv`, `fecha_modificacion_pv`, `estado`) VALUES
-(8, 'ALFONSO DISTRIBUIDOR', 'PTVB098855IU7', '4', '1', 'CEÑIDOR', '4531209845', '61770', 'alfonso.calderon.chavez@gmail.com', 'CEÑIDOR, CONOCIDO', 1, '2015-07-24', '2015-07-24', 1);
+(8, 'ALFONSO DISTRIBUIDOR', 'PTVB098855IU7', '0', '13', 'CEÃ‘IDOR', '4531209845', '61770', 'alfonso.calderon.chavez@gmail.com', 'AV. 5 DE MAYO #15', 1, '2015-07-24', '2015-07-24', 1),
+(9, 'PUNTO DE VENTA BALTAZAR', 'PUVB122189GTA', '0', '13', 'URUAPAN', '014521234567', '60600', 'pvbaltazar@gmail.com', 'AV. FRANCISCO VILLA NO 15', 1, '2015-07-24', '2015-07-24', 1);
 
 -- --------------------------------------------------------
 
@@ -249,6 +250,8 @@ CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
   `id_camion_fk` int(11) NOT NULL,
   `nombre_usuario_distribuidor` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion_envio` text COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion_cancelacion` text COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion_rechazo` text COLLATE utf8_spanish_ci NOT NULL,
   `estado_envio` int(11) NOT NULL,
   `id_punto_venta_fk` int(11) NOT NULL,
   `id_orden_dist_fk` int(11) NOT NULL,
@@ -394,6 +397,8 @@ CREATE TABLE IF NOT EXISTS `ordenes_punto_venta` (
   `fecha_entrega_orden` date NOT NULL,
   `costo_orden` decimal(10,2) NOT NULL,
   `descripcion_orden` text NOT NULL,
+  `descripcion_cancelacion` text NOT NULL,
+  `descripcion_rechazo` text NOT NULL,
   `id_usuario_punto_venta_fk` int(11) NOT NULL,
   `id_distribuidor_fk` int(11) NOT NULL,
   `estado_orden` int(11) NOT NULL,
@@ -401,6 +406,13 @@ CREATE TABLE IF NOT EXISTS `ordenes_punto_venta` (
   KEY `id_usuario_punto_venta_idx` (`id_usuario_punto_venta_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `ordenes_punto_venta`
+--
+
+INSERT INTO `ordenes_punto_venta` (`id_orden`, `fecha_orden`, `fecha_entrega_orden`, `costo_orden`, `descripcion_orden`, `descripcion_cancelacion`, `descripcion_rechazo`, `id_usuario_punto_venta_fk`, `id_distribuidor_fk`, `estado_orden`) VALUES
+(1, '2015-07-24', '2015-07-31', '1450.00', 'Sin descripciÃ³n.', 'Siempre no la quiero. Gracias.', '', 9, 13, 5);
 
 -- --------------------------------------------------------
 
@@ -419,7 +431,15 @@ CREATE TABLE IF NOT EXISTS `ordenes_punto_venta_detalles` (
   PRIMARY KEY (`id_orden_dist_detalles`),
   KEY `id_orden_dist_fk_idx` (`id_orden_dist_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `ordenes_punto_venta_detalles`
+--
+
+INSERT INTO `ordenes_punto_venta_detalles` (`id_orden_dist_detalles`, `id_orden_dist_fk`, `id_producto_fk`, `cant_producto_odd`, `unidad_producto_odd`, `costo_unitario_odd`, `costo_producto_odd`) VALUES
+(1, 1, 1, 50, 'KILOS', '15.00', '750.00'),
+(2, 1, 2, 50, 'KILOS', '14.00', '700.00');
 
 -- --------------------------------------------------------
 
@@ -519,7 +539,7 @@ CREATE TABLE IF NOT EXISTS `punto_venta_cajas_envio` (
   `recibido_dce` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_punto_venta_cajas_envio`),
   KEY `punto_venta_cajas_envio_ibfk_1` (`id_envio_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -538,7 +558,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `estado_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nombre_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=86 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -552,7 +572,10 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `contrasena_usuario`, `t
 (73, 'TONY', 'ddc5f5e86d2f85e1b1ff763aff13ce0a', 1, 1, '2015-07-24', '2015-07-24', 1),
 (77, 'EMPA', '9bd58a8b026f60ac850ecb1cd0451468', 2, 1, '2015-07-24', '2015-07-24', 1),
 (78, 'DIST', '2a6d07eef8b10b84129b42424ed99327', 3, 1, '2015-07-24', '2015-07-23', 1),
-(85, 'ROOT2', '6a2cd24438d8a22f757a6a0d2f4e7a11', 4, 1, '2015-07-24', '2015-07-24', 1);
+(85, 'ROOT2', '6a2cd24438d8a22f757a6a0d2f4e7a11', 4, 1, '2015-07-24', '2015-07-24', 1),
+(86, 'dist2', '2a6d07eef8b10b84129b42424ed99327', 3, 2, '2015-07-24', '2015-07-25', 1),
+(87, 'PV', '99bea2cd698b56b1a3b8c1701bd51c67', 4, 1, '2015-07-24', '2015-07-24', 1),
+(88, 'EMPAQUE', 'cefd04f07d55b35421c3fa1ed1abb530', 2, 2, '2015-07-24', '2015-07-24', 1);
 
 -- --------------------------------------------------------
 
@@ -574,14 +597,15 @@ CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
   PRIMARY KEY (`id_usuario_distribuidor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Volcado de datos para la tabla `usuario_distribuidor`
 --
 
 INSERT INTO `usuario_distribuidor` (`id_usuario_distribuidor`, `nombre_usuario_distribuidor`, `apellido_usuario_distribuidor`, `direccion_usuario_distribuidor`, `telefono_usuario_distribuidor`, `entradas`, `pedidos`, `envios`, `id_usuario_fk`, `id_distribuidor_fk`) VALUES
-(20, 'CHRISTOPHER', 'BALTAZAR AMBRIZ', 'Los Almendros No. 209', '4535305394', 1, 1, 1, 78, 13);
+(20, 'CHRISTOPHER', 'BALTAZAR AMBRIZ', 'Los Almendros No. 209', '4535305394', 1, 1, 1, 78, 13),
+(21, 'JORGE EDUARDO', 'LEMUS BALTAZAR', 'Issac Arriaga No 97', '4521541118', 0, 1, 0, 86, 13);
 
 -- --------------------------------------------------------
 
@@ -604,7 +628,7 @@ CREATE TABLE IF NOT EXISTS `usuario_empaque` (
   PRIMARY KEY (`id_receptor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_empaque_fk_idx` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `usuario_empaque`
@@ -612,7 +636,8 @@ CREATE TABLE IF NOT EXISTS `usuario_empaque` (
 
 INSERT INTO `usuario_empaque` (`id_receptor`, `nombre_receptor`, `apellido_receptor`, `direccion_receptor`, `telefono_receptor`, `pedidos`, `lotes`, `envios`, `superusuario`, `id_usuario_fk`, `id_empaque_fk`) VALUES
 (1, 'ALFONSO', 'CALDERÃ“N CHÃVEZ', 'APATZINGÃN, COL. 22 DE OCTUBRE, CALLE VENUZTIANO CARRANZA', '4531064590', 1, 1, 1, 1, 1, 1),
-(9, 'ADMIN', 'ADMIN', 'ADMIN', '0000000000', 1, 1, 1, 0, 77, 13);
+(9, 'ADMIN', 'ADMIN', 'ADMIN', '0000000000', 1, 1, 1, 0, 77, 13),
+(10, 'NOMBRE', 'APELLIDOS', '152412', '45124512', 0, 0, 0, 0, 88, 1);
 
 -- --------------------------------------------------------
 
@@ -631,14 +656,15 @@ CREATE TABLE IF NOT EXISTS `usuario_punto_venta` (
   PRIMARY KEY (`id_usuario_pv`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_usuario_punto_venta_idx` (`id_usuario_punto_venta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `usuario_punto_venta`
 --
 
 INSERT INTO `usuario_punto_venta` (`id_usuario_pv`, `id_usuario_punto_venta`, `id_usuario_fk`, `nombre_usuario_pv`, `apellidos_usuario_pv`, `telefono_usuario_pv`, `direccion_usuario_pv`) VALUES
-(8, 8, 85, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN');
+(8, 8, 85, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN'),
+(9, 9, 87, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN');
 
 --
 -- Restricciones para tablas volcadas

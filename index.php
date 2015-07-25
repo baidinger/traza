@@ -20,6 +20,7 @@
 	<head>
 		<title>Trazabilidad</title>
 		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/estilos.css">
@@ -32,7 +33,7 @@
 					<form class="form-horizontal" role="form" method="post" action="mod/login.php">
 			      		<div class="modal-header">
 			        		<h3 class="titulo-header">
-			        			Inicio de Sesión
+			        			<img class="img-header" src="img/logo_trazabilidad.png"> &nbsp;Inicio de Sesión
 			        		</h3>
 			      		</div>
 			      		<div>

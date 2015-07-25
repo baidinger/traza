@@ -3,10 +3,13 @@
 
 	include('../../mod/conexion.php');
 
-	$consulta = "SELECT nombre_usuario_distribuidor FROM usuario_distribuidor WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+	$consulta = "SELECT nombre_usuario_distribuidor, entradas, pedidos, envios FROM usuario_distribuidor WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
 	$resultado = mysql_query($consulta);
 	$row = mysql_fetch_array($resultado);
 	$nombreUsuario = $row['nombre_usuario_distribuidor'];
+	$privEntradas = $row['entradas'];
+	$privPedidos = $row['pedidos'];
+	$privEnvios = $row['envios'];
 ?>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   	<div class="navbar-header">
@@ -18,21 +21,36 @@
   	<div class="collapse navbar-collapse" id="navbar-collapse-01">
   		<ul class="nav navbar-nav">
 			<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="../nuevaOrden/">Nueva orden</a></li>
 					<li class="divider"></li>
 		            <li><a href="../historialOrdenes/">Historial de órdenes</a></li>
-					<li><a href="../entradasOrdenes/">Entrada de órdenes</a></li>
-					</ul>
+		            <?php if($privEntradas == 1) { ?>
+		            	<li><a href="../entradasOrdenes/">Entrada de órdenes</a></li>
+		            <?php } ?>
+				</ul>
+			</li>
+			<?php if($privPedidos == 1) { ?>
+            	<li><a href="../pedidos/"><span class="glyphicon glyphicon-folder-open"></span> &nbsp; Pedidos</a></li>
+            <?php } ?>
+            <?php if($privEnvios == 1) { ?>
+            	<li><a href="../envios/"><span class="glyphicon glyphicon-folder-open"></span> &nbsp; Envios</a></li>
+            <?php } ?>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> &nbsp;Productos <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="../agregarProducto/">Agregar producto</a></li>
+					<li class="divider"></li>
+					<li><a href="../productos/">Lista de productos</a></li>
+				</ul>
 			</li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Pedidos <span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-road"></span> &nbsp;Camiones <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="../nuevoEnvio/">Registrar envío</a></li>
+					<li><a href="../agregarCamion/">Agregar camion</a></li>
 					<li class="divider"></li>
-		            <li><a href="../pedidos/">Historial de pedidos</a></li>
-					<li><a href="../enviosPedidos/">Envío de pedidos</a></li>
+					<li><a href="../camiones/">Lista de camiones</a></li>
 				</ul>
 			</li>
 			<?php 
@@ -53,8 +71,10 @@
 	        <li class="dropdown">
 	          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $nombreUsuario; ?> <span class="caret"></span></a>
           		<ul class="dropdown-menu" role="menu">
+          			<li><a href="../datosDist/"><span class="fui-gear"></span> &nbsp;Datos del distribuidor</a></li>
+          			<li class="divider"></li>
             		<li><a href="../contrasena/"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-            		<li><a href="../datosGenerales/"><span class="fui-gear"></span> &nbsp;Datos generales</a></li>
+            		<li><a href="../datosUsuario/"><span class="fui-gear"></span> &nbsp;Datos del usuario</a></li>
             		<li class="divider"></li>
             		<li><a href="../../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
           		</ul>

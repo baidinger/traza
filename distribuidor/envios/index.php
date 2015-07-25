@@ -20,9 +20,11 @@
 <html>
 	<head>
 		<title>Trazabilidad</title>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=0.5">
+		<link rel="shortcut icon" href="../../img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link rel='stylesheet' type='text/css' href='../../lib/pagination/css.css'/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
 	</head>
@@ -30,12 +32,15 @@
 	<body>
 		<?php 
 			include('../mod/navbar.php');
+
+			if($privEnvios == 0)
+				header('Location: ../');
 		?>
 		<div class="contenido-general">
 			<div class="modal-header">
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
-						<img class="img-header" src="../../img/historial_envios.png"> Historial de Pedidos Enviados
+						<img class="img-header" src="../../img/historial_envios.png"> Historial de Envíos
 					</h3>
 				</h3>
 			</div>
@@ -124,30 +129,6 @@
 			</div>
 		</div>
 
-		<!-- <div class="modal fade bs-example-modal-lg" id="modalEstado" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="titulo-header">
-							<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado del Pedido</span>
-						</h3>
-					</div>
-					<div class="modal-body">
-						<label>Estado:</label>
-						<input type="hidden" name="inputIdEnvio" id="inputIdEnvio">
-						<select class="form-control" name="inputEstado" id="selectEstado">
-							<option value="5">CANCELADO</option>
-						</select>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
-						<button type="button" class="btn btn-primary" onclick="cambiarEstado()"><i class="glyphicon glyphicon-floppy-disk"></i> Cambiar Estado</button>
-					</div>
-				</div>
-			</div>
-		</div> -->
-
 		<div class="modal fade bs-example-modal-lg" id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -193,8 +174,6 @@
 			}
 
 			function cancelarOrden(envio){
-				// var envio = $('#inputIdEnvio').val();
-
 				var respuesta = confirm("¿Desea cancelar el envío " + envio + "?");
 			    if(respuesta){
 					$.ajax({
@@ -208,43 +187,6 @@
 					});
 				}
 			}
-
-			// function mostrarModalEstado(envio, pedido){
-			// 	$('#inputIdEnvio').val(envio);
-			// 	$('#titulo-estado').text('Cambiar Estado del Envío del Pedido ' + pedido);
-			// 	$('#modalEstado').modal('show');
-			// }
-
-			// function cambiarEstado(){
-			// 	var envio = $('#inputIdEnvio').val();
-
-			// 	var respuesta = confirm("¿Desea cancelar el envío " + envio + "?");
-			//     if(respuesta){
-			// 		$.ajax({
-			// 			type: 'POST',
-			// 			url: '../mod/cambiar_estado_envio.php',
-			// 			data: {'envio':envio},
-
-			// 			success: function(data){
-			// 				$(location).attr('href', '../enviosPedidos/');
-			// 			}
-			// 		});
-			// 	}
-			// }
-
-			// function mostrarDetalles(orden){
-			// 	$.ajax({
-			// 		type: 'POST',
-			// 		url: '../mod/buscar_detalles_orden_pv.php',
-			// 		data: {'orden':orden},
-
-			// 		success: function(data){
-			// 			$('#contenedor-detalles-orden').html(data);
-			// 			$('#titulo-detalles').text('Detalles de la Órden ' + orden);
-			// 			$('#modalDetalles').modal('show');
-			// 		}
-			// 	});
-			// }
 		</script>
 	</body>
 </html>

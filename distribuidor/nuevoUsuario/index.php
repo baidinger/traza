@@ -20,9 +20,11 @@
 <html>
 	<head>
 		<title>Trazabilidad</title>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=0.5">
+		<link rel="shortcut icon" href="../../img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
 		<script type="text/javascript" src="../../lib/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="../../lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -30,56 +32,6 @@
 	</head>
 
 	<body>
-		<!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		  	<div class="navbar-header">
-		    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-		      		<span class="sr-only">Toggle navigation</span>
-		    	</button>
-		    	<a class="navbar-brand">DISTRIBUIDOR</a>
-		  	</div>
-		  	<div class="collapse navbar-collapse" id="navbar-collapse-01">
-		  		<ul class="nav navbar-nav">
-					<li class="dropdown">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevaOrden/">Nueva órden</a></li>
-				            <li class="divider"></li>
-				            <li><a href="../">Historial de órdenes</a></li>
-							<li><a href="../entradasOrdenes/">Entrada de órdenes</a></li>
-  						</ul>
-					</li>
-					<li class="dropdown">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Pedidos <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevoEnvio/">Registrar envío</a></li>
-    						<li class="divider"></li>
-				            <li><a href="../pedidos/">Historial de pedidos</a></li>
-							<li><a href="../enviosPedidos/">Envío de pedidos</a></li>
-  						</ul>
-					</li>
-		      		<li class="dropdown active">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li class="active"><a href="#">Nuevo usuario</a></li>
-    						<li class="divider"></li>
-				            <li><a href="../usuarios/">Administrar usuarios</a></li>
-  						</ul>
-					</li>
-		    	</ul>
-
-		    	<ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $_SESSION['nombre_usuario']; ?> <span class="caret"></span></a>
-		          		<ul class="dropdown-menu" role="menu">
-		            		<li><a href="../contrasena/"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-		            		<li><a href="../datosGenerales/"><span class="fui-gear"></span> &nbsp;Datos generales</a></li>
-		            		<li class="divider"></li>
-		            		<li><a href="../../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
-		          		</ul>
-			        </li>
-			    </ul>
-		  	</div>
-		</nav> -->
 		<?php 
 			include('../mod/navbar.php');
 		?>
@@ -115,19 +67,6 @@
 							    	</div>
 							  	</div>
 							  	<div class="form-group">
-							    	<label class="col-sm-2 control-label">Usuario: </label>
-							    	<div class="col-sm-10">
-							    		<input type="text" class="form-control input" name="inputUsuario" id="inputUsuario" pattern="([A-Za-z0-9])+" title="El usuario sólo puede contener letras y números" placeholder="Nombre de usuario..." autofocus required>
-							    		<div id="disponible"></div>
-							    	</div>
-							  	</div>
-							  	<div class="form-group">
-							    	<label class="col-sm-2 control-label">Contraseña: </label>
-							    	<div class="col-sm-10">
-							    		<input type="text" class="form-control input" name="inputContrasena" id="inputContrasena" pattern="([A-Za-z0-9])+" title = "La contraseña sólo puede contener letras y números" placeholder="Contraseña..." required>
-							    	</div>
-							  	</div>
-							  	<div class="form-group">
 							    	<label class="col-sm-2 control-label">Dirección: </label>
 							    	<div class="col-sm-10">
 							    		<input type="text" class="form-control input" name="inputDireccion" id="inputDireccion" placeholder="Dirección del usuario..." autofocus required>
@@ -135,8 +74,52 @@
 							  	</div>
 							  	<div class="form-group">
 							    	<label class="col-sm-2 control-label">Teléfono: </label>
-							    	<div class="col-sm-10">
+							    	<div class="col-sm-10" style="width: 50%;">
 							    		<input type="text" class="form-control input" name="inputTelefono" id="inputTelefono" pattern="[0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}" title="Ingresa 10, 11, 12 y 13 dígitos" placeholder="Teléfono del usuario..." autofocus required>
+							    	</div>
+							  	</div>
+							  	<hr>
+							  	<div class="form-group">
+							    	<label class="col-sm-2 control-label">Usuario: </label>
+							    	<div class="col-sm-10" style="width: 50%;">
+							    		<input type="text" class="form-control input" name="inputUsuario" id="inputUsuario" pattern="([A-Za-z0-9])+" title="El usuario sólo puede contener letras y números" placeholder="Nombre de usuario..." autofocus required>
+							    		<div id="disponible"></div>
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label class="col-sm-2 control-label">Contraseña: </label>
+							    	<div class="col-sm-10" style="width: 50%;">
+							    		<input type="text" class="form-control input" name="inputContrasena" id="inputContrasena" pattern="([A-Za-z0-9])+" title = "La contraseña sólo puede contener letras y números" placeholder="Contraseña..." required>
+							    	</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label class="col-sm-2 control-label">Privilegios: </label>
+							    	<div class="col-sm-10">
+							    		<table width="100%">
+							    			<tr>
+							    				<td>
+							    					<div class="checkbox">
+														<label>
+															<input type="checkbox" name="inputEntradas" id="inputEntradas" value="1"> Entradas
+														</label>
+													</div>
+							    				</td>
+							    				<td>
+							    					<div class="checkbox">
+														<label>
+															<input type="checkbox" name="inputPedidos" id="inputPedidos" value="1"> Pedidos
+														</label>
+													</div>
+							    				</td>
+							    				<td>
+							    					<div class="checkbox">
+														<label>
+															<input type="checkbox" name="inputEnvios" id="inputEnvios" value="1"> Envios
+														</label>
+													</div>
+							    				</td>
+							    			</tr>
+							    		</table>
 							    	</div>
 							  	</div>
 							  	<input type="hidden" name="inputDistribuidor" value="<?php echo $idDistribuidorFK; ?>">
@@ -167,8 +150,9 @@
 					success: function(data){
 						$('#disponible').html(data);
 					},
+					
 					beforeSend: function(data ) {
-				    $("#disponible").html("<span class=\"label label-info\">cargando...</span>");
+				    	$("#disponible").html("<span class=\"label label-info\">cargando...</span>");
 				  }
 				});
 			});
