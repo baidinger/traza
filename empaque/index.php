@@ -35,7 +35,7 @@
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
     <link rel="stylesheet" type="text/css" href="css/estilos.css">
 </head>
-<body class="fondo">
+<body class="">
 	<nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
