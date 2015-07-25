@@ -53,7 +53,7 @@
 					      		<div style="float:left; width:45%; margin-left:5%; background: #ffffff">
 						      		<p class="alert alert-info">DATOS DEL PRODUCTOR</p>
 
-						      		<button data-toggle="tooltip" title="Descargar reporte" style="float: right; margin-top: -15px; margin-bottom: 5px" class="btn btn-primary"><span class="glyphicon glyphicon-save-file"> </span></button>
+						      		<button data-toggle="tooltip" title="Descargar reporte" style="float: right; margin-top: -15px; margin-bottom: 5px; margin-right: 10px;" class="btn btn-primary"><span class="glyphicon glyphicon-save-file"> </span></button>
 						      		
 						      		<table class="table">
 						      			<tbody>

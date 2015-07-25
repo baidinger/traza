@@ -3,9 +3,14 @@
 
 		$id 			=	$_POST['id'];
 		$estado			=	$_POST['estado'];
-		$cancelacion	=	$_POST['motivo_cancelacion'];
+		$motivo			=	$_POST['motivo'];
 
-		PRINT $consulta = "UPDATE ordenes_distribuidor SET estatus_orden = $estado, descripcion_cancelacion = '$cancelacion' where id_orden = $id";
+		if($estado == 5)
+			$consulta = "UPDATE ordenes_distribuidor SET estatus_orden = $estado, descripcion_cancelacion = '$motivo' where id_orden = $id";
+		else if($estado == 2)
+			$consulta = "UPDATE ordenes_distribuidor SET estatus_orden = $estado, descripcion_rechazo = '$motivo' where id_orden = $id";
+		else
+			$consulta = "UPDATE ordenes_distribuidor SET estatus_orden = $estado where id_orden = $id";
 		mysql_query($consulta, $conexion);
 
 		mysql_close($conexion);

@@ -71,10 +71,11 @@
       	<!-- Administrar cuentas -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Administrar registros <span class="caret"></span></a>
+            <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Administrar roles <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?op=bus_productor">Productores</a></li>
             <li><a href="index.php?op=bus_empaque">Empaques</a></li>
+            <li><a  href="index.php?op=bus_camion">Camiones</a></li>
             <li><a  href="index.php?op=bus_distribuidor">Distribuidores</a></li>
             <li><a  href="index.php?op=bus_pv">Punto de venta</a></li>
           </ul>
@@ -108,6 +109,7 @@
 
 
               <?php }   ?>      
+              <li class="divider"></li>
               <li><a href="index.php?op=informacion">Información</a></li>
             </ul>
         </li>
