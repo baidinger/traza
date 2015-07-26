@@ -23,7 +23,7 @@
 			
 
 
-	$consulta = "select id_orden,nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estatus_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $id_empaque AND (nombre_distribuidor like '%$buscar%' OR id_orden  like '%$buscar%')";
+	$consulta = "select id_orden,nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $id_empaque AND (nombre_distribuidor like '%$buscar%' OR id_orden  like '%$buscar%')";
 	$result_productores = mysql_query($consulta);
 	if(mysql_num_rows($result_productores) > 0){
 
@@ -63,7 +63,7 @@
 			          	<!--<td class="centro"><?php //echo $row['descripcion_orden']; ?></td>-->
 
 			          	<?php 
-			          		if($row['estatus_orden'] == 1){ 
+			          		if($row['estado_orden'] == 1){ 
 			          	?>
 			          			<td class="centro">
 			          				<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -84,7 +84,7 @@
 			          			</td>
 			          			<td class="centro"> <span class="label label-warning">Pendiente</span> </td>
 			          <?php 
-							}else if($row['estatus_orden'] == 2){
+							}else if($row['estado_orden'] == 2){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -116,7 +116,7 @@
 								</td>
 
 						<?php
-							}else if($row['estatus_orden'] == 3){
+							}else if($row['estado_orden'] == 3){
 
 							$consulta = "select * FROM envios_empaque where id_orden_fk=$row[id_orden]";
 							$result_productores = mysql_query($consulta);
@@ -167,7 +167,7 @@
 								</td>
 						<?php
 							}
-							else if($row['estatus_orden'] == 4){
+							else if($row['estado_orden'] == 4){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -177,7 +177,7 @@
 								<td class="centro"> <span class="label label-success">Concretado</span> </td>
 
 						<?php
-							}else if($row['estatus_orden'] == 5){
+							}else if($row['estado_orden'] == 5){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -209,7 +209,7 @@
 
 
 						<?php
-							}else if($row['estatus_orden'] == 6){
+							}else if($row['estado_orden'] == 6){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
