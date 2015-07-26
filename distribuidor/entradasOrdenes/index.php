@@ -40,9 +40,18 @@
 			<div class="modal-header">
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
-						<img class="img-header" src="../../img/historial_entradas.png"> Entrada de Órdenes
+						<img class="img-header" src="../../img/historial_entradas.png"> <span id="lbl-titulo">Entrada de Órdenes</span>
 					</h3>
 				</h3>
+			</div>
+			<br>
+			<div class="div-buscar">
+				<div class="form-inline">
+					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del empaque..." onkeyup="if(event.keyCode == 13) buscarOrdenes();" autofocus>
+					<button class="btn btn-primary" id="btnBuscar" onclick="buscarOrdenes();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+					<button class="btn btn-success" style="float: right;" id="btnBuscar" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<a href="../entradasOrdenes/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+				</div>
 			</div>
 			<div class="contenido-general-2">
 				<br>
@@ -71,7 +80,7 @@
 
 								$cont = 0;
 								$verAcciones = 0;
-							    $consulta = "SELECT ords.id_orden, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estatus_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk";
+							    $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estatus_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk ORDER BY ords.id_orden DESC";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ 
 
@@ -96,7 +105,47 @@
 
 											<tr>
 								          		<td class="centro"><?php echo $row['id_orden']; ?></td>
-								          		<td><?php echo $row['nombre_empaque']; ?></td>
+								          		<td>
+								          			<?php 
+								          				$idEmpaque = $row['id_empaque'];
+
+								          				$consulta2 = "SELECT * FROM empresa_empaques WHERE id_empaque = $idEmpaque";
+								          				$resultado2 = mysql_query($consulta2);
+								          				$row2 = mysql_fetch_array($resultado2);
+								          			?>
+								          			<a href="#" class="popover-empaque" 
+								          				tabindex="0"
+								          				data-toggle="popover"
+								          				data-placement="right"
+								          				data-trigger="focus"
+								          				data-container="body"
+								          				data-html="true"
+								          				title="<center><strong><?php echo $row2['nombre_empaque']; ?></strong></center>"
+								          				data-content="<table class='table'>
+								          								<tr>
+								          									<td><strong>RFC: </strong></td>
+								          									<td><?php echo $row2['rfc_empaque']; ?></td>
+								          								</tr>
+								          								<tr>
+								          									<td><strong>Ciudad: </strong></td>
+								          									<td><?php echo $row2['ciudad_empaque']; ?></td>
+								          								</tr>
+								          								<tr>
+								          									<td><strong>Dirección: </strong></td>
+								          									<td><?php echo $row2['direccion_empaque']; ?></td>
+								          								</tr>
+								          								<tr>
+								          									<td><strong>Teléfono: </strong></td>
+								          									<td><?php echo $row2['telefono1_empaque']; ?></td>
+								          								</tr>
+								          								<tr>
+								          									<td><strong>Email: </strong></td>
+								          									<td><?php echo $row2['email_empaque']; ?></td>
+								          								</tr>
+								          							  <table>">
+								          				<?php echo $row['nombre_empaque']; ?>
+								          			</a>
+								          		</td>
 								          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
 								          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
 								          		<td class="centro"><?php echo $totalEnviados." / ".$totalRecibidos; ?></td>
@@ -117,8 +166,8 @@
 								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 								          			<?php
 								          				if($verAcciones == 1){ ?>
-								          					<button class="btn btn-danger" id="btn-cancelar" onClick="cambiarEstadoOrden('rechazar', 5, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Rechazar órden"><i class="glyphicon glyphicon-remove"></i></button>
-									        				<button class="btn btn-success" id="btn-concretar" onClick="cambiarEstadoOrden('concretar', 4, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Concretar órden"><i class="glyphicon glyphicon-ok"></i></button>
+								          					<button class="btn btn-danger" id="btn-cancelar" onClick="mostrarModalEstado(<?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Rechazar orden"><i class="glyphicon glyphicon-remove"></i></button>
+									        				<!-- <button class="btn btn-success" id="btn-concretar" onClick="cambiarEstadoOrden('concretar', 4, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Concretar orden"><i class="glyphicon glyphicon-ok"></i></button> -->
 								          				<?php }
 								          			?>
 									        	</td>
@@ -150,6 +199,39 @@
 			</div>
 		</div>
 
+		<div class="modal fade bs-example-modal-lg" id="modalEstado" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form method="post" action="../mod/rechazar_orden.php">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="titulo-header">
+								<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado de la Orden</span>
+							</h3>
+						</div>
+						<div class="modal-body">
+							<p><label>Estado:</label></p>
+							<p>
+								<select class="form-control" name="inputEstado" id="selectEstado">
+									<option value="2">RECHAZADO</option>
+								</select>
+							</p>
+							<br>
+							<p><label>Motivo del Rechazo:</label></p>
+							<p>
+								<input type="hidden" name="inputIdOrden" id="inputIdOrden">
+								<textarea class="form-control" rows="4" name="inputMotivoRechazo" id="inputMotivoRechazo" placeholder="Motivo del rechazo..." required></textarea>
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+							<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Cambiar Estado</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
 		<div class="modal fade bs-example-modal-lg" id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -177,9 +259,38 @@
 
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
+			$('.popover-empaque').popover();
 			$('#btn-detalles').tooltip();
-			$('#btn-concretar').tooltip();
+			// $('#btn-concretar').tooltip();
 			$('#btn-cancelar').tooltip();
+
+			function buscarOrdenes(){
+				var empaqueBuscar = $('#inputBuscar').val();
+
+				if(empaqueBuscar != ''){
+					$.ajax({
+						type: 'POST',
+						url: '../mod/buscar_ordenes_entrada.php',
+						data: {'empaque':empaqueBuscar},
+
+						beforeSend: function(){
+							$('.contenido-general-2').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+						},
+
+						success: function(data){
+							$('.img-header').attr('src', '../../img/buscar.png');
+							$('#lbl-titulo').text('Resultado de la búsqueda "' + empaqueBuscar + '"');
+							$('#inputBuscar').select();
+							$('#btn-mostrar-todos').css('display', 'block');
+							$('.contenido-general-2').html(data);
+						}
+					});
+				}
+			}
+
+			function busquedaAvanzada(){
+				alert('Búsqueda avanzada');
+			}
 
 			function mostrarDetalles(orden){
 				$.ajax({
@@ -195,15 +306,10 @@
 				});
 			}
 
-			function cambiarEstadoOrden(texto, edo, orden){
-				var respuesta = confirm("¿Desea " + texto + " la orden " + orden + "?");
-			    if(respuesta){
-					$.post('../mod/rechazar_concretar_orden.php', {'edo': edo, 'orden': orden},
-						function(data){
-							$(location).attr('href', '../entradasOrdenes/');
-						}
-					);
-			    }
+			function mostrarModalEstado(orden){
+				$('#inputIdOrden').val(orden);
+				$('#titulo-estado').text('Cambiar Estado de la Orden ' + orden);
+				$('#modalEstado').modal('show');
 			}
 		</script>
 	</body>

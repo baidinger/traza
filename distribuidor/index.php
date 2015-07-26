@@ -65,14 +65,7 @@
 		            <?php if($privEnvios == 1) { ?>
 		            	<li><a href="envios/"><span class="glyphicon glyphicon-folder-open"></span> &nbsp; Envios</a></li>
 		            <?php } ?>
-					<li class="dropdown">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> &nbsp;Productos <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="agregarProducto/">Agregar producto</a></li>
-    						<li class="divider"></li>
-    						<li><a href="productos/">Lista de productos</a></li>
-  						</ul>
-					</li>
+		            <li><a href="productos/"><span class="glyphicon glyphicon-apple"></span> &nbsp;Productos</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-road"></span> &nbsp;Camiones <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -81,6 +74,7 @@
 							<li><a href="camiones/">Lista de camiones</a></li>
 						</ul>
 					</li>
+					<li><a href="estadisticas/"><span class="glyphicon glyphicon-stats"></span> &nbsp;Estadísticas</a></li>
 					<?php 
 						if($_SESSION['nivel_socio'] == 1){ ?>
 							<li class="dropdown">

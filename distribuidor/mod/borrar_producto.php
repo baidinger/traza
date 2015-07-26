@@ -4,12 +4,11 @@
 	if(!isset($_SESSION['id_usuario']))
 		header('Location: ../');
 
-	$edoOrden = $_POST['edo'];
-	$idOrden = $_POST['orden'];
+	$idProducto = $_POST['producto'];
 
 	include('../../mod/conexion.php');
 
-	$consulta = "UPDATE ordenes_distribuidor SET estatus_orden = $edoOrden WHERE id_orden = $idOrden";
+	$consulta = "DELETE FROM productos_distribuidores WHERE id_productos_distribuidor = $idProducto";
 	mysql_query($consulta, $conexion);
 
 	mysql_close();

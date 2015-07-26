@@ -32,7 +32,7 @@
 	      				$idDistribuidorFK = $row['id_distribuidor_fk'];
 
 						$cont = 1;
-						$consulta = "SELECT usus.id_usuario, usudist.id_usuario_distribuidor, usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nombre_usuario, usus.nivel_autorizacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor, usus.estado_usuario FROM usuario_distribuidor AS usudist, usuarios AS usus WHERE usudist.id_distribuidor_fk = $idDistribuidorFK AND usudist.id_usuario_fk = usus.id_usuario AND (usudist.nombre_usuario_distribuidor LIKE '%$usuario%' OR usudist.apellido_usuario_distribuidor LIKE '%$usuario%')";
+						$consulta = "SELECT usus.id_usuario, usudist.id_usuario_distribuidor, usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nombre_usuario, usus.nivel_autorizacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor, usus.estado_usuario FROM usuario_distribuidor AS usudist, usuarios AS usus WHERE usudist.id_distribuidor_fk = $idDistribuidorFK AND usudist.id_usuario_fk = usus.id_usuario AND (usudist.nombre_usuario_distribuidor LIKE '%$usuario%' OR usudist.apellido_usuario_distribuidor LIKE '%$usuario%') ORDER BY usudist.nombre_usuario_distribuidor ASC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ ?>
 							<tr>
@@ -91,7 +91,7 @@
 				</div>
 			<?php } else{ ?>
 				<div class="alert alert-info" role="alert" style="text-align: center;">
-					<strong>Sin resultados...</strong> No coincidencias para "<?php echo $usuario; ?>".
+					<strong>Sin resultados...</strong> No se encontraron coincidencias para "<?php echo $usuario; ?>".
 				</div>
 			<?php } ?>
 
