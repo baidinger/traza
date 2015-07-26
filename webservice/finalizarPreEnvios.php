@@ -31,7 +31,7 @@
 						$query = "SELECT id_envio FROM envios_empaque WHERE id_orden_fk = $orden AND estado_envio = 7";
 						$result = mysql_query($query);
 						if(mysql_num_rows($result) == 0){
-							$query = "UPDATE ordenes_distribuidor SET estatus_orden = 3 WHERE id_orden = $orden";
+							$query = "UPDATE ordenes_distribuidor SET estado_orden = 3 WHERE id_orden = $orden";
 							$r = mysql_query($query);
 							if($r)
 								$datos_usuario = "Bien*El Pre-Envio y la Orden han sido enviados.";
