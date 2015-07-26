@@ -7,7 +7,7 @@
 	*/
 
 	$username = "root";
-	$password = "";
+	$password = "simpus2124";
 	$hostname = "localhost";
 
 	// Conexion a base de datos
