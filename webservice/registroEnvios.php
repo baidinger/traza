@@ -32,10 +32,10 @@
 				$r = mysql_query($query);
 
 				if($r){
-					$datos_usuario = "Envio registrado como pendiente. \n -Proceda a leer todas las cajas y tarimas para completar el envio.";
+					$datos_usuario = "Bien*Envio registrado como pendiente. \n - Proceda a leer todas las cajas y tarimas para completar el envio.";
 					mysql_query("UPDATE camiones_empaque set estado_ce = 1 where id_camion = $carro");
-				}
-
+				}else
+					$datos_usuario ="Error*Error al registrar";
 
 			}
 
@@ -71,7 +71,7 @@
 				$r = mysql_query($query);
 
 				if($r){
-					$datos_usuario = "Envio registrado como pendiente. \n -Proceda a leer todas las cajas y tarimas para completar el envio.";
+					$datos_usuario = "Bien*Envio registrado como pendiente. \n - Proceda a leer todas las cajas y tarimas para completar el envio.";
 					mysql_query("UPDATE camiones_distribuidor set estado_cd = 1 where id_camion = $carro");
 				}else
 					$datos_usuario ="Error*Error al registrar";
