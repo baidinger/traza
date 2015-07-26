@@ -40,7 +40,7 @@
 
 			if($tipo == 3){
 				$id_usuario = $datos[4];
-				$query = "SELECT id_envio, id_camion_fk, id_orden_fk FROM envios_empaque AS ee WHERE ee.id_receptor_fk = $id_usuario";
+				$query = "SELECT id_envio, id_camion_fk, id_orden_fk FROM envios_empaque AS ee WHERE ee.id_receptor_fk = $id_usuario AND estado_envio = 7";
 				$r = mysql_query($query);
 				if(mysql_num_rows($r) > 0){
 					$datos_usuario = "Bien*";
