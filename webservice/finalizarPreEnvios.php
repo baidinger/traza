@@ -81,7 +81,7 @@
 						$datos_usuario = "Error*Error al enviar el Pre-Envio";
 
 				}else
-					$datos_usuario = "Error*Aún no se leen cajas ni tarimas en el Pre-Envio.";
+					$datos_usuario = "Error*Aún no se guardan cajas ni tarimas en el Pre-Envio.";
 			}else
 				$datos_usuario = "Error*Error al enviar el Pre-Envio: No se obtuvo el id del envio.";
 
