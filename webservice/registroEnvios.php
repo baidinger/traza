@@ -1,7 +1,7 @@
 <?php 
 	header("Content-Type: application/json");
 
-	include("conexion.php");
+	include("../mod/conexion.php");
 
 
 	$datos = explode(",", $_POST['datos']);
