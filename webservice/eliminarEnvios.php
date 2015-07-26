@@ -14,8 +14,10 @@
 				$query = "DELETE FROM envios_empaque WHERE id_envio = $id_envio";
 				$r = mysql_query($query);
 
-				if($r)
+				if($r){
 					$datos_usuario = "Bien*Pre-Envio eliminado correctamente";
+					mysql_query("UPDATE camiones_empaque set estado = 0 where id_camion = $carro");
+				}
 				else
 					$datos_usuario = "Error*No se pudo eliminar el envio $id_envio";	
 
