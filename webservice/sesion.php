@@ -69,5 +69,5 @@
 			$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.";
 	}
 
-	mysql_close($dbhandle);
+	mysql_close();
 	echo $datos_usuario;
