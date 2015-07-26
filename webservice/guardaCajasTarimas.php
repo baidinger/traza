@@ -35,6 +35,23 @@
 			
 		break;
 		case 3://distribuidor
+
+			$q = "SELECT id_envio FROM envios_distribuidor WHERE id_orden_dist_fk = $orden AND id_camion_fk = $carro";
+			$result = mysql_query($q);
+			if(mysql_num_rows($result) > 0){
+				$row = mysql_fetch_array($result);
+				$id_envio = $row['id_envio'];
+
+				for($i = 0; $i < count($epcCajas); $i++){
+					$query = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 1, 0)";
+
+					mysql_query($query);
+				}
+  
+				$datos_usuario = "Bien*Registro Exitoso";
+			}else
+				$datos_usuario = "Error*Error";
+
 		break;
 		case 4://punto venta
 		break;
