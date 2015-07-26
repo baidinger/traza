@@ -89,8 +89,8 @@
 
 			buscar();
 
-		function mostrarCajasTarimas(idOrden){
-			var parametros = {'idOrden':idOrden};
+		function mostrarCajasTarimas(id){
+			var parametros = {'idenvio':id};
 			//alert(idOrden);
 
 				$.ajax({

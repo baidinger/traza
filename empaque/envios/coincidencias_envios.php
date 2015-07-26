@@ -57,7 +57,7 @@
 			          </td>
 			          	
 			           <td align="center" width="300"> 
-			           	<a  href="#" onclick = "mostrarCajasTarimas(<?php echo $row['id_orden_fk']; ?>)" data-toggle="modal" data-target="#modalCajasTarimas">
+			           	<a  href="#" onclick = "mostrarCajasTarimas(<?php echo $row['id_envio']; ?>)" data-toggle="modal" data-target="#modalCajasTarimas">
 				        	<span title="Mostrar cajas" data-toggle="tooltip" class="glyphicon glyphicon-copy"></span>
 				    	</a>&nbsp;&nbsp;
 			           	<a onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"  href="#">

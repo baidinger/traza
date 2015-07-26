@@ -22,10 +22,11 @@
               </thead>
               <tbody>
                 <?php 
-                    $idOrden = $_POST['idOrden'];
+                    $idenvio = $_POST['idenvio'];
                     include("../../mod/conexion.php");
 
-                    $consulta = "select epc_caja, enviado_dce, recibido_dce from distribuidor_cajas_envio where id_orden_fk = $idOrden";
+                    $consulta = "select epc_caja, enviado_dce, recibido_dce from distribuidor_cajas_envio where id_envio_fk = $idenvio";
+
                     $result   = mysql_query($consulta);
                     $i=0;
                     if(mysql_num_rows($result) > 0){
@@ -90,10 +91,10 @@
               </thead>
               <tbody>
                 <?php 
-                    $idOrden = $_POST['idOrden'];
+
                     include("../../mod/conexion.php");
 
-                    $consulta = "select epc_tarima, COUNT(epc_caja) AS cajas from distribuidor_cajas_envio where id_orden_fk = $idOrden GROUP BY epc_tarima";
+                    $consulta = "select epc_tarima, COUNT(epc_caja) AS cajas from distribuidor_cajas_envio where id_envio_fk = $idenvio GROUP BY epc_tarima";
                 $result   = mysql_query($consulta);
                 $i=0;
                     if(mysql_num_rows($result) > 0){
