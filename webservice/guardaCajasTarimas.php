@@ -3,7 +3,7 @@
 
 	include("conexion.php");
 
-	$datos = split(",", $_POST['datos']);
+	$datos = explode(",", $_POST['datos']);
 	$socio = $datos[0];
 	$carro = $datos[1];
 	$orden = $datos[2];

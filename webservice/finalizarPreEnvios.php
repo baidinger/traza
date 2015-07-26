@@ -3,7 +3,7 @@
 
 	include("conexion.php");
 
-	$datos = split(",", $_POST['datos']);
+	$datos = explode(",", $_POST['datos']);
 	$socio  = $datos[0];
 	$carro  = $datos[1]; 
 	$orden  = $datos[2]; 
@@ -38,7 +38,7 @@
 							else
 								$datos_usuario = "Error*El Pre-Envio ha sido enviado y la orden no. \n -La orden debio enviarse puesto que ya no tiene envios pendientes.";
 						}else
-							$datos_usuario = "Bien*El Pre-Envio ha sido enviado pero la orden no.\n envie todos los preenvios de la orden para que la orden sea completada y enviada";
+							$datos_usuario = "Bien*El Pre-Envio ha sido enviado pero la orden no.\n -Envie todos los preenvios de la orden para que la orden sea completada y enviada";
 					}else
 						$datos_usuario = "Error*Error al enviar el Pre-Envio";
 

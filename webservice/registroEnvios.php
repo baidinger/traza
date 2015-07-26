@@ -4,7 +4,7 @@
 	include("conexion.php");
 
 
-	$datos = split(",", $_POST['datos']);
+	$datos = explode(",", $_POST['datos']);
 	$tipo  = $datos[0];
 	$socio = $datos[1];
 	$orden = $datos[2];

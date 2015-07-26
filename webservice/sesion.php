@@ -3,7 +3,7 @@
 
 	include("conexion.php");
 
-	$datos = split(",", $_POST['datos']);
+	$datos = explode(",", $_POST['datos']);
 
 	$user 	= $datos[0];
 	$pass 	= $datos[1];
