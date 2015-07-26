@@ -6,6 +6,7 @@
 	$datos = split(",", $_POST['datos']);
 	$socio  = $datos[0];
 	$id_envio  = $datos[1]; 
+	$carro  = $datos[2]; 
 
 	switch($socio){
 		case 1://productor
