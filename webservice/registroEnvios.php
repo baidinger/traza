@@ -3,7 +3,7 @@
 
 	include("../mod/conexion.php");
 
-
+	$datos_usuario = "";
 	$datos = explode(",", $_POST['datos']);
 	$tipo  = $datos[0];
 	$socio = $datos[1];

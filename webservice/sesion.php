@@ -2,7 +2,7 @@
 	header("Content-Type: application/json");
 
 	include("../mod/conexion.php");
-
+	$datos_usuario = "";
 	$datos = explode(",", $_POST['datos']);
 
 	$user 	= $datos[0];
