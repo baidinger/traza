@@ -7,19 +7,19 @@
 
 	switch ($rol) {
 		case 1:
-			$query = "update empresa_productores set estado = ".$status." where id_productor = ".$id;		
+			$query = "update empresa_productores set estado_p = ".$status." where id_productor = ".$id;		
 			$url = "bus_productor";
 		break;
 		case 2:
-			$query = "update empresa_empaques set estado = ".$status." where id_empaque = ".$id;		
+			$query = "update empresa_empaques set estado_e = ".$status." where id_empaque = ".$id;		
 			$url = "bus_empaque";
 		break;
 		case 3:
-			$query = "update empresa_distribuidores set estado = ".$status." where id_distribuidor = ".$id;		
+			$query = "update empresa_distribuidores set estado_d = ".$status." where id_distribuidor = ".$id;		
 			$url = "bus_distribuidor";
 		break;
 		case 4:
-			$query = "update empresa_punto_venta set estado = ".$status." where id_punto_venta = ".$id;		
+			$query = "update empresa_punto_venta set estado_pv = ".$status." where id_punto_venta = ".$id;		
 			$url = "bus_pv";
 		break;
 	}

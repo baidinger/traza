@@ -89,7 +89,7 @@
 						      				<tr>
 						      					<td><strong>Estado:</strong></td>
 						      					<?php 
-						      						if($row['estado'] == 1) { ?>
+						      						if($row['estado_p'] == 1) { ?>
 						      							<td> <p class="label label-success"> Activo </p> </td>
 						      						<?php }else{ ?>
 						      							echo <td> <p class="label label-danger"> Inactivo </p> </td>

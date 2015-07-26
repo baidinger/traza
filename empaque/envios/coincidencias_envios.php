@@ -49,14 +49,14 @@
 			          	<td class="centro"><?php echo $row['fecha_envio']; ?></td>
 			          	<td class="centro">
 			          		<?php 
-	      					 switch($row['estado']){
+	      					 switch($row['estado_envio']){
 	      					 	case 1: echo "<span class='label label-warning'>PENDIENTE</span>"; break;
 	      					 	case 2: echo "<span class='label label-danger'>RECHAZADO</span>"; break;
 	      					 	case 3: echo "<span class='label label-primary'>ENVIADO</span>"; break;
 	      					 	case 4: echo "<span class='label label-success'>CONCRETADO</span>"; break;
 	      					 	case 5: echo "<span class='label label-danger'>CANCELADO</span>"; break;
 	      					 	case 6: echo "<span class='label label-success'>APROBADO</span>"; break;
-	      					 	case 7: echo "<span class='label label-primary'>PRE-ENVIO</span>"; break;
+	      					 	case 7: echo "<span class='label label-warning'>PRE-ENVIO</span>"; break;
 	      					 } ?>
 			          	</td>
 			          	

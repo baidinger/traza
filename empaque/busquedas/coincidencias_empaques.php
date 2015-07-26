@@ -4,7 +4,7 @@
 	$buscar = $_POST['buscar'];
 	$result_productores = mysql_query("select id_empaque, nombre_empaque, rfc_empaque, ".
 				"pais_empaque, estado_empaque, ciudad_empaque, direccion_empaque, cp_empaque, ".
-				" email_empaque, telefono1_empaque, telefono2_empaque, estado from empresa_empaques where id_usuario_que_registro = ".$_SESSION['id_usuario']." AND nombre_empaque like '%$buscar%'");
+				" email_empaque, telefono1_empaque, telefono2_empaque, estado_e from empresa_empaques where id_usuario_que_registro = ".$_SESSION['id_usuario']." AND nombre_empaque like '%$buscar%'");
 	if(mysql_num_rows($result_productores) > 0){
 
  ?>
@@ -70,7 +70,7 @@
 			          	 ?></td>
 			          	<td class="centro"><?php echo $row['telefono1_empaque']; ?></td>
 
-			          	<?php if($row['estado'] == 1){ ?>
+			          	<?php if($row['estado_e'] == 1){ ?>
 			          			<td class="centro"> <p class="label label-success"> Activo </p> </td>
 			          	<?php }else{ ?>
 			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
@@ -83,7 +83,7 @@
 				          				<div style="width:20px; height:10px; float:left;"></div> 
 				          				<?php if( $_SESSION['id_empaque'] != $row['id_empaque']){ ?>
 					          				<!-- ACCION HABILITAR -->
-					          				<?php if($row['estado'] == 1){ ?>
+					          				<?php if($row['estado_e'] == 1){ ?>
 					          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_empaque']; ?>&status=0&rol=2"> 
 					          					<span data-toggle="tooltip" data-placement="top" title="Desactivar" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					          				</a>

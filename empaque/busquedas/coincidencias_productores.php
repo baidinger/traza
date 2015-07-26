@@ -3,7 +3,7 @@
 			$buscar = $_POST['buscar'];
 			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
 				"telefono_productor, direccion_productor, ".
-				" rfc_productor, id_usuario_fk, estado, nombre_usuario from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_usuario_que_registro = ".$_SESSION['id_usuario']." AND (nombre_productor like '%$buscar%' OR apellido_productor like '%$buscar%')");
+				" rfc_productor, id_usuario_fk, estado_p, nombre_usuario from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_usuario_que_registro = ".$_SESSION['id_usuario']." AND (nombre_productor like '%$buscar%' OR apellido_productor like '%$buscar%')");
 			if($result_productores){
 			if(mysql_num_rows($result_productores) > 0){
 ?>
@@ -36,7 +36,7 @@
 			          	<td class="centro"><?php echo $row['telefono_productor']; ?></td>
 			          	<!--<td class="centro"><?php echo $row['direccion_productor']; ?></td>-->
 
-			          	<?php if($row['estado'] == 1){ ?>
+			          	<?php if($row['estado_p'] == 1){ ?>
 			          			<td class="centro"> <p class="label label-success"> Activo </p> </td>
 			          	<?php }else{ ?>
 			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
@@ -49,7 +49,7 @@
 				          				<div style="width:20px; height:10px; float:left;"></div> 
 
 				          				<!-- ACCION HABILITAR -->
-				          				<?php if($row['estado'] == 1){ ?>
+				          				<?php if($row['estado_p'] == 1){ ?>
 				          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_productor']; ?>&status=0&rol=1"> 
 				          					<span data-toggle="tooltip" data-placement="top" title="Desactivar" class="desactivar glyphicon glyphicon-remove" aria-hidden="true"></span>
 				          				</a>
