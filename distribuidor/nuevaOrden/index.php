@@ -126,7 +126,7 @@
 										include('../../mod/conexion.php');
 
 										$cont = 1;
-									    $consulta = "SELECT * FROM empresa_empaques WHERE estado = 1 ORDER BY RAND() LIMIT 10";
+									    $consulta = "SELECT * FROM empresa_empaques WHERE estado_e = 1 ORDER BY nombre_empaque ASC LIMIT 10";
 										$resultado = mysql_query($consulta);
 										while($row = mysql_fetch_array($resultado)){ ?>
 											<tr>

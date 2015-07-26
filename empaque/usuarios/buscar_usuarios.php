@@ -13,7 +13,7 @@
 			          <!--<th>Dirección</th>-->
 			          <th>Nivel autorizado</th>
 			          <th>Privilegios</th>
-			          <th>Status</th>
+			          <th>Estado</th>
 			          <th>Acción</th>
 			        </tr>
 	      		</thead>

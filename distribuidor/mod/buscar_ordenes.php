@@ -31,7 +31,7 @@
 						$id_distribuidor_fk = $row['id_usuario_distribuidor'];
 
 						$cont = 0;
-					    $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estatus_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
+					    $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ ?>
 							<tr>
@@ -80,7 +80,7 @@
 				          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
 				          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ',')	; ?></td>
 			          			<?php
-			          				$estado = $row['estatus_orden'];
+			          				$estado = $row['estado_orden'];
 
 			          				switch($estado) {
 			          					case '1': echo "<td class='centro pendiente'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].")'>PENDIENTE</span></td>"; break;
