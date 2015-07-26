@@ -14,7 +14,8 @@
 		case 1://productor
 		break;
 		case 2://empaque
-			if($tipo==1){
+
+			if($tipo==1){//Obtener datos del distribuidor
 				$query = "SELECT id_distribuidor, nombre_distribuidor FROM ordenes_distribuidor AS od, usuario_distribuidor AS ud, empresa_distribuidores AS ed WHERE od.id_orden = $orden AND od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor";
 				$resultado = mysql_query($query);
 				if(mysql_num_rows($resultado) > 0){
@@ -23,7 +24,7 @@
 				}
 			}
 
-			if($tipo==2){
+			if($tipo==2){//Registrar el envio 
 				$id_dist = $datos[4];
 				$id_usuario = $datos[5];
 
@@ -38,7 +39,7 @@
 
 			}
 
-			if($tipo == 3){
+			if($tipo == 3){//Informacion para llenar la tabla de preenvios de la handaheld
 				$id_usuario = $datos[4];
 				$query = "SELECT id_envio, id_camion_fk, id_orden_fk FROM envios_empaque AS ee WHERE ee.id_receptor_fk = $id_usuario AND estado_envio = 7";
 				$r = mysql_query($query);

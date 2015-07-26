@@ -166,7 +166,7 @@
 		<div class="modal fade bs-example-modal-lg" id="modalEstado" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
-					<form method="post" action="../mod/cambiar_estado_orden.php">
+					<form method="post" action="../mod/cancelar_orden.php">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h3 class="titulo-header">
@@ -189,7 +189,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
-							<button type="submit" class="btn btn-primary" onclick="cambiarEstado()"><i class="glyphicon glyphicon-floppy-disk"></i> Cambiar Estado</button>
+							<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Cambiar Estado</button>
 						</div>
 					</form>
 				</div>

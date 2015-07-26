@@ -158,6 +158,10 @@
 		<script type="text/javascript">
 			$('#tabla-detalles-orden').hide();
 
+			$('#modalEmpaque').on('shown.bs.modal', function () {
+				$('#inputBuscarEmpaque').focus()
+			});
+
 			function buscarEmpaques(){
 				var empaqueBuscar = $('#inputBuscarEmpaque').val();
 
