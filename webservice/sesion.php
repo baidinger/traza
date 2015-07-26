@@ -38,6 +38,10 @@
 					7.- id del empaque
 					8.- Nombre del empaque
 					9.- empaque
+
+					10.- privilegio envios
+					11.- privilegio recibido
+
 					kljhkjhjk
 			*/
 			switch($row['tipo_socio_usuario']) {
@@ -49,16 +53,16 @@
 						$r = mysql_query($q);
 						if(mysql_num_rows($r) > 0){
 							$rows = mysql_fetch_array($r);
-							$datos_usuario .= ",".$rows['id_receptor'].",".$rows['nombre_receptor'].",".$rows['apellido_receptor'].",".$rows['id_empaque'].",".$rows['nombre_empaque'].","."Empaque";
+							$datos_usuario .= ",".$rows['id_receptor'].",".$rows['nombre_receptor'].",".$rows['apellido_receptor'].",".$rows['id_empaque'].",".$rows['nombre_empaque'].","."Empaque,1,0";
 						}else
-							$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.";
+							$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.\n - El usuario no tiene privilegios";
 						break;
 				case 3: //distribuidor
 						$q = "SELECT id_usuario_distribuidor, nombre_usuario_distribuidor, apellido_usuario_distribuidor, id_distribuidor, nombre_distribuidor FROM usuario_distribuidor AS ud, empresa_distribuidores AS ed WHERE ud.id_usuario_fk = ".$row['id_usuario']." AND ud.id_distribuidor_fk = ed.id_distribuidor";
 						$r = mysql_query($q);
 						if(mysql_num_rows($r) > 0){
 							$rows = mysql_fetch_array($r);
-							$datos_usuario .= ",".$rows['id_usuario_distribuidor'].",".$rows['nombre_usuario_distribuidor'].",".$rows['apellido_usuario_distribuidor'].",".$rows['id_distribuidor'].",".$rows['nombre_distribuidor'].","."Distribuidor";
+							$datos_usuario .= ",".$rows['id_usuario_distribuidor'].",".$rows['nombre_usuario_distribuidor'].",".$rows['apellido_usuario_distribuidor'].",".$rows['id_distribuidor'].",".$rows['nombre_distribuidor'].","."Distribuidor,1,1";
 						}else
 							$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.";
 						break;
