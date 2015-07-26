@@ -227,7 +227,7 @@
 							}
 			           ?>
 			           <td > 
-			           	<button onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')" class="btn btn-primary">
+			           	<button style="float:right" onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')" class="btn btn-primary">
 			           		<span class="glyphicon glyphicon-eye-open"></span>&nbsp;
 			           	</button>
 			           </td>
@@ -256,7 +256,7 @@
 		    	 <br><br>
 		    	 <br>
 		    	 	<div style="width:500px; margin:0px auto;" class="alert alert-info centro" role="alert"> 
-		    	 		<strong>No hay pedidos</strong>
+		    	 		<strong>No se encontraron pedidos</strong>
 		    	 	</div>
 		    	 	<br><br>
 		    	<?php

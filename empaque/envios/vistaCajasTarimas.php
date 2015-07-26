@@ -15,7 +15,8 @@
               <thead>
                 <tr>
                   <th class="centro">#</th>
-                  <th class="centro">epc_caja</th>
+                  <th class="centro">Tarima</th>
+                  <th class="centro">Caja</th>
                   <th class="centro">Enviado</th>
                   <th class="centro">Recibido</th>
                 </tr>
@@ -25,7 +26,7 @@
                     $idenvio = $_POST['idenvio'];
                     include("../../mod/conexion.php");
 
-                    $consulta = "select epc_caja, enviado_dce, recibido_dce from distribuidor_cajas_envio where id_envio_fk = $idenvio";
+                    $consulta = "select epc_tarima, epc_caja, enviado_dce, recibido_dce from distribuidor_cajas_envio where id_envio_fk = $idenvio ORDER BY epc_tarima";
 
                     $result   = mysql_query($consulta);
                     $i=0;
@@ -36,6 +37,7 @@
                         ?>
                           <tr>
                             <td class="centro"><?php echo $i; ?></td>
+                            <td class="centro"><?php echo $row['epc_tarima']; ?></td>
                             <td class="centro"><?php echo "<a href='index.php?epc_caja=".$row['epc_caja']."&op=caja_traza' class='btn btn-link'>".$row['epc_caja']."</a>"; ?> </td>
                             
                               <?php if($row['enviado_dce'] == 1){ ?>
@@ -101,7 +103,7 @@
                       
                       while($row = mysql_fetch_array($result)){
                         $i++;
-                          $consultaCT = "select epc_caja from distribuidor_cajas_envio where epc_tarima = ".$row['epc_tarima'];
+                          $consultaCT = "select epc_caja from distribuidor_cajas_envio where epc_tarima = '".$row['epc_tarima']."'";
                           $resultCT = mysql_query($consultaCT);
                         ?>
                           <tr>

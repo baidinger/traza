@@ -92,23 +92,23 @@
 		function mostrarCajasTarimas(id){
 			var parametros = {'idenvio':id};
 			//alert(idOrden);
-
+				$("#mititulo").html("Cajas y tarimas");
 				$.ajax({
 					type: 'POST',
 					url: 'envios/vistaCajasTarimas.php',
 					data: parametros,
 					success: function(data){
-						$('#id_modalCajasTarimas').html(data);
+						$('#data-child1').html(data);
 						/*$('#modalCajasTarimas').modal('show');*/
 					},
 
 					beforeSend: function(data ) {
-					    $("#id_modalCajasTarimas").html("<center><img src=\"img/cargando.gif\"></center>");
+					    $("#data-child1").html("<center><img src=\"img/cargando.gif\"></center>");
 					  }
 				});
 
 		}
-
+/*
 		function registrar(){
 				var params = {id:$('#numero_orden').val()};
 
@@ -129,7 +129,7 @@
 					
 				});
 			}
-
+*/
 		function cancelar(id_envio, id_orden){
 				var params = {id:id_envio, orden:id_orden};
 				$("#mititulo").html("Cancelar envío");
