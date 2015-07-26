@@ -41,7 +41,7 @@
 	}
 
 
-	mysql_close($dbhandle);
+	mysql_close();
 	echo $datos_usuario;
 
 ?>
