@@ -26,7 +26,7 @@
 				}else
 					$datos_usuario = "Error";
 			}else{
-				$query = "SELECT id_camion FROM camiones_empaque WHERE id_empaque_fk = $id_socio AND estado = 0";
+				$query = "SELECT id_camion FROM camiones_empaque WHERE id_empaque_fk = $id_socio AND estado_ce = 0";
 				$resultado = mysql_query($query);
 				if($resultado){
 					if(mysql_num_rows($resultado) > 0){
@@ -51,7 +51,7 @@
 				}else
 					$datos_usuario = "Sin ordenes aprobadas";
 			}else{
-				$query = "SELECT id_camion FROM camiones_distribuidor WHERE id_distribuidor_fk = $id_socio AND estado = 0";
+				$query = "SELECT id_camion FROM camiones_distribuidor WHERE id_distribuidor_fk = $id_socio AND estado_cd = 0";
 				$resultado = mysql_query($query);
 				if(mysql_num_rows($resultado) > 0){
 					while($row = mysql_fetch_array($resultado)){
