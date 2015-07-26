@@ -29,10 +29,12 @@
 					1.- nombre del usuario
 					2.- tipo_socio
 					3.- nivel de autorizacion
+					
 				-------EMPAQUE-------
 					4.- id_receptor
 					5.-nombre del receptor
 					6.- apellido del receptor
+
 					7.- id del empaque
 					8.- Nombre del empaque
 					9.- empaque
