@@ -29,7 +29,7 @@
 		$row = mysql_fetch_array($resultado);
 		$idUsuarioDistribuidorFK = $row['id_usuario_distribuidor'];
 
-		$consulta = "INSERT INTO ordenes_distribuidor(fecha_orden, fecha_entrega_orden, costo_orden, descripcion_orden, id_usuario_distribuidor_fk, id_empaque_fk, estatus_orden) VALUES('$fechaRegistro', '$fechaEntrega', $costoTotalOrden, '$descripcionOrden', $idUsuarioDistribuidorFK, $idEmpaque, 1)";
+		$consulta = "INSERT INTO ordenes_distribuidor(fecha_orden, fecha_entrega_orden, costo_orden, descripcion_orden, id_usuario_distribuidor_fk, id_empaque_fk, estado_orden) VALUES('$fechaRegistro', '$fechaEntrega', $costoTotalOrden, '$descripcionOrden', $idUsuarioDistribuidorFK, $idEmpaque, 1)";
 		mysql_query($consulta, $conexion);
 
 		$consulta = "SELECT id_orden FROM ordenes_distribuidor ORDER BY id_orden DESC LIMIT 1";
@@ -38,13 +38,13 @@
 		$idOrdenFK = $row['id_orden'];
 
 		for($i = 0; $i < count($arregloCantidades); $i++) {
-			$consulta = "INSERT INTO ordenes_distribuidor_detalles(cantidad_producto_od, unidad_producto_od, costo_unitario_od, costo_producto_od, id_orden_fk, id_producto_fk) VALUES($arregloCantidades[$i], '$arregloUnidades[$i]', $arregloUnitarios[$i], $arregloCostos[$i], $idOrdenFK, $arregloProductos[$i])";
+			print $consulta = "INSERT INTO ordenes_distribuidor_detalles(cantidad_producto_od, unidad_producto_od, costo_unitario_od, costo_producto_od, id_orden_fk, id_producto_fk) VALUES($arregloCantidades[$i], '$arregloUnidades[$i]', $arregloUnitarios[$i], $arregloCostos[$i], $idOrdenFK, $arregloProductos[$i])";
 			mysql_query($consulta, $conexion);
 		}
 
 		$mysqlError = mysql_error($conexion);
 		mysql_close();
-
+	
 		if(!empty($mysqlError)){
 			header('Location: ../nuevaOrden/e');
 		} else {

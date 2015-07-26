@@ -32,12 +32,12 @@
 
 	  				/*echo "select * from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario'];*/
 
-	  				$result = mysql_query("select id_empaque_fk from usuario_empaque where id_usuario_fk = ".$_SESSION['id_usuario']);
+	  				/*$result = mysql_query("select id_empaque_fk from usuario_empaque where id_usuario_fk = ".$_SESSION['id_usuario']);
 	  				if(mysql_num_rows($result) > 0){
 	  					while($row = mysql_fetch_array($result)){
 	  						$id_empaque = $row['id_empaque_fk'];
 	  					}
-	  				}
+	  				}*/
 
 
 
@@ -124,7 +124,7 @@
 	  		</div>
 	  	</div>
 
-	  	<div class="modal fade bs-example-modal-lg" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  	<div class="modal fade bs-example-modal-md" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -141,6 +141,7 @@
 							</center>
 						</div>
 						<div id="contenedor-productos">
+							<div id="paginacion" style="width:95%; margin:0px auto;">
 							<table class="table">
 								<thead>
 									<th class="centro">#</th>
@@ -152,7 +153,7 @@
 										include('../../mod/conexion.php');
 
 										$cont = 1;
-									    $consulta = "SELECT * FROM productos ORDER BY RAND() LIMIT 10";
+									    $consulta = "SELECT * FROM productos ORDER BY nombre_producto ASC, variedad_producto ASC";
 										$resultado = mysql_query($consulta);
 										while($row = mysql_fetch_array($resultado)){ 
 									?>
@@ -160,7 +161,7 @@
 												<td class="centro"><?php echo $cont; ?></td>
 								          		<td><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></td>
 								          		<td class="derecha">
-									        		<button class="btn btn-success" onClick="agregarProducto(<?php echo $row['id_producto']; ?>, '<?php echo $id_empaque; ?>');"><i class="glyphicon glyphicon-ok"></i> Agregar</button>
+									        		<button class="btn btn-success" onClick="agregarProducto(<?php echo $row['id_producto']; ?>, '<?php echo $_SESSION['id_empaque']; ?>');"><i class="glyphicon glyphicon-ok"></i> Agregar</button>
 									        	</td>
 									        	<?php $cont++; ?>
 								    	    </tr>
@@ -168,6 +169,15 @@
 									?>
 								</tbody>
 							</table>
+							<?php if($i > 1){ ?>
+								<div class="my-navigation" style="margin: 0px auto;">
+								<div class="simple-pagination-page-numbers"></div>
+								<br><br><br>
+								</div>
+							<?php } ?>
+
+						</div>
+
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -192,7 +202,7 @@
 						    <label class="sr-only" for="exampleInputAmount">Cantidad (in dollars)</label>
 						    <div class="input-group">
 						      <div class="input-group-addon">$</div>
-						      	<input type="number" step="0.01" class="form-control" min="1" id="precio_producto" name="precio_producto" placeholder="Cantidad">
+						      	<input type="number" step="0.01" class="form-control" min="0" id="precio_producto" name="precio_producto" placeholder="Cantidad">
 						    	<input type="hidden" name="id_productos_empaque" id="id_productos_empaque">
 						    	<input type="hidden" name="tipo" id="tipo">
 						    </div>
@@ -211,6 +221,9 @@
 	  	<script type="text/javascript">
 
 	  		$('#paginacion-resultados').simplePagination();
+	  		$('#paginacion').simplePagination({
+	  			items_per_page:6
+	  		});
 	  		$('.eliminar').tooltip();
 
 	  		function modalCostoShow(idOrden, costo_orden, tipo){

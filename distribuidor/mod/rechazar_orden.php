@@ -9,7 +9,7 @@
 
 	include('../../mod/conexion.php');
 
-	$consulta = "UPDATE ordenes_distribuidor SET estatus_orden = 2, descripcion_rechazo = '$motivoRechazo' WHERE id_orden = $idOrden";
+	$consulta = "UPDATE ordenes_distribuidor SET estado_orden = 2, descripcion_rechazo = '$motivoRechazo' WHERE id_orden = $idOrden";
 	mysql_query($consulta, $conexion);
 
 	mysql_close();

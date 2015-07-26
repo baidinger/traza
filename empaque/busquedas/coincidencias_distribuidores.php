@@ -5,7 +5,7 @@
 	include("../../mod/conexion.php");
 	$result_productores = mysql_query("select id_distribuidor, nombre_distribuidor, rfc_distribuidor, ".
 		"pais_distribuidor, estado_distribuidor, ciudad_distribuidor, direccion_distribuidor, cp_distribuidor, ".
-		" email_distribuidor, tel1_distribuidor, tel2_distribuidor, estado from empresa_distribuidores
+		" email_distribuidor, tel1_distribuidor, tel2_distribuidor, estado_d from empresa_distribuidores
 		where id_usuario_que_registro = ".$_SESSION['id_usuario'] ." AND nombre_distribuidor like 
 		'%$buscar%'");
 	if(mysql_num_rows($result_productores) > 0){
@@ -75,7 +75,7 @@
 			          	 ?></td>
 			          	<td class="centro"><?php echo $row['tel1_distribuidor']; ?></td>
 
-	          			<?php if($row['estado'] == 1){ ?>
+	          			<?php if($row['estado_d'] == 1){ ?>
 			          			<td class="centro"> <p class="label label-success"> Activo </p> </td>
 			          	<?php }else{ ?>
 			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
@@ -87,7 +87,7 @@
 		          				</a>
 		          				<div style="width:20px; height:10px; float:left;"></div> 
 		          				<!-- ACCION HABILITAR -->
-		          				<?php if($row['estado'] == 1){ ?>
+		          				<?php if($row['estado_d'] == 1){ ?>
 		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_distribuidor']; ?>&status=0&rol=3"> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Desactivar" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		          				</a>

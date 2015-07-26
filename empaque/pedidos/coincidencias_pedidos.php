@@ -9,7 +9,7 @@
 				"ON usuario_distribuidor.id_usuario_distribuidor = ordenes_distribuidor.id_usuario_distribuidor_fk ".
 				"join empresa_distribuidores ON empresa_distribuidores.id_distribuidor = usuario_distribuidor.id_distribuidor_fk ".
 				"where empresa_empaques.id_usuario_que_registro = ".$_SESSION['id_usuario'];*/
-	$c = "SELECT * FROM empresa_empaques as ee, usuario_empaque as ue where ee.id_empaque = ue.id_empaque_fk AND ue.id_usuario_fk = ".$_SESSION['id_usuario'];
+/*	$c = "SELECT * FROM empresa_empaques as ee, usuario_empaque as ue where ee.id_empaque = ue.id_empaque_fk AND ue.id_usuario_fk = ".$_SESSION['id_usuario'];
 	$r = mysql_query($c);
 	$id_empaque = "";
 	if($r)
@@ -20,12 +20,13 @@
 		}
 		else
 			return;
+			*/
 			
 
 
-	$consulta = "select id_orden,nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estatus_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $id_empaque AND (nombre_distribuidor like '%$buscar%' OR id_orden  like '%$buscar%')";
-	$result_productores = mysql_query($consulta);
-	if(mysql_num_rows($result_productores) > 0){
+	$consulta = "select id_orden, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  like '%$buscar%')";
+	$result_ordenes = mysql_query($consulta);
+	if(mysql_num_rows($result_ordenes) > 0){
 
  ?>
 
@@ -49,7 +50,7 @@
 			<?php
 			
 				$i=1;
-				 while($row = mysql_fetch_array($result_productores)) {
+				 while($row = mysql_fetch_array($result_ordenes)) {
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
@@ -63,7 +64,7 @@
 			          	<!--<td class="centro"><?php //echo $row['descripcion_orden']; ?></td>-->
 
 			          	<?php 
-			          		if($row['estatus_orden'] == 1){ 
+			          		if($row['estado_orden'] == 1){ 
 			          	?>
 			          			<td class="centro">
 			          				<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -84,7 +85,7 @@
 			          			</td>
 			          			<td class="centro"> <span class="label label-warning">Pendiente</span> </td>
 			          <?php 
-							}else if($row['estatus_orden'] == 2){
+							}else if($row['estado_orden'] == 2){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -116,12 +117,12 @@
 								</td>
 
 						<?php
-							}else if($row['estatus_orden'] == 3){
+							}else if($row['estado_orden'] == 3){
 
 							$consulta = "select * FROM envios_empaque where id_orden_fk=$row[id_orden]";
-							$result_productores = mysql_query($consulta);
-							if(mysql_num_rows($result_productores) > 0)
-								$row2 = mysql_fetch_array($result_productores);
+							$result_envios = mysql_query($consulta);
+							if(mysql_num_rows($result_envios) > 0)
+								$row2 = mysql_fetch_array($result_envios);
 
 						?>
 								<td class="centro">
@@ -167,7 +168,7 @@
 								</td>
 						<?php
 							}
-							else if($row['estatus_orden'] == 4){
+							else if($row['estado_orden'] == 4){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -177,7 +178,7 @@
 								<td class="centro"> <span class="label label-success">Concretado</span> </td>
 
 						<?php
-							}else if($row['estatus_orden'] == 5){
+							}else if($row['estado_orden'] == 5){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
@@ -209,7 +210,7 @@
 
 
 						<?php
-							}else if($row['estatus_orden'] == 6){
+							}else if($row['estado_orden'] == 6){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>

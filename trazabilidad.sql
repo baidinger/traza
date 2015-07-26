@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 25, 2015 at 07:12 PM
+-- Generation Time: Jul 26, 2015 at 11:16 PM
 -- Server version: 5.5.40
 -- PHP Version: 5.4.12
 
@@ -36,8 +36,18 @@ CREATE TABLE IF NOT EXISTS `camiones_distribuidor` (
   `marca` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `modelo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `id_distribuidor_fk` int(11) NOT NULL,
-  PRIMARY KEY (`id_camion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+  `estado_cd` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_camion`),
+  KEY `id_distribuidor_fk` (`id_distribuidor_fk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `camiones_distribuidor`
+--
+
+INSERT INTO `camiones_distribuidor` (`id_camion`, `placas`, `nombre_chofer`, `descripcion_camion`, `marca`, `modelo`, `id_distribuidor_fk`, `estado_cd`) VALUES
+(1, 'XBHJ-56', 'ANACLETO', '', 'TOYOTA', '2015', 14, 1),
+(2, 'YTG6874', 'PANFILO GOMEZ', '', 'NISSAN', '2012', 14, 1);
 
 -- --------------------------------------------------------
 
@@ -53,8 +63,17 @@ CREATE TABLE IF NOT EXISTS `camiones_empaque` (
   `marca` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `modelo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `id_empaque_fk` int(11) NOT NULL,
-  PRIMARY KEY (`id_camion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+  `estado_ce` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_camion`),
+  KEY `id_empaque_fk` (`id_empaque_fk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `camiones_empaque`
+--
+
+INSERT INTO `camiones_empaque` (`id_camion`, `placas`, `nombre_chofer`, `descripcion_camion`, `marca`, `modelo`, `id_empaque_fk`, `estado_ce`) VALUES
+(1, 'ACB-846', 'JOSE VASCONCELOS', 'ES UN CAMION NUEVO DE LA MARCA NISSAN', 'NISSAN', '2015', 14, 1);
 
 -- --------------------------------------------------------
 
@@ -72,30 +91,52 @@ CREATE TABLE IF NOT EXISTS `distribuidor_cajas_envio` (
   PRIMARY KEY (`id_distribuidor_cajas_envio`),
   KEY `id_orden_fk_idx` (`id_envio_fk`),
   KEY `id_orden_fk` (`id_envio_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=106 ;
 
 --
 -- Dumping data for table `distribuidor_cajas_envio`
 --
 
 INSERT INTO `distribuidor_cajas_envio` (`id_distribuidor_cajas_envio`, `id_envio_fk`, `epc_caja`, `epc_tarima`, `enviado_dce`, `recibido_dce`) VALUES
-(14, 1, '00000000000000000001234', '00000000000000000007A2A', 1, 1),
-(15, 1, '00000000000000000001235', '00000000000000000007A2A', 1, 0),
-(16, 1, '00000000000000000001236', '00000000000000000007A2A', 1, 0),
-(17, 1, '00000000000000000001237', '00000000000000000007A2A', 1, 0),
-(18, 1, '00000000000000000001238', '00000000000000000007A2A', 1, 0),
-(19, 1, '00000000000000000001239', '00000000000000000007A2A', 1, 0),
-(20, 1, '00000000000000000001240', '00000000000000000007A2A', 1, 0),
-(21, 1, '00000000000000000001241', '00000000000000000007A2A', 1, 0),
-(22, 1, '00000000000000000001242', '00000000000000000007A2A', 1, 0),
-(23, 1, '00000000000000000001243', '00000000000000000007A2A', 1, 0),
-(24, 1, '00000000000000000001244', '00000000000000000007A2A', 1, 0),
-(25, 1, '00000000000000000001245', '00000000000000000007A2A', 1, 0),
-(26, 1, '00000000000000000001246', '00000000000000000007A2A', 1, 0),
-(27, 1, '00000000000000000001247', '00000000000000000007A2A', 1, 0),
-(28, 1, '00000000000000000001248', '00000000000000000007A2A', 1, 0),
-(29, 1, '00000000000000000001249', '00000000000000000007A2A', 1, 0),
-(30, 1, '00000000000000000001250', '00000000000000000007A2A', 1, 0);
+(67, 5, '000000000000000000006217', '010000000000000000006203', 1, 0),
+(68, 5, '000000000000000000006216', '010000000000000000006203', 1, 0),
+(69, 5, '000000000000000000006214', '010000000000000000006203', 1, 0),
+(70, 5, '000000000000000000006210', '010000000000000000006203', 1, 0),
+(71, 5, '000000000000000000006211', '010000000000000000006203', 1, 0),
+(72, 5, '000000000000000000006220', '010000000000000000006203', 1, 0),
+(73, 5, '000000000000000000006208', '010000000000000000006203', 1, 0),
+(74, 5, '000000000000000000006212', '010000000000000000006203', 1, 0),
+(75, 5, '000000000000000000005842', '010000000000000000006203', 1, 0),
+(76, 5, '000000000000000000006204', '010000000000000000006203', 1, 0),
+(77, 5, '000000000000000000006289', '010000000000000000006203', 1, 0),
+(78, 5, '000000000000000000006207', '010000000000000000006203', 1, 0),
+(79, 5, '000000000000000000006209', '010000000000000000006203', 1, 0),
+(80, 5, '000000000000000000006202', '010000000000000000006203', 1, 0),
+(81, 5, '000000000000000000006218', '010000000000000000006203', 1, 0),
+(82, 5, '000000000000000000006219', '010000000000000000006203', 1, 0),
+(83, 5, '000000000000000000006213', '010000000000000000006203', 1, 0),
+(84, 5, '000000000000000000006221', '010000000000000000006203', 1, 0),
+(85, 5, '000000000000000000006205', '010000000000000000006203', 1, 0),
+(86, 5, '000000000000000000005837', '010000000000000000006203', 1, 0),
+(87, 5, '000000000000000000005843', '010000000000000000006203', 1, 0),
+(88, 6, '000000000000000000006205', '010000000000000000006203', 1, 0),
+(89, 6, '000000000000000000006289', '010000000000000000006203', 1, 0),
+(90, 6, '000000000000000000006216', '010000000000000000006203', 1, 0),
+(91, 6, '000000000000000000006204', '010000000000000000006203', 1, 0),
+(92, 6, '000000000000000000006217', '010000000000000000006203', 1, 0),
+(93, 6, '000000000000000000006207', '010000000000000000006203', 1, 0),
+(94, 6, '000000000000000000006219', '010000000000000000006203', 1, 0),
+(95, 6, '000000000000000000006218', '010000000000000000006203', 1, 0),
+(96, 6, '000000000000000000006210', '010000000000000000006203', 1, 0),
+(97, 6, '000000000000000000006208', '010000000000000000006203', 1, 0),
+(98, 6, '000000000000000000006211', '010000000000000000006203', 1, 0),
+(99, 6, '000000000000000000006214', '010000000000000000006203', 1, 0),
+(100, 6, '000000000000000000006209', '010000000000000000006203', 1, 0),
+(101, 6, '000000000000000000006213', '010000000000000000006203', 1, 0),
+(102, 6, '000000000000000000006220', '010000000000000000006203', 1, 0),
+(103, 6, '000000000000000000006212', '010000000000000000006203', 1, 0),
+(104, 6, '000000000000000000006202', '010000000000000000006203', 1, 0),
+(105, 6, '000000000000000000006221', '010000000000000000006203', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -118,16 +159,17 @@ CREATE TABLE IF NOT EXISTS `empresa_distribuidores` (
   `id_usuario_que_registro` int(11) NOT NULL,
   `fecha_registro_dist` date NOT NULL,
   `fecha_modificacion_dist` date NOT NULL,
-  `estado` int(1) NOT NULL DEFAULT '1',
+  `estado_d` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_distribuidor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `empresa_distribuidores`
 --
 
-INSERT INTO `empresa_distribuidores` (`id_distribuidor`, `nombre_distribuidor`, `rfc_distribuidor`, `pais_distribuidor`, `estado_distribuidor`, `ciudad_distribuidor`, `cp_distribuidor`, `email_distribuidor`, `tel1_distribuidor`, `tel2_distribuidor`, `direccion_distribuidor`, `id_usuario_que_registro`, `fecha_registro_dist`, `fecha_modificacion_dist`, `estado`) VALUES
-(13, 'DISTRIBUIDOR BALTAZAR', 'BAAC920112CBA', '0', '13', 'APATZINGÃN', '60094', 'baltazar@distribuidor.com', '4535305394', '014535723280', 'LOS ALMENDROS NO 209', 1, '2015-07-24', '2015-07-24', 0);
+INSERT INTO `empresa_distribuidores` (`id_distribuidor`, `nombre_distribuidor`, `rfc_distribuidor`, `pais_distribuidor`, `estado_distribuidor`, `ciudad_distribuidor`, `cp_distribuidor`, `email_distribuidor`, `tel1_distribuidor`, `tel2_distribuidor`, `direccion_distribuidor`, `id_usuario_que_registro`, `fecha_registro_dist`, `fecha_modificacion_dist`, `estado_d`) VALUES
+(13, 'DISTRIBUIDOR BALTAZAR', 'BAAC920112CBA', '0', '13', 'APATZINGÃN', '60094', 'baltazar@distribuidor.com', '4535305394', '014535723280', 'LOS ALMENDROS NO 209', 1, '2015-07-24', '2015-07-24', 1),
+(14, 'SIMPUS DISTRIBUIDOR', 'SIMP456567IJU', '0', '0', 'APATZINGAN', '61770', 'contacto@boodegaaurrera.com.mx', '5451343234', '', 'CONCIDO', 89, '2015-07-26', '2015-07-26', 1);
 
 -- --------------------------------------------------------
 
@@ -150,17 +192,18 @@ CREATE TABLE IF NOT EXISTS `empresa_empaques` (
   `id_usuario_que_registro` int(11) NOT NULL,
   `fecha_registro_emp` date NOT NULL,
   `fecha_modificacion_emp` date NOT NULL,
-  `estado` int(1) NOT NULL DEFAULT '1',
+  `estado_e` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_empaque`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `empresa_empaques`
 --
 
-INSERT INTO `empresa_empaques` (`id_empaque`, `nombre_empaque`, `rfc_empaque`, `pais_empaque`, `estado_empaque`, `ciudad_empaque`, `direccion_empaque`, `cp_empaque`, `email_empaque`, `telefono1_empaque`, `telefono2_empaque`, `id_usuario_que_registro`, `fecha_registro_emp`, `fecha_modificacion_emp`, `estado`) VALUES
+INSERT INTO `empresa_empaques` (`id_empaque`, `nombre_empaque`, `rfc_empaque`, `pais_empaque`, `estado_empaque`, `ciudad_empaque`, `direccion_empaque`, `cp_empaque`, `email_empaque`, `telefono1_empaque`, `telefono2_empaque`, `id_usuario_que_registro`, `fecha_registro_emp`, `fecha_modificacion_emp`, `estado_e`) VALUES
 (1, 'SIERVO DE LA NACION', 'SIRV900305KT0', '0', '13', 'EL CEÃ‘IDOR', 'EL CEÃ‘IDOR, MUGICA. CAR. 4 CAMINOS APATZINGÃN', '61770', 'contacto@siervodelanacion.com.mx', '4255925238', '', 1, '0000-00-00', '2015-07-24', 1),
-(13, 'EMPAQUE MANGUEROS', 'SVON894532JH7', '2', '1', 'MORELIA', 'ASDKL', '54223', 'siervo@siervodelanacion.com', '4531065690', '', 1, '2015-07-24', '2015-07-24', 1);
+(13, 'EMPAQUE MANGUEROS', 'SVON894532JH7', '2', '1', 'MORELIA', 'ASDKL', '54223', 'siervo@siervodelanacion.com', '4531065690', '', 1, '2015-07-24', '2015-07-24', 1),
+(14, 'SIMPUS', 'SIRV900305KT0', '1', '1', 'MORELIA', 'CONOIDO', '61770', 'siervo@siervodelanacion.com', '4531065690', '', 1, '2015-07-26', '2015-07-26', 1);
 
 -- --------------------------------------------------------
 
@@ -179,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `empresa_productores` (
   `id_usuario_que_registro` int(11) NOT NULL,
   `fecha_registro_prod` date NOT NULL,
   `fecha_modificacion_prod` date NOT NULL,
-  `estado` int(1) NOT NULL DEFAULT '1',
+  `estado_p` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_productor`),
   KEY `id_usuario_fk` (`id_usuario_fk`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
@@ -188,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `empresa_productores` (
 -- Dumping data for table `empresa_productores`
 --
 
-INSERT INTO `empresa_productores` (`id_productor`, `nombre_productor`, `apellido_productor`, `telefono_productor`, `direccion_productor`, `rfc_productor`, `id_usuario_fk`, `id_usuario_que_registro`, `fecha_registro_prod`, `fecha_modificacion_prod`, `estado`) VALUES
+INSERT INTO `empresa_productores` (`id_productor`, `nombre_productor`, `apellido_productor`, `telefono_productor`, `direccion_productor`, `rfc_productor`, `id_usuario_fk`, `id_usuario_que_registro`, `fecha_registro_prod`, `fecha_modificacion_prod`, `estado_p`) VALUES
 (13, 'ANASTACIO', 'JIMENEZ', '4251074467', 'CONOCIDO\r\n', 'CACF909900HT6', 70, 1, '2015-07-24', '2015-07-24', 1),
 (15, 'PANCRASIO', 'JIMENEZ', '4251074467', 'CEÑIDOR, CONOCIDO', 'CACF909900HT6', 73, 1, '2015-07-24', '2015-07-24', 1);
 
@@ -212,17 +255,18 @@ CREATE TABLE IF NOT EXISTS `empresa_punto_venta` (
   `id_usuario_que_registro` int(11) NOT NULL,
   `fecha_registro_pv` date NOT NULL,
   `fecha_modificacion_pv` date NOT NULL,
-  `estado` int(1) NOT NULL DEFAULT '1',
+  `estado_pv` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_punto_venta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `empresa_punto_venta`
 --
 
-INSERT INTO `empresa_punto_venta` (`id_punto_venta`, `nombre_punto_venta`, `rfc_punto_venta`, `pais_punto_venta`, `estado_punto_venta`, `ciudad_punto_venta`, `telefono_punto_venta`, `cp_punto_venta`, `email_punto_venta`, `direccion_punto_venta`, `id_usuario_que_registro`, `fecha_registro_pv`, `fecha_modificacion_pv`, `estado`) VALUES
+INSERT INTO `empresa_punto_venta` (`id_punto_venta`, `nombre_punto_venta`, `rfc_punto_venta`, `pais_punto_venta`, `estado_punto_venta`, `ciudad_punto_venta`, `telefono_punto_venta`, `cp_punto_venta`, `email_punto_venta`, `direccion_punto_venta`, `id_usuario_que_registro`, `fecha_registro_pv`, `fecha_modificacion_pv`, `estado_pv`) VALUES
 (8, 'ALFONSO DISTRIBUIDOR', 'PTVB098855IU7', '0', '13', 'CEÃ‘IDOR', '4531209845', '61770', 'alfonso.calderon.chavez@gmail.com', 'AV. 5 DE MAYO #15', 1, '2015-07-24', '2015-07-24', 1),
-(9, 'PUNTO DE VENTA BALTAZAR', 'PUVB122189GTA', '0', '13', 'URUAPAN', '014521234567', '60600', 'pvbaltazar@gmail.com', 'AV. FRANCISCO VILLA NO 15', 1, '2015-07-24', '2015-07-24', 1);
+(9, 'PUNTO DE VENTA BALTAZAR', 'PUVB122189GTA', '0', '13', 'URUAPAN', '014521234567', '60600', 'pvbaltazar@gmail.com', 'AV. FRANCISCO VILLA NO 15', 1, '2015-07-24', '2015-07-24', 1),
+(10, 'MARGARITO', 'MGRT093456JUY', '2', '1', 'APATZINGÁN', '4531209845', '61770', 'alfonso.calderon.chavez@gmail.com', 'CONOCIDO', 89, '2015-07-26', '2015-07-26', 1);
 
 -- --------------------------------------------------------
 
@@ -251,14 +295,22 @@ CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
   `fecha_entrega_envio` date NOT NULL,
   `id_camion_fk` int(11) NOT NULL,
   `id_usuario_distribuidor_fk` int(11) NOT NULL,
-  `descripcion_envio` text COLLATE utf8_spanish_ci NOT NULL,
-  `descripcion_cancelacion` text COLLATE utf8_spanish_ci NOT NULL,
-  `descripcion_rechazo` text COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion_envio` text COLLATE utf8_spanish_ci,
+  `descripcion_cancelacion` text COLLATE utf8_spanish_ci,
+  `descripcion_rechazo` text COLLATE utf8_spanish_ci,
   `estado_envio` int(11) NOT NULL,
   `id_punto_venta_fk` int(11) NOT NULL,
   `id_orden_dist_fk` int(11) NOT NULL,
   PRIMARY KEY (`id_envio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `envios_distribuidor`
+--
+
+INSERT INTO `envios_distribuidor` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_entrega_envio`, `id_camion_fk`, `id_usuario_distribuidor_fk`, `descripcion_envio`, `descripcion_cancelacion`, `descripcion_rechazo`, `estado_envio`, `id_punto_venta_fk`, `id_orden_dist_fk`) VALUES
+(7, '2015-07-26', '22:40:01', '0000-00-00', 2, 22, 'descripcion', NULL, NULL, 3, 10, 2),
+(8, '2015-07-26', '22:42:14', '0000-00-00', 1, 22, 'descripcion', NULL, NULL, 3, 10, 2);
 
 -- --------------------------------------------------------
 
@@ -273,21 +325,28 @@ CREATE TABLE IF NOT EXISTS `envios_empaque` (
   `fecha_entrega_envio` date NOT NULL,
   `id_camion_fk` int(11) NOT NULL,
   `id_receptor_fk` int(11) NOT NULL,
-  `descripcion_envio` text NOT NULL,
+  `descripcion_envio` text,
+  `descripcion_cancelacion` text,
+  `descripcion_rechazo` text,
   `estado_envio` int(11) NOT NULL,
   `id_distribuidor_fk` int(11) NOT NULL,
   `id_orden_fk` int(11) NOT NULL,
   PRIMARY KEY (`id_envio`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`),
-  KEY `id_orden_fk_idx` (`id_orden_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  KEY `id_orden_fk_idx` (`id_orden_fk`),
+  KEY `id_camion_fk` (`id_camion_fk`),
+  KEY `id_receptor_fk` (`id_receptor_fk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `envios_empaque`
 --
 
-INSERT INTO `envios_empaque` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_entrega_envio`, `id_camion_fk`, `id_receptor_fk`, `descripcion_envio`, `estado_envio`, `id_distribuidor_fk`, `id_orden_fk`) VALUES
-(1, '2015-07-24', '08:08:25', '0000-00-00', 23, 1, '', 3, 13, 14);
+INSERT INTO `envios_empaque` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_entrega_envio`, `id_camion_fk`, `id_receptor_fk`, `descripcion_envio`, `descripcion_cancelacion`, `descripcion_rechazo`, `estado_envio`, `id_distribuidor_fk`, `id_orden_fk`) VALUES
+(1, '2015-07-24', '08:08:25', '0000-00-00', 23, 1, '', NULL, NULL, 3, 13, 14),
+(4, '2015-07-26', '20:38:49', '0000-00-00', 1, 11, 'descripcion', NULL, NULL, 3, 14, 16),
+(5, '2015-07-26', '22:48:31', '0000-00-00', 1, 12, 'descripcion', NULL, NULL, 5, 13, 18),
+(6, '2015-07-26', '23:06:34', '0000-00-00', 1, 12, 'descripcion', NULL, NULL, 3, 14, 19);
 
 -- --------------------------------------------------------
 
@@ -298,7 +357,9 @@ INSERT INTO `envios_empaque` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_en
 CREATE TABLE IF NOT EXISTS `epc` (
   `epc` varchar(24) COLLATE utf8_spanish_ci NOT NULL,
   `id_lote_fk` int(11) NOT NULL,
-  PRIMARY KEY (`epc`)
+  PRIMARY KEY (`epc`),
+  KEY `id_lote_fk` (`id_lote_fk`),
+  KEY `id_lote_fk_2` (`id_lote_fk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -318,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `lotes` (
   `hora_recibo_lote` time NOT NULL,
   `costo_lote` int(11) NOT NULL,
   `fecha_recoleccion` date NOT NULL,
-  `hora_recoleccion` time NOT NULL,
+  `hora_recoleccion` varchar(10) NOT NULL,
   `numero_peones` int(11) NOT NULL,
   `fecha_caducidad` date NOT NULL,
   `rendimiento_kg` int(11) NOT NULL,
@@ -327,7 +388,14 @@ CREATE TABLE IF NOT EXISTS `lotes` (
   PRIMARY KEY (`id_lote`),
   KEY `id_productor_fk_idx` (`id_productor_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `lotes`
+--
+
+INSERT INTO `lotes` (`id_lote`, `id_productor_fk`, `id_producto_fk`, `cant_cajas_lote`, `cant_kilos_lote`, `remitente_lote`, `fecha_recibo_lote`, `hora_recibo_lote`, `costo_lote`, `fecha_recoleccion`, `hora_recoleccion`, `numero_peones`, `fecha_caducidad`, `rendimiento_kg`, `rendimiento_cajas`, `id_empaque_fk`) VALUES
+(1, 13, 3, 100, '4500', 'JUAN PEREZ', '2015-07-26', '02:49:46', 13000, '2015-07-25', '10 AM', 4, '2015-07-31', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -340,24 +408,28 @@ CREATE TABLE IF NOT EXISTS `ordenes_distribuidor` (
   `fecha_orden` date NOT NULL,
   `fecha_entrega_orden` date NOT NULL,
   `costo_orden` decimal(10,2) NOT NULL,
-  `descripcion_orden` text NOT NULL,
-  `descripcion_cancelacion` text NOT NULL,
-  `descripcion_rechazo` text NOT NULL,
+  `descripcion_orden` text,
+  `descripcion_cancelacion` text,
+  `descripcion_rechazo` text,
   `id_usuario_distribuidor_fk` int(11) NOT NULL,
   `id_empaque_fk` int(11) NOT NULL,
-  `estatus_orden` int(11) NOT NULL,
+  `estado_orden` int(11) NOT NULL,
   PRIMARY KEY (`id_orden`),
   KEY `id_usuario_distribuidor_fk_idx` (`id_usuario_distribuidor_fk`),
   KEY `id_empaque_fk_idx` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `ordenes_distribuidor`
 --
 
-INSERT INTO `ordenes_distribuidor` (`id_orden`, `fecha_orden`, `fecha_entrega_orden`, `costo_orden`, `descripcion_orden`, `descripcion_cancelacion`, `descripcion_rechazo`, `id_usuario_distribuidor_fk`, `id_empaque_fk`, `estatus_orden`) VALUES
+INSERT INTO `ordenes_distribuidor` (`id_orden`, `fecha_orden`, `fecha_entrega_orden`, `costo_orden`, `descripcion_orden`, `descripcion_cancelacion`, `descripcion_rechazo`, `id_usuario_distribuidor_fk`, `id_empaque_fk`, `estado_orden`) VALUES
 (14, '2015-07-23', '2015-07-31', '21300.00', 'DescripciÃ³n de la orden, favor de confirmar lo mas pronto posible. Saludos', '', 'Sea serio por favor', 20, 1, 2),
-(15, '2015-07-24', '2015-08-03', '18250.00', 'Necesito una carga grande de limÃ³n persa, no importan mucho los calibres, sÃ³lo necesito que el peso mÃ­nimo del limÃ³n sea de 50 gramos.', 'Ya no necesito la orden, conseguÃ­ mejores precios. Gracias.', '', 20, 13, 5);
+(15, '2015-07-24', '2015-08-03', '32710.00', 'Necesito una carga grande de limÃ³n persa, no importan mucho los calibres, sÃ³lo necesito que el peso mÃ­nimo del limÃ³n sea de 50 gramos.', 'Ya no necesito la orden, conseguÃ­ mejores precios. Gracias.', '', 20, 13, 5),
+(16, '2015-07-26', '2015-07-27', '7500.00', 'Quiero que la envien lo mas rapido posivle', '', '', 22, 14, 3),
+(17, '2015-07-01', '2015-07-28', '3000.00', 'k', 'No me gustó!', '', 22, 14, 5),
+(18, '2015-07-26', '2015-07-27', '20392.80', '', NULL, NULL, 20, 14, 5),
+(19, '2015-07-26', '2015-07-28', '8108.00', '', NULL, NULL, 22, 14, 3);
 
 -- --------------------------------------------------------
 
@@ -376,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `ordenes_distribuidor_detalles` (
   PRIMARY KEY (`id_orden_detalles`),
   KEY `id_orden_fk_idx` (`id_orden_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `ordenes_distribuidor_detalles`
@@ -386,7 +458,24 @@ INSERT INTO `ordenes_distribuidor_detalles` (`id_orden_detalles`, `cantidad_prod
 (1, 1000, 'KILOS', '8.50', '8500.00', 14, 1),
 (2, 1000, 'KILOS', '12.80', '12800.00', 14, 2),
 (3, 2500, 'KILOS', '7.30', '18250.00', 15, 4),
-(4, 200, 'KILOS', '8.50', '1700.00', 15, 1);
+(4, 200, 'KILOS', '8.50', '1700.00', 15, 1),
+(5, 1000, 'KILOS', '3.60', '3600.00', 15, 1),
+(6, 1000, 'KILOS', '1.60', '1600.00', 15, 7),
+(7, 1000, 'KILOS', '3.60', '3600.00', 15, 1),
+(8, 1000, 'KILOS', '3.60', '3600.00', 15, 1),
+(9, 100, 'KILOS', '3.60', '360.00', 15, 1),
+(10, 1345, 'KILOS', '3.60', '4842.00', 15, 1),
+(11, 1000, 'KILOS', '3.50', '3500.00', 16, 5),
+(12, 2000, 'KILOS', '2.00', '4000.00', 16, 4),
+(13, 100, 'kilos', '20.00', '2000.00', 17, 3),
+(14, 1, 'KILOS', '3.60', '3.60', 17, 1),
+(15, 2300, 'KILOS', '3.60', '8280.00', 17, 1),
+(16, 12300, 'KILOS', '1.60', '19680.00', 17, 7),
+(17, 198, 'KILOS', '3.60', '712.80', 17, 1),
+(18, 12300, 'KILOS', '1.60', '19680.00', 18, 7),
+(19, 198, 'KILOS', '3.60', '712.80', 18, 1),
+(20, 1230, 'KILOS', '3.60', '4428.00', 19, 1),
+(21, 2300, 'KILOS', '1.60', '3680.00', 19, 7);
 
 -- --------------------------------------------------------
 
@@ -399,23 +488,24 @@ CREATE TABLE IF NOT EXISTS `ordenes_punto_venta` (
   `fecha_orden` date NOT NULL,
   `fecha_entrega_orden` date NOT NULL,
   `costo_orden` decimal(10,2) NOT NULL,
-  `descripcion_orden` text NOT NULL,
-  `descripcion_cancelacion` text NOT NULL,
-  `descripcion_rechazo` text NOT NULL,
+  `descripcion_orden` text,
+  `descripcion_cancelacion` text,
+  `descripcion_rechazo` text,
   `id_usuario_punto_venta_fk` int(11) NOT NULL,
   `id_distribuidor_fk` int(11) NOT NULL,
   `estado_orden` int(11) NOT NULL,
   PRIMARY KEY (`id_orden`),
   KEY `id_usuario_punto_venta_idx` (`id_usuario_punto_venta_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `ordenes_punto_venta`
 --
 
 INSERT INTO `ordenes_punto_venta` (`id_orden`, `fecha_orden`, `fecha_entrega_orden`, `costo_orden`, `descripcion_orden`, `descripcion_cancelacion`, `descripcion_rechazo`, `id_usuario_punto_venta_fk`, `id_distribuidor_fk`, `estado_orden`) VALUES
-(1, '2015-07-24', '2015-07-31', '1450.00', 'Sin descripciÃ³n.', 'Siempre no la quiero. Gracias.', '', 9, 13, 5);
+(1, '2015-07-24', '2015-07-31', '1450.00', 'Sin descripciÃ³n.', 'Siempre no la quiero. Gracias.', '', 9, 13, 5),
+(2, '2015-07-26', '2015-07-27', '1200.00', '', '', '', 10, 14, 3);
 
 -- --------------------------------------------------------
 
@@ -425,24 +515,25 @@ INSERT INTO `ordenes_punto_venta` (`id_orden`, `fecha_orden`, `fecha_entrega_ord
 
 CREATE TABLE IF NOT EXISTS `ordenes_punto_venta_detalles` (
   `id_orden_dist_detalles` int(11) NOT NULL AUTO_INCREMENT,
-  `id_orden_dist_fk` int(11) NOT NULL,
-  `id_producto_fk` int(11) NOT NULL,
   `cant_producto_odd` int(11) NOT NULL,
   `unidad_producto_odd` varchar(45) NOT NULL,
   `costo_unitario_odd` decimal(10,2) NOT NULL,
   `costo_producto_odd` decimal(10,2) NOT NULL,
+  `id_orden_dist_fk` int(11) NOT NULL,
+  `id_producto_fk` int(11) NOT NULL,
   PRIMARY KEY (`id_orden_dist_detalles`),
   KEY `id_orden_dist_fk_idx` (`id_orden_dist_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `ordenes_punto_venta_detalles`
 --
 
-INSERT INTO `ordenes_punto_venta_detalles` (`id_orden_dist_detalles`, `id_orden_dist_fk`, `id_producto_fk`, `cant_producto_odd`, `unidad_producto_odd`, `costo_unitario_odd`, `costo_producto_odd`) VALUES
-(1, 1, 1, 50, 'KILOS', '15.00', '750.00'),
-(2, 1, 2, 50, 'KILOS', '14.00', '700.00');
+INSERT INTO `ordenes_punto_venta_detalles` (`id_orden_dist_detalles`, `cant_producto_odd`, `unidad_producto_odd`, `costo_unitario_odd`, `costo_producto_odd`, `id_orden_dist_fk`, `id_producto_fk`) VALUES
+(1, 50, 'KILOS', '15.00', '750.00', 1, 1),
+(2, 50, 'KILOS', '14.00', '700.00', 1, 2),
+(3, 400, 'KILOS', '3.00', '1200.00', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -455,7 +546,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `nombre_producto` varchar(100) NOT NULL,
   `variedad_producto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_producto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `productos`
@@ -463,9 +554,15 @@ CREATE TABLE IF NOT EXISTS `productos` (
 
 INSERT INTO `productos` (`id_producto`, `nombre_producto`, `variedad_producto`) VALUES
 (1, 'MANGO', 'ATAULFO'),
-(2, 'MANGO', 'HEIDEN'),
-(3, 'MANGO', 'TOMMY'),
-(4, 'LIMON', 'PERSA');
+(2, 'MANGO', 'HADEN'),
+(3, 'MANGO', 'TOMMY ATKINS'),
+(4, 'LIMON', 'PERSA'),
+(5, 'MANGO', 'KEITT'),
+(6, 'MANGO', 'KENT'),
+(7, 'MANGO', 'MANILA'),
+(8, 'LIMÓN', 'MEYER'),
+(9, 'LIMÓN', 'EUREKA'),
+(10, 'LIMÓN', 'LISBON');
 
 -- --------------------------------------------------------
 
@@ -496,18 +593,20 @@ CREATE TABLE IF NOT EXISTS `productos_empaques` (
   PRIMARY KEY (`id_productos_empaque`),
   KEY `id_producto_fk_idx` (`id_producto_fk`),
   KEY `id_empaque_fk_idx` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `productos_empaques`
 --
 
 INSERT INTO `productos_empaques` (`id_productos_empaque`, `id_empaque_fk`, `id_producto_fk`, `precio_venta`, `precio_compra`) VALUES
-(5, 1, 1, '8.50', '3.30'),
-(6, 1, 2, '12.80', '4.25'),
+(5, 1, 1, '3.60', '234.00'),
+(6, 1, 2, '12.90', '4.56'),
 (7, 13, 4, '7.30', '2.20'),
 (8, 13, 1, '8.50', '3.30'),
-(9, 13, 2, '4.25', '12.80');
+(9, 13, 2, '4.25', '12.80'),
+(10, 14, 1, '1.57', '0.70'),
+(13, 14, 7, '1.60', '1.40');
 
 -- --------------------------------------------------------
 
@@ -525,7 +624,7 @@ CREATE TABLE IF NOT EXISTS `productos_productores` (
   PRIMARY KEY (`id_productos_productores`),
   KEY `id_productor_fk_idx` (`id_productor_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `productos_productores`
@@ -534,7 +633,10 @@ CREATE TABLE IF NOT EXISTS `productos_productores` (
 INSERT INTO `productos_productores` (`id_productos_productores`, `id_productor_fk`, `id_producto_fk`, `ubicacion_huerta`, `hectareas`, `descripcion_detalles_pp`) VALUES
 (1, 13, 3, 'APATZINGAN', '10', 'descripcion'),
 (3, 13, 3, 'PARACUARO', '2.5', 'descripcion'),
-(4, 13, 4, 'EL CEÑIDOR', '1', 'descripcion');
+(4, 13, 4, 'EL CEÑIDOR', '1', 'descripcion'),
+(5, 15, 4, 'EL CEÑIDOR', '1', 'descripcion'),
+(6, 15, 4, 'APATZINGAN', '1', 'descripcion'),
+(7, 15, 2, 'ANTUNEZ', '3', 'descripcion');
 
 -- --------------------------------------------------------
 
@@ -551,7 +653,43 @@ CREATE TABLE IF NOT EXISTS `punto_venta_cajas_envio` (
   `recibido_dce` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_punto_venta_cajas_envio`),
   KEY `punto_venta_cajas_envio_ibfk_1` (`id_envio_fk`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
+
+--
+-- Dumping data for table `punto_venta_cajas_envio`
+--
+
+INSERT INTO `punto_venta_cajas_envio` (`id_punto_venta_cajas_envio`, `id_envio_fk`, `epc_caja`, `epc_tarima`, `enviado_dce`, `recibido_dce`) VALUES
+(47, 7, '000000000000000000005834', '010000000000000000005840', 1, 0),
+(48, 7, '000000000000000000005842', '010000000000000000005840', 1, 0),
+(49, 7, '000000000000000000005839', '010000000000000000005840', 1, 0),
+(50, 7, '000000000000000000005843', '010000000000000000005840', 1, 0),
+(51, 7, '000000000000000000005835', '010000000000000000005840', 1, 0),
+(52, 7, '000000000000000000005845', '010000000000000000005840', 1, 0),
+(53, 7, '000000000000000000005837', '010000000000000000005840', 1, 0),
+(54, 7, '000000000000000000005852', '010000000000000000005840', 1, 0),
+(55, 7, '000000000000000000005841', '010000000000000000005840', 1, 0),
+(56, 7, '000000000000000000005846', '010000000000000000005840', 1, 0),
+(57, 7, '000000000000000000005838', '010000000000000000005840', 1, 0),
+(58, 7, '000000000000000000005853', '010000000000000000005840', 1, 0),
+(59, 7, '000000000000000000005851', '010000000000000000005840', 1, 0),
+(60, 7, '000000000000000000005848', '010000000000000000005840', 1, 0),
+(61, 7, '000000000000000000005836', '010000000000000000005840', 1, 0),
+(62, 7, '000000000000000000005850', '010000000000000000005840', 1, 0),
+(63, 7, '000000000000000000005849', '010000000000000000005840', 1, 0),
+(64, 7, '000000000000000000005847', '010000000000000000005840', 1, 0),
+(65, 7, '000000000000000000005844', '010000000000000000005840', 1, 0),
+(66, 8, '000000000000000000006207', '010000000000000000006203', 1, 0),
+(67, 8, '000000000000000000006217', '010000000000000000006203', 1, 0),
+(68, 8, '000000000000000000006211', '010000000000000000006203', 1, 0),
+(69, 8, '000000000000000000006289', '010000000000000000006203', 1, 0),
+(70, 8, '000000000000000000006205', '010000000000000000006203', 1, 0),
+(71, 8, '000000000000000000006214', '010000000000000000006203', 1, 0),
+(72, 8, '000000000000000000006204', '010000000000000000006203', 1, 0),
+(73, 8, '000000000000000000006210', '010000000000000000006203', 1, 0),
+(74, 8, '000000000000000000006212', '010000000000000000006203', 1, 0),
+(75, 8, '000000000000000000006208', '010000000000000000006203', 1, 0),
+(76, 8, '000000000000000000006209', '010000000000000000006203', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -570,7 +708,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `estado_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nombre_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
 
 --
 -- Dumping data for table `usuarios`
@@ -587,7 +725,11 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `contrasena_usuario`, `t
 (85, 'ROOT2', '6a2cd24438d8a22f757a6a0d2f4e7a11', 4, 1, '2015-07-24', '2015-07-24', 1),
 (86, 'dist2', '2a6d07eef8b10b84129b42424ed99327', 3, 2, '2015-07-24', '2015-07-25', 1),
 (87, 'PV', '99bea2cd698b56b1a3b8c1701bd51c67', 4, 1, '2015-07-24', '2015-07-24', 1),
-(88, 'EMPAQUE', 'cefd04f07d55b35421c3fa1ed1abb530', 2, 2, '2015-07-24', '2015-07-24', 1);
+(88, 'EMPAQUE', 'cefd04f07d55b35421c3fa1ed1abb530', 2, 2, '2015-07-24', '2015-07-24', 1),
+(89, 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 2, 1, '2015-07-26', '2015-07-26', 1),
+(90, 'SIMPUS1', '3b18aea56183f6bf684946b906fb773b', 3, 1, '2015-07-26', '2015-07-26', 1),
+(91, 'PV1', '6ed8b2adaa76b60eeade01720e10fb77', 4, 1, '2015-07-26', '2015-07-26', 1),
+(92, 'HH', '5e36941b3d856737e81516acd45edc50', 2, 2, '2015-07-26', '2015-07-26', 1);
 
 -- --------------------------------------------------------
 
@@ -609,7 +751,7 @@ CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
   PRIMARY KEY (`id_usuario_distribuidor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `usuario_distribuidor`
@@ -617,7 +759,8 @@ CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
 
 INSERT INTO `usuario_distribuidor` (`id_usuario_distribuidor`, `nombre_usuario_distribuidor`, `apellido_usuario_distribuidor`, `direccion_usuario_distribuidor`, `telefono_usuario_distribuidor`, `entradas`, `pedidos`, `envios`, `id_usuario_fk`, `id_distribuidor_fk`) VALUES
 (20, 'CHRISTOPHER', 'BALTAZAR AMBRIZ', 'Los Almendros No. 209', '4535305394', 1, 1, 1, 78, 13),
-(21, 'JORGE EDUARDO', 'LEMUS BALTAZAR', 'Issac Arriaga No 97', '4521541118', 0, 1, 0, 86, 13);
+(21, 'JORGE EDUARDO', 'LEMUS BALTAZAR', 'Issac Arriaga No 97', '4521541118', 0, 1, 0, 86, 13),
+(22, 'ADMIN', 'ADMIN', 'ADMIN', '0000000000', 1, 1, 1, 90, 14);
 
 -- --------------------------------------------------------
 
@@ -640,7 +783,7 @@ CREATE TABLE IF NOT EXISTS `usuario_empaque` (
   PRIMARY KEY (`id_receptor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_empaque_fk_idx` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `usuario_empaque`
@@ -649,7 +792,9 @@ CREATE TABLE IF NOT EXISTS `usuario_empaque` (
 INSERT INTO `usuario_empaque` (`id_receptor`, `nombre_receptor`, `apellido_receptor`, `direccion_receptor`, `telefono_receptor`, `pedidos`, `lotes`, `envios`, `superusuario`, `id_usuario_fk`, `id_empaque_fk`) VALUES
 (1, 'ALFONSO', 'CALDERÃ“N CHÃVEZ', 'APATZINGÃN, COL. 22 DE OCTUBRE, CALLE VENUZTIANO CARRANZA', '4531064590', 1, 1, 1, 1, 1, 1),
 (9, 'ADMIN', 'ADMIN', 'ADMIN', '0000000000', 1, 1, 1, 0, 77, 13),
-(10, 'NOMBRE', 'APELLIDOS', '152412', '45124512', 1, 0, 0, 0, 88, 1);
+(10, 'NOMBRE', 'APELLIDOS', '152412', '45124512', 1, 0, 0, 0, 88, 1),
+(11, 'PETRONILA', 'DE LA CRUZ', 'AGUASCALIENTES', '4255925238', 1, 1, 1, 0, 89, 14),
+(12, 'FRANCISCO JAVIER', 'CALDERON CHAVEZ', 'CONOCIDO EL CEÑIDOR', '4531064590', 1, 0, 1, 0, 92, 14);
 
 -- --------------------------------------------------------
 
@@ -659,28 +804,41 @@ INSERT INTO `usuario_empaque` (`id_receptor`, `nombre_receptor`, `apellido_recep
 
 CREATE TABLE IF NOT EXISTS `usuario_punto_venta` (
   `id_usuario_pv` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario_punto_venta` int(11) NOT NULL,
-  `id_usuario_fk` int(11) NOT NULL,
   `nombre_usuario_pv` varchar(45) NOT NULL,
   `apellidos_usuario_pv` varchar(45) NOT NULL,
   `telefono_usuario_pv` varchar(45) NOT NULL,
   `direccion_usuario_pv` varchar(45) NOT NULL,
+  `id_usuario_fk` int(11) NOT NULL,
+  `id_punto_venta_fk` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario_pv`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
-  KEY `id_usuario_punto_venta_idx` (`id_usuario_punto_venta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+  KEY `id_usuario_punto_venta_idx` (`id_punto_venta_fk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `usuario_punto_venta`
 --
 
-INSERT INTO `usuario_punto_venta` (`id_usuario_pv`, `id_usuario_punto_venta`, `id_usuario_fk`, `nombre_usuario_pv`, `apellidos_usuario_pv`, `telefono_usuario_pv`, `direccion_usuario_pv`) VALUES
-(8, 8, 85, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN'),
-(9, 9, 87, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN');
+INSERT INTO `usuario_punto_venta` (`id_usuario_pv`, `nombre_usuario_pv`, `apellidos_usuario_pv`, `telefono_usuario_pv`, `direccion_usuario_pv`, `id_usuario_fk`, `id_punto_venta_fk`) VALUES
+(8, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN', 85, 8),
+(9, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN', 87, 9),
+(10, 'ADMIN', 'ADMIN', '000000000', 'CONOCIDO', 91, 10);
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `camiones_distribuidor`
+--
+ALTER TABLE `camiones_distribuidor`
+  ADD CONSTRAINT `camiones_distribuidor_ibfk_1` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`);
+
+--
+-- Constraints for table `camiones_empaque`
+--
+ALTER TABLE `camiones_empaque`
+  ADD CONSTRAINT `camiones_empaque_ibfk_1` FOREIGN KEY (`id_empaque_fk`) REFERENCES `empresa_empaques` (`id_empaque`);
 
 --
 -- Constraints for table `distribuidor_cajas_envio`
@@ -699,7 +857,14 @@ ALTER TABLE `empresa_productores`
 --
 ALTER TABLE `envios_empaque`
   ADD CONSTRAINT `envios_empaque_ibfk_1` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `envios_empaque_ibfk_2` FOREIGN KEY (`id_orden_fk`) REFERENCES `ordenes_distribuidor` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `envios_empaque_ibfk_2` FOREIGN KEY (`id_orden_fk`) REFERENCES `ordenes_distribuidor` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `envios_empaque_ibfk_3` FOREIGN KEY (`id_receptor_fk`) REFERENCES `usuario_empaque` (`id_receptor`);
+
+--
+-- Constraints for table `epc`
+--
+ALTER TABLE `epc`
+  ADD CONSTRAINT `epc_ibfk_1` FOREIGN KEY (`id_lote_fk`) REFERENCES `lotes` (`id_lote`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lotes`
@@ -754,7 +919,7 @@ ALTER TABLE `productos_productores`
 -- Constraints for table `punto_venta_cajas_envio`
 --
 ALTER TABLE `punto_venta_cajas_envio`
-  ADD CONSTRAINT `punto_venta_cajas_envio_ibfk_1` FOREIGN KEY (`id_envio_fk`) REFERENCES `envios_distribuidor` (`id_envio`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `punto_venta_cajas_envio_ibfk_1` FOREIGN KEY (`id_envio_fk`) REFERENCES `envios_distribuidor` (`id_envio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `usuario_distribuidor`
@@ -774,8 +939,8 @@ ALTER TABLE `usuario_empaque`
 -- Constraints for table `usuario_punto_venta`
 --
 ALTER TABLE `usuario_punto_venta`
-  ADD CONSTRAINT `usuario_punto_venta_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_punto_venta_ibfk_2` FOREIGN KEY (`id_usuario_punto_venta`) REFERENCES `empresa_punto_venta` (`id_punto_venta`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuario_punto_venta_ibfk_2` FOREIGN KEY (`id_punto_venta_fk`) REFERENCES `empresa_punto_venta` (`id_punto_venta`),
+  ADD CONSTRAINT `usuario_punto_venta_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
