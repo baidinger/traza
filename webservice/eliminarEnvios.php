@@ -15,7 +15,7 @@
 				$r = mysql_query($query);
 
 				if($r)
-					$datos_usuario = "Bien*Envio eliminado correctamente";
+					$datos_usuario = "Bien*Pre-Envio eliminado correctamente";
 				else
 					$datos_usuario = "Error*No se pudo eliminar el envio $id_envio";	
 
