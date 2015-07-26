@@ -10,16 +10,16 @@
 
 				include('../../mod/conexion.php');
 
-			    $consulta = "SELECT prds.id_producto, prds.nombre_producto, prds.variedad_producto FROM productos AS prds, productos_productores AS prdsepqs WHERE prds.id_producto = prdsepqs.id_producto_fk AND prdsepqs.id_productor_fk = $idProductor";
+			    $consulta = "SELECT prds.id_producto, prdsepqs.ubicacion_huerta, prds.nombre_producto, prds.variedad_producto FROM productos AS prds, productos_productores AS prdsepqs WHERE prds.id_producto = prdsepqs.id_producto_fk AND prdsepqs.id_productor_fk = $idProductor";
 				$resultado = mysql_query($consulta);
 
 				if(mysql_num_rows($resultado ) > 0){
 				?>
-		<select class="form-control" name="id_producto" id="selectProducto">
+		<select style="float:right" class="col-sm-9 form-control" name="id_producto" id="selectProducto">
 			<?php 
 
 				while($row = mysql_fetch_array($resultado)){ ?>
-					<option value="<?php echo $row['id_producto']; ?>"><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></option>
+					<option value="<?php echo $row['id_producto']; ?>"><?php echo $row['nombre_producto']." ".$row['variedad_producto']." - ".$row['ubicacion_huerta']; ?></option>
 				<?php }
 			?>
 		</select>

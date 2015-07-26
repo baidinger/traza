@@ -47,17 +47,21 @@
 			        	?>
 			        	</td>
 			          	<td class="centro"><?php echo $row['fecha_envio']; ?></td>
-			          	<td class="centro"><?php if($row['estado_envio'] == 3){ ?>
-			          	 <div class="label label-primary">ENVIADO</div>  <?php } 
-			          	if($row['estado_envio'] == 4){ ?>
-			          	<div class="label label-success">CONCRETADO</div> <?php  } 
-			          	if($row['estado_envio'] == 5){ ?>
-			          	<div class="label label-danger">CANCELADO</div> <?php  } ?>
-
-			          </td>
+			          	<td class="centro">
+			          		<?php 
+	      					 switch($row['estado']){
+	      					 	case 1: echo "<span class='label label-warning'>PENDIENTE</span>"; break;
+	      					 	case 2: echo "<span class='label label-danger'>RECHAZADO</span>"; break;
+	      					 	case 3: echo "<span class='label label-primary'>ENVIADO</span>"; break;
+	      					 	case 4: echo "<span class='label label-success'>CONCRETADO</span>"; break;
+	      					 	case 5: echo "<span class='label label-danger'>CANCELADO</span>"; break;
+	      					 	case 6: echo "<span class='label label-success'>APROBADO</span>"; break;
+	      					 	case 7: echo "<span class='label label-primary'>PRE-ENVIO</span>"; break;
+	      					 } ?>
+			          	</td>
 			          	
 			           <td align="center" width="300"> 
-			           	<a  href="#" onclick = "mostrarCajasTarimas(<?php echo $row['id_orden_fk']; ?>)" data-toggle="modal" data-target="#modalCajasTarimas">
+			           	<a  href="#" onclick = "mostrarCajasTarimas(<?php echo $row['id_envio']; ?>)" data-toggle="modal" data-target="#myModal">
 				        	<span title="Mostrar cajas" data-toggle="tooltip" class="glyphicon glyphicon-copy"></span>
 				    	</a>&nbsp;&nbsp;
 			           	<a onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"  href="#">
@@ -101,7 +105,7 @@
 		    	<?php
 		    }
 		?>
-			<!-- Modal -->
+			<!-- Modal-->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document"  style="width:800px;">
 			    <div class="modal-content">
@@ -118,22 +122,6 @@
 			  </div>
 			</div>
 
-						<!-- Modal -->
-		<div class="modal fade" id="modalCajasTarimas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-body">
-		      	<div id="id_modalCajasTarimas">
-		      		<!--<img src="img/cargando.gif">-->
-		      	</div>
-		        
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
 		<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();

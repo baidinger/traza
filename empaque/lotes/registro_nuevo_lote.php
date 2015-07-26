@@ -9,87 +9,108 @@
 	<body>
 
 	<div class="contenedor-form">
-		<form id="formulario" class="form-horizontal" role="form" method="post" action="lotes/registro_nuevo_lote_admin.php">
+		
      		<div class="modal-header">
-       		<h3 class="modal-title">
-       			<img class="img-header" src="img/lotes.png"> Registrar lote
-       		</h3>
+	       		<h3 class="modal-title">
+	       			<img class="img-header" src="img/lotes.png"> Registrar lote
+	       		</h3>
     		</div>
-    		<div>
-	      	<div class="modal-body">
+
+    		<div style="width:80%; margin: 30px auto">
+    		<form id="formulario" class="form-horizontal" role="form" method="post" action="lotes/registro_nuevo_lote_admin.php">
+
+	      	<div class="modal-body" style="width:50%; float: left">
+	      		<div class="alert alert-info">DESCRIPCIÓN DEL LOTE</div>
 	      		<div class="form-inline">
-			    	<label class="col-sm-2 control-label">NOMBRE DEL PRODUCTOR </label>
-			    	<div class="col-sm-17">
+			    	<label class="col-sm-3 control-label">Nombre del productor </label>
+			    	<div class="col-sm-9">
 			    		<input type="hidden" name="id_productor" id="inputIdProductor">
-						<input type="text" class="form-control " style="width: 500px" name="inputNombreProductor" id="inputNombreProductor" placeholder="Productor..." readOnly required>			
-						<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalProductor"><i class="glyphicon glyphicon-search"></i> Buscar productor</a>
+						<input type="text" class="form-control" style="width:80%" name="inputNombreProductor" id="inputNombreProductor" placeholder="Productor..." readOnly required>			
+						<a href="#" style="float:right" class="btn btn-primary" data-toggle="modal" data-target="#modalProductor"><i class="glyphicon glyphicon-search"></i>&nbsp;</a>
 			    	</div>
 			    
 			  	</div>
 			  	<p>&nbsp;</p>
-			  	<p>&nbsp;</p>
 			  	<div class="form-group">
-			    	<label class="col-sm-2 control-label">TIPO DE PRODUCTO </label>
-			    	<div id="contenedor-productos-productor" class="col-sm-10">
-			    			<div class="alert alert-info" role="alert"><p>Seleccione un productor para continuar</p></div>
+			    	<label class="col-sm-3 control-label">Tipo de producto </label>
+			    	<div id="contenedor-productos-productor" class="col-sm-9">
+			    		<div class="alert alert-info" role="alert"><p>Seleccione un productor para continuar</p></div>
 		         	</div>
 				  </div>
 				  <div class="form-group">
-			    	<label class="col-sm-2 control-label">CANTIDAD DE CAJAS: </label>
-			    	<div class="col-sm-10">
+			    	<label class="col-sm-3 control-label">Cantidad de cajas: </label>
+			    	<div class="col-sm-9">
 			    		<input type="number" class="form-control input" 
-			    		name="cantidad_cajas" id="" 
+			    		name="cantidad_cajas" 
 			    		placeholder="Cantidad de cajas" required min ="0">
 		         	</div>
 				  </div>
 				  <div class="form-group">
-			    	<label class="col-sm-2 control-label">CANTIDAD DE KILOS: </label>
-			    	<div class="col-sm-10">
+			    	<label class="col-sm-3 control-label">Cantidad de kilos: </label>
+			    	<div class="col-sm-9">
 			    		<input type="number" class="form-control input" 
 			    		name="cantidad_kilos" 
 			    		placeholder="Número de kilos" min="0" required>
 		         	</div>
 				  </div>
 				  <div class="form-group">
-			    	<label class="col-sm-2 control-label">NOMBRE REMITENTE: </label>
-			    	<div class="col-sm-10">
+			    	<label class="col-sm-3 control-label">Nombre del remitente: </label>
+			    	<div class="col-sm-9">
 			    		<input  type="text" pattern="[A-Za-zñÑ ]*" class="form-control input" 
 			    		name="nombre_remitente" id="" 
 			    		placeholder="Nombre del remitente" required>
 		         	</div>
 				  </div>
 				  <div class="form-group">
-			    	<label class="col-sm-2 control-label">COSTO LOTE: </label>
-			    	<div class="col-sm-10">
+			    	<label class="col-sm-3 control-label">Costo lote: </label>
+			    	<div class="col-sm-9">
 			    		<input type="number" min="0" class="form-control input" 
 			    		name="costo_lote" 
 			    		placeholder="Costo del lote" required>
 		         	</div>
 				  </div>
-				  <!--<div class="form-group">
-			    	<label class="col-sm-2 control-label">RANGO INICIAL EPC: </label>
-			    	<div class="col-sm-10">
-			    		<input type="text" class="form-control input" 
-			    		name="rango_inicial" id="" 
-			    		placeholder="Rango EPC inicial" >
+				  
+		     	</div>
+		     	<div class="modal-body" style="width:40%; float: right">
+		     		<div class="alert alert-info">DATOS DE RECOLECCIÓN</div>
+				  <div class="form-group">
+			    	<label class="col-sm-4 control-label">Fecha de recolección: </label>
+			    	<div class="col-sm-8">
+			    		<input type="date" class="form-control input" 
+			    		name="fecha_recoleccion" >
 		         	</div>
 				  </div>
 				  <div class="form-group">
-			    	<label class="col-sm-2 control-label">RANGO FINAL EPC: </label>
-			    	<div class="col-sm-10">
+			    	<label class="col-sm-4 control-label">Hora de recolección: </label>
+			    	<div class="col-sm-8">
 			    		<input type="text" class="form-control input" 
-			    		name="rango_final" id="" 
-			    		placeholder="Rango EPC final" >
+			    		name="hora_recoleccion" >
 		         	</div>
-				  </div>-->
+				  </div>
+				  <div class="form-group">
+			    	<label class="col-sm-4 control-label">Fecha de caducidad: </label>
+			    	<div class="col-sm-8">
+			    		<input type="date" class="form-control input" 
+			    		name="fecha_caducidad" >
+		         	</div>
+				  </div>
+				  <div class="form-group">
+			    	<label class="col-sm-4 control-label">Número de peones: </label>
+			    	<div class="col-sm-8">
+			    		<input type="number" min="1" class="form-control input" 
+			    		name="numero_peones" >
+		         	</div>
+				  </div>
+				  
 			  	<hr>
 			  	<center>
 		     			<button id="guardar" class="btn btn-primary" disabled><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
 		     			<input type="hidden" name="url" value="../index.php?op=admon_lotes">
-		     		</center>
+		     	</center>
 		     	</div>
+		    </form>	
 	    </div>
-	     </form>	
+	
 	 </div>
 
 	 <div class="modal fade bs-example-modal-lg" id="modalProductor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">

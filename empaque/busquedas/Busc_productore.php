@@ -3,6 +3,7 @@
 	<head lang="ES">
 		<meta charset="UTF-8">
 		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
+		<link rel="stylesheet" type="text/css" href="css/views.css">
 		<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 	</head>
 

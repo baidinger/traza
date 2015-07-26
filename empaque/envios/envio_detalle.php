@@ -73,15 +73,16 @@
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Estado:</strong></td>
-					      					<td><span class="label label-info"><?php 
-					      					 switch($row['estatus_orden']){
-					      					 	case 1: echo "PENDIENTE"; break;
-					      					 	case 2: echo "APROBADO"; break;
-					      					 	case 3: echo "ENVIADO"; break;
-					      					 	case 4: echo "CONCRETADO"; break;
-					      					 	case 5: echo "CANCELADO"; break;
-					      					 	case 6: echo "RECHAZADO"; break;
-					      					 } ?><span></td>
+					      					<td><?php 
+					      					 switch($row['estado']){
+					      					 	case 1: echo "<span class='label label-warning'>PENDIENTE</span>"; break;
+					      					 	case 2: echo "<span class='label label-danger'>RECHAZADO</span>"; break;
+					      					 	case 3: echo "<span class='label label-primary'>ENVIADO</span>"; break;
+					      					 	case 4: echo "<span class='label label-success'>CONCRETADO</span>"; break;
+					      					 	case 5: echo "<span class='label label-danger'>CANCELADO</span>"; break;
+					      					 	case 6: echo "<span class='label label-success'>APROBADO</span>"; break;
+					      					 	case 7: echo "<span class='label label-primary'>PRE-ENVIO</span>"; break;
+					      					 } ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Dirección:</strong></td>

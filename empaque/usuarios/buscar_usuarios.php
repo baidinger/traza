@@ -49,7 +49,7 @@
 				          			<td class="centro">
 
 				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $id_empaque?>,<?php print $row['id_usuario'] ?>)" > 
-				          					<span data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="glyphicon glyphicon-pencil"></span>
+				          					<span data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="glyphicon glyphicon-edit"></span>
 				          				</a>&nbsp;&nbsp;
 				          				<?php if($row['nivel_autorizacion_usuario'] == 2) { ?>
 				          				<a href="usuarios/habilitar_usuario.php?id=<?php echo $row['id_usuario']; ?>&status=0"> 
@@ -66,7 +66,7 @@
 										<td class="centro"> 
 
 				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $id_empaque ?>,<?php print $row['id_usuario'] ?>)"> 
-				          					<span data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="glyphicon glyphicon-pencil" ></span>
+				          					<span data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="glyphicon glyphicon-edit" ></span>
 				          				</a> &nbsp;&nbsp;
 				          				<a href="usuarios/habilitar_usuario.php?id=<?php echo $row['id_usuario']; ?>&status=1"> 
 				          					<span data-toggle="tooltip" data-placement="top" title="Activar usuario" class="glyphicon glyphicon-ok" ></span>

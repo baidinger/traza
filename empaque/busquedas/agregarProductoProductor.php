@@ -32,7 +32,7 @@
 							<td> <?php echo $row['ubicacion_huerta'] ?></td>
 							<td> <?php echo $row['hectareas'] ?></td>
 							<td style="float:right;"> 
-								<a href="#"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Modificar" class="btn btn-link" onclick="modificarDescripcion(<?php echo $row['id_productos_productores']; ?>, '<?php echo $row['descripcion_detalles_pp']; ?>', <?php echo $idProductor; ?>)"></span></a>
+								<span style="cursor:hand; margin-right:10px" class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Modificar" class="btn btn-link" onclick="modificar(<?php echo $row['id_productos_productores']; ?>, '<?php echo $row['ubicacion_huerta']; ?>','<?php echo $row['hectareas']; ?>', <?php echo $idProductor; ?>)"></span>
 								<span onclick="eliminarProducto(<?php echo $row['id_productos_productores']; ?>, <?php echo $idProductor; ?>)" data-toggle="tooltip" data-placement="top" title="Eliminar" style="cursor:pointer; color:#931111;" class="eliminar glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 						</tr>
 				<?php

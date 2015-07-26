@@ -18,12 +18,13 @@
 	  	</div>
 	</div>
 	<div style="float:left; margin-top: 20px; margin-left:10px;">
-		<button type="submit" data-toggle="tooltip" class="btn btn-primary" onclick="buscar()"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-		<button type="submit" data-toggle="tooltip" title="Búsqueda avanzada" class="btn btn-primary" onclick="buscar()"><span class="glyphicon glyphicon-filter"></span>&nbsp;</button>			
+		<button  data-toggle="tooltip" class="btn btn-primary" onclick="buscar()"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+		<button  data-toggle="tooltip" title="Búsqueda avanzada" class="btn btn-primary" ><span class="glyphicon glyphicon-filter"></span>&nbsp;</button>			
 	</div>
 	<div style="float:right; margin-top: 20px; margin-right:50px;">
-		<button type="submit" data-toggle="tooltip" title="Estadísticas" class="btn btn-success" onclick="buscar()"><span class="glyphicon glyphicon-stats"></span>&nbsp;</button>
-		<button type="submit" data-toggle="tooltip" title="Generar reporte" class="btn btn-success" onclick="buscar()"><span class="glyphicon glyphicon-save-file"></span>&nbsp;</button>
+		<!--<button data-toggle="tooltip" title="Registrar" class="btn btn-success" ><span class="glyphicon glyphicon-plus"></span>&nbsp;</button>-->
+		<button data-toggle="tooltip" title="Estadísticas" class="btn btn-success" ><span class="glyphicon glyphicon-stats"></span>&nbsp;</button>
+		<button  data-toggle="tooltip" title="Generar reporte" class="btn btn-success"><span class="glyphicon glyphicon-save-file"></span>&nbsp;</button>
 	</div>
 
 

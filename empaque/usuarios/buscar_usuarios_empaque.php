@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
+<link rel="stylesheet" type="text/css" href="css/views.css">
 </head>
 <body>
 
