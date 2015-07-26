@@ -2,7 +2,7 @@
 	header("Content-Type: application/json");
 
 	include("../mod/conexion.php");
-
+	$datos_usuario = "";
 	$datos = explode(",", $_POST['datos']);
 	$socio  = $datos[0];
 	$id_envio  = $datos[1]; 
