@@ -51,15 +51,14 @@
 				}else
 					$datos_usuario = "Sin ordenes aprobadas";
 			}else{
-				$query = "SELECT id_camion FROM camiones_distribuidor WHERE id_distribuidor_fk = $id_socio AND estado_cd = 0";
+				$query = "SELECT id_camion_distribuidor FROM camiones_distribuidor WHERE id_distribuidor_fk = $id_socio AND estado_camion_distribuidor = 0";
 				$resultado = mysql_query($query);
 				if(mysql_num_rows($resultado) > 0){
 					while($row = mysql_fetch_array($resultado)){
-						$datos_usuario .= $row['id_camion'].",";
+						$datos_usuario .= $row['id_camion_distribuidor'].",";
 					}
 				}else
 					$datos_usuario = "Sin carros";
-
 			}
 		break;
 		case 4://punto de venta
