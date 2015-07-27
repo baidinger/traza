@@ -55,7 +55,7 @@
 							$rows = mysql_fetch_array($r);
 							$datos_usuario .= ",".$rows['id_receptor'].",".$rows['nombre_receptor'].",".$rows['apellido_receptor'].",".$rows['id_empaque'].",".$rows['nombre_empaque'].","."Empaque,1,0";
 						}else
-							$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.\n - El usuario no tiene privilegios";
+							$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.\n - El usuario no tiene privilegios.";
 						break;
 				case 3: //distribuidor
 						$q = "SELECT id_usuario_distribuidor, nombre_usuario_distribuidor, apellido_usuario_distribuidor, id_distribuidor, nombre_distribuidor FROM usuario_distribuidor AS ud, empresa_distribuidores AS ed WHERE ud.id_usuario_fk = ".$row['id_usuario']." AND ud.id_distribuidor_fk = ed.id_distribuidor";
