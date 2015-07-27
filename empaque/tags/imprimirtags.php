@@ -2,7 +2,7 @@
 		
      		<div class="modal-header">
 	       		<h3 class="modal-title">
-	       			<img class="img-header" src="img/lotes.png"> Impresión de etiquetas
+	       			<img class="img-header" src="img/RFID.png"> Impresión de etiquetas
 	       		</h3>
     		</div>
 
@@ -12,6 +12,27 @@
 	      	<div class="modal-body" style="width:100%; float: left">
 	      		<div class="alert alert-info">DETALLES DEL LOTE</div>
 	      		
+	      		   <div class="form-group">
+			    	<label class="col-sm-3 control-label">Número del lote: </label>
+			    	<div class="col-sm-9">
+			    		<select class="form-control">
+			    		<?php 
+			    			include('../../mod/conexion.php');
+							$consulta = "select id_lote, fecha_recibo_lote from lotes where id_empaque_fk = $_SESSION[id_empaque]";
+							$result = mysql_query($consulta);
+							if(mysql_num_rows($result) > 0 ){
+								 while($row = mysql_fetch_array($result)) {
+								 	?>
+			    		
+			    					<option><?php print $row['id_lote'] ?></option>
+
+						    		<?php } }else{ ?>
+						    		<option>No se encuentran lotes</option>
+
+						    		<?php } ?>
+			    		</select>
+		         	</div>
+				  </div>
 				  <div class="form-group">
 			    	<label class="col-sm-3 control-label">Rend. cajas: </label>
 			    	<div class="col-sm-9">

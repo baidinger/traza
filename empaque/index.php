@@ -212,6 +212,19 @@ if($_GET("op") == "reg_new_user")
 if($_GET("op") == "imprimir") 
   $("#views").load("tags/imprimirtags.php");
 
+if($_GET("op") == "trazabilidad") 
+  $.ajax({
+      type: 'POST',
+      url: 'tags/traza.php',
+      data: {'epc':$_GET("epc")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+
+//  $("#views").load("tags/traza.php");
+
 
 if($_GET("productor")){
     $.ajax({
