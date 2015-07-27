@@ -18,7 +18,7 @@
 					include('../../mod/conexion.php');
 
 					$cont = 1;
-				    $consulta = "SELECT * FROM empresa_empaques WHERE estado = 1 AND nombre_empaque LIKE '%$empaque%' ORDER BY nombre_empaque ASC";
+				    $consulta = "SELECT * FROM empresa_empaques WHERE estado_e = 1 AND nombre_empaque LIKE '%$empaque%' ORDER BY nombre_empaque ASC";
 					$resultado = mysql_query($consulta);
 					while($row = mysql_fetch_array($resultado)){ ?>
 						<tr>
