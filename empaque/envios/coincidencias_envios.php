@@ -4,7 +4,7 @@
 	$buscar = $_POST['buscar'];
 
 	//PRINT $cadena = "SELECT * FROM ordenes_distribuidor, envios_empaque, usuario_empaque where ordenes_distribuidor.id_orden = envios_empaque.id_orden_fk AND usuario_empaque.id_empaque_fk = ordenes_distribuidor.id_empaque_fk AND usuario_empaque.id_usuario_fk = 51";
-	$cadena = "select * from envios_empaque, empresa_distribuidores, ordenes_distribuidor where nombre_distribuidor like '%$buscar%' AND id_distribuidor = id_distribuidor_fk AND id_orden = id_orden_fk AND id_empaque_fk = ".$_SESSION['id_empaque'];
+	$cadena = "select * from envios_empaque, empresa_distribuidores, ordenes_distribuidor where (nombre_distribuidor like '%$buscar%' or id_orden = '$buscar' or id_envio = '$buscar') AND id_distribuidor = id_distribuidor_fk AND id_orden = id_orden_fk AND id_empaque_fk = ".$_SESSION['id_empaque']." ORDER BY id_envio DESC";
 	$result_productores = mysql_query($cadena);
 	if(mysql_num_rows($result_productores) > 0){
 

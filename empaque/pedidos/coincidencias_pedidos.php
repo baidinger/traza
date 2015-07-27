@@ -24,7 +24,7 @@
 			
 
 
-	$consulta = "select id_orden, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  like '%$buscar%')";
+	$consulta = "select id_orden, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  = '$buscar') ORDER BY id_orden DESC";
 	$result_ordenes = mysql_query($consulta);
 	if(mysql_num_rows($result_ordenes) > 0){
 
@@ -59,19 +59,13 @@
 		          				<?php echo $row['nombre_distribuidor']; ?> 
 		        		</td>
 			          	<td class="centro"><?php echo $row['fecha_orden']; ?></td>
-			          	<!--<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>-->
-			          	<!--<td class="centro"><?php echo $row['costo_orden']; ?></td>-->
-			          	<!--<td class="centro"><?php //echo $row['descripcion_orden']; ?></td>-->
-
+			          
 			          	<?php 
 			          		if($row['estado_orden'] == 1){ 
 			          	?>
 			          			<td class="centro">
 			          				<label>$ <?php echo $row['costo_orden']; ?></label>
 			          			</td>
-			          			<!--<td>
-			          				<button class="btn btn-link" onClick="modalCostoShow(<?php echo $row['id_orden']; ?>, <?php echo $row['costo_orden']; ?>)">Introduce precio</button>
-			          			</td>-->
 			          			<td class="centro">
 			          				<div style="width:60px; margin:0px auto;">
 				          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 6)" style="float:left; cursor:pointer;" data-toggle="tooltip" title="Aprobar"> 
@@ -92,14 +86,16 @@
 								</td>
 								<!--<td></td>-->
 			          			<td class="centro">
+			          				<!--
 			          				<?php if ($_SESSION['nivel_socio'] == 1) { ?>
 			          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 1)" style="cursor:pointer;" data-toggle="tooltip" title="Revalorar"> 
 			          					<span data-toggle="modal" data-target="#"  data-placement="top" class="aprobarOrden glyphicon glyphicon-repeat" aria-hidden="true"></span>
 			          				</a>
 			          				<?php }else { ?>
-			          				--
+			          				- -
 			          				<?php } ?>
-
+									-->
+									---
 			          			</td>
 								<td class="centro"> 
 								<a  style="cursor:hand" 
@@ -185,13 +181,14 @@
 								</td>
 								<!--<td></td>-->
 			          			<td class="centro">
-			          				<?php if ($_SESSION['nivel_socio'] == 1) { ?>
+			          			<!--	<?php if ($_SESSION['nivel_socio'] == 1) { ?>
 			          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 1)" style="cursor:pointer;" data-toggle="tooltip" title="Revalorar"> 
 			          					<span data-toggle="modal" data-target="#"  data-placement="top" class="aprobarOrden glyphicon glyphicon-repeat" aria-hidden="true"></span>
 			          				</a>
 			          				<?php }else { ?>
-			          				--
-			          				<?php } ?>
+			          				- -
+			          				<?php } ?>-->
+			          				---
 			          			</td>
 								<td class="centro">
 									<a href="#"  
@@ -217,13 +214,13 @@
 								</td>
 								<!--<td></td>-->
 			          			<td class="centro">
-			          				<?php if ($_SESSION['nivel_socio'] == 1) { ?>
+			          				<!--<?php if ($_SESSION['nivel_socio'] == 1) { ?>
 			          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 1)" style="cursor:pointer;" data-toggle="tooltip" title="Revalorar"> 
 			          					<span data-toggle="modal" data-target="#"  data-placement="top" class="aprobarOrden glyphicon glyphicon-repeat" aria-hidden="true"></span>
 			          				</a>
 			          				<?php }else { ?>
-			          				--
-			          				<?php } ?>
+			          				- -
+			          				<?php } ?>-->
 			          			</td>
 								<td class="centro">
 									<a href="#"  
@@ -247,7 +244,6 @@
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
 								</td>
-								<!--<td></td>-->
 			          			<td class="centro">
 				          			<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 5)" style="cursor:pointer;"> 
 				          				<span style="color:#931111;" data-toggle="tooltip" data-placement="top" title="Cancelar" class="cancelarOrden glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -255,6 +251,38 @@
 			          				</div>
 			          			</td>
 								<td class="centro"><span class="label label-primary">Aprobado</span> </td>
+
+						<?php
+							} else if($row['estado_orden'] == 9){
+						?>
+								<td class="centro">
+									<label>$ <?php echo $row['costo_orden']; ?></label>
+								</td>
+								<!--<td></td>-->
+			          			<td class="centro">
+			          				<!--<?php if ($_SESSION['nivel_socio'] == 1) { ?>
+			          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 1)" style="cursor:pointer;" data-toggle="tooltip" title="Revalorar"> 
+			          					<span data-toggle="modal" data-target="#"  data-placement="top" class="aprobarOrden glyphicon glyphicon-repeat" aria-hidden="true"></span>
+			          				</a>
+			          				<?php }else { ?>
+			          				- -
+			          				<?php } ?>-->
+			          				---
+			          			</td>
+								<td class="centro"> 
+								<a  style="cursor:hand" 
+			          				tabindex="0"		          				
+			          				data-placement="top"
+			          				data-trigger="focus"
+			          				data-container="body"
+			          				data-html="true"
+			          				data-toggle="popover"
+			          				rol="button"
+			          				title="<center><strong><span style='color:#000'>ORDEN RECHAZADA</strong></center>"
+			          				data-content="<div class='alert alert-danger'><?php print $row['descripcion_rechazo'] ?></div>">
+									<span class="label label-danger">Rechazado</span> 
+								</a>
+								</td>
 
 						<?php
 							}
