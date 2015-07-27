@@ -44,8 +44,8 @@
 			<br>
 			<div class="div-buscar">
 				<div class="form-inline">
-					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del chofer, placas, marca, modelo..." onkeyup="if(event.keyCode == 13) buscarProductos();" autofocus>
-					<button class="btn btn-primary" id="btnBuscar" onclick="buscarProductos();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del chofer, placas, marca, modelo..." onkeyup="if(event.keyCode == 13) buscarCamiones();" autofocus>
+					<button class="btn btn-primary" id="btnBuscar" onclick="buscarCamiones();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 					<a href="../nuevoCamion/" class="btn btn-success" style="float: right;" id="btnAgregarCamion"><i class="glyphicon glyphicon-plus"></i> Agregar Camion</a>
 					<a href="../camiones/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
@@ -60,9 +60,11 @@
 						<thead>
 							<tr>
 								<th class="centro">#</th>
-								<th>Nombre del Producto</th>
-								<th>Variedad</th>
-								<th class="derecha">$ de Venta</th>
+								<th>Nombre del Chofer</th>
+								<th>Placas</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Descripción</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -77,39 +79,30 @@
 			      				$idDistribuidorFK = $row['id_distribuidor_fk'];
 
 								$cont = 1;
-								$consulta = "SELECT pdist.id_productos_distribuidor, prods.nombre_producto, prods.variedad_producto, pdist.precio_venta FROM productos AS prods, productos_distribuidores AS pdist WHERE prods.id_producto = pdist.id_producto_fk AND pdist.id_distribuidor_fk = $idDistribuidorFK ORDER BY prods.nombre_producto ASC";
+								$consulta = "SELECT * FROM camiones_distribuidor WHERE id_distribuidor_fk = $idDistribuidorFK ORDER BY nombre_chofer_camion_distribuidor ASC";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ ?>
 									<tr>
 						          		<td class="centro"><?php echo $cont; ?></td>
-						          		<td><?php echo $nombreProd = $row['nombre_producto']; ?></td>
-						          		<td><?php echo $variedadProd = $row['variedad_producto']; ?></td>
-						          		<td class="derecha"><?php echo "$ ".number_format($row['precio_venta'], 2, '.', ','); ?></td>
+						          		<td><?php echo $row['nombre_chofer_camion_distribuidor']; ?></td>
+						          		<td><?php echo $placas = $row['placas_camion_distribuidor']; ?></td>
+						          		<td><?php echo $row['marca_camion_distribuidor']; ?></td>
+						          		<td><?php echo $row['modelo_camion_distribuidor']; ?></td>
+						          		<td><?php echo $row['descripcion_camion_distribuidor']; ?></td>
 						          		<td class="derecha">
 						          			<?php 
-						          				$idProductoDist = $row['id_productos_distribuidor']; 
-						          				$precioProd =  $row['precio_venta']; 
+						          				$idCamionDist = $row['id_camion_distribuidor'];
+						          				$estadoCamion = $row['estado_camion_distribuidor'];
 						          			?>
-						          			<button class="btn btn-primary btn-editar" data-toggle="tooltip" data-placement="top" title="Editar precio" onClick="mostrarModalPrecio(<?php echo $idProductoDist; ?>, '<?php echo $nombreProd; ?>', '<?php echo $variedadProd; ?>', <?php echo $precioProd; ?>)"><i class="glyphicon glyphicon-pencil"></i></button>
-						          			<button class="btn btn-success btn-alta" data-toggle="tooltip" data-placement="top" title="Dar de alta" onClick="mostrarModalPrecio(<?php echo $idProductoDist; ?>, '<?php echo $nombreProd; ?>', '<?php echo $variedadProd; ?>', <?php echo $precioProd; ?>)"><i class="glyphicon glyphicon-ok"></i></button>
-						          			<button class="btn btn-danger btn-baja" data-toggle="tooltip" data-placement="top" title="Dar de baja" onClick="borrarProducto(<?php echo $idProductoDist; ?>, '<?php echo $nombreProd; ?>', '<?php echo $variedadProd; ?>')"><i class="glyphicon glyphicon-remove"></i></button>
-							        	</td>
-							        	<!-- <td class="derecha">
-						          			<?php 
-						          				$idUsuarioFk = $row['id_usuario'];
-						          				$estadoUsuario = $row['estado_usuario'];
-						          			?>
-						          			<button class="btn btn-primary btn-editar" data-toggle="tooltip" data-placement="top" title="Editar usuario" onClick="editarUsuario(<?php echo $row['id_usuario_distribuidor']; ?>, '<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-pencil"></i></button>
+						          			<button class="btn btn-primary btn-editar" data-toggle="tooltip" data-placement="top" title="Editar camion" onClick="editarCamion(<?php echo $idCamionDist; ?>)"><i class="glyphicon glyphicon-pencil"></i></button>
 							        		<?php 
-							        			if($row['id_usuario'] != $_SESSION['id_usuario']){
-							        				if($estadoUsuario == 0){ ?>
-								        				<button class="btn btn-success btn-baja" data-toggle="tooltip" data-placement="top" title="Dar de alta" onClick="altaUsuario('<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-ok"></i></button>
-							          				<?php } else{ ?>
-							          					<button class="btn btn-danger btn-alta" data-toggle="tooltip" data-placement="top" title="Dar de baja" onClick="bajaUsuario('<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-remove"></i></button>
-							          				<?php }
-							        			}
+						        				if($estadoCamion == 0){ ?>
+							        				<button class="btn btn-success btn-alta" data-toggle="tooltip" data-placement="top" title="Dar de alta" onClick="altaCamion(<?php echo $idCamionDist; ?>, '<?php echo $placas; ?>')"><i class="glyphicon glyphicon-ok"></i></button>
+						          				<?php } else{ ?>
+						          					<button class="btn btn-danger btn-baja" data-toggle="tooltip" data-placement="top" title="Dar de baja" onClick="bajaCamion(<?php echo $idCamionDist; ?>, '<?php echo $placas; ?>')"><i class="glyphicon glyphicon-remove"></i></button>
+						          				<?php }
 							        		?>
-							        	</td> -->
+							        	</td>
 						    	    </tr>
 								<?php $cont++; 
 								}
@@ -145,7 +138,7 @@
 			$('.btn-alta').tooltip();
 			$('.btn-baja').tooltip();
 
-			function buscarProductos(){
+			function buscarCamiones(){
 				// var productoBuscar = $('#inputBuscar').val();
 
 				// if(productoBuscar != ''){
@@ -169,15 +162,32 @@
 				// }
 			}
 
-			function borrarProducto(productoFk, nombre, variedad){
-				// var respuesta = confirm("¿Desea borrar al producto " + nombre + " " + variedad + "?");
-			 //    if(respuesta){
-				// 	$.post('../mod/borrar_producto.php', {'producto': productoFk},
-				// 		function(data){
-				// 			$(location).attr('href', '../productos/');
-				// 		}
-				// 	);
-			 //    }
+			function editarCamion(camion){
+				alert(camion);
+			}
+
+			function bajaCamion(camion, placas){
+				var respuesta = confirm("¿Desea dar de baja al camion " + placas + "?");
+			    if(respuesta){
+			    	alert("Camion: " + camion + " - Placas: " + placas);
+					// $.post('../mod/borrar_producto.php', {'producto': productoFk},
+					// 	function(data){
+					// 		$(location).attr('href', '../productos/');
+					// 	}
+					// );
+				}
+			}
+
+			function altaCamion(camion, placas){
+				var respuesta = confirm("¿Desea dar de alta al camion " + placas + "?");
+			    if(respuesta){
+			    	alert("Camion: " + camion + " - Placas: " + placas);
+					// $.post('../mod/borrar_producto.php', {'producto': productoFk},
+					// 	function(data){
+					// 		$(location).attr('href', '../productos/');
+					// 	}
+					// );
+				}
 			}
 		</script>
 	</body>
