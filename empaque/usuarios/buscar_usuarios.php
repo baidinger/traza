@@ -45,7 +45,7 @@
 				          	<?php 
 				          		if($row['estado_usuario'] == 1){ 
 				          	?>
-				          			<td> <p class="active"> Activo </p> </td>
+				          			<td> <span class="label label-success"> Activo </span> </td>
 				          			<td class="centro">
 
 				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $id_empaque?>,<?php print $row['id_usuario'] ?>)" > 
@@ -62,7 +62,7 @@
 				          <?php 
 									}else{
 									?>
-										<td > <p class="desactive"> Inactivo </p> </td>
+										<td > <span clas="label label-danger"> Inactivo </span> </td>
 										<td class="centro"> 
 
 				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $id_empaque ?>,<?php print $row['id_usuario'] ?>)"> 

@@ -117,8 +117,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-tags"></span> &nbsp;Etiquetas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-               <li><a href="index.php?op=#">Imprimir</a></li>
-               <li><a href="index.php?op=#">Trazabilidad</a></li>
+               <li><a href="index.php?op=imprimir">Imprimir</a></li>
+               <li><a href="index.php?op=trazabilidad">Trazabilidad</a></li>
             </ul>
         </li>
           <li><a href="#">
@@ -208,6 +208,10 @@ if($_GET("op") == "contrasena")
 
 if($_GET("op") == "reg_new_user") 
   $("#views").load("usuarios/registro_nuevo_usuario.php");
+
+if($_GET("op") == "imprimir") 
+  $("#views").load("tags/imprimirtags.php");
+
 
 if($_GET("productor")){
     $.ajax({

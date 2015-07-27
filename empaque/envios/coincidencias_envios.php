@@ -15,9 +15,12 @@
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
-		          <th class="centro">Id orden</th>
-		          <th class="centro">Distribuidor</th>
-		          <th class="centro">Producto</th>
+		          <th class="centro">Núm. envío</th>
+		          <th class="centro">Núm. camión</th>
+		          <th class="centro">Núm. orden</th>
+		          <th>Distribuidor</th>
+		          <!--<th class="centro">Producto</th>-->
+		          
 		          <th class="centro">Fecha de envío</th>
 		          <th class="centro">Estado</th>
 		          <th class="centro">Acción</th>
@@ -30,39 +33,41 @@
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	?>
 				 	<tr>
-		        		<td><?php echo $i; ?></td>
-		        		<td> <?php echo $row['id_orden_fk']; ?> </td>
+		        		<td class="centro"><?php echo $i; ?></td>
+		        		<td class="centro"> <?php echo $row['id_envio']; ?> </td>
+		        		<td class="centro"><?php print $row['id_camion_fk'] ?></td>
+		        		<td class="centro"> <?php echo $row['id_orden_fk']; ?> </td>
 			          	<td><?php echo $row['nombre_distribuidor']; ?></td>
-			        	<td><?php 
-
+			        	<!--<td><?php 
+/*
 			        	$cadena = "SELECT * FROM productos, ordenes_distribuidor_detalles WHERE id_producto = id_producto_fk AND id_orden_fk = ".$row['id_orden_fk'];
 						$result = mysql_query($cadena);
 						if(mysql_num_rows($result) > 0){
 							while($row1 = mysql_fetch_array($result)) {
 			        			echo $row1['nombre_producto']. " ".$row1['variedad_producto']."<br>"; 
 			        		}
-			        	}
-
-
+			        	}*/
 			        	?>
-			        	</td>
-			          	<td class="centro"><?php echo $row['fecha_envio']; ?></td>
+			        	</td>-->
+			        	
+			          	<td class="centro"><?php echo $row['fecha_envio']." a las ".$row['hora_envio']; ?></td>
 			          	<td class="centro">
 			          		<?php 
 	      					 switch($row['estado_envio']){
-	      					 	case 1: echo "<span class='label label-warning'>PENDIENTE</span>"; break;
-	      					 	case 2: echo "<span class='label label-danger'>RECHAZADO</span>"; break;
-	      					 	case 3: echo "<span class='label label-primary'>ENVIADO</span>"; break;
-	      					 	case 4: echo "<span class='label label-success'>CONCRETADO</span>"; break;
-	      					 	case 5: echo "<span class='label label-danger'>CANCELADO</span>"; break;
-	      					 	case 6: echo "<span class='label label-success'>APROBADO</span>"; break;
-	      					 	case 7: echo "<span class='label label-warning'>PRE-ENVIO</span>"; break;
+	      					 	case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
+	      					 	case 2: echo "<span class='label label-danger'>Rechazado</span>"; break;
+	      					 	case 3: echo "<span class='label label-primary'>Enviado</span>"; break;
+	      					 	case 4: echo "<span class='label label-success'>Concretado</span>"; break;
+	      					 	case 5: echo "<span class='label label-danger'>Cancel. por emp.</span>"; break;
+	      					 	case 6: echo "<span class='label label-success'>Aprobado</span>"; break;
+	      					 	case 7: echo "<span class='label label-warning'>Pre-envío</span>"; break;
+	      					 	case 8: echo "<span class='label label-danger'>Cancel. por dist.</span>"; break;
 	      					 } ?>
 			          	</td>
 			          	
-			           <td align="center" width="300"> 
+			           <td align="center"> 
 			           	<a  href="#" onclick = "mostrarCajasTarimas(<?php echo $row['id_envio']; ?>)" data-toggle="modal" data-target="#myModal">
-				        	<span title="Mostrar cajas" data-toggle="tooltip" class="glyphicon glyphicon-copy"></span>
+				        	<span title="Mostrar cajas" data-toggle="tooltip" class="glyphicon glyphicon-tags"></span>
 				    	</a>&nbsp;&nbsp;
 			           	<a onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"  href="#">
 				        	<span title ="Detalles de envío" class="glyphicon glyphicon-eye-open"></span>
@@ -72,6 +77,8 @@
           					<span data-toggle="tooltip" data-placement="top" title="Cancelar envío" class="glyphicon glyphicon-remove"></span>
           				</a>&nbsp;&nbsp;
           				
+          				<?php } else { ?>
+          					<span style="width:16px; height:10px;"></span>
           				<?php } ?>
 			           	</td>
 		        	</tr>

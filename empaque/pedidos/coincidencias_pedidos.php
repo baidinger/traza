@@ -35,7 +35,7 @@
 	    	<thead>
 		        <tr>
 		        	<th>#</th>
-		          <th class="centro">N. orden</th>
+		          <th class="centro">Núm. orden</th>
 		          <th class="izquierda">Distribuidor</th>
 		          <th class="centro">Fecha de la orden</th>
 		        <!-- < <th class="centro">Fecha de entrega deseada</th>-->
@@ -119,7 +119,7 @@
 						<?php
 							}else if($row['estado_orden'] == 3){
 
-							$consulta = "select * FROM envios_empaque where id_orden_fk=$row[id_orden]";
+							$consulta = "select * FROM envios_empaque, usuario_empaque where id_receptor_fk = id_receptor AND id_orden_fk=$row[id_orden]";
 							$result_envios = mysql_query($consulta);
 							if(mysql_num_rows($result_envios) > 0)
 								$row2 = mysql_fetch_array($result_envios);
@@ -156,8 +156,8 @@
 		          									<td><?php echo $row2['id_camion_fk']; ?></td>
 		          								</tr>
 		          								<tr>
-		          									<td><strong>ID USUARIO: </strong></td>
-		          									<td><?php echo $row2['id_receptor_fk']; ?></td>
+		          									<td><strong>(ID) USUARIO QUE ENVIÓ: </strong></td>
+		          									<td><?php echo '('.$row2['id_receptor_fk'].') '. $row2['nombre_receptor'].' '. $row2['apellido_receptor']; ?></td>
 		          								</tr>
 		          							  <table>">
 								<span class="label label-info">
@@ -204,13 +204,45 @@
 		          				rol="button"
 		          				title="<center><strong><span style='color:#000'>ORDEN CANCELADA</strong></center>"
 		          				data-content="<div class='alert alert-danger'><?php print $row['descripcion_cancelacion'] ?></div>">
-									<span class="label label-danger">Cancelado</span> 
+									<span class="label label-danger">Cancel. por emp.</span> 
 								</a>
 								</td>
 
 
 						<?php
-							}else if($row['estado_orden'] == 6){
+							}else if($row['estado_orden'] == 8){
+						?>
+								<td class="centro">
+									<label>$ <?php echo $row['costo_orden']; ?></label>
+								</td>
+								<!--<td></td>-->
+			          			<td class="centro">
+			          				<?php if ($_SESSION['nivel_socio'] == 1) { ?>
+			          				<a onClick="infoModalShow(<?php echo $row['id_orden']; ?>, 1)" style="cursor:pointer;" data-toggle="tooltip" title="Revalorar"> 
+			          					<span data-toggle="modal" data-target="#"  data-placement="top" class="aprobarOrden glyphicon glyphicon-repeat" aria-hidden="true"></span>
+			          				</a>
+			          				<?php }else { ?>
+			          				--
+			          				<?php } ?>
+			          			</td>
+								<td class="centro">
+									<a href="#"  
+		          				tabindex="0"		          				
+		          				data-placement="top"
+		          				data-trigger="focus"
+		          				data-container="body"
+		          				data-html="true"
+		          				data-toggle="popover"
+		          				rol="button"
+		          				title="<center><strong><span style='color:#000'>ORDEN CANCELADA</strong></center>"
+		          				data-content="<div class='alert alert-danger'><?php print $row['descripcion_cancelacion'] ?></div>">
+									<span class="label label-danger">Cancel. por dist.</span> 
+								</a>
+								</td>
+
+
+						<?php
+							} else if($row['estado_orden'] == 6){
 						?>
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>

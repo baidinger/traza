@@ -35,7 +35,7 @@
 
 		<?php 
 			$titulo = "Búsqueda de envíos";
-			$placeholder="Buscar distribuidor";
+			$placeholder="Buscar distribuidor / núm. orden / núm envío";
 			$imagen = "envios.png";
 			include("../busquedas/formulario_busqueda.php"); ?>
 	<!--<div class="busqueda-form">

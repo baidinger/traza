@@ -7,7 +7,7 @@
 			          <th>Producto</th>
 			          <th>Cant. cajas</th>
 			          <th>Cant. kilos</th>
-			          <th>Fecha de compra</th>
+			          <th>Fecha de recibo</th>
 			          <th>Costo lote</th>
 			         <!-- <th>Rango</th>-->
 			          <th>Acción</th>
@@ -32,7 +32,7 @@
 				          	<td><?php echo $row['nombre_producto'] . " - ". $row['variedad_producto']; ?></td>
 				          	<td><?php echo $row['cant_cajas_lote']; ?></td>
 				          	<td><?php echo $row['cant_kilos_lote']; ?></td>
-				          	<td><?php echo $row['fecha_recibo_lote']; ?></td>
+				          	<td><?php echo $row['fecha_recibo_lote']." a las ".$row['hora_recibo_lote']; ?></td>
 				          	<td>$ <?php echo $row['costo_lote']; ?></td>
 				          	<!--<td>
 				          	  	<?php if( strcmp($row['rango_inicial'],"") != 0) {  ?> <span class="label label-success">Asignado</span> <?php  }  ?>

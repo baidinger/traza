@@ -144,7 +144,7 @@
 										include('../../mod/conexion.php');
 
 										$cont = 1;
-									    $consulta = "SELECT * FROM empresa_productores WHERE estado = 1 ORDER BY RAND() LIMIT 10 ";
+									    $consulta = "SELECT * FROM empresa_productores WHERE estado_p = 1 ORDER BY nombre_productor LIMIT 10 ";
 										$resultado = mysql_query($consulta);
 										while($row = mysql_fetch_array($resultado)){ ?>
 											<tr>

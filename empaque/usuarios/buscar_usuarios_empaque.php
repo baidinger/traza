@@ -9,7 +9,7 @@
 <div class="contenedor-form">
 			<?php 
 			$titulo = "Búsqueda de usuarios del empaque";
-			$placeholder="Buscar usuario";
+			$placeholder="Buscar usuario / nombre";
 			$imagen = "imagen.png";
 			include("../busquedas/formulario_busqueda.php"); ?>
 
