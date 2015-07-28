@@ -10,34 +10,6 @@
 			$imagen = "lotes.png";
 			include("../busquedas/formulario_busqueda.php"); ?>
 
-
-<!--<div class="contenedor-form">
-			
-	<div class="modal-header">
-		<h3 class="modal-title">
-			<img class="img-header" src="img/lotes.png"> Búsqueda de lotes
-		</h3>
-		</div>
-	</div>
-
-	
-	<div class="busqueda-form">
-				<div class="form-group">
-			    	<label for="inputBuscar" class="col-sm-2 control-label">Buscar</label>
-			    	<div class="col-sm-10">
-			      		<input onkeyup="if(event.keyCode == 13) buscar();" type="text" class="form-control" id="inputBuscar" placeholder="Buscar productor">
-			    	</div>
-			  	</div>
-		</div>
-<div style="float:left; margin-top: 20px; margin-left:10px;">
-			<button type="submit" class="btn btn-primary" onclick="buscar()">Buscar</button>
-		</div>
-
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
--->
 <div id="data">
 	
 </div>

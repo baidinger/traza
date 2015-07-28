@@ -1,8 +1,11 @@
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Trazabilidad</title>
 		<meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
+		<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 		<style type="text/css">
 			.centro{
 				text-align: center;
@@ -45,7 +48,7 @@
 			      				$id_productor = $_POST['id'];
 			      				$consulta = "select id_productor, nombre_productor, apellido_productor, ".
 								"telefono_productor, direccion_productor, fecha_registro_prod, fecha_modificacion_prod, ".
-								" rfc_productor, id_usuario_fk, nombre_usuario, id_usuario_que_registro, estado from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_productor = ".$id_productor;
+								" rfc_productor, id_usuario_fk, nombre_usuario, id_usuario_que_registro, estado_p from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_productor = ".$id_productor;
 			      				$resultado = mysql_query($consulta);
 			      				$row = mysql_fetch_array($resultado);
 			      			?>
@@ -159,7 +162,7 @@
 						      					}
 
 						      					?><br>
-										    	 	<div style="width:500px; margin:0px auto;" id="a" class="alert alert-danger centro" role="alert"> 
+										    	 	<div style="width:80%; margin:0px auto;" id="a" class="alert alert-danger centro" role="alert"> 
 										    	 		<strong>No se encontraron Productos en el productor.</strong>
 										    	 	</div>
 										    	<?php
@@ -182,7 +185,8 @@
 					?>
 				</div>
 		</div>
-
+		<div style="clear:both"></div>
+		<p>&nbsp;</p>
 		 	<div class="modal fade bs-example-modal-lg" id="modalDescripcion" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -208,54 +212,31 @@
 
 
 
-	  	<div class="modal fade bs-example-modal-lg" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-			<div class="modal-dialog modal-lg">
+	  <div class="modal fade bs-example-modal-md" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-md">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="titulo-header">
+						<h3 class="titulo-header" style="margin:0">
+							<img class="img-header" src="img/buscar.png">
 							<span id="titulo-detalles">Buscar Producto</span>
 						</h3>
 					</div>
 					<div class="modal-body" style="background:#FFFFFF;">
 						<div class="form-inline">
-							<center>
-								<input type="text" class="form-control" name="inputBuscarProducto" id="inputBuscarProducto"  onkeyup="if(event.keyCode == 13) buscarProductos('<?php echo $id_productor; ?>');" style="width: 80%;">
-								<button type="button" class="btn btn-primary" onclick="buscarProductos('<?php echo $id_productor; ?>')"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-							</center>
-						</div>
-						<div id="contenedor-productos">
-							<table class="table">
-								<thead>
-									<th class="centro">#</th>
-									<th>Nombre del Producto</th>
-									<th></th>
-								</thead>
-								<tbody>
-									<?php 
-										include('../../mod/conexion.php');
+								<label class="col-sm-2 control-label">Buscar</label>
+								<input style="width:60%" placeholder="Buscar nombre del producto" type="text" class="form-control" name="inputBuscarProducto" id="inputBuscarProducto"  onkeyup="if(event.keyCode == 13) buscarProductos(<?php print $id_productor ?>);" style="width: 80%;">
+								<button type="button" class="btn btn-primary" onclick="buscarProductos(<?php print $id_productor ?>)"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 
-										$cont = 1;
-									    $consulta = "SELECT * FROM productos ORDER BY nombre_producto ASC";
-										$resultado = mysql_query($consulta);
-										while($row = mysql_fetch_array($resultado)){ 
-									?>
-											<tr>
-												<td class="centro"><?php echo $cont; ?></td>
-								          		<td><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></td>
-								          		<td class="derecha">
-									        		<button class="btn btn-success" onClick="agregarProductoProductores(<?php echo $row['id_producto']; ?>, '<?php echo $id_productor; ?>');"><i class="glyphicon glyphicon-ok"></i> Agregar</button>
-									        	</td>
-									        	<?php $cont++; ?>
-								    	    </tr>
-										<?php }
-									?>
-								</tbody>
-							</table>
+						</div>
+						
+					<div style="clear:both"></div>
+					<p>&nbsp;</p>
+						<div id="contenedor-productos">
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 					</div>
 				</div>
 			</div>
@@ -317,12 +298,11 @@
 
 			function buscarProductos(idProductor){
 				var productoBuscar = $('#inputBuscarProducto').val();
-				if(productoBuscar != ''){
 					var params = {'producto':productoBuscar, 'productor': idProductor};
 
 					$.ajax({
 						type: 'POST',
-						url: 'busquedas/buscar_producto.php',
+						url: 'buscar/buscar_productos.php',
 						data: params,
 
 						success: function(data){
@@ -330,8 +310,9 @@
 							$('#inputBuscarProducto').select();
 						}
 					});
-				}
 			}
+
+			buscarProductos(<?php print $id_productor ?>);
 
 			function agregarProductoProductores(idProducto, idProductor){
 				//alert("producto: "+idProducto+" --  productor: "+idProductor);
@@ -342,16 +323,13 @@
 					data: params,
 
 					success: function(data){
-	
+							
 							$('#a').hide();
 							$('#e').addClass('hidden');
 							$('#productosDetalles').html(data);
 							$('#modalProducto').modal('hide');
 						
-					},
-					beforeSend: function(data ) {
-					    $("#data-child").html("<center><img src=\"img/cargando.gif\"></center>");
-					  }
+					}
 				});
 			}
 

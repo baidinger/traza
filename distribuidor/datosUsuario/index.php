@@ -53,18 +53,6 @@
 					      		<table class="table">
 					      			<tbody>
 					      				<tr>
-					      					<td><strong>Nombre:</strong></td>
-					      					<td><?php echo $row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Usuario:</strong></td>
-					      					<td><?php echo $_SESSION['nombre_usuario']; ?> </td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Contraseña:</strong></td>
-					      					<td><a href="../contrasena/">*****************************</a></td>
-					      				</tr>
-					      				<tr>
 					      					<td><strong>Tipo de Socio:</strong></td>
 					      					<td>DISTRIBUIDOR</td>
 					      				</tr>
@@ -80,20 +68,32 @@
 					      					</td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Fecha de Creación:</strong></td>
-					      					<td><?php echo $row['fecha_creacion_usuario']; ?></td>
+					      					<td><strong>Usuario:</strong></td>
+					      					<td><?php echo $_SESSION['nombre_usuario']; ?> </td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Fecha de Modificación:</strong></td>
-					      					<td><?php echo $row['fecha_modificacion_usuario']; ?></td>
+					      					<td><strong>Contraseña:</strong></td>
+					      					<td><a href="../contrasena/">*****************************</a></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Nombre:</strong></td>
+					      					<td><?php echo $row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor']; ?></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Teléfono:</strong></td>
+					      					<td><?php echo $row['telefono_usuario_distribuidor']; ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Dirección:</strong></td>
 					      					<td><?php echo $row['direccion_usuario_distribuidor']; ?></td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Teléfono:</strong></td>
-					      					<td><?php echo $row['telefono_usuario_distribuidor']; ?></td>
+					      					<td><strong>Fecha de Registro:</strong></td>
+					      					<td><?php echo $row['fecha_creacion_usuario']; ?></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Fecha de Modificación:</strong></td>
+					      					<td><?php echo $row['fecha_modificacion_usuario']; ?></td>
 					      				</tr>
 					      			</tbody>
 					      		</table>

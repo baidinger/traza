@@ -69,7 +69,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-road"></span> &nbsp;Camiones <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="agregarCamion/">Agregar camion</a></li>
+							<li><a href="nuevoCamion/">Agregar camion</a></li>
 							<li class="divider"></li>
 							<li><a href="camiones/">Lista de camiones</a></li>
 						</ul>

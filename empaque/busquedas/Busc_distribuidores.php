@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; ?>
 <!DOCTYPE html>
 <html>
 	<head lang="ES">
@@ -13,7 +14,8 @@
 			$titulo = "Búsqueda de distribuidor";
 			$placeholder="Buscar distribuidor";
 			$imagen = "distribuidor.png";
-			include("formulario_busqueda.php"); ?>
+			$ruta = "index.php?op=reg_distribuidor";
+			include("formulario_busqueda_empresa.php"); ?>
 <div style="clear:both"></div>
 <div id="data">
 	

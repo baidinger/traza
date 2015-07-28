@@ -20,64 +20,35 @@
 <html>
 	<head>
 		<title>Trazabilidad</title>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=0.5">
+		<link rel="shortcut icon" href="../../img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link rel='stylesheet' type='text/css' href='../../lib/pagination/css.css'/>
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
 	</head>
 
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		  	<div class="navbar-header">
-		    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-		      		<span class="sr-only">Toggle navigation</span>
-		    	</button>
-		    	<a class="navbar-brand">PUNTO DE VENTA</a>
-		  	</div>
-		  	<div class="collapse navbar-collapse" id="navbar-collapse-01">
-		  		<ul class="nav navbar-nav">
-					<li class="dropdown">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevaOrden/">Nueva órden</a></li>
-				            <li class="divider"></li>
-				            <li><a href="../">Historial de órdenes</a></li>
-							<li><a href="../entradasOrdenes/">Entrada de órdenes</a></li>
-  						</ul>
-					</li>
-					<?php 
-						if($_SESSION['nivel_socio'] == 1){ ?>
-							<li class="dropdown active">
-		  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-		    						<li><a href="../nuevoUsuario/">Nuevo usuario</a></li>
-		    						<li class="divider"></li>
-						            <li class="active"><a href="#">Administrar usuarios</a></li>
-		  						</ul>
-							</li>
-						<?php }
-					?>
-		    	</ul>
-
-		    	<ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $_SESSION['nombre_usuario']; ?> <span class="caret"></span></a>
-		          		<ul class="dropdown-menu" role="menu">
-		            		<li><a href="../contrasena/"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-		            		<li><a href="../datosGenerales/"><span class="fui-gear"></span> &nbsp;Datos generales</a></li>
-		            		<li class="divider"></li>
-		            		<li><a href="../../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
-		          		</ul>
-			        </li>
-			    </ul>
-		  	</div>
-		</nav>
+		<?php 
+			include('../mod/navbar.php');
+		?>
 		<div class="contenido-general">
 			<div class="modal-header">
 				<h3 class="titulo-header">
-					<h3 class="titulo-contenido">Administración de Usuarios</h3>
+					<h3 class="titulo-contenido">
+						<img class="img-header" src="../../img/login.png"> <span id="lbl-titulo">Administración de Usuarios</span>
+					</h3>
 				</h3>
+			</div>
+			<br>
+			<div class="div-buscar">
+				<div class="form-inline">
+					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del usuario..." onkeyup="if(event.keyCode == 13) buscarUsuarios();" autofocus>
+					<button class="btn btn-primary" id="btnBuscar" onclick="buscarUsuarios();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+					<a href="../nuevoUsuario/" class="btn btn-success" style="float: right;" id="btnRegistrarUsuario"><i class="glyphicon glyphicon-plus"></i> Registrar Usuario</a>
+					<a href="../usuarios/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+				</div>
 			</div>
 			<div class="contenido-general-2">
 				<br>
@@ -107,13 +78,13 @@
 							<?php
 								include('../../mod/conexion.php');
 
-								$consulta = "SELECT id_usuario_punto_venta FROM usuario_punto_venta WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+								$consulta = "SELECT id_usuario_pv FROM usuario_punto_venta WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
 			      				$resultado = mysql_query($consulta);
 			      				$row = mysql_fetch_array($resultado);
-			      				$idPuntoVentaFK = $row['id_usuario_punto_venta'];
+			      				$idPuntoVentaFK = $row['id_usuario_pv'];
 
 								$cont = 1;
-								$consulta = "SELECT usus.id_usuario, usudist.id_usuario_pv, usudist.nombre_usuario_pv, usudist.apellidos_usuario_pv, usus.nombre_usuario, usus.nivel_autorizacion_usuario, usudist.direccion_usuario_pv, usudist.telefono_usuario_pv, usus.estado_usuario FROM usuario_punto_venta AS usudist, usuarios AS usus WHERE usudist.id_usuario_punto_venta = $idPuntoVentaFK AND usudist.id_usuario_fk = usus.id_usuario";
+								$consulta = "SELECT usus.id_usuario, usudist.id_usuario_pv, usudist.nombre_usuario_pv, usudist.apellidos_usuario_pv, usus.nombre_usuario, usus.nivel_autorizacion_usuario, usudist.direccion_usuario_pv, usudist.telefono_usuario_pv, usus.estado_usuario FROM usuario_punto_venta AS usudist, usuarios AS usus WHERE usudist.id_punto_venta_fk = $idPuntoVentaFK AND usudist.id_usuario_fk = usus.id_usuario ORDER BY usudist.nombre_usuario_pv ASC";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ ?>
 									<tr>
@@ -149,11 +120,13 @@
 						          			?>
 						          			<button class="btn btn-primary btn-editar" data-toggle="tooltip" data-placement="top" title="Editar usuario" onClick="editarUsuario(<?php echo $row['id_usuario_pv']; ?>, '<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-pencil"></i></button>
 							        		<?php 
-							        			if($estadoUsuario == 0){ ?>
-							        				<button class="btn btn-success btn-baja" data-toggle="tooltip" data-placement="top" title="Dar de alta" onClick="altaUsuario('<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-ok"></i></button>
-						          				<?php } else{ ?>
-						          					<button class="btn btn-danger btn-alta" data-toggle="tooltip" data-placement="top" title="Dar de baja" onClick="bajaUsuario('<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-remove"></i></button>
-						          				<?php }
+							        			if($row['id_usuario'] != $_SESSION['id_usuario']){
+								        			if($estadoUsuario == 0){ ?>
+								        				<button class="btn btn-success btn-baja" data-toggle="tooltip" data-placement="top" title="Dar de alta" onClick="altaUsuario('<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-ok"></i></button>
+							          				<?php } else{ ?>
+							          					<button class="btn btn-danger btn-alta" data-toggle="tooltip" data-placement="top" title="Dar de baja" onClick="bajaUsuario('<?php echo $idUsuarioFk; ?>', '<?php echo $nombreUsuario; ?>')"><i class="glyphicon glyphicon-remove"></i></button>
+							          				<?php }
+							          			}
 							        		?>
 							        	</td>
 						    	    </tr>
@@ -190,6 +163,30 @@
 			$('.btn-editar').tooltip();
 			$('.btn-baja').tooltip();
 			$('.btn-alta').tooltip();
+
+			function buscarUsuarios(){
+				var usuarioBuscar = $('#inputBuscar').val();
+
+				if(usuarioBuscar != ''){
+					$.ajax({
+						type: 'POST',
+						url: '../mod/buscar_usuarios.php',
+						data: {'usuario':usuarioBuscar},
+
+						beforeSend: function(){
+							$('.contenido-general-2').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+						},
+
+						success: function(data){
+							$('.img-header').attr('src', '../../img/buscar.png');
+							$('#lbl-titulo').text('Resultado de la búsqueda "' + usuarioBuscar + '"');
+							$('#inputBuscar').select();
+							$('#btn-mostrar-todos').css('display', 'block');
+							$('.contenido-general-2').html(data);
+						}
+					});
+				}
+			}
 
 			function editarUsuario(usuario, usuariofk, nombre){
 				var parametros = {'usuario_dist': usuario, 'usuario_fk': usuariofk};

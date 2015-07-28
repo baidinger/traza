@@ -1,10 +1,11 @@
-<?php 
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 	$id = $_POST['id'];
 	include("../../mod/conexion.php");
-	$result_productores = mysql_query("select id_distribuidor, nombre_distribuidor, rfc_distribuidor, ".
+	$cad = "select id_distribuidor, nombre_distribuidor, rfc_distribuidor, ".
 				"pais_distribuidor, estado_distribuidor, ciudad_distribuidor, direccion_distribuidor, cp_distribuidor, ".
-				" email_distribuidor, tel1_distribuidor, tel2_distribuidor, estado from empresa_distribuidores where 
-				id_distribuidor = $id AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
+				" email_distribuidor, tel1_distribuidor, tel2_distribuidor, estado_d from empresa_distribuidores where 
+				id_distribuidor = $id AND id_usuario_que_registro = ".$_SESSION['id_usuario'];
+	 $result_productores = mysql_query($cad);
         	
 			$row = mysql_fetch_array($result_productores);  
 ?>
@@ -13,7 +14,7 @@
   	<div class="modal-body">
 
 		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">Nombre: </label>
+	    	<label class="col-sm-2 control-label">Nombre1: </label>
 	    	<div class="col-sm-10">
 	    		<input type="text" pattern="[A-Za-zÑñáéíóúÁÉÍÓÚ]+([ ][A-Za-zÑñáéíóúÁÉÍÓÚ]+)*" title="Ingresa sólo letras y sin espacios extras" class="form-control input" value="<?php echo $row['nombre_distribuidor']; ?>" name="nombre_distribuidor" id="" placeholder="Nombre del distribuidor" required>
          	</div>

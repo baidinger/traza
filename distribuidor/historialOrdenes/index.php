@@ -110,8 +110,8 @@
 						          									<td><?php echo $row2['direccion_empaque']; ?></td>
 						          								</tr>
 						          								<tr>
-						          									<td><strong>Teléfono: </strong></td>
-						          									<td><?php echo $row2['telefono1_empaque']; ?></td>
+						          									<td><strong>Teléfono(s): </strong></td>
+						          									<td><?php echo $row2['telefono1_empaque'].' / '.$row2['telefono2_empaque']; ?></td>
 						          								</tr>
 						          								<tr>
 						          									<td><strong>Email: </strong></td>

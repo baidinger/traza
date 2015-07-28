@@ -1,5 +1,5 @@
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 
-<?php 
 	include("../../mod/conexion.php");
 	
 	$nombre 					= 	strtoupper($_POST['nombre_punto_venta']);

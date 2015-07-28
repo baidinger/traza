@@ -20,8 +20,8 @@
 			"<td class='centro'>".$cantProducto."</td>".
 			"<td class='centro'>".$unidProducto."</td>".
 			"<td>".$nombreProducto."</td>".
-			"<td class='derecha'>".$precioUnitario."</td>".
-			"<td class='derecha'>".$totalProducto."</td>".
+			"<td class='derecha'>".number_format($precioUnitario, 2, '.', ',')."</td>".
+			"<td class='derecha'>".number_format($totalProducto, 2, '.', ',')."</td>".
 			"<td class='derecha'><a href='#' class='btn btn-danger eliminar-item' data-toggle='tooltip' title='Quitar de la lista'><span class='glyphicon glyphicon-remove'></span></a></td>".
 			"<input type='hidden' name='cantidades[]' value='".$cantProducto."'>".
 			"<input type='hidden' name='unidades[]' value='".$unidProducto."'>".

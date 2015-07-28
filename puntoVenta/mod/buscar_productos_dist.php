@@ -11,15 +11,16 @@
 					<label>Producto: </label>
 					<select class="form-control" name="inputProducto" id="selectProducto">
 						<?php 
-							$idEmpaque = $_POST['idEmpaque'];
+							$idDistribuidor = $_POST['idDistribuidor'];
 
 							include('../../mod/conexion.php');
 
-						    $consulta = "SELECT * FROM productos ORDER BY nombre_producto";
+							$numProds = 0;
+						    $consulta = "SELECT prds.id_producto, prds.nombre_producto, prds.variedad_producto FROM productos AS prds, productos_distribuidores AS prdsepqs WHERE prds.id_producto = prdsepqs.id_producto_fk AND prdsepqs.id_distribuidor_fk = $idDistribuidor";
 							$resultado = mysql_query($consulta);
 							while($row = mysql_fetch_array($resultado)){ ?>
 								<option value="<?php echo $row['id_producto']; ?>"><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></option>
-							<?php }
+							<?php $numProds++; }
 						?>
 					</select>
 				</td>
@@ -36,7 +37,11 @@
 				</td>
 				<td class="derecha">
 					<label> &nbsp; </label><br>
-					<a href="#" class="btn btn-success" onclick="agregarProducto();"><i class="glyphicon glyphicon-ok"></i> Agregar</a>
+					<?php if($numProds != 0){ ?>
+						<a href="#" class="btn btn-success" onclick="agregarProducto();"><i class="glyphicon glyphicon-ok"></i> Agregar</a>
+					<?php } else { ?>
+						<a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-ok"></i> Agregar</a>
+					<?php } ?>
 				</td>
 			</tr>
 		</table>

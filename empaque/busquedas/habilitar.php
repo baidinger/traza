@@ -1,4 +1,4 @@
-<?php 
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 	include("../../mod/conexion.php");
 
 	$id		=	$_GET['id'];
@@ -11,8 +11,11 @@
 			$url = "bus_productor";
 		break;
 		case 2:
-			$query = "update empresa_empaques set estado_e = ".$status." where id_empaque = ".$id;		
+			if($_SESSION['superusuario'] == 1){
+				$query = "update empresa_empaques set estado_e = ".$status." where id_empaque = ".$id;		
+			}
 			$url = "bus_empaque";
+
 		break;
 		case 3:
 			$query = "update empresa_distribuidores set estado_d = ".$status." where id_distribuidor = ".$id;		

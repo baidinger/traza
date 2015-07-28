@@ -46,6 +46,9 @@
 			      				$idUsuarioDist = $_POST['usuario_dist'];
 			      				$idUsuarioFK = $_POST['usuario_fk'];
 
+			      				if(empty($idUsuarioFK))
+			      					header('Location: ../usuarios/');
+
 			      				include('../../mod/conexion.php');
 
 			      				$consulta = "SELECT * FROM usuario_distribuidor WHERE id_usuario_distribuidor = $idUsuarioDist";

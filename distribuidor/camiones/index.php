@@ -52,19 +52,25 @@
 			</div>
 			<div class="contenido-general-2">
 				<br>
-				<div id="msj-agregar">
-				  	
-				</div>
+				<div id="mensaje">
+				<?php if(isset($_REQUEST['e'])){ ?>
+			  		<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<strong>Error!</strong> Ha ocurrido un error al insertar los datos.
+					</div>
+			  	<?php } ?>
+			  	</div>
 				<div id="paginacion-resultados">
 					<table class="table">
 						<thead>
 							<tr>
 								<th class="centro">#</th>
 								<th>Nombre del Chofer</th>
-								<th>Placas</th>
-								<th>Marca</th>
-								<th>Modelo</th>
+								<th class="centro">Placas</th>
+								<th class="centro">Marca</th>
+								<th class="centro">Modelo</th>
 								<th>Descripción</th>
+								<th class="centro">Disponibilidad</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -85,14 +91,32 @@
 									<tr>
 						          		<td class="centro"><?php echo $cont; ?></td>
 						          		<td><?php echo $row['nombre_chofer_camion_distribuidor']; ?></td>
-						          		<td><?php echo $placas = $row['placas_camion_distribuidor']; ?></td>
-						          		<td><?php echo $row['marca_camion_distribuidor']; ?></td>
-						          		<td><?php echo $row['modelo_camion_distribuidor']; ?></td>
-						          		<td><?php echo $row['descripcion_camion_distribuidor']; ?></td>
+						          		<td class="centro"><?php echo $placas = $row['placas_camion_distribuidor']; ?></td>
+						          		<td class="centro"><?php echo $row['marca_camion_distribuidor']; ?></td>
+						          		<td class="centro"><?php echo $row['modelo_camion_distribuidor']; ?></td>
+						          		<td>
+						          			<?php 
+						          				$descripcion = $row['descripcion_camion_distribuidor'];
+						          				if(strlen($descripcion) > 20)
+						          					echo substr($descripcion, 0, 20)."...";
+						          				else
+						          					echo $descripcion;
+						          			?>
+						          		</td>
+						          		<?php 
+						          			$estadoCamion = $row['estado_camion_distribuidor'];
+						          			if($estadoCamion == 1){
+						          				if($row['disponibilidad_camion_distribuidor'] == 0)
+						          					echo "<td class='centro concretado'>DISPONIBLE</td>";
+						          				else
+						          					echo "<td class='centro cancelado'>OCUPADO</td>";
+						          			}
+					          				else
+					          					echo "<td class='centro cancelado'>DADO DE BAJA</td>";
+					          			?>
 						          		<td class="derecha">
 						          			<?php 
 						          				$idCamionDist = $row['id_camion_distribuidor'];
-						          				$estadoCamion = $row['estado_camion_distribuidor'];
 						          			?>
 						          			<button class="btn btn-primary btn-editar" data-toggle="tooltip" data-placement="top" title="Editar camion" onClick="editarCamion(<?php echo $idCamionDist; ?>)"><i class="glyphicon glyphicon-pencil"></i></button>
 							        		<?php 
@@ -117,7 +141,7 @@
 						</div>
 					<?php } else{ ?>
 						<div class="alert alert-info" role="alert" style="text-align: center;">
-							<strong>Sin resultados...</strong> No hay productos registrados.
+							<strong>Sin resultados...</strong> No hay camiones registrados.
 						</div>
 					<?php } ?>
 				</div>
@@ -139,54 +163,69 @@
 			$('.btn-baja').tooltip();
 
 			function buscarCamiones(){
-				// var productoBuscar = $('#inputBuscar').val();
+				var camionBuscar = $('#inputBuscar').val();
 
-				// if(productoBuscar != ''){
-				// 	$.ajax({
-				// 		type: 'POST',
-				// 		url: '../mod/buscar_productos.php',
-				// 		data: {'producto':productoBuscar},
+				if(camionBuscar != ''){
+					$.ajax({
+						type: 'POST',
+						url: '../mod/buscar_camiones.php',
+						data: {'camion':camionBuscar},
 
-				// 		beforeSend: function(){
-				// 			$('.contenido-general-2').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
-				// 		},
+						beforeSend: function(){
+							$('.contenido-general-2').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+						},
 
-				// 		success: function(data){
-				// 			$('.img-header').attr('src', '../../img/buscar.png');
-				// 			$('#lbl-titulo').text('Resultado de la búsqueda "' + productoBuscar + '"');
-				// 			$('#inputBuscar').select();
-				// 			$('#btn-mostrar-todos').css('display', 'block');
-				// 			$('.contenido-general-2').html(data);
-				// 		}
-				// 	});
-				// }
+						success: function(data){
+							$('.img-header').attr('src', '../../img/buscar.png');
+							$('#lbl-titulo').text('Resultado de la búsqueda "' + camionBuscar + '"');
+							$('#inputBuscar').select();
+							$('#btn-mostrar-todos').css('display', 'block');
+							$('.contenido-general-2').html(data);
+						}
+					});
+				}
 			}
 
 			function editarCamion(camion){
-				alert(camion);
+				var parametros = {'camion': camion};
+
+				var body = document.body;
+				form = document.createElement('form');
+				form.method = 'POST'; 
+				form.action = '../editarCamion/';
+
+				for (index in parametros) {
+					var input = document.createElement('input');
+					input.type = 'hidden';
+					input.name = index;
+					input.id = index;
+					input.value = parametros[index];
+					form.appendChild(input);
+				}
+				
+				body.appendChild(form);
+				form.submit();
 			}
 
 			function bajaCamion(camion, placas){
 				var respuesta = confirm("¿Desea dar de baja al camion " + placas + "?");
 			    if(respuesta){
-			    	alert("Camion: " + camion + " - Placas: " + placas);
-					// $.post('../mod/borrar_producto.php', {'producto': productoFk},
-					// 	function(data){
-					// 		$(location).attr('href', '../productos/');
-					// 	}
-					// );
+			    	$.post('../mod/baja_camion.php', {'camion': camion},
+						function(data){
+							$(location).attr('href', '../camiones/');
+						}
+					);
 				}
 			}
 
 			function altaCamion(camion, placas){
 				var respuesta = confirm("¿Desea dar de alta al camion " + placas + "?");
 			    if(respuesta){
-			    	alert("Camion: " + camion + " - Placas: " + placas);
-					// $.post('../mod/borrar_producto.php', {'producto': productoFk},
-					// 	function(data){
-					// 		$(location).attr('href', '../productos/');
-					// 	}
-					// );
+			    	$.post('../mod/alta_camion.php', {'camion': camion},
+						function(data){
+							$(location).attr('href', '../camiones/');
+						}
+					);
 				}
 			}
 		</script>

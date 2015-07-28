@@ -20,58 +20,18 @@
 <html>
 	<head>
 		<title>Trazabilidad</title>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=0.5">
+		<link rel="shortcut icon" href="../../img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
 	</head>
 
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		  	<div class="navbar-header">
-		    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-		      		<span class="sr-only">Toggle navigation</span>
-		    	</button>
-		    	<a class="navbar-brand">PUNTO DE VENTA</a>
-		  	</div>
-		  	<div class="collapse navbar-collapse" id="navbar-collapse-01">
-		  		<ul class="nav navbar-nav">
-					<li class="dropdown active">
-  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-    						<li><a href="../nuevaOrden/">Nueva órden</a></li>
-				            <li class="divider"></li>
-				            <li><a href="../">Historial de órdenes</a></li>
-							<li><a href="../entradasOrdenes/">Entrada de órdenes</a></li>
-  						</ul>
-					</li>
-					<?php 
-						if($_SESSION['nivel_socio'] == 1){ ?>
-							<li class="dropdown">
-		  						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-		    						<li><a href="../nuevoUsuario/">Nuevo usuario</a></li>
-		    						<li class="divider"></li>
-						            <li><a href="../usuarios/">Administrar usuarios</a></li>
-		  						</ul>
-							</li>
-						<?php }
-					?>
-		    	</ul>
-
-		    	<ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $_SESSION['nombre_usuario']; ?> <span class="caret"></span></a>
-		          		<ul class="dropdown-menu" role="menu">
-		            		<li><a href="../contrasena/"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-		            		<li><a href="../datosGenerales/"><span class="fui-gear"></span> &nbsp;Datos generales</a></li>
-		            		<li class="divider"></li>
-		            		<li><a href="../../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
-		          		</ul>
-			        </li>
-			    </ul>
-		  	</div>
-		</nav>
+		<?php 
+			include('../mod/navbar.php');
+		?>
 		<div class="contenido-general">
 			<div class="modal-header">
 				<h3 class="titulo-header">
@@ -86,29 +46,32 @@
 					</div>
 			  	<?php } ?>
 			  	<br>
+			  	<?php
+			  		date_default_timezone_set("America/Mexico_City");
+					$fechaActual = date("Y-m-d");
+	 			?>
 				<form method="post" action="../mod/registrar_orden.php">
 					<div class="form-inline">
 						<table class="table">
 							<tr>
-								<td><label>Distribuidor: </label></td>
+								<td><label class="lbl-nueva-orden">Distribuidor: </label></td>
 								<td>
-									<input type="hidden" name="inputIdEmpaque" id="inputIdEmpaque">
-									<input type="text" class="form-control" name="inputNombreEmpaque" id="inputNombreEmpaque" placeholder="Distribuidor..." readonly required>
+									<input type="hidden" name="inputIdDistribuidor" id="inputIdDistribuidor">
+									<input type="text" class="form-control" name="inputNombreDistribuidor" id="inputNombreDistribuidor" placeholder="Distribuidor..." readonly required>
 								</td>
 								<td>
-									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalEmpaque"><i class="glyphicon glyphicon-search"></i> Buscar Distribuidor</a>
+									<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalDistribuidor"><i class="glyphicon glyphicon-search"></i> Buscar Distribuidor</a>
 								</td>
-								<td></td>
-								<td class="derecha"><label>Fecha de Entrega: </label></td>
+								<td class="derecha"><label class="lbl-nueva-orden">Fecha de Entrega Deseada: </label></td>
 								<td class="derecha">
-									<input type="date" class="form-control" name="inputFechaEntrega" id="inputFechaEntrega" required>
+									<input type="date" class="form-control" min="<?php echo $fechaActual; ?>" name="inputFechaEntrega" id="inputFechaEntrega" required>
 								</td>
 							</tr>
 						</table>
 					</div>
 					<br>
-					<div id="contenedor-productos-empaque"> </div>
-					<div id="tabla-detalles-orden">
+					<div id="contenedor-productos-dist"> </div>
+					<div id="tabla-detalles-orden" style="display: none;">
 						<table class="table" id="tablaOrden">
 							<thead>
 								<tr>
@@ -133,7 +96,7 @@
 			</div>
 		</div>
 
-		<div class="modal fade bs-example-modal-lg" id="modalEmpaque" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal fade bs-example-modal-lg" id="modalDistribuidor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -145,11 +108,11 @@
 					<div class="modal-body">
 						<div class="form-inline">
 							<center>
-								<input type="text" class="form-control" name="inputBuscarEmpaque" id="inputBuscarEmpaque"  onkeyup="if(event.keyCode == 13) buscarEmpaques();" style="width: 80%;">
-								<button type="button" class="btn btn-primary" onclick="buscarEmpaques()"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+								<input type="text" class="form-control" name="inputBuscarDistribuidor" id="inputBuscarDistribuidor"  onkeyup="if(event.keyCode == 13) buscarDistribuidores();" style="width: 80%;">
+								<button type="button" class="btn btn-primary" onclick="buscarDistribuidores()"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 							</center>
 						</div>
-						<div class="contenedor-empaques" id="contenedor-empaques">
+						<div class="contenedor-distribuidores" id="contenedor-distribuidores">
 							<table class="table">
 								<thead>
 									<th class="centro">#</th>
@@ -161,14 +124,14 @@
 										include('../../mod/conexion.php');
 
 										$cont = 1;
-									    $consulta = "SELECT * FROM empresa_distribuidores WHERE estado = 1 ORDER BY RAND() LIMIT 10";
+									    $consulta = "SELECT * FROM empresa_distribuidores WHERE estado_d = 1 ORDER BY RAND() LIMIT 10";
 										$resultado = mysql_query($consulta);
 										while($row = mysql_fetch_array($resultado)){ ?>
 											<tr>
 												<td class="centro"><?php echo $cont; ?></td>
 								          		<td><?php echo $row['nombre_distribuidor']; ?></td>
 									        	<td class="derecha">
-									        		<button class="btn btn-success" onClick="seleccionarEmapque(<?php echo $row['id_distribuidor']; ?>, '<?php echo $row['nombre_distribuidor']; ?>');"><i class="glyphicon glyphicon-ok"></i> Seleccionar</button>
+									        		<button class="btn btn-success" onClick="seleccionarDistribuidor(<?php echo $row['id_distribuidor']; ?>, '<?php echo $row['nombre_distribuidor']; ?>');"><i class="glyphicon glyphicon-ok"></i> Seleccionar</button>
 									        	</td>
 									        	<?php $cont++; ?>
 								    	    </tr>
@@ -191,13 +154,15 @@
 		<script type="text/javascript" src="../../lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
 		<script type="text/javascript">
-			$('#tabla-detalles-orden').hide();
+			$('#modalDistribuidor').on('shown.bs.modal', function () {
+				$('#inputBuscarDistribuidor').focus()
+			});
 
-			function buscarEmpaques(){
-				var empaqueBuscar = $('#inputBuscarEmpaque').val();
+			function buscarDistribuidores(){
+				var distribuidorBuscar = $('#inputBuscarDistribuidor').val();
 
-				if(empaqueBuscar != ''){
-					var params = {'empaque':empaqueBuscar};
+				// if(distribuidorBuscar != ''){
+					var params = {'distribuidor':distribuidorBuscar};
 
 					$.ajax({
 						type: 'POST',
@@ -205,28 +170,28 @@
 						data: params,
 
 						success: function(data){
-							$('#contenedor-empaques').html(data);
-							$('#inputBuscarEmpaque').select();
+							$('#contenedor-distribuidores').html(data);
+							$('#inputBuscarDistribuidor').select();
 						}
 					});
-				}
+				// }
 			}
 
-			function seleccionarEmapque(idEmpaque, nombreEmpaque){
-				$('#inputIdEmpaque').val(idEmpaque);
-				$('#inputNombreEmpaque').val(nombreEmpaque);
-				$('#modalEmpaque').modal('toggle');
+			function seleccionarDistribuidor(idDistribuidor, nombreDistribuidor){
+				$('#inputIdDistribuidor').val(idDistribuidor);
+				$('#inputNombreDistribuidor').val(nombreDistribuidor);
+				$('#modalDistribuidor').modal('toggle');
 
 				$.ajax({
 					type: 'POST',
-					url: '../mod/buscar_productos.php',
-					data: {'idEmpaque':idEmpaque},
+					url: '../mod/buscar_productos_dist.php',
+					data: {'idDistribuidor':idDistribuidor},
 
 					success: function(data){
-						$('#contenedor-productos-empaque').html(data);
+						$('#contenedor-productos-dist').html(data);
 
 						$("#tablaOrden tr:gt(0)").remove();
-						$('#tabla-detalles-orden').hide();
+						$('#tabla-detalles-orden').css('display', 'none');
 					}
 				});
 			}
@@ -247,7 +212,7 @@
 
 							success: function(data){
 								$('#detalles-orden-empaque').append(data);
-								$('#tabla-detalles-orden').show();
+								$('#tabla-detalles-orden').css('display', 'block');
 								$('#inputCantidad').val(1);
 							}
 						});

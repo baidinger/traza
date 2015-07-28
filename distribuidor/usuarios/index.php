@@ -46,7 +46,8 @@
 				<div class="form-inline">
 					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del usuario..." onkeyup="if(event.keyCode == 13) buscarUsuarios();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarUsuarios();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<a href="../usuarios/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+					<a href="../nuevoUsuario/" class="btn btn-success" style="float: right;" id="btnRegistrarUsuario"><i class="glyphicon glyphicon-plus"></i> Registrar Usuario</a>
+					<a href="../usuarios/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
 			<div class="contenido-general-2">
@@ -83,7 +84,7 @@
 			      				$idDistribuidorFK = $row['id_distribuidor_fk'];
 
 								$cont = 1;
-								$consulta = "SELECT usus.id_usuario, usudist.id_usuario_distribuidor, usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nombre_usuario, usus.nivel_autorizacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor, usus.estado_usuario FROM usuario_distribuidor AS usudist, usuarios AS usus WHERE usudist.id_distribuidor_fk = $idDistribuidorFK AND usudist.id_usuario_fk = usus.id_usuario";
+								$consulta = "SELECT usus.id_usuario, usudist.id_usuario_distribuidor, usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nombre_usuario, usus.nivel_autorizacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor, usus.estado_usuario FROM usuario_distribuidor AS usudist, usuarios AS usus WHERE usudist.id_distribuidor_fk = $idDistribuidorFK AND usudist.id_usuario_fk = usus.id_usuario ORDER BY usudist.nombre_usuario_distribuidor ASC";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ ?>
 									<tr>

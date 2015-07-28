@@ -1,9 +1,9 @@
-<?php 
+<?php session_start();  if($_SESSION['nivel_socio'] != 1 || $_SESSION['superusuario'] != 1) return; 
 			$id_empaque = $_POST['id'];
 			include("../../mod/conexion.php");
 			$consulta = "select id_empaque, nombre_empaque, rfc_empaque, ".
 				"pais_empaque, estado_empaque, ciudad_empaque, direccion_empaque, cp_empaque, ".
-				" email_empaque, telefono1_empaque, telefono2_empaque, estado from empresa_empaques 
+				" email_empaque, telefono1_empaque, telefono2_empaque, estado_e from empresa_empaques 
 				where id_empaque = $id_empaque";
 
 			$result = mysql_query($consulta);

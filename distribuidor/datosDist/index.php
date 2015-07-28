@@ -60,6 +60,10 @@
 					      		<table class="table">
 					      			<tbody>
 					      				<tr>
+					      					<td><strong>Tipo de Socio:</strong></td>
+					      					<td>DISTRIBUIDOR</td>
+					      				</tr>
+					      				<tr>
 					      					<td><strong>Distribuidor:</strong></td>
 					      					<td><?php echo $row['nombre_distribuidor']; ?></td>
 					      				</tr>
@@ -90,6 +94,14 @@
 					      				<tr>
 					      					<td><strong>Email:</strong></td>
 					      					<td><?php echo $row['email_distribuidor']; ?></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Fecha de Registro:</strong></td>
+					      					<td><?php echo $row['fecha_registro_dist']; ?></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Fecha de modificación:</strong></td>
+					      					<td><?php echo $row['fecha_modificacion_dist']; ?></td>
 					      				</tr>
 					      			</tbody>
 					      		</table>
