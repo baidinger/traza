@@ -174,7 +174,8 @@
             this.recibos_btn.Name = "recibos_btn";
             this.recibos_btn.Size = new System.Drawing.Size(113, 44);
             this.recibos_btn.TabIndex = 24;
-            this.recibos_btn.Text = "Entregas";
+            this.recibos_btn.Text = "Entradas";
+            this.recibos_btn.Click += new System.EventHandler(this.recibos_btn_Click);
             // 
             // label6
             // 

@@ -94,5 +94,10 @@ namespace CS101_CALLBACK_API_DEMO
         {
 
         }
+
+        private void recibos_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
