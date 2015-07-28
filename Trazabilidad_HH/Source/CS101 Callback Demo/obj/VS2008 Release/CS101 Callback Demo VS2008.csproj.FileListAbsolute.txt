@@ -1,0 +1,99 @@
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\ResolveAssemblyReference.cache
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.BarcodeForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.StartMenu.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.SortListView.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.ProgressBar.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.MenuBar.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ReaderInfomation.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.GeigerSearchForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.MenuForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagInventoryForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagRangingForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagReadWriteForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.PowerForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ProfileForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Properties.Resources.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ReadAllBank.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagSearchForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ResultForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagSettingForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Singulation_DynamicQ.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Singulation_FixedQ.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagKillForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagSecurityForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.WriteAllBank.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.BarCodeMessage.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagWriteAnyFixEPCForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormColdChain.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormColdChainDetail.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormColdChainFeatures.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormColdChainMenu.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormColdChainMonitorConfig.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormColdChainTempCalConfig.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormColdChainViewLog.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormCS9010.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormUCODE7.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.FormUDPout.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.QTTagInventoryForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ConfigOffset.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.SerialControlFrom.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagBlockPermaLockForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagInventoryWithSyncQueue.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.TagWriteAnyEPCForm.resources
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Callback Demo VS2008.csproj.GenerateResource.Cache
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CommDrv.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\hhpImgrSdk.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\rfid.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\rfidb.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\rfidtx.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 CALLBACK API DEMO.exe
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 CALLBACK API DEMO.pdb
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Data.SQLite.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.dll
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.pdb
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.pdb
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.pdb
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.pdb
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 CALLBACK API DEMO.exe
+D:\Mephist\RFID Project\CS101 Demo Apps\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 CALLBACK API DEMO.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\ResolveAssemblyReference.cache
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.StartMenu.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.SortListView.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.ProgressBar.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcs.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Properties.Resources.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ResultForm.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.BarCodeMessage.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.enviosWorking.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.PowerForm.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ProfileForm.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.sesion.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ConfigOffset.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.workingPlace.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Callback Demo VS2008.csproj.GenerateResource.Cache
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 CALLBACK API DEMO.exe
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CommDrv.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\hhpImgrSdk.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\rfid.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\rfidb.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\rfidtx.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 CALLBACK API DEMO.exe
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 CALLBACK API DEMO.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Data.SQLite.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\System.Data.SqlServerCe.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 CALLBACK API DEMO.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.mensajeShow.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.server.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.cargando.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.trazabilidadSplash.resources

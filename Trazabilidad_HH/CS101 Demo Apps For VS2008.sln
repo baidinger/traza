@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{E6921DAF-E9E8-4306-8326-E382580DF485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS101 Callback Demo VS2008", "Source\CS101 Callback Demo\CS101 Callback Demo VS2008.csproj", "{7281F977-BDA7-44DD-973E-A12FCE323BD6}"
+EndProject
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "CS101 Callback Demo Setup", "Source\CS101 Callback Demo Setup\CS101 Demo VS2008.vddproj", "{A55538B7-70F7-459E-A584-45F4A986950D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		VS2008 Release|Any CPU = VS2008 Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.Debug|Any CPU.ActiveCfg = VS2008 Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.Debug|Any CPU.Build.0 = VS2008 Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.Debug|Any CPU.Deploy.0 = VS2008 Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.Release|Any CPU.ActiveCfg = VS2008 Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.Release|Any CPU.Build.0 = VS2008 Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.Release|Any CPU.Deploy.0 = VS2008 Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.VS2008 Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.VS2008 Release|Any CPU.Build.0 = Release|Any CPU
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6}.VS2008 Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A55538B7-70F7-459E-A584-45F4A986950D}.Debug|Any CPU.ActiveCfg = Debug
+		{A55538B7-70F7-459E-A584-45F4A986950D}.Debug|Any CPU.Build.0 = Debug
+		{A55538B7-70F7-459E-A584-45F4A986950D}.Release|Any CPU.ActiveCfg = Release
+		{A55538B7-70F7-459E-A584-45F4A986950D}.Release|Any CPU.Build.0 = Release
+		{A55538B7-70F7-459E-A584-45F4A986950D}.VS2008 Release|Any CPU.ActiveCfg = Release
+		{A55538B7-70F7-459E-A584-45F4A986950D}.VS2008 Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7281F977-BDA7-44DD-973E-A12FCE323BD6} = {E6921DAF-E9E8-4306-8326-E382580DF485}
+		{A55538B7-70F7-459E-A584-45F4A986950D} = {E6921DAF-E9E8-4306-8326-E382580DF485}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
