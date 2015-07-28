@@ -21,7 +21,7 @@
 
 					if($r){
 						$datos_usuario = "Bien*Pre-Envio eliminado correctamente";
-						mysql_query("UPDATE camiones_empaque set estado_ce = 0 where id_camion = $carro");
+						mysql_query("UPDATE camiones_empaque set disponibilidad_ce = 0 where id_camion = $carro");
 					}
 					else
 						$datos_usuario = "Error*No se pudo eliminar el envio $id_envio";
@@ -38,7 +38,7 @@
 
 					if($r){
 						$datos_usuario = "Bien*Pre-Envio eliminado correctamente";
-						mysql_query("UPDATE camiones_distribuidor set estado_cd = 0 where id_camion = $carro");
+						mysql_query("UPDATE camiones_distribuidor set disponibilidad_camiones_distribuidor = 0 where id_camion = $carro");
 					}
 					else
 						$datos_usuario = "Error*No se pudo eliminar el envio $id_envio";
