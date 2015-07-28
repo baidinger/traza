@@ -43,8 +43,8 @@
 			          	<?php } ?>
 			          			<td >
 									<div style="margin:0px auto; width:90px;">
-				          				<a  style="float:left; cursor:pointer;"> 
-				          					<span onclick="editar(<?php print $row['id_productor'] ?>)" data-toggle="modal" data-toggle="tooltip" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
+				          				<a style="float:left; cursor:pointer;" data-toggle="tooltip" data-placement="top" title="Editar"> 
+				          					<span onclick="editar(<?php print $row['id_productor'] ?>)" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 				          				</a>
 				          				<div style="width:20px; height:10px; float:left;"></div> 
 
@@ -108,7 +108,7 @@
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        	<h3 class="modal-title">
-		       			<img class="img-header" src="img/imagen.png">Editar productor
+		       			<img class="img-header" src="img/productor.png">Editar productor
 		       		</h3>
 			      </div>
 			      <div id="data-child" class="modal-body">
@@ -117,21 +117,26 @@
 			    </div>
 			  </div>
 			</div>
+
+			<!-- Modal -
+			<div class="modal fade" id="myModalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        	<h3 class="modal-title">
+		       			<img class="img-header" src="img/productor.png">Registrar productor
+		       		</h3>
+			      </div>
+			      <div id="form" class="modal-body">
+	
+			      </div>
+			    </div>
+			  </div>
+			</div>-->
 	<script type="text/javascript">
 		$('#paginacion-resultados').simplePagination();
-		function editar(id){
-					var params = {'id':id};
-					$.ajax({
-						type: 'POST',
-						url: 'busquedas/editarProductor.php',
-						data: params,
-
-						success: function(data){
-							$('#data-child').html(data);
-						},
-						beforeSend: function(data ) {
-					    $("#data-child").html("<center><img src=\"img/cargando.gif\"></center>");
-					  }
-					});
-			}
+		$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 	</script>

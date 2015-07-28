@@ -3,6 +3,7 @@
 	<head lang="ES">
 		<title>Registro - lote</title>
 		<meta charset="UTF-8">
+		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
 		<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
 		<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
 	</head>
@@ -108,73 +109,47 @@
 		     			<input type="hidden" name="url" value="../index.php?op=admon_lotes">
 		     	</center>
 		     	</div>
+		     	<div style="clear:both"></div>
 		    </form>	
 	    </div>
 	
 	 </div>
 
 	 <div class="modal fade bs-example-modal-lg" id="modalProductor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-			<div class="modal-dialog modal-lg">
+			<div class="modal-dialog modal-md">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" >
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="titulo-header">
+						<h3 class="titulo-header" style="margin: 0px">
 							<img class="img-header" src="img/buscar.png"> <span id="titulo-detalles">Buscar productor</span>
 						</h3>
 					</div>
 					<div class="modal-body">
-						<div class="alert alert-info"><p>En la siguiente tabla se muestran los productores activos en el sistema</p></div>
+						
 						<div class="form-inline">
-							<center>
-								<input type="text" class="form-control" name="inputBuscarProductor" id="inputBuscarProductor"  onkeyup="if(event.keyCode == 13) buscarProductores();" style="width: 80%;">
-								<button type="button" class="btn btn-primary" onclick="buscarProductores()"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-							</center>
+							<input type="text" placeholder="Buscar nombre del productor / RFC" class="form-control" name="inputBuscarProductor" id="inputBuscarProductor"  onkeyup="if(event.keyCode == 13) buscarProductores();" style="width: 60%;">
+							<button type="button"  class="btn btn-primary" onclick="buscarProductores()"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 						</div>
-
+						<div style="clear:both"></div>
+						<p>&nbsp;</p>
 						<div class="contenedor-productores" id="contenedor-productores">
-							<table class="table">
-								<thead>
-									<th class="centro">#</th>
-									<th>RFC</th>
-									<th>Nombre del Productor</th>
-									<th class="derecha"></th>
-								</thead>
-								<tbody>
-									<?php 
-										include('../../mod/conexion.php');
-
-										$cont = 1;
-									    $consulta = "SELECT * FROM empresa_productores WHERE estado_p = 1 ORDER BY nombre_productor LIMIT 10 ";
-										$resultado = mysql_query($consulta);
-										while($row = mysql_fetch_array($resultado)){ ?>
-											<tr>
-												<td class="centro"><?php echo $cont; ?></td>
-												<td><?php echo $row['rfc_productor']; ?></td>
-								          		<td><?php echo $row['nombre_productor'] . " " . $row['apellido_productor']; ?></td>
-									        	<td class="derecha">
-									        		<button class="btn btn-success" data-dismiss="modal" onClick="seleccionarProductor(<?php echo $row['id_productor']; ?>, '<?php echo $row['rfc_productor'] .' - '. $row['nombre_productor'] .' '. $row['apellido_productor']; ?>');"><i class="glyphicon glyphicon-ok"></i> Seleccionar</button>
-									        	</td>
-									        	<?php $cont++; ?>
-								    	    </tr>
-										<?php }
-									?>
-								</tbody>
-							</table>
+							
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<?php mysql_close(); ?>
+		
 	</body>
 
 
 
 	<script type="text/javascript" src="../lib/jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 	<!--<script type="text/javascript" src="script/bootstrap.min.js"></script>-->
 
 	<script type="text/javascript">
@@ -192,8 +167,6 @@
 
 			function buscarProductores(){
 				var productorBuscar = $('#inputBuscarProductor').val();
-
-				if(productorBuscar != ''){
 					var params = {'productor':productorBuscar};
 
 					$.ajax({
@@ -206,8 +179,9 @@
 							$('#inputBuscarProductor').select();
 						}
 					});
-				}
 			}
+
+			buscarProductores();
 
 			function seleccionarProductor(idProductor, nombreProductor){
 				

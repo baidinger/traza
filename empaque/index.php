@@ -58,10 +58,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <span class="glyphicon glyphicon-th-large"></span>&nbsp;Registrar <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="index.php?op=reg_productor">Productor</a></li>
-            <?php if($superusuario == 1) { ?>
             <li><a href="index.php?op=reg_empaque">Empaque</a></li>
-            <?php } ?>
             <li><a href="index.php?op=reg_distribuidor">Distribuidor</a></li>
             <li><a href="index.php?op=reg_punto_venta">Punto de venta</a></li>
           </ul>
@@ -74,7 +71,9 @@
             <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Administrar roles <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="index.php?op=bus_productor">Productores</a></li>
+             <?php if($superusuario == 1) { ?>
             <li><a href="index.php?op=bus_empaque">Empaques</a></li>
+            <?php } ?>
             <li><a  href="index.php?op=bus_camion">Camiones</a></li>
             <li><a  href="index.php?op=bus_distribuidor">Distribuidores</a></li>
             <li><a  href="index.php?op=bus_pv">Punto de venta</a></li>

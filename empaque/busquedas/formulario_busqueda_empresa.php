@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <div class="contenedor-form">
 			
 	  		<div class="modal-header">
@@ -22,7 +23,10 @@
 		<button  data-toggle="tooltip" title="Búsqueda avanzada" class="btn btn-primary" ><span class="glyphicon glyphicon-filter"></span>&nbsp;</button>			
 	</div>
 	<div style="float:right; margin-top: 20px; margin-right:50px;">
+		<?php if($_SESSION['nivel_socio'] == 1){ ?>
+		<a href="<?php print $ruta ?>" data-toggle="tooltip" title="Registrar" class="btn btn-success" ><span class="glyphicon glyphicon-plus"></span>&nbsp;</a>
 		<button data-toggle="tooltip" title="Estadísticas" class="btn btn-success" ><span class="glyphicon glyphicon-stats"></span>&nbsp;</button>
+		<?php } ?>
 		<button  data-toggle="tooltip" title="Generar reporte" class="btn btn-success"><span class="glyphicon glyphicon-save-file"></span>&nbsp;</button>
 	</div>
 

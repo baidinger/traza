@@ -288,9 +288,9 @@
 							}
 			           ?>
 			           <td > 
-			           	<button style="float:right" onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')" class="btn btn-primary">
+			           	<a style="float:right; cursor:hand" onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')">
 			           		<span class="glyphicon glyphicon-eye-open"></span>&nbsp;
-			           	</button>
+			           	</a>
 			           </td>
 		        	</tr>
 		        <?php  

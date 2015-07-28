@@ -22,8 +22,9 @@
 		          <!--<th class="centro">Producto</th>-->
 		          
 		          <th class="centro">Fecha de envío</th>
-		          <th class="centro">Estado</th>
 		          <th class="centro">Acción</th>
+		          <th class="centro">Estado</th>
+		          <th></th>
 		        </tr>
       		</thead>
       		<tbody>
@@ -52,6 +53,16 @@
 			        	
 			          	<td class="centro"><?php echo $row['fecha_envio']." a las ".$row['hora_envio']; ?></td>
 			          	<td class="centro">
+				          	<?php if($_SESSION['nivel_socio'] == 1) if($row['estado_envio'] == 3){ ?>
+					    	<a data-toggle="modal" data-target="#myModal" href="#" onclick = "cancelar('<?php print $row['id_envio'] ?>','<?php print $row['id_orden_fk'] ?>')"> 
+	          					<span data-toggle="tooltip" data-placement="top" title="Cancelar envío" class="glyphicon glyphicon-remove"></span>
+	          				</a>&nbsp;&nbsp;
+	          				
+	          				<?php } else { ?>
+	          					---
+	          				<?php } ?>
+          				</td>
+			          	<td class="centro">
 			          		<?php 
 	      					 switch($row['estado_envio']){
 	      					 	case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
@@ -72,14 +83,7 @@
 			           	<a onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"  href="#">
 				        	<span title ="Detalles de envío" class="glyphicon glyphicon-eye-open"></span>
 				    	</a>&nbsp;&nbsp;
-				    	<?php if($_SESSION['nivel_socio'] == 1) if($row['estado_envio'] == 3){ ?>
-				    	<a data-toggle="modal" data-target="#myModal" href="#" onclick = "cancelar('<?php print $row['id_envio'] ?>','<?php print $row['id_orden_fk'] ?>')"> 
-          					<span data-toggle="tooltip" data-placement="top" title="Cancelar envío" class="glyphicon glyphicon-remove"></span>
-          				</a>&nbsp;&nbsp;
-          				
-          				<?php } else { ?>
-          					<span style="width:16px; height:10px;"></span>
-          				<?php } ?>
+				    	
 			           	</td>
 		        	</tr>
 		        <?php  
@@ -132,4 +136,5 @@
 		<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
+			
 		</script>

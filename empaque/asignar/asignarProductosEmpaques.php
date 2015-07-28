@@ -30,17 +30,6 @@
 	  		<?php 
 	  				include("../../mod/conexion.php");
 
-	  				/*echo "select * from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario'];*/
-
-	  				/*$result = mysql_query("select id_empaque_fk from usuario_empaque where id_usuario_fk = ".$_SESSION['id_usuario']);
-	  				if(mysql_num_rows($result) > 0){
-	  					while($row = mysql_fetch_array($result)){
-	  						$id_empaque = $row['id_empaque_fk'];
-	  					}
-	  				}*/
-
-
-
 	  				$result = mysql_query("select id_productos_empaque, nombre_producto, variedad_producto, precio_compra, precio_venta from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk join productos on productos.id_producto = productos_empaques.id_producto_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario']);
 	  				
 	  		 ?>
@@ -125,63 +114,30 @@
 	  	</div>
 
 	  	<div class="modal fade bs-example-modal-md" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-			<div class="modal-dialog modal-lg">
+			<div class="modal-dialog modal-md">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="titulo-header">
-							<img class="img-header" src="img/buscar.png"><span id="titulo-detalles">Buscar Producto</span>
+						<h3 class="titulo-header" style="margin:0">
+							<img class="img-header" src="img/buscar.png">
+							<span id="titulo-detalles">Buscar Producto</span>
 						</h3>
 					</div>
 					<div class="modal-body" style="background:#FFFFFF;">
 						<div class="form-inline">
-							<center>
-								<input type="text" class="form-control" name="inputBuscarProducto" id="inputBuscarProducto"  onkeyup="if(event.keyCode == 13) buscarProductos();" style="width: 80%;">
+								<label class="col-sm-2 control-label">Buscar</label>
+								<input style="width:60%" placeholder="Buscar nombre del producto" type="text" class="form-control" name="inputBuscarProducto" id="inputBuscarProducto"  onkeyup="if(event.keyCode == 13) buscarProductos();" style="width: 80%;">
 								<button type="button" class="btn btn-primary" onclick="buscarProductos()"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-							</center>
+
 						</div>
+
+					<div style="clear:both"></div>
+					<p>&nbsp;</p>
 						<div id="contenedor-productos">
-							<div id="paginacion" style="width:95%; margin:0px auto;">
-							<table class="table">
-								<thead>
-									<th class="centro">#</th>
-									<th>Nombre del Producto</th>
-									<th></th>
-								</thead>
-								<tbody>
-									<?php 
-										include('../../mod/conexion.php');
-
-										$cont = 1;
-									    $consulta = "SELECT * FROM productos ORDER BY nombre_producto ASC, variedad_producto ASC";
-										$resultado = mysql_query($consulta);
-										while($row = mysql_fetch_array($resultado)){ 
-									?>
-											<tr>
-												<td class="centro"><?php echo $cont; ?></td>
-								          		<td><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></td>
-								          		<td class="derecha">
-									        		<button class="btn btn-success" onClick="agregarProducto(<?php echo $row['id_producto']; ?>, '<?php echo $_SESSION['id_empaque']; ?>');"><i class="glyphicon glyphicon-ok"></i> Agregar</button>
-									        	</td>
-									        	<?php $cont++; ?>
-								    	    </tr>
-										<?php }
-									?>
-								</tbody>
-							</table>
-							<?php if($i > 1){ ?>
-								<div class="my-navigation" style="margin: 0px auto;">
-								<div class="simple-pagination-page-numbers"></div>
-								<br><br><br>
-								</div>
-							<?php } ?>
-
-						</div>
-
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 					</div>
 				</div>
 			</div>
@@ -221,9 +177,7 @@
 	  	<script type="text/javascript">
 
 	  		$('#paginacion-resultados').simplePagination();
-	  		$('#paginacion').simplePagination({
-	  			items_per_page:6
-	  		});
+	  		
 	  		$('.eliminar').tooltip();
 
 	  		function modalCostoShow(idOrden, costo_orden, tipo){
@@ -269,12 +223,12 @@
 			
 			function buscarProductos(){
 				var productoBuscar = $('#inputBuscarProducto').val();
-				if(productoBuscar != ''){
+			
 					var params = {'producto':productoBuscar};
 
 					$.ajax({
 						type: 'POST',
-						url: 'asignar/buscar_productos.php',
+						url: 'buscar/buscar_productos.php',
 						data: params,
 
 						success: function(data){
@@ -282,8 +236,10 @@
 							$('#inputBuscarProducto').select();
 						}
 					});
-				}
+				
 			}
+
+			buscarProductos();
 
 			function agregarProducto(idProducto, idEmpaque){
 

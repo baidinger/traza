@@ -12,16 +12,14 @@
 			$titulo = "Búsqueda de punto de venta";
 			$placeholder="Buscar punto de venta";
 			$imagen = "pv.png";
-			include("formulario_busqueda.php") ?>
+			$ruta = "index.php?op=reg_punto_venta";
+			include("formulario_busqueda_empresa.php"); ?>
 		<div style="clear:both"></div>
 		<div id="data">
 
 		</div>
 	</body>
 	<script type="text/javascript">
-		$('.editar').tooltip();
-		$('.activar').tooltip();
-		$('.desactivar').tooltip();
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
 					var params = {'buscar':Buscar};
