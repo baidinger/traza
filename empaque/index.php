@@ -10,10 +10,11 @@
     $_empaque = mysql_query($consulta);
      if($row = mysql_fetch_array($_empaque)) {
       /**** privilegios ****/
-       $pedidos = $row['pedidos'];
-       $envios = $row['envios'];
-       $lotes = $row['lotes'];
+       $_SESSION['pedidos'] = $row['pedidos'];
+       $_SESSION['envios'] = $row['envios'];
+       $_SESSION['lotes'] = $row['lotes'];
        $superusuario = $row['superusuario'];
+       $_SESSION['superusuario'] = $superusuario;
 
       /******/
        $_SESSION['nombre_empaque'] = $row['nombre_empaque'];
@@ -52,8 +53,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <?php if($_SESSION['nivel_socio'] == 1){ ?>
-      	<!-- Registrar Empresa -->
+       <!-- <?php if($_SESSION['nivel_socio'] == 1){ ?>
+      	
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <span class="glyphicon glyphicon-th-large"></span>&nbsp;Registrar <span class="caret"></span></a>
@@ -63,7 +64,7 @@
             <li><a href="index.php?op=reg_punto_venta">Punto de venta</a></li>
           </ul>
         </li>
-        <?php } ?>
+        <?php } ?>-->
          <?php if($_SESSION['nivel_socio'] == 1){ ?>
       	<!-- Administrar cuentas -->
         <li class="dropdown">
@@ -89,18 +90,19 @@
                     <li><a href="index.php?op=admon_users">Administrar usuarios</a></li>
             </ul>
         </li>
+        <?php } ?>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-apple"></span> &nbsp;Mi empaque <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="index.php?op=asig_pro_empaque">Asignar productos</a></li>
-              <?php if($pedidos == 1) {?>
+              <?php if($_SESSION['pedidos'] == 1) {?>
               <li><a href="index.php?op=pedidos">Pedidos</a></li>
-              <?php } if($envios == 1){ ?>
+              <?php } if($_SESSION['envios'] == 1){ ?>
               <li><a href="index.php?op=envios">Envíos</a></li>
                <?php }
 
-              if($lotes == 1){ ?>
+              if($_SESSION['lotes'] == 1){ ?>
               <li class="divider"></li>
               <li><a href="index.php?op=reg_lote">Registrar lote</a></li>
              
@@ -112,6 +114,7 @@
               <li><a href="index.php?op=informacion">Información</a></li>
             </ul>
         </li>
+        <?php if($_SESSION['nivel_socio'] == 1){ ?>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-tags"></span> &nbsp;Etiquetas <span class="caret"></span></a>
@@ -122,9 +125,7 @@
         </li>
           <li><a href="#">
           <span class="glyphicon glyphicon-stats"></span> &nbsp;Estadísticas</a></li>
-      
         <?php } ?>
-
       </ul>
        <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -194,6 +195,9 @@ if($_GET("op") == "bus_productor")
 
 if($_GET("op") == "bus_empaque") 
   $("#views").load("busquedas/Busc_empaque.php");
+
+if($_GET("op") == "bus_camion") 
+  $("#views").load("busquedas/Busc_camion.php");
 
 if($_GET("op") == "bus_distribuidor") 
   $("#views").load("busquedas/Busc_distribuidores.php");

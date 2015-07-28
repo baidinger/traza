@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; ?>
 <!DOCTYPE html>
 <html>
 	<head lang="ES">

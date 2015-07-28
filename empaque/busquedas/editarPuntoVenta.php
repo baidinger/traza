@@ -1,11 +1,11 @@
-<?php
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 
 $id = $_POST['id'];
 	include("../../mod/conexion.php");
 
 $result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rfc_punto_venta, ".
 				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta,cp_punto_venta, telefono_punto_venta, email_punto_venta ,direccion_punto_venta, ".
-				" estado from empresa_punto_venta where 
+				" estado_pv from empresa_punto_venta where 
 				id_punto_venta = $id AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
         	
 			$row = mysql_fetch_array($result_productores);

@@ -1,4 +1,4 @@
-<?php @session_start();
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 			include("../../mod/conexion.php");
 			$id = $_POST['id'];
 			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
