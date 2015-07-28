@@ -10,10 +10,10 @@
 
 	<body>
 		<?php 
-			$titulo = "Búsqueda de productores";
-			$placeholder="Buscar productor / usuario";
-			$imagen = "productor.png";
-			$ruta = "index.php?op=reg_productor";
+			$titulo = "Búsqueda de camiones";
+			$placeholder="Buscar núm camión / chofer";
+			$imagen = "camion.png";
+			$ruta = "index.php?op=reg_camion";
 			include("formulario_busqueda_empresa.php"); ?>
 		<div style="clear:both"></div>
 		<div id="data">
@@ -57,27 +57,13 @@
 					  }
 					});
 		}
-/*
-		function registrar(){
-			$('#myModalRegistro').modal('show');
-				$.ajax({
-					type: 'POST',
-					url: 'lotes/registro_nuevo_lote.php',
-					success: function(data){
-						$('#form').html(data);
-					},
-						beforeSend: function(data ) {
-					    $("#form").html("<center><img src=\"img/cargando.gif\"></center>");
-					  }
-				});
-		}
-*/
+
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
 					var params = {'buscar':Buscar};
 					$.ajax({
 						type: 'POST',
-						url: 'busquedas/coincidencias_productores.php',
+						url: 'busquedas/coincidencias_camiones.php',
 						data: params,
 
 						success: function(data){

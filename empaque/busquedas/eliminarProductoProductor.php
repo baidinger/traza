@@ -1,4 +1,4 @@
-<?php 
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 		include('../../mod/conexion.php');
 
 		$idProductoPro	=	$_POST['idProProductor'];

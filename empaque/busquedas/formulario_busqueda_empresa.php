@@ -1,4 +1,3 @@
-<?php session_start() ?>
 <div class="contenedor-form">
 			
 	  		<div class="modal-header">
