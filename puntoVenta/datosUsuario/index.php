@@ -10,7 +10,7 @@
 					break;
 			case 2: header('Location: ../../empaque/');
 					break;
-			case 4: header('Location: ../../puntoVenta/');
+			case 3: header('Location: ../../distribuidor/');
 					break;
 		}
 	}
@@ -45,7 +45,7 @@
 			      			<?php
 			      				include('../../mod/conexion.php');
 
-			      				$consulta = "SELECT usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nivel_autorizacion_usuario, usus.fecha_creacion_usuario, usus.fecha_modificacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor FROM usuarios AS usus, usuario_distribuidor AS usudist WHERE usudist.id_usuario_fk = usus.id_usuario AND usus.id_usuario = ".$_SESSION['id_usuario'];
+			      				$consulta = "SELECT usudist.nombre_usuario_pv, usudist.apellidos_usuario_pv, usus.nivel_autorizacion_usuario, usus.fecha_creacion_usuario, usus.fecha_modificacion_usuario, usudist.direccion_usuario_pv, usudist.telefono_usuario_pv FROM usuarios AS usus, usuario_punto_venta AS usudist WHERE usudist.id_usuario_fk = usus.id_usuario AND usus.id_usuario = ".$_SESSION['id_usuario'];
 			      				$resultado = mysql_query($consulta);
 			      				$row = mysql_fetch_array($resultado);
 			      			?>
@@ -54,7 +54,7 @@
 					      			<tbody>
 					      				<tr>
 					      					<td><strong>Tipo de Socio:</strong></td>
-					      					<td>DISTRIBUIDOR</td>
+					      					<td>PUNTO VENTA</td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Nivel de Usuario:</strong></td>
@@ -77,18 +77,18 @@
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Nombre:</strong></td>
-					      					<td><?php echo $row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor']; ?></td>
+					      					<td><?php echo $row['nombre_usuario_pv']." ".$row['apellidos_usuario_pv']; ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Teléfono:</strong></td>
-					      					<td><?php echo $row['telefono_usuario_distribuidor']; ?></td>
+					      					<td><?php echo $row['telefono_usuario_pv']; ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Dirección:</strong></td>
-					      					<td><?php echo $row['direccion_usuario_distribuidor']; ?></td>
+					      					<td><?php echo $row['direccion_usuario_pv']; ?></td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Fecha de Registro:</strong></td>
+					      					<td><strong>Fecha de Creación:</strong></td>
 					      					<td><?php echo $row['fecha_creacion_usuario']; ?></td>
 					      				</tr>
 					      				<tr>

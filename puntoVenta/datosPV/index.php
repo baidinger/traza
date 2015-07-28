@@ -10,7 +10,7 @@
 					break;
 			case 2: header('Location: ../../empaque/');
 					break;
-			case 4: header('Location: ../../puntoVenta/');
+			case 3: header('Location: ../../distribuidor/');
 					break;
 		}
 	}
@@ -26,6 +26,8 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap.min.css">
 		<!-- <link rel="stylesheet" type="text/css" href="../../lib/bootstrap-3.3.5/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
+
+		<script type="text/javascript" src="../mod/paises.js"></script>
 	</head>
 
 	<body>
@@ -35,7 +37,7 @@
 		<div class="contenido-general">
 			<div class="modal-header">
         		<h3 class="titulo-header">
-        			<img class="img-header" src="../../img/login.png"> Datos del Usuario
+        			<img class="img-header" src="../../img/distribuidor.png"> Datos del Punto de Venta
         		</h3>
       		</div>
 			<div class="contenido-general-2">
@@ -45,7 +47,12 @@
 			      			<?php
 			      				include('../../mod/conexion.php');
 
-			      				$consulta = "SELECT usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nivel_autorizacion_usuario, usus.fecha_creacion_usuario, usus.fecha_modificacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor FROM usuarios AS usus, usuario_distribuidor AS usudist WHERE usudist.id_usuario_fk = usus.id_usuario AND usus.id_usuario = ".$_SESSION['id_usuario'];
+			      				$consulta = "SELECT id_punto_venta_fk FROM usuario_punto_venta WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+								$resultado = mysql_query($consulta);
+								$row = mysql_fetch_array($resultado);
+								$id_punto_venta_fk = $row['id_punto_venta_fk'];
+
+			      				$consulta = "SELECT * FROM empresa_punto_venta WHERE id_punto_venta = $id_punto_venta_fk";
 			      				$resultado = mysql_query($consulta);
 			      				$row = mysql_fetch_array($resultado);
 			      			?>
@@ -54,46 +61,47 @@
 					      			<tbody>
 					      				<tr>
 					      					<td><strong>Tipo de Socio:</strong></td>
-					      					<td>DISTRIBUIDOR</td>
+					      					<td>PUNTO DE VENTA</td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Nivel de Usuario:</strong></td>
+					      					<td><strong>Punto de Venta:</strong></td>
+					      					<td><?php echo $row['nombre_punto_venta']; ?></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>RFC:</strong></td>
+					      					<td><?php echo $row['rfc_punto_venta']; ?> </td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Ubicación:</strong></td>
 					      					<td>
-					      						<?php 
-					      							if($row['nivel_autorizacion_usuario'] == 1)
-					      								echo "USUARIO ADMINISTRADOR";
-					      							else
-					      								echo "USUARIO NORMAL";
-					      						?>
+					      						<script type="text/javascript">
+					      							document.write(obtenerEstado(<?php echo $row['pais_punto_venta']; ?>, <?php echo $row['estado_punto_venta']; ?>) + ", " + obtenerPais(<?php echo $row['pais_punto_venta']; ?>));
+												</script>
 					      					</td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Usuario:</strong></td>
-					      					<td><?php echo $_SESSION['nombre_usuario']; ?> </td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Contraseña:</strong></td>
-					      					<td><a href="../contrasena/">*****************************</a></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Nombre:</strong></td>
-					      					<td><?php echo $row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Teléfono:</strong></td>
-					      					<td><?php echo $row['telefono_usuario_distribuidor']; ?></td>
+					      					<td><strong>Ciudad:</strong></td>
+					      					<td><?php echo $row['ciudad_punto_venta']; ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Dirección:</strong></td>
-					      					<td><?php echo $row['direccion_usuario_distribuidor']; ?></td>
+					      					<td><?php echo $row['direccion_punto_venta']." C.P. ".$row['cp_punto_venta']; ?></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Teléfono:</strong></td>
+					      					<td><?php echo $row['telefono_punto_venta']; ?></td>
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Email:</strong></td>
+					      					<td><?php echo $row['email_punto_venta']; ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Fecha de Registro:</strong></td>
-					      					<td><?php echo $row['fecha_creacion_usuario']; ?></td>
+					      					<td><?php echo $row['fecha_registro_pv']; ?></td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Fecha de Modificación:</strong></td>
-					      					<td><?php echo $row['fecha_modificacion_usuario']; ?></td>
+					      					<td><strong>Fecha de modificación:</strong></td>
+					      					<td><?php echo $row['fecha_modificacion_pv']; ?></td>
 					      				</tr>
 					      			</tbody>
 					      		</table>

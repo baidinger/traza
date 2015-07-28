@@ -146,7 +146,7 @@ textarea{
 	cursor: pointer;
 }
 
-#inputNombreEmpaque{
+#inputNombreEmpaque, #inputNombreDistribuidor{
 	width: 100%;
 }
 

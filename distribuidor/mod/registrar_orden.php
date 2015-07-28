@@ -46,7 +46,7 @@
 		mysql_close();
 	
 		if(!empty($mysqlError)){
-			header('Location: ../nuevaOrden/e');
+			header('Location: ../nuevaOrden/?e');
 		} else {
 			header('Location: ../historialOrdenes/');
 		}

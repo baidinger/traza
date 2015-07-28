@@ -38,7 +38,7 @@
 		<div class="contenido-general">
 			<div class="modal-header">
         		<h3 class="titulo-header">
-        			<img class="img-header" src="../../img/login.png"> Nuevo Usuario
+        			<img class="img-header" src="../../img/login.png"> Registrar Usuario
         		</h3>
       		</div>
 			<div class="contenido-general-2">

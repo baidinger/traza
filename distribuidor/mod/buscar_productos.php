@@ -60,7 +60,7 @@
 				</div>
 			<?php } else{ ?>
 				<div class="alert alert-info" role="alert" style="text-align: center;">
-					<strong>Sin resultados...</strong> No se encontraron coincidencias para "<?php echo $usuario; ?>".
+					<strong>Sin resultados...</strong> No se encontraron coincidencias para "<?php echo $producto; ?>".
 				</div>
 			<?php } ?>
 

@@ -73,7 +73,7 @@
 					</div>
 					<br>
 					<div id="contenedor-productos-empaque"> </div>
-					<div id="tabla-detalles-orden">
+					<div id="tabla-detalles-orden" style="display: none;">
 						<table class="table" id="tablaOrden">
 							<thead>
 								<tr>
@@ -156,8 +156,6 @@
 		<script type="text/javascript" src="../../lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
 		<script type="text/javascript">
-			$('#tabla-detalles-orden').hide();
-
 			$('#modalEmpaque').on('shown.bs.modal', function () {
 				$('#inputBuscarEmpaque').focus()
 			});
@@ -195,7 +193,7 @@
 						$('#contenedor-productos-empaque').html(data);
 
 						$("#tablaOrden tr:gt(0)").remove();
-						$('#tabla-detalles-orden').hide();
+						$('#tabla-detalles-orden').css('display', 'none');
 					}
 				});
 			}
@@ -216,7 +214,7 @@
 
 							success: function(data){
 								$('#detalles-orden-empaque').append(data);
-								$('#tabla-detalles-orden').show();
+								$('#tabla-detalles-orden').css('display', 'block');
 								$('#inputCantidad').val(1);
 							}
 						});
