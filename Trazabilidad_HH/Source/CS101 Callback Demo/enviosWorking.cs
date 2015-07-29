@@ -16,13 +16,26 @@ namespace CS101_CALLBACK_API_DEMO
     public partial class enviosWorking : Form
     {
         public int socio, id_socio, id_usuario, datosTabla=0;
-        public ArrayList arrList = new ArrayList();
-        public envios[] e;
+        public DataTable dt;
         public int preIdEnvio, preIdOrden, preIdCarro;
 
         public enviosWorking(int socio, int id_socio, int id_usuario)
         {
             InitializeComponent();
+            dt = new DataTable();
+            DataColumn col;
+
+            col = dt.Columns.Add();
+            col.ColumnName = "N° de envio";
+            col.DataType = typeof(string);
+
+            col = dt.Columns.Add();
+            col.ColumnName = "N° de orden";
+            col.DataType = typeof(string);
+
+            col = dt.Columns.Add();
+            col.ColumnName = "N° de carro";
+            col.DataType = typeof(string);
 
             String result = "";
             this.socio = socio;
@@ -54,6 +67,7 @@ namespace CS101_CALLBACK_API_DEMO
         public void refreshEnviosPendientes()
         {
             String r = "";
+            DataRow row;
             r = webServiceDataGrid();
             
             //MessageBox.Show(r);
@@ -62,25 +76,54 @@ namespace CS101_CALLBACK_API_DEMO
 
             if (res[0].CompareTo("Error") == 0)
             {
-                envios[] e = new envios[1];
-                e[0] = new envios("---", "---", "---");
-                arrList.Add(e[0]);
+               // envios[] e = new envios[1];
+              //  e[0] = new envios("---", "---", "---");
+               // arrList.Add(e[0]);
                 datosTabla = 0;
+
+                row = dt.NewRow();
+                row[0] = "---";
+                row[1] = "---";
+                row[2] = "---";
+                dt.Rows.Add(row);
             }
             else
             {
                 datosTabla = 1;
                 String[] datosEnvios = res[1].Split(',');
                 int tamanio = datosEnvios.Length - 1;
-                e = new envios[tamanio];
+              //  e = new envios[tamanio];
                 for (int i = 0, j = 0; i < tamanio / 3; i++)
                 {
-                    e[i] = new envios(datosEnvios[j], datosEnvios[j + 1], datosEnvios[j + 2]);
+                   // e[i] = new envios(datosEnvios[j], datosEnvios[j + 1], datosEnvios[j + 2]);
+                    
+                    //arrList.Add(e[i]);
+
+                    row = dt.NewRow();
+                    row[0] = datosEnvios[j];
+                    row[2] = datosEnvios[j + 1];
+                    row[1] = datosEnvios[j + 2];
+                    dt.Rows.Add(row);
+
                     j += 3;
-                    arrList.Add(e[i]);
+
                 }
             }
-            dataGrid1.DataSource = arrList;
+            dataGrid1.DataSource = dt;
+           
+            dataGrid1.TableStyles.Clear();
+            DataGridTableStyle tableStyle = new DataGridTableStyle();
+            tableStyle.MappingName = dt.TableName;
+            foreach (DataColumn item in dt.Columns)
+            {
+                DataGridTextBoxColumn tbcName = new DataGridTextBoxColumn();
+                tbcName.Width = 95;
+                tbcName.MappingName = item.ColumnName;
+                tbcName.HeaderText = item.ColumnName;
+                tableStyle.GridColumnStyles.Add(tbcName);
+            }
+            dataGrid1.TableStyles.Add(tableStyle);
+
             dataGrid1.Refresh();
         }
 
@@ -361,16 +404,16 @@ namespace CS101_CALLBACK_API_DEMO
             if (datosTabla == 1)
             {
                 dataGrid1.Select(dataGrid1.CurrentRowIndex);
-                envios k = this.e[dataGrid1.CurrentRowIndex];
-                preIdEnvio = int.Parse(k.id_envio);
-                preIdOrden = int.Parse(k.id_orden);
-                preIdCarro = int.Parse(k.id_carro);
+                //envios k = this.e[dataGrid1.CurrentRowIndex];
+                preIdEnvio = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][0].ToString());
+                preIdOrden = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][1].ToString());
+                preIdCarro = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][2].ToString());
                 //MessageBox.Show(k.id_envio+","+ k.id_orden+","+k.id_carro);
-
                 cont_btn.Enabled = true;
                 elim_btn.Enabled = true;
                 env_btn.Enabled = true;
             }
+            //MessageBox.Show(dt.Rows[dataGrid1.CurrentRowIndex][0].ToString());
         }
 
         private void cont_btn_Click(object sender, EventArgs e)
@@ -485,7 +528,7 @@ namespace CS101_CALLBACK_API_DEMO
 
     }
 
-    public class envios
+   /* public class envios
     {
         public envios(string id_envio, string id_carro, string id_orden)
         {
@@ -497,6 +540,6 @@ namespace CS101_CALLBACK_API_DEMO
         public string id_envio { get; set; }
         public string id_orden { get; set; }
         public string id_carro { get; set; }
-    }
+    }*/
 
 }

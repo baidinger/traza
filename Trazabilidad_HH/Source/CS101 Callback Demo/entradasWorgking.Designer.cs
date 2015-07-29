@@ -37,6 +37,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dataGrid1
@@ -44,7 +48,7 @@
             this.dataGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.dataGrid1.Location = new System.Drawing.Point(4, 24);
             this.dataGrid1.Name = "dataGrid1";
-            this.dataGrid1.Size = new System.Drawing.Size(313, 103);
+            this.dataGrid1.Size = new System.Drawing.Size(313, 104);
             this.dataGrid1.TabIndex = 0;
             // 
             // label1
@@ -58,14 +62,15 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(4, 134);
+            this.label2.Location = new System.Drawing.Point(3, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 20);
             this.label2.Text = "De:";
+            this.label2.ParentChanged += new System.EventHandler(this.label2_ParentChanged);
             // 
             // empaque_lbl
             // 
-            this.empaque_lbl.Location = new System.Drawing.Point(46, 133);
+            this.empaque_lbl.Location = new System.Drawing.Point(45, 131);
             this.empaque_lbl.Name = "empaque_lbl";
             this.empaque_lbl.Size = new System.Drawing.Size(271, 20);
             this.empaque_lbl.Text = "empaque_lbl";
@@ -86,7 +91,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 25);
             this.button2.TabIndex = 5;
-            this.button2.Text = "Finalizar entrega";
+            this.button2.Text = "Finalizar envio";
             // 
             // button3
             // 
@@ -98,6 +103,36 @@
             this.button3.Text = "Atras";
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(4, 155);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(204, 20);
+            this.label3.Text = "Número de pallets enviados:";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(4, 174);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(204, 20);
+            this.label4.Text = "Número de pallets leidos:";
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(203, 155);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 20);
+            this.label5.Text = "label5";
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(203, 173);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 20);
+            this.label6.Text = "label6";
+            // 
             // entradasWorgking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -105,6 +140,10 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(320, 240);
             this.ControlBox = false;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -130,5 +169,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

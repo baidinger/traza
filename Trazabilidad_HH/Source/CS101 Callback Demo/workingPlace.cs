@@ -97,7 +97,8 @@ namespace CS101_CALLBACK_API_DEMO
 
         private void recibos_btn_Click(object sender, EventArgs e)
         {
-            using(entradasWorgking eW = new entradasWorgking()){
+            using (entradasWorgking eW = new entradasWorgking(socio, id_socio, id_usuario))
+            {
                 eW.ShowDialog();
             }
         }
