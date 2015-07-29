@@ -53,7 +53,7 @@ namespace CS101_CALLBACK_API_DEMO
             DataRow row;
             r = webServiceDataGrid();
 
-            //MessageBox.Show(r);
+            MessageBox.Show(r);
 
             String[] res = r.Split('*');
 
@@ -66,6 +66,7 @@ namespace CS101_CALLBACK_API_DEMO
 
                 row = dt.NewRow();
                 row[0] = "---";
+                row[1] = "---";
                 dt.Rows.Add(row);
             }
             else
@@ -79,12 +80,14 @@ namespace CS101_CALLBACK_API_DEMO
                     datosTabla = 1;
                     String[] datosEnvios = res[1].Split(',');
                     int tamanio = datosEnvios.Length - 1;
-                    for (int i = 0; i < tamanio; i++)
+                    for (int i = 0, j=0; i < tamanio/2; i++)
                     {
 
                         row = dt.NewRow();
-                        row[0] = datosEnvios[i];
+                        row[0] = datosEnvios[j];
+                        row[1] = datosEnvios[j+1];
                         dt.Rows.Add(row);
+                        j += 2;
 
                     }
                 }
@@ -173,7 +176,7 @@ namespace CS101_CALLBACK_API_DEMO
             {
                 if (datosTabla == 1)
                 {
-                    pallet = dt.Rows[dataGrid1.CurrentRowIndex][0].ToString();
+                  /*  pallet = dt.Rows[dataGrid1.CurrentRowIndex][0].ToString();
 
                     String r = "";
                     using (cargando c = new cargando())
@@ -198,7 +201,7 @@ namespace CS101_CALLBACK_API_DEMO
                         {
                             cajasNum.Text = res[1];
                         }
-
+                    */
                 }
                 rowIndex = dataGrid1.CurrentRowIndex;
             }

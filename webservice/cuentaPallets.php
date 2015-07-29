@@ -34,13 +34,13 @@
 			}
 
 			if($tipo == 2){
-				$query = "SELECT epc_tarima FROM distribuidor_cajas_envio WHERE id_envio_fk = $id_envio AND enviado_dce = 1 GROUP BY epc_tarima";
+				$query = "SELECT epc_tarima, count(epc_tarima) AS cajas  FROM distribuidor_cajas_envio WHERE id_envio_fk = $id_envio AND enviado_dce = 1 GROUP BY epc_tarima";
 
 				$result = mysql_query($query);
 				if($result){
 					$datos_usuario = "Bien*";
 					while($row = mysql_fetch_array($result)){
-						$datos_usuario .= $row['epc_tarima'].",";
+						$datos_usuario .= $row['epc_tarima'].",".$row['cajas'].",";
 					}
 				}else
 					$datos_usuario = "Error*Error en la lectura de pallets.";
