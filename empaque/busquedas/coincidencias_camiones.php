@@ -16,7 +16,7 @@
 		          <th class="centro">#</th>
 		          
 		          <th class="centro">Núm. camión</th>
-		          <th class="centro">Chofer</th>
+		          <th>Chofer</th>
 		          <th class="centro">Placas</th>
 		          <th class="centro">Marca</th>
 		          <th class="centro">Modelo</th>
@@ -34,8 +34,8 @@
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
 		        
-			          	<td ><?php echo $row['id_camion']; ?></td>
-			          	<td class="centro"><?php echo $row['nombre_chofer']; ?></td>
+			          	<td class="centro"><?php echo $row['id_camion']; ?></td>
+			          	<td><?php echo $row['nombre_chofer']; ?></td>
 			         
 			          	<td class="centro"><?php echo $row['placas']; ?></td>
 			          	<td class="centro"><?php echo $row['marca']; ?></td>
@@ -59,12 +59,12 @@
 		          				<div style="width:20px; height:10px; float:left;"></div> 
 		          				<!-- ACCION HABILITAR -->
 		          				<?php if($row['estado_ce'] == 1){ ?>
-		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_camion']; ?>&status=0&rol=3"> 
+		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_camion']; ?>&status=0&rol=5"> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Desactivar" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		          				</a>
 		          				<?php } else { ?>
-		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_distribuidor']; ?>&status=1&rol=3"> 
-			          					<span data-toggle="tooltip" data-placement="top" title="Activar" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_camion']; ?>&status=1&rol=5"> 
+			          				<span data-toggle="tooltip" data-placement="top" title="Activar" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 			          			</a>
 		          				<?php } ?>
 		          				<!--   - - - - - - - - - - - -  - - - - -  -->
@@ -99,7 +99,7 @@
 		    	 <br><br>
 		    	 <br>
 		    	 	<div style="width:500px; margin:0px auto;" class="alert alert-info centro" role="alert"> 
-		    	 		<strong>No se encontraron DISTRIBUIDORES registrados.</strong>
+		    	 		<strong>No se encontraron CAMIONES registrados con esas características.</strong>
 		    	 	</div>
 		    	 	<br><br>
 		    	<?php
@@ -114,7 +114,7 @@
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
        				<h3 class="modal-title">
-       					<img class="img-header" src="img/distribuidor.png"> Editar camión
+       					<img class="img-header" src="img/camion.png"> Editar camión
        				</h3>
 			      </div>
 			      <div id="data-child" class="modal-body">

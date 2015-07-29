@@ -1,103 +1,70 @@
 <?php session_start(); if($_SESSION['nivel_socio'] != 1) return;
 	$id = $_POST['id'];
 	include("../../mod/conexion.php");
-	$result_productores = mysql_query("select * from camiones_empaque where 
-				id_camion = $id AND id_empaque_fk = ".$_SESSION['id_empaque']);
-        	
+	$result_productores = mysql_query("select * from camiones_empaque where id_camion = $id AND id_empaque_fk = ".$_SESSION['id_empaque']);
+
 			$row = mysql_fetch_array($result_productores);  
 ?>
-<form name="formulario" class="form-horizontal" role="form" method="post" action="busquedas/editar_distribuidor.php">
+
+<form name="formulario" class="form-horizontal" role="form" method="post" action="busquedas/editar_camion.php">
 	<div>
   	<div class="modal-body">
-
-		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">Nombre: </label>
-	    	<div class="col-sm-10">
-	    		<input type="text" pattern="[A-Za-zÑñáéíóúÁÉÍÓÚ]+([ ][A-Za-zÑñáéíóúÁÉÍÓÚ]+)*" title="Ingresa sólo letras y sin espacios extras" class="form-control input" value="<?php echo $row['nombre_distribuidor']; ?>" name="nombre_distribuidor" id="" placeholder="Nombre del distribuidor" required>
-         	</div>
-		  </div>
-		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">RFC: </label>
-	    	<div class="col-sm-10">
-	    		<input type="text" pattern="[A-Za-z]{4}[0-9]{6}[A-Za-z0-9]{3}" title="El RFC debe contener 4 letras, seguido de 6 números y tres caracteres de la homoclave" class="form-control input" value="<?php echo $row['rfc_distribuidor']; ?>" name="rfc_distribuidor" id="" placeholder="RFC del distribuidor" required>
-         	</div>
-		  </div>
-
-		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">País: </label>
-		    <div class="col-sm-10">
-		      	<select class="form-control select select-primary" name="pais" id="select1" onchange="cambiar()">
-					<option value="0">MÉXICO</option>
-					<option value="1">EEUU</option>
-					<option value="2">CANADA</option>
-					<option value="3">JAPÓN</option>
-					<option value="4">AUSTRALIA</option>
-				</select>
-		    </div>
-	  	</div>
-		
-		<!-- Estado -->
- 	  	<div class="form-group">
-	    	<label class="col-sm-2 control-label">Estado: </label>
-		    <div class="col-sm-10">
-		       <select class="form-control select select-primary" name="estado" id="select2">
-				</select>
-		    </div>
-	  	</div>
-		
-		
- 	  	<div class="form-group">
-	    	<label class="col-sm-2 control-label">Ciudad: </label>
-		    <div class="col-sm-10">
-		      	<input type="text" pattern="[A-Za-zÑñáéíóúÁÉÍÓÚ]+([ ][A-Za-zÑñáéíóúÁÉÍÓÚ]+)*" title="Ingresa sólo letras y sin espacios extras" class="form-control input" value="<?php echo $row['ciudad_distribuidor']; ?>" name="ciudad_distribuidor" required placeholder="Ciudad del distribuidor">	
-		    </div>
-	  	</div>
-		
-		<div class="form-group">
-	    	<label class="col-sm-2 control-label">Dirección: </label>
-	    	<div class="col-sm-10">
-	    		<input type="text" value="<?php echo $row['direccion_distribuidor']; ?>" class="form-control input" name="direccion_distribuidor" id="" placeholder="Dirección del distribuidor" required>
-         	</div>
-		  </div>
-		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">C.P: </label>
-	    	<div class="col-sm-10">
-	    		<input type="text" pattern="[0-9]{5}|[0-9]{6}|[0-9]{7}" title="Ingresa 5, 6 o 7 dígitos" value="<?php echo $row['cp_distribuidor']; ?>" class="form-control input" name="cp_distribuidor" id="" placeholder="Código postal" required>
-         	</div>
-		  </div>
-			
-		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">E-mail: </label>
-	    	<div class="col-sm-10">
-	    		<input type="email" value="<?php echo $row['email_distribuidor']; ?>" class="form-control input" name="email_distribuidor" id="" placeholder="Correo electrónico" required>
-         	</div>
-		  </div>
-
-		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">Teléfono: </label>
-	    	<div class="col-sm-10">
-	    		<input type="text" pattern="[0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}" title="Ingresa 10, 11, 12 y 13 dígitos" value="<?php echo $row['tel1_distribuidor']; ?>" class="form-control input" name="telefono1_distribuidor" id="" placeholder="Teléfono" required>
-         	</div>
-		  </div>
-		  <div class="form-group">
-	    	<label class="col-sm-2 control-label">Teléfono 2: </label>
-	    	<div class="col-sm-10">
-	    		<input type="text" pattern="[0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}" title="Ingresa 10, 11, 12 y 13 dígitos" value="<?php echo $row['tel2_distribuidor']; ?>" class="form-control input" name="telefono2_distribuidor" id="" placeholder="Teléfono alternativo" >
-         	</div>
-		  </div>
-
-	  	<hr>
-	  	<center>
-	  			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-	  			<input type="hidden" name="id_distribuidor" value="<?php echo $row['id_distribuidor']; ?>">
-     			<button type="submit" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
-     		</center>
+	<div class="form-group">
+    	<label class="col-sm-4 control-label">Número del camión: </label>
+    	<div class="col-sm-6">
+    		<input type="text" pattern="[09]*" title="Ingresa solo números" class="form-control input" value="<?php echo $row['id_camion']; ?>" placeholder="Número del camíon" required readOnly>
      	</div>
 	</div>
-	</form>	
+	<div class="form-group">
+    	<label class="col-sm-4 control-label">Chofer: </label>
+    	<div class="col-sm-6">
+    		<input type="text" pattern="[A-Za-zÑñáéíóúÁÉÍÓÚ]+([ ][A-Za-zÑñáéíóúÁÉÍÓÚ]+)*" title="Solo letras y sin espacios extras" class="form-control input" value="<?php echo $row['nombre_chofer']; ?>" name="chofer" placeholder="Chofer" required>
+     	</div>
+  	</div>
+	
+	<div class="form-group">
+    	<label class="col-sm-4 control-label">Placas: </label>
+	    <div class="col-sm-6">
+	      	<input type="text" pattern="[A-Z0-9-]*" title="Sólo números y letras" class="form-control input" value="<?php echo $row['placas']; ?>" name="placas" required placeholder="Placas">
+	    </div>
+  	</div>
+	
+	<div class="form-group">
+    	<label class="col-sm-4 control-label">Marca: </label>
+    	<div class="col-sm-6">
+    		<input type="text" value="<?php echo $row['marca']; ?>" class="form-control input" name="marca" placeholder="marca" required>
+     	</div>
+	</div>
 
-<?php include("../script/paises.js"); ?>
+	<div class="form-group">
+		<label class="col-sm-4 control-label">Modelo: </label>
+		<div class="col-sm-6">
+			<input type="text" pattern="[0-9]*" title="Modelo" value="<?php echo $row['modelo']; ?>" class="form-control input" name="modelo" placeholder="modelo" required>
+		</div>
+	</div>
+	<div class="form-group">
+			<label class="col-sm-4 control-label">Descripción: </label>
+			<div class="col-sm-6">
+				<textarea title="Descripción" class="form-control input" name="descripcion" placeholder="Descripción" required><?php print $row['descripcion_camion'] ?></textarea>
+			</div>
+		</div>	
+			
+	<div class="form-group">
+		<label class="col-sm-4 control-label">Disponibilidad: </label>
+		<div class="col-sm-6">
+			<select name="disponibilidad" class="form-control">
+				<option <?php if($row['disponibilidad_ce'] == 0) print "selected"?> value="0">Disponible</option>
+				<option <?php if($row['disponibilidad_ce'] == 1) print "selected"?> value="1">No disponible</option>
+			</select>
+	 	</div>
+	</div>
 
-<script type="text/javascript">
-	seleccionar(<?php print $row['pais_distribuidor'] .",". $row['estado_distribuidor']?>);
-</script> 
+	<hr>
+	  	<center>
+	  		<button type="button" style="width:150px" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	  		<input type="hidden" name="id_camion" value="<?php echo $row['id_camion']; ?>">
+	 		<button type="submit" style="width:150px" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
+	 	</center>
+    </div>
+	</div>
+</form>	

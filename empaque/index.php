@@ -119,7 +119,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-tags"></span> &nbsp;Etiquetas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-               <li><a href="index.php?op=imprimir">Imprimir</a></li>
+               <li><a href="index.php?op=imprimir">Cajas</a></li>
+               <li><a href="index.php?op=pallets">Pallets</a></li>
                <li><a href="index.php?op=trazabilidad">Trazabilidad</a></li>
             </ul>
         </li>
@@ -177,6 +178,9 @@ if($_GET("op") == "pedidos")
 
 if($_GET("op") == "asig_pro_empaque") 
   $("#views").load("asignar/asignarProductosEmpaques.php");
+
+if( $_GET("op") == "reg_camion" )
+  $("#views").load("registros/registro_camion.php");
 
 if( $_GET("op") == "reg_productor" )
 	$("#views").load("registros/registro_productores.php");
