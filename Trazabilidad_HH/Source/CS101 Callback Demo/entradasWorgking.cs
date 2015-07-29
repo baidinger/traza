@@ -36,6 +36,10 @@ namespace CS101_CALLBACK_API_DEMO
             col.ColumnName = "N° de carro";
             col.DataType = typeof(string);
 
+            col = dt.Columns.Add();
+            col.ColumnName = "Empaque";
+            col.DataType = typeof(string);
+
             //String result = "";
             this.socio = socio;
             this.id_socio = id_socio;
@@ -73,6 +77,7 @@ namespace CS101_CALLBACK_API_DEMO
                 row[0] = "---";
                 row[1] = "---";
                 row[2] = "---";
+                row[3] = "---";
                 dt.Rows.Add(row);
             } if (res[0].CompareTo("Error1") == 0)
             {
@@ -81,11 +86,12 @@ namespace CS101_CALLBACK_API_DEMO
             }
             else
             {
+                MessageBox.Show(res[1]);
                 datosTabla = 1;
                 String[] datosEnvios = res[1].Split(',');
                 int tamanio = datosEnvios.Length - 1;
                 //  e = new envios[tamanio];
-                for (int i = 0, j = 0; i < tamanio / 3; i++)
+                for (int i = 0, j = 0; i < tamanio / 4; i++)
                 {
                     // e[i] = new envios(datosEnvios[j], datosEnvios[j + 1], datosEnvios[j + 2]);
 
@@ -93,11 +99,12 @@ namespace CS101_CALLBACK_API_DEMO
 
                     row = dt.NewRow();
                     row[0] = datosEnvios[j];
-                    row[2] = datosEnvios[j + 1];
                     row[1] = datosEnvios[j + 2];
+                    row[2] = datosEnvios[j + 1]; 
+                    row[3] = datosEnvios[j + 3];
                     dt.Rows.Add(row);
 
-                    j += 3;
+                    j += 4;
 
                 }
             }
@@ -136,7 +143,7 @@ namespace CS101_CALLBACK_API_DEMO
                 request.KeepAlive = false;
                 request.ProtocolVersion = HttpVersion.Version10;
 
-                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + id_usuario);
+                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + id_socio);
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.AllowWriteStreamBuffering = false;
                 request.ContentLength = postBytes.Length;
@@ -158,7 +165,6 @@ namespace CS101_CALLBACK_API_DEMO
                 }
                 responseStream.Close();
                 response.Close();
-                MessageBox.Show(jsonString);
                 return jsonString;
 
             }
@@ -178,6 +184,11 @@ namespace CS101_CALLBACK_API_DEMO
         private void label2_ParentChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGrid1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            dataGrid1.Select(dataGrid1.CurrentRowIndex);
         }
     }
 }

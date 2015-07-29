@@ -50,6 +50,7 @@
             this.dataGrid1.Name = "dataGrid1";
             this.dataGrid1.Size = new System.Drawing.Size(313, 104);
             this.dataGrid1.TabIndex = 0;
+            this.dataGrid1.CurrentCellChanged += new System.EventHandler(this.dataGrid1_CurrentCellChanged);
             // 
             // label1
             // 
