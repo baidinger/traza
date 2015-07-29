@@ -25,6 +25,10 @@
 			$query = "update empresa_punto_venta set estado_pv = ".$status." where id_punto_venta = ".$id;		
 			$url = "bus_pv";
 		break;
+		case 5:
+			$query = "update camiones_empaque set estado_ce = ".$status." where id_camion = ".$id;		
+			$url = "bus_camion";
+		break;
 	}
 	
 	if(mysql_query($query)){

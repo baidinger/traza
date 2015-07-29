@@ -178,6 +178,9 @@ if($_GET("op") == "pedidos")
 if($_GET("op") == "asig_pro_empaque") 
   $("#views").load("asignar/asignarProductosEmpaques.php");
 
+if( $_GET("op") == "reg_camion" )
+  $("#views").load("registros/registro_camion.php");
+
 if( $_GET("op") == "reg_productor" )
 	$("#views").load("registros/registro_productores.php");
 
