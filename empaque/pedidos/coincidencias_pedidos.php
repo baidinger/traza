@@ -108,7 +108,7 @@
 			          				rol="button"
 			          				title="<center><strong><span style='color:#000'>ORDEN RECHAZADA</strong></center>"
 			          				data-content="<div class='alert alert-danger'><?php print $row['descripcion_rechazo'] ?></div>">
-									<span class="label label-danger">Rechazado</span> 
+									<span class="label label-danger">Rechazado por emp.</span> 
 								</a>
 								</td>
 
@@ -280,7 +280,7 @@
 			          				rol="button"
 			          				title="<center><strong><span style='color:#000'>ORDEN RECHAZADA</strong></center>"
 			          				data-content="<div class='alert alert-danger'><?php print $row['descripcion_rechazo'] ?></div>">
-									<span class="label label-danger">Rechazado</span> 
+									<span class="label label-danger">Rechazado por dist.</span> 
 								</a>
 								</td>
 

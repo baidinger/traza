@@ -74,7 +74,7 @@
 				</div>
 			</div>
 		</div>
-		<span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Sistema para la Trazabilidad Agrícola Versión: 1.4,  fec. mod. 23/07/15</span>
+		<span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Sistema para la Trazabilidad Agrícola Versión: 1.4,  fec. mod. 2/08/15</span>
 		<script type="text/javascript" src="lib/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 	</body>

@@ -1,6 +1,3 @@
-
-
-
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#cajas" aria-controls="home" role="tab" data-toggle="tab">Cajas</a></li>
     <li role="presentation"><a href="#tarimas" aria-controls="profile" role="tab" data-toggle="tab">Pallets</a></li>

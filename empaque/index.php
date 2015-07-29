@@ -267,6 +267,6 @@ if($_GET("op") == "caja_traza") {
 }
 
 </script>
-<span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Versión: 1.3,  fec. mod. 05/07/15</span>
+<span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Sistema para la Trazabilidad Agrícola Versión: 1.4,  fec. mod. 2/08/15</span>
 </body>
 </html>
