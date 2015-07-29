@@ -230,6 +230,8 @@ namespace CS101_CALLBACK_API_DEMO
                     }
 
             }
+
+
         }
 
         public String cuentaPallets()

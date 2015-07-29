@@ -34,7 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cajasNum = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ennvioNumber = new System.Windows.Forms.Label();
+            this.envioNumber = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -70,12 +70,12 @@
             this.label3.Size = new System.Drawing.Size(203, 20);
             this.label3.Text = "Pallets del Número de envio:";
             // 
-            // ennvioNumber
+            // envioNumber
             // 
-            this.ennvioNumber.Location = new System.Drawing.Point(214, 4);
-            this.ennvioNumber.Name = "ennvioNumber";
-            this.ennvioNumber.Size = new System.Drawing.Size(100, 20);
-            this.ennvioNumber.Text = "ennvioNumber";
+            this.envioNumber.Location = new System.Drawing.Point(214, 4);
+            this.envioNumber.Name = "envioNumber";
+            this.envioNumber.Size = new System.Drawing.Size(100, 20);
+            this.envioNumber.Text = "envioNumber";
             // 
             // button1
             // 
@@ -95,7 +95,7 @@
             this.ClientSize = new System.Drawing.Size(320, 240);
             this.ControlBox = false;
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.ennvioNumber);
+            this.Controls.Add(this.envioNumber);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cajasNum);
             this.Controls.Add(this.label1);
@@ -115,7 +115,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label cajasNum;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label ennvioNumber;
+        private System.Windows.Forms.Label envioNumber;
         private System.Windows.Forms.Button button1;
     }
 }
