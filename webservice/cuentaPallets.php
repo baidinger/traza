@@ -52,7 +52,8 @@
 
 				$result = mysql_query($query);
 				if($result){
-					$datos_usuario = "Bien*".mysql_num_rows($result);
+					$row = mysql_fetch_array($result);
+					$datos_usuario = "Bien*".$row[0];
 				}else
 					$datos_usuario = "Error*Error en la lectura de las cajas de los pallets.";
 			}
