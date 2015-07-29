@@ -79,7 +79,7 @@
 						<td><strong><?php echo $row['id_envio']; ?></strong></td>
 					</tr>
 					<tr>
-						<td>EPC de la tarima</td>
+						<td>EPC de la pallet</td>
 						<td><strong><?php echo $row['epc_tarima']; ?></strong></td>
 					</tr>
 				</tbody>

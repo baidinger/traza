@@ -1,4 +1,4 @@
-<?php 
+<?php session_start(); if($_SESSION['envios'] != 1) return; 
 	include("../../mod/conexion.php");
 
 	$buscar = $_POST['buscar'];
@@ -66,13 +66,14 @@
 			          		<?php 
 	      					 switch($row['estado_envio']){
 	      					 	case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
-	      					 	case 2: echo "<span class='label label-danger'>Rechazado</span>"; break;
+	      					 	case 2: echo "<span class='label label-danger'>Rechazado por emp.</span>"; break;
 	      					 	case 3: echo "<span class='label label-primary'>Enviado</span>"; break;
 	      					 	case 4: echo "<span class='label label-success'>Concretado</span>"; break;
 	      					 	case 5: echo "<span class='label label-danger'>Cancel. por emp.</span>"; break;
 	      					 	case 6: echo "<span class='label label-success'>Aprobado</span>"; break;
 	      					 	case 7: echo "<span class='label label-warning'>Pre-envío</span>"; break;
 	      					 	case 8: echo "<span class='label label-danger'>Cancel. por dist.</span>"; break;
+	      					 	case 9: echo "<span class='label label-danger'>Rechazado por dist.</span>"; break;
 	      					 } ?>
 			          	</td>
 			          	
@@ -136,5 +137,5 @@
 		<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
-			
+
 		</script>
