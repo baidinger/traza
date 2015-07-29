@@ -69,10 +69,15 @@
 							<?php
 								include('../../mod/conexion.php');
 
-								$consulta = "SELECT id_usuario_pv FROM usuario_punto_venta WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+								// $consulta = "SELECT id_usuario_pv FROM usuario_punto_venta WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+								// $resultado = mysql_query($consulta);
+								// $row = mysql_fetch_array($resultado);
+								// $idUsuarioPvFK = $row['id_usuario_pv'];
+								
+								$consulta = "SELECT id_punto_venta_fk FROM usuario_punto_venta WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
 								$resultado = mysql_query($consulta);
 								$row = mysql_fetch_array($resultado);
-								$idUsuarioPvFK = $row['id_usuario_pv'];
+								$idUsuarioPvFK = $row['id_punto_venta_fk'];
 
 								$cont = 0;
 							    $consulta = "SELECT ords.id_orden, epqs.id_distribuidor, epqs.nombre_distribuidor, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_punto_venta AS ords, empresa_distribuidores AS epqs WHERE ords.id_distribuidor_fk = epqs.id_distribuidor AND ords.id_usuario_punto_venta_fk = $idUsuarioPvFK ORDER BY ords.id_orden DESC";
@@ -128,11 +133,16 @@
 
 					          				switch($estado) {
 					          					case '1': echo "<td class='centro pendiente'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].")'>PENDIENTE</span></td>"; break;
-					          					case '2': echo "<td class='centro rechazado'>RECHAZADO</td>"; break;
+					          					case '2': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR EMPAQUE'>RECHAZADO</span></td>"; break;
 					          					case '3': echo "<td class='centro enviado'>ENVIADO</td>"; break;
 					          					case '4': echo "<td class='centro concretado'>CONCRETADO</td>"; break;
-					          					case '5': echo "<td class='centro cancelado'>CANCELADO</td>"; break;
+					          					case '5': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR EMPAQUE'>CANCELADO</span></td>"; break;
 					          					case '6': echo "<td class='centro aprobado'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].")'>APROBADO</span></td>"; break;
+					          					case '7': echo "<td class='centro pendiente'>PRE-ENVIO</td>"; break;
+					          					case '8': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR DISTRIBUIDOR'>CANCELADO</span></td>"; break;
+					          					case '9': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR DISTRIBUIDOR'>RECHAZADO</span></td>"; break;
+					          					case '10': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR PUNTO DE VENTA'>CANCELADO</span></td>"; break;
+					          					case '11': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR PUNTO DE VENTA'>RECHAZADO</span></td>"; break;
 					          				}
 					          			?>
 						          		<td class="derecha">
@@ -177,7 +187,7 @@
 							<p><label>Estado:</label></p>
 							<p>
 								<select class="form-control" name="inputEstado" id="selectEstado">
-									<option value="5">CANCELADO</option>
+									<option value="10">CANCELADO</option>
 								</select>
 							</p>
 							<br>
@@ -224,6 +234,7 @@
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
 			$('.popover-distribuidor').popover();
+			$('.popover-estado').popover();
 
 			function buscarOrdenes(){
 				var distribuidorBuscar = $('#inputBuscar').val();

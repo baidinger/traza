@@ -10,10 +10,10 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="centro">ID</th>
+						<th class="centro">Ped</th>
 						<th>Punto de Venta</th>
+						<th class="centro">Fecha Envio</th>
 						<th class="centro">Fecha Entrega</th>
-						<th class="derecha">Total</th>
 						<th class="centro">Estado</th>
 						<th></th>
 					</tr>
@@ -31,11 +31,12 @@
 						$id_distribuidor_fk = $row['id_distribuidor_fk'];
 
 						$cont = 0;
-					    $consulta = "SELECT ordspv.id_orden, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, ordspv.fecha_entrega_orden, ordspv.costo_orden, ordspv.estado_orden FROM ordenes_punto_venta AS ordspv, usuario_punto_venta AS ususpv, empresa_punto_venta AS mpsapv WHERE ordspv.id_usuario_punto_venta_fk = ususpv.id_usuario_pv AND ususpv.id_usuario_pv = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk AND mpsapv.nombre_punto_venta LIKE '%$puntoVenta%' ORDER BY ordspv.id_orden DESC";
+						$cancelar = 1;
+					    $consulta = "SELECT envdis.id_envio, envdis.id_orden_dist_fk, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, envdis.fecha_envio, envdis.hora_envio, envdis.fecha_entrega_envio, envdis.estado_envio FROM ordenes_punto_venta AS ordspv, empresa_punto_venta AS mpsapv, envios_distribuidor AS envdis WHERE envdis.id_orden_dist_fk = ordspv.id_orden AND envdis.id_punto_venta_fk = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk AND mpsapv.nombre_punto_venta LIKE '%$puntoVenta%' ORDER BY envdis.id_envio DESC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ ?>
 							<tr>
-				          		<td class="centro"><?php echo $row['id_orden']; ?></td>
+				          		<td class="centro"><?php echo $row['id_orden_dist_fk']; ?></td>
 				          		<td>
 				          			<?php 
 				          				$idPuntoVenta = $row['id_punto_venta'];
@@ -77,20 +78,18 @@
 				          				<?php echo $row['nombre_punto_venta']; ?>
 				          			</a>
 				          		</td>
-				          		<!-- <td><?php echo $row['nombre_punto_venta']; ?></td> -->
-				          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
-				          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
-				          		<?php 
-				          			$estado = $row['estado_orden'];
-				          		?>
+				          		<td class="centro"><?php echo $row['fecha_envio']; ?></td>
+				          		<td class="centro"><?php echo $row['fecha_entrega_envio']; ?></td>
 				          		<?php
+			          				$estado = $row['estado_envio'];
+
 			          				switch($estado) {
-			          					case '1': echo "<td class='centro pendiente'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].", 1, 1)'>PENDIENTE</span></td>"; break;
+			          					case '1': echo "<td class='centro pendiente'><span class='link-estado' onclick='cancelarOrden(".$row['id_envio'].")'>PENDIENTE</span></td>"; break;
 			          					case '2': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR EMPAQUE'>RECHAZADO</span></td>"; break;
-			          					case '3': echo "<td class='centro enviado'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].", 2, 3)'>ENVIADO</span></td>"; break;
+			          					case '3': echo "<td class='centro enviado'><span class='link-estado' onclick='cancelarOrden(".$row['id_envio'].")'>ENVIADO</span></td>"; break;
 			          					case '4': echo "<td class='centro concretado'>CONCRETADO</td>"; break;
 			          					case '5': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR EMPAQUE'>CANCELADO</span></td>"; break;
-			          					case '6': echo "<td class='centro aprobado'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].", 2, 6)'>APROBADO</span></td>"; break;
+			          					case '6': echo "<td class='centro aprobado'><span class='link-estado' onclick='cancelarOrden(".$row['id_envio'].")'>APROBADO</span></td>"; break;
 			          					case '7': echo "<td class='centro pendiente'>PRE-ENVIO</td>"; break;
 			          					case '8': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR DISTRIBUIDOR'>CANCELADO</span></td>"; break;
 			          					case '9': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR DISTRIBUIDOR'>RECHAZADO</span></td>"; break;
@@ -99,7 +98,7 @@
 			          				}
 			          			?>
 				          		<td class="derecha">
-					        		<button class="btn btn-primary" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>)">Detalles</button>
+				          			<button class="btn btn-info" id="btn-epcs" onClick="mostrarDetallesEPCs(<?php echo $row['id_envio']; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 					        	</td>
 				    	    </tr>
 						<?php $cont++; 

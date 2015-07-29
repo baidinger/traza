@@ -19,13 +19,14 @@
 
 				<tbody>
 					<?php 
-						$idOrden = $_POST['orden'];
+						$idEnvioFk = $_POST['orden'];
 
 						include('../../mod/conexion.php');
 
+
 						$cont = 1;
 						// $consulta = "SELECT * FROM distribuidor_cajas_envio WHERE id_orden_fk = $idOrden ORDER BY epc_tarima ASC, epc_caja ASC";
-						$consulta = "SELECT * FROM distribuidor_cajas_envio WHERE id_envio_fk = $idOrden ORDER BY epc_tarima ASC, epc_caja ASC";
+						$consulta = "SELECT * FROM distribuidor_cajas_envio WHERE id_envio_fk = $idEnvioFk ORDER BY epc_tarima ASC, epc_caja ASC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)) { ?>
 							<tr>

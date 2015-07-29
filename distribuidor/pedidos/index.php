@@ -133,11 +133,16 @@
 						          		<?php
 					          				switch($estado) {
 					          					case '1': echo "<td class='centro pendiente'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].", 1, 1)'>PENDIENTE</span></td>"; break;
-					          					case '2': echo "<td class='centro rechazado'>RECHAZADO</td>"; break;
+					          					case '2': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR EMPAQUE'>RECHAZADO</span></td>"; break;
 					          					case '3': echo "<td class='centro enviado'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].", 2, 3)'>ENVIADO</span></td>"; break;
 					          					case '4': echo "<td class='centro concretado'>CONCRETADO</td>"; break;
-					          					case '5': echo "<td class='centro cancelado'>CANCELADO</td>"; break;
+					          					case '5': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR EMPAQUE'>CANCELADO</span></td>"; break;
 					          					case '6': echo "<td class='centro aprobado'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].", 2, 6)'>APROBADO</span></td>"; break;
+					          					case '7': echo "<td class='centro pendiente'>PRE-ENVIO</td>"; break;
+					          					case '8': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR DISTRIBUIDOR'>CANCELADO</span></td>"; break;
+					          					case '9': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR DISTRIBUIDOR'>RECHAZADO</span></td>"; break;
+					          					case '10': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR PUNTO DE VENTA'>CANCELADO</span></td>"; break;
+					          					case '11': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR PUNTO DE VENTA'>RECHAZADO</span></td>"; break;
 					          				}
 					          			?>
 						          		<td class="derecha">
@@ -230,6 +235,7 @@
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
 			$('.popover-punto-venta').popover();
+			$('.popover-estado').popover();
 
 			function buscarPedidos(){
 				var pvBuscar = $('#inputBuscar').val();
@@ -262,7 +268,7 @@
 			$('#selectEstado').change(function(){
 				var estadoElegido = $('#selectEstado').val();
 
-				if(estadoElegido == 5){
+				if(estadoElegido == 8){
 					$('#inputMotivoCancelar').removeAttr('disabled');
 				}
 				else{
@@ -274,12 +280,12 @@
 				if(estados == 1){
 					$('#selectEstado').html('');
 					$('#selectEstado').append("<option value='6'>APROBADO</option>");
-					$('#selectEstado').append("<option value='5'>CANCELADO</option>");
+					$('#selectEstado').append("<option value='8'>CANCELADO</option>");
 				}
 				else{
 					$('#selectEstado').html('');
 					$('#inputMotivoCancelar').removeAttr('disabled');
-					$('#selectEstado').append("<option value='5'>CANCELADO</option>");
+					$('#selectEstado').append("<option value='8'>CANCELADO</option>");
 				}
 
 				$('#inputIdPedido').val(pedido);

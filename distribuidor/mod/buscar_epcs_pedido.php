@@ -10,7 +10,7 @@
 				<thead>
 					<tr>
 						<th class="centro">#</th>
-						<th class="centro">Placas</th>
+						<th class="centro">Tarima</th>
 						<th class="centro">EPC</th>
 						<th class="centro">Enviado</th>
 						<th class="centro">Recibido</th>
@@ -24,12 +24,12 @@
 						include('../../mod/conexion.php');
 
 						$cont = 1;
-						$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_orden_fk = $idOrden ORDER BY placas_carro ASC, epc_caja ASC";
+						$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $idOrden ORDER BY epc_tarima ASC, epc_caja ASC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)) { ?>
 							<tr>
 								<td class="centro"><?php echo $cont; ?></td>
-								<td class="centro"><?php echo $row['placas_carro']; ?></td>
+								<td class="centro"><?php echo $row['epc_tarima']; ?></td>
 								<!-- <td class="centro"><?php echo $row['epc_caja']; ?></td> -->
 								<td class="centro"><a href="../trazabilidadCajas/?epc_caja=<?php echo $row['epc_caja']; ?>" class="btn btn-link"><?php echo $row['epc_caja']; ?></a> </td>
 								<?php 
