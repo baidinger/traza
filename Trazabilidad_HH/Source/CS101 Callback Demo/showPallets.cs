@@ -31,6 +31,7 @@ namespace CS101_CALLBACK_API_DEMO
             col = dt.Columns.Add();
             col.ColumnName = "EPC del Pallet";
             col.DataType = typeof(string);
+            col = dt.Columns.Add();
 
             using (cargando c = new cargando())
             {
@@ -160,7 +161,7 @@ namespace CS101_CALLBACK_API_DEMO
 
         private void dataGrid1_CurrentCellChanged(object sender, EventArgs e)
         {
-            dataGrid1.Select(dataGrid1.CurrentRowIndex);
+            //dataGrid1.Select(dataGrid1.CurrentRowIndex);
 
             if (datosTabla == 1)
             {

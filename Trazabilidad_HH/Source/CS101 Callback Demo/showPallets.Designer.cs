@@ -43,6 +43,7 @@
             this.dataGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.dataGrid1.Location = new System.Drawing.Point(4, 26);
             this.dataGrid1.Name = "dataGrid1";
+            this.dataGrid1.RowHeadersVisible = false;
             this.dataGrid1.Size = new System.Drawing.Size(313, 178);
             this.dataGrid1.TabIndex = 0;
             this.dataGrid1.CurrentCellChanged += new System.EventHandler(this.dataGrid1_CurrentCellChanged);
