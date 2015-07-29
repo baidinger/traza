@@ -142,6 +142,12 @@
     <Compile Include="CustControl\ConfigOffset.Designer.cs">
       <DependentUpon>ConfigOffset.cs</DependentUpon>
     </Compile>
+    <Compile Include="showPallets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="showPallets.Designer.cs">
+      <DependentUpon>showPallets.cs</DependentUpon>
+    </Compile>
     <Compile Include="SyncQueue\DataExistEventArgs.cs" />
     <Compile Include="SyncQueue\Status.cs" />
     <Compile Include="SyncQueue\SyncQueue.cs" />
@@ -288,6 +294,10 @@
     <EmbeddedResource Include="Resources\accept.png" />
     <EmbeddedResource Include="Resources\refresh.png" />
     <EmbeddedResource Include="Resources\cancel.png" />
+    <EmbeddedResource Include="showPallets.resx">
+      <DependentUpon>showPallets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="trazabilidadSplash.resx">
       <DependentUpon>trazabilidadSplash.cs</DependentUpon>
       <SubType>Designer</SubType>

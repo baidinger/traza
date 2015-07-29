@@ -41,7 +41,6 @@ namespace CS101_CALLBACK_API_DEMO
             col.ColumnName = "Empaque";
             col.DataType = typeof(string);
 
-            //String result = "";
             this.socio = socio;
             this.id_socio = id_socio;
             this.id_usuario = id_usuario;
@@ -59,6 +58,7 @@ namespace CS101_CALLBACK_API_DEMO
 
         public void refreshEnviosPendientes()
         {
+            dt.Rows.Clear();
             String r = "";
             DataRow row;
             r = webServiceDataGrid();
@@ -91,13 +91,8 @@ namespace CS101_CALLBACK_API_DEMO
                     datosTabla = 1;
                     String[] datosEnvios = res[1].Split(',');
                     int tamanio = datosEnvios.Length - 1;
-                    //  e = new envios[tamanio];
                     for (int i = 0, j = 0; i < tamanio / 4; i++)
                     {
-                        // e[i] = new envios(datosEnvios[j], datosEnvios[j + 1], datosEnvios[j + 2]);
-
-                        //arrList.Add(e[i]);
-
                         row = dt.NewRow();
                         row[0] = datosEnvios[j];
                         row[1] = datosEnvios[j + 2];
@@ -114,14 +109,20 @@ namespace CS101_CALLBACK_API_DEMO
             dataGrid1.TableStyles.Clear();
             DataGridTableStyle tableStyle = new DataGridTableStyle();
             tableStyle.MappingName = dt.TableName;
+            int y = 0;
             foreach (DataColumn item in dt.Columns)
             {
                 DataGridTextBoxColumn tbcName = new DataGridTextBoxColumn();
-                tbcName.Width = 95;
+                if(y == 3)
+                    tbcName.Width = 150;
+                else
+                    tbcName.Width = 80;
                 tbcName.MappingName = item.ColumnName;
                 tbcName.HeaderText = item.ColumnName;
                 tableStyle.GridColumnStyles.Add(tbcName);
+                y++;
             }
+            y = 0;
             dataGrid1.TableStyles.Add(tableStyle);
 
             dataGrid1.Refresh();
@@ -198,11 +199,6 @@ namespace CS101_CALLBACK_API_DEMO
                 preIdCarro = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][2].ToString());
                 preNombreEmpaque = dt.Rows[dataGrid1.CurrentRowIndex][3].ToString();
 
-                empaque_lbl.Text = preNombreEmpaque;
-                compl_send.Enabled = true;
-                cont.Enabled = true;
-
-
                 String r = "";
                 using (cargando c = new cargando())
                 {
@@ -227,6 +223,10 @@ namespace CS101_CALLBACK_API_DEMO
                         String[] cant = res[1].Split(',');
                         label5.Text = cant[0];
                         label6.Text = cant[1];
+                        empaque_lbl.Text = preNombreEmpaque;
+                        compl_send.Enabled = true;
+                        cont.Enabled = true;
+                        showPallet.Enabled = true;
                     }
 
             }
@@ -249,7 +249,7 @@ namespace CS101_CALLBACK_API_DEMO
                 request.KeepAlive = false;
                 request.ProtocolVersion = HttpVersion.Version10;
 
-                postBytes = Encoding.UTF8.GetBytes("datos=" +socio+ "," + preIdEnvio);
+                postBytes = Encoding.UTF8.GetBytes("datos=1," +socio+ "," + preIdEnvio);
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.AllowWriteStreamBuffering = false;
                 request.ContentLength = postBytes.Length;
@@ -279,6 +279,26 @@ namespace CS101_CALLBACK_API_DEMO
                 return "Error1*Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
             }
 
+        }
+
+        private void showPallet_Click(object sender, EventArgs e)
+        {
+            using (showPallets sp = new showPallets(socio, preIdEnvio))
+            {
+                sp.ShowDialog();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (cargando c = new cargando())
+            {
+                c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                c.Show();
+                c.Update();
+                /*LLENAR LA TABLA CON LOS ENVIOS PENDIENTES*/
+                refreshEnviosPendientes();
+            }
         }
 
 

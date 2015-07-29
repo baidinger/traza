@@ -41,6 +41,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.showPallet = new System.Windows.Forms.Button();
+            this.actualizar_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dataGrid1
@@ -57,7 +59,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(0, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(320, 20);
+            this.label1.Size = new System.Drawing.Size(134, 20);
             this.label1.Text = "Envios recibidos:";
             // 
             // label2
@@ -74,7 +76,7 @@
             this.empaque_lbl.Location = new System.Drawing.Point(45, 131);
             this.empaque_lbl.Name = "empaque_lbl";
             this.empaque_lbl.Size = new System.Drawing.Size(271, 20);
-            this.empaque_lbl.Text = "empaque_lbl";
+            this.empaque_lbl.Text = "---";
             // 
             // cont
             // 
@@ -109,32 +111,53 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(4, 155);
+            this.label3.Location = new System.Drawing.Point(4, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(204, 20);
-            this.label3.Text = "Número de pallets enviados:";
+            this.label3.Text = "N° de pallets enviados:";
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(4, 174);
+            this.label4.Location = new System.Drawing.Point(4, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(204, 20);
-            this.label4.Text = "Número de pallets leidos:";
+            this.label4.Text = "N° de pallets leidos:";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(203, 155);
+            this.label5.Location = new System.Drawing.Point(164, 148);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 20);
-            this.label5.Text = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.Text = "----";
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(203, 173);
+            this.label6.Location = new System.Drawing.Point(164, 164);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 20);
-            this.label6.Text = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 20);
+            this.label6.Text = "----";
+            // 
+            // showPallet
+            // 
+            this.showPallet.Enabled = false;
+            this.showPallet.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.showPallet.Location = new System.Drawing.Point(233, 148);
+            this.showPallet.Name = "showPallet";
+            this.showPallet.Size = new System.Drawing.Size(83, 36);
+            this.showPallet.TabIndex = 14;
+            this.showPallet.Text = "Ver pallets";
+            this.showPallet.Click += new System.EventHandler(this.showPallet_Click);
+            // 
+            // actualizar_btn
+            // 
+            this.actualizar_btn.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.actualizar_btn.Location = new System.Drawing.Point(166, 2);
+            this.actualizar_btn.Name = "actualizar_btn";
+            this.actualizar_btn.Size = new System.Drawing.Size(72, 20);
+            this.actualizar_btn.TabIndex = 15;
+            this.actualizar_btn.Text = "Actualizar";
+            this.actualizar_btn.Click += new System.EventHandler(this.button1_Click);
             // 
             // entradasWorgking
             // 
@@ -143,6 +166,8 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(320, 240);
             this.ControlBox = false;
+            this.Controls.Add(this.actualizar_btn);
+            this.Controls.Add(this.showPallet);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -176,5 +201,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button showPallet;
+        private System.Windows.Forms.Button actualizar_btn;
     }
 }

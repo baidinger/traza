@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.orden_cb = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.actualizar_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 20);
+            this.label1.Size = new System.Drawing.Size(136, 20);
             this.label1.Text = "Envios pendientes";
             // 
             // dataGrid1
@@ -170,12 +171,23 @@
             this.label2.Size = new System.Drawing.Size(75, 20);
             this.label2.Text = "N° orden:";
             // 
+            // actualizar_btn
+            // 
+            this.actualizar_btn.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.actualizar_btn.Location = new System.Drawing.Point(147, 4);
+            this.actualizar_btn.Name = "actualizar_btn";
+            this.actualizar_btn.Size = new System.Drawing.Size(89, 20);
+            this.actualizar_btn.TabIndex = 7;
+            this.actualizar_btn.Text = "Actualizar";
+            this.actualizar_btn.Click += new System.EventHandler(this.actualizar_btn_Click);
+            // 
             // enviosWorking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(318, 240);
             this.ControlBox = false;
+            this.Controls.Add(this.actualizar_btn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.env_btn);
             this.Controls.Add(this.elim_btn);
@@ -208,6 +220,7 @@
         private System.Windows.Forms.ComboBox carro_cb;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox orden_cb;
+        private System.Windows.Forms.Button actualizar_btn;
 
     }
 }

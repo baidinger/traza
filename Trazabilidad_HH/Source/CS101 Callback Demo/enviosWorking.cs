@@ -37,7 +37,6 @@ namespace CS101_CALLBACK_API_DEMO
             col.ColumnName = "N° de carro";
             col.DataType = typeof(string);
 
-            String result = "";
             this.socio = socio;
             this.id_socio = id_socio;
             this.id_usuario = id_usuario;
@@ -49,23 +48,29 @@ namespace CS101_CALLBACK_API_DEMO
                 /*LLENAR LA TABLA CON LOS ENVIOS PENDIENTES*/
                 refreshEnviosPendientes();
 
-                /*CONEXIÓN AL WEBSERVER PARA LAS ORDENES*/
-                result = webServiceConeccion(socio, id_socio, 1);
-                String[] id_orden = result.Split(',');
-                orden_cb.DataSource = id_orden;
 
-
-                /*CONEXIÓN AL WEBSERVER PARA LOS CARROS*/
-                result = webServiceConeccion(socio, id_socio, 2);
-                String[] id_carro = result.Split(',');
-                carro_cb.DataSource = id_carro;
-                //MessageBox.Show(result+" \n "+result2);
             }
           
         }
 
         public void refreshEnviosPendientes()
         {
+            String result = "";
+
+            /*CONEXIÓN AL WEBSERVER PARA LAS ORDENES*/
+            result = webServiceConeccion(socio, id_socio, 1);
+            String[] id_orden = result.Split(',');
+            orden_cb.DataSource = id_orden;
+
+
+            /*CONEXIÓN AL WEBSERVER PARA LOS CARROS*/
+            result = webServiceConeccion(socio, id_socio, 2);
+            String[] id_carro = result.Split(',');
+            carro_cb.DataSource = id_carro;
+            //MessageBox.Show(result+" \n "+result2);
+
+            dt.Rows.Clear();
+
             String r = "";
             DataRow row;
             r = webServiceDataGrid();
@@ -524,6 +529,21 @@ namespace CS101_CALLBACK_API_DEMO
                 return "Error*Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
             }
 
+        }
+
+        private void actualizar_btn_Click(object sender, EventArgs e)
+        {
+            using (cargando c = new cargando())
+            {
+                c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                c.Show();
+                c.Update();
+                /*LLENAR LA TABLA CON LOS ENVIOS PENDIENTES*/
+                refreshEnviosPendientes();
+
+
+            }
+          
         }
 
     }
