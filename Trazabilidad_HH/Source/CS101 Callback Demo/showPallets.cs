@@ -19,6 +19,7 @@ namespace CS101_CALLBACK_API_DEMO
         {
             InitializeComponent();
 
+            this.socio = socio;
             this.id_envio = id_envio;
             dt = new DataTable();
             DataColumn col;
