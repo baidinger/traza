@@ -119,7 +119,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-tags"></span> &nbsp;Etiquetas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-               <li><a href="index.php?op=imprimir">Imprimir</a></li>
+               <li><a href="index.php?op=imprimir">Cajas</a></li>
+               <li><a href="index.php?op=pallets">Pallets</a></li>
                <li><a href="index.php?op=trazabilidad">Trazabilidad</a></li>
             </ul>
         </li>

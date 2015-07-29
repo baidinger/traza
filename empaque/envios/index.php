@@ -9,51 +9,13 @@
 	</head>
 
 	<body>
-<!--
-
-		<div class="contenedor-form">
-			
-	  		<div class="modal-header">
-	    		<h3 class="modal-title">
-	    			<img class="img-header" src="img/envios.png"> Búsqueda y registros de envíos
-	    		</h3>
-	  		</div>
-
-	  	</div>
-	
-	  	<p>&nbsp;</p>
-			<div class="form-inline" style="width:450px; margin: 0 auto">
-				<label>Número de orden:</label>
-				<input id="numero_orden" type="text" class="form-control">
-				<button onclick="registrar()" data-toggle="modal" data-target="#myModal" class="btn btn-success">Registrar envío</button>
-			</div>
-		<p>&nbsp;</p>
-		<hr>
-		<p style="width:90%; margin: 0 auto" class="alert alert-info">En la siguiente tabla se muestran los envíos realizados en el embarque</p>
-	-->
-		<!-- buscar -->
 
 		<?php 
 			$titulo = "Búsqueda de envíos";
 			$placeholder="Buscar distribuidor / núm. orden / núm envío";
 			$imagen = "envios.png";
 			include("../busquedas/formulario_busqueda.php"); ?>
-	<!--<div class="busqueda-form">
-				<div class="form-group">
-			    	<label for="inputBuscar" class="col-sm-2 control-label">Buscar</label>
-			    	<div class="col-sm-10">
-			      		<input onkeyup="if(event.keyCode == 13) buscar();" type="text" class="form-control" id="inputBuscar" placeholder="Buscar distribuidor">
-			    	</div>
-			  	</div>
-		</div>
-<div style="float:left; margin-top: 20px; margin-left:10px;">
-			<button type="submit" class="btn btn-primary" onclick="buscar()">Buscar</button>
-		</div>
 
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>-->
 
 <div style="clear:both"></div>
 
@@ -92,7 +54,7 @@
 		function mostrarCajasTarimas(id){
 			var parametros = {'idenvio':id};
 			//alert(idOrden);
-				$("#mititulo").html("Cajas y tarimas");
+				$("#mititulo").html("Cajas y Pallets");
 				$.ajax({
 					type: 'POST',
 					url: 'envios/vistaCajasTarimas.php',
