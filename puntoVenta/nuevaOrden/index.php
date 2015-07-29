@@ -35,7 +35,9 @@
 		<div class="contenido-general">
 			<div class="modal-header">
 				<h3 class="titulo-header">
-					<h3 class="titulo-contenido">Nueva Órden a Distribuidor</h3>
+					<h3 class="titulo-contenido">
+						<img class="img-header" src="../../img/nueva_orden.png"> &nbsp;Nueva Órden a Distribuidor
+					</h3>
 				</h3>
 			</div>
 			<div class="contenido-general-2">

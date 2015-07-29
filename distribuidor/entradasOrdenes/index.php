@@ -153,23 +153,21 @@
 							          				$estado = $row['estado_orden'];
 
 							          				switch($estado) {
-							          					case '1': echo "<td class='centro pendiente'>PENDIENTE</td>"; 	$verAcciones = 0; break;
-							          					case '2': echo "<td class='centro rechazado'>RECHAZADO</td>"; 	$verAcciones = 0; break;
-							          					case '3': echo "<td class='centro enviado'>ENVIADO</td>"; 		$verAcciones = 1; break;
-							          					case '4': echo "<td class='centro concretado'>CONCRETADO</td>"; $verAcciones = 0; break;
-							          					case '5': echo "<td class='centro cancelado'>CANCELADO</td>";	$verAcciones = 0; break;
-							          					case '6': echo "<td class='centro aprobado'>APROBADO</td>"; 	$verAcciones = 0; break;
+							          					case '1': echo "<td class='centro pendiente'>PENDIENTE</td>"; break;
+							          					case '2': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR EMPAQUE'>RECHAZADO</span></td>"; break;
+							          					case '3': echo "<td class='centro enviado'><span class='link-estado' onclick='mostrarModalEstado(".$row['id_orden'].")'>ENVIADO</td>"; break;
+							          					case '4': echo "<td class='centro concretado'>CONCRETADO</td>"; break;
+							          					case '5': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR EMPAQUE'>CANCELADO</span></td>"; break;
+							          					case '6': echo "<td class='centro aprobado'>APROBADO</td>"; break;
+							          					case '7': echo "<td class='centro pendiente'>PRE-ENVIO</td>"; break;
+							          					case '8': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR DISTRIBUIDOR'>CANCELADO</span></td>"; break;
+							          					case '9': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR DISTRIBUIDOR'>RECHAZADO</span></td>"; break;
+							          					case '10': echo "<td class='centro cancelado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='CANCELADO POR PUNTO DE VENTA'>CANCELADO</span></td>"; break;
+							          					case '11': echo "<td class='centro rechazado'><span class='popover-estado link-estado' tabindex='0' data-toggle='popover' data-placement='top' data-trigger='focus' data-container='body' data-content='RECHAZADO POR PUNTO DE VENTA'>RECHAZADO</span></td>"; break;
 							          				}
 							          			?>
 								          		<td class="derecha">
-								          			<!-- <button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button> -->
 								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
-								          			<?php
-								          				if($verAcciones == 1){ ?>
-								          					<button class="btn btn-danger" id="btn-cancelar" onClick="mostrarModalEstado(<?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Rechazar orden"><i class="glyphicon glyphicon-remove"></i></button>
-									        				<!-- <button class="btn btn-success" id="btn-concretar" onClick="cambiarEstadoOrden('concretar', 4, <?php echo $row['id_orden']; ?>)" data-toggle="tooltip" title="Concretar orden"><i class="glyphicon glyphicon-ok"></i></button> -->
-								          				<?php }
-								          			?>
 									        	</td>
 								    	    </tr>
 									<?php 
@@ -260,8 +258,8 @@
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
 			$('.popover-empaque').popover();
+			$('.popover-estado').popover();
 			$('#btn-detalles').tooltip();
-			// $('#btn-concretar').tooltip();
 			$('#btn-cancelar').tooltip();
 
 			function buscarOrdenes(){

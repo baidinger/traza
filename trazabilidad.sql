@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jul 27, 2015 at 07:25 PM
--- Server version: 5.5.40
--- PHP Version: 5.4.12
+-- Servidor: localhost
+-- Tiempo de generación: 29-07-2015 a las 05:39:56
+-- Versión del servidor: 5.5.16
+-- Versión de PHP: 5.3.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,20 +17,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `trazabilidad`
+-- Base de datos: `trazabilidad`
 --
-CREATE DATABASE IF NOT EXISTS `trazabilidad` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `trazabilidad`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `camiones_distribuidor`
+-- Estructura de tabla para la tabla `camiones_distribuidor`
 --
 
 CREATE TABLE IF NOT EXISTS `camiones_distribuidor` (
   `id_camion_distribuidor` int(11) NOT NULL AUTO_INCREMENT,
-  `placas_camion_distribuidor` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `placas_camion_distribuidor` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `nombre_chofer_camion_distribuidor` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `descripcion_camion_distribuidor` text COLLATE utf8_spanish_ci NOT NULL,
   `marca_camion_distribuidor` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
@@ -40,20 +38,22 @@ CREATE TABLE IF NOT EXISTS `camiones_distribuidor` (
   `estado_camion_distribuidor` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_camion_distribuidor`),
   KEY `id_distribuidor_fk` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `camiones_distribuidor`
+-- Volcado de datos para la tabla `camiones_distribuidor`
 --
 
 INSERT INTO `camiones_distribuidor` (`id_camion_distribuidor`, `placas_camion_distribuidor`, `nombre_chofer_camion_distribuidor`, `descripcion_camion_distribuidor`, `marca_camion_distribuidor`, `modelo_camion_distribuidor`, `id_distribuidor_fk`, `disponibilidad_camion_distribuidor`, `estado_camion_distribuidor`) VALUES
 (1, 'XBHJ-56', 'ANACLETO', '', 'TOYOTA', '2015', 14, 0, 1),
-(2, 'YTG6874', 'PANFILO GOMEZ', '', 'NISSAN', '2012', 14, 0, 1);
+(2, 'YTG6874', 'PANFILO GOMEZ', '', 'NISSAN', '2012', 14, 0, 1),
+(3, 'CBA-92-12', 'JUAN CARLOS RIVERA HERNANDEZ', 'Azul con blanco', 'FORD', '2010', 13, 0, 1),
+(4, 'JCL-05-10', 'CARLOS PRADO RODRIGUEZ', 'De la empresa "Auto Transportes Moctezuma"', 'FORD', '2012', 13, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `camiones_empaque`
+-- Estructura de tabla para la tabla `camiones_empaque`
 --
 
 CREATE TABLE IF NOT EXISTS `camiones_empaque` (
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `camiones_empaque` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `camiones_empaque`
+-- Volcado de datos para la tabla `camiones_empaque`
 --
 
 INSERT INTO `camiones_empaque` (`id_camion`, `placas`, `nombre_chofer`, `descripcion_camion`, `marca`, `modelo`, `id_empaque_fk`, `disponibilidad_ce`, `estado_ce`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `camiones_empaque` (`id_camion`, `placas`, `nombre_chofer`, `descrip
 -- --------------------------------------------------------
 
 --
--- Table structure for table `distribuidor_cajas_envio`
+-- Estructura de tabla para la tabla `distribuidor_cajas_envio`
 --
 
 CREATE TABLE IF NOT EXISTS `distribuidor_cajas_envio` (
@@ -96,11 +96,11 @@ CREATE TABLE IF NOT EXISTS `distribuidor_cajas_envio` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=106 ;
 
 --
--- Dumping data for table `distribuidor_cajas_envio`
+-- Volcado de datos para la tabla `distribuidor_cajas_envio`
 --
 
 INSERT INTO `distribuidor_cajas_envio` (`id_distribuidor_cajas_envio`, `id_envio_fk`, `epc_caja`, `epc_tarima`, `enviado_dce`, `recibido_dce`) VALUES
-(67, 5, '000000000000000000006217', '010000000000000000006203', 1, 0),
+(67, 5, '000000000000000000006217', '010000000000000000006203', 1, 1),
 (68, 5, '000000000000000000006216', '010000000000000000006203', 1, 0),
 (69, 5, '000000000000000000006214', '010000000000000000006203', 1, 0),
 (70, 5, '000000000000000000006210', '010000000000000000006203', 1, 0),
@@ -143,7 +143,7 @@ INSERT INTO `distribuidor_cajas_envio` (`id_distribuidor_cajas_envio`, `id_envio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa_distribuidores`
+-- Estructura de tabla para la tabla `empresa_distribuidores`
 --
 
 CREATE TABLE IF NOT EXISTS `empresa_distribuidores` (
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `empresa_distribuidores` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `empresa_distribuidores`
+-- Volcado de datos para la tabla `empresa_distribuidores`
 --
 
 INSERT INTO `empresa_distribuidores` (`id_distribuidor`, `nombre_distribuidor`, `rfc_distribuidor`, `pais_distribuidor`, `estado_distribuidor`, `ciudad_distribuidor`, `cp_distribuidor`, `email_distribuidor`, `tel1_distribuidor`, `tel2_distribuidor`, `direccion_distribuidor`, `id_usuario_que_registro`, `fecha_registro_dist`, `fecha_modificacion_dist`, `estado_d`) VALUES
@@ -176,7 +176,7 @@ INSERT INTO `empresa_distribuidores` (`id_distribuidor`, `nombre_distribuidor`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa_empaques`
+-- Estructura de tabla para la tabla `empresa_empaques`
 --
 
 CREATE TABLE IF NOT EXISTS `empresa_empaques` (
@@ -199,18 +199,18 @@ CREATE TABLE IF NOT EXISTS `empresa_empaques` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `empresa_empaques`
+-- Volcado de datos para la tabla `empresa_empaques`
 --
 
 INSERT INTO `empresa_empaques` (`id_empaque`, `nombre_empaque`, `rfc_empaque`, `pais_empaque`, `estado_empaque`, `ciudad_empaque`, `direccion_empaque`, `cp_empaque`, `email_empaque`, `telefono1_empaque`, `telefono2_empaque`, `id_usuario_que_registro`, `fecha_registro_emp`, `fecha_modificacion_emp`, `estado_e`) VALUES
-(1, 'SIERVO DE LA NACION', 'SIRV900305KT0', '0', '13', 'EL CEÃ‘IDOR', 'EL CEÃ‘IDOR, MUGICA. CAR. 4 CAMINOS APATZINGÃN', '61770', 'contacto@siervodelanacion.com.mx', '4255925238', '', 1, '0000-00-00', '2015-07-24', 1),
+(1, 'SIERVO DE LA NACION', 'SIRV900305KT0', '0', '13', 'EL CEÃ‘IDOR', 'EL CEÃ‘IDOR, MUGICA. CAR. 4 CAMINOS APATZINGÃN', '61770', 'contacto@siervodelanacion.com.mx', '4255925238', '4255925239', 1, '0000-00-00', '2015-07-24', 1),
 (13, 'EMPAQUE MANGUEROS', 'SVON894532JH7', '2', '1', 'MORELIA', 'ASDKL', '54223', 'siervo@siervodelanacion.com', '4531065690', '', 1, '2015-07-24', '2015-07-24', 1),
 (14, 'SIMPUS', 'SIRV900305KT0', '1', '1', 'MORELIA', 'CONOIDO', '61770', 'siervo@siervodelanacion.com', '4531065690', '', 1, '2015-07-26', '2015-07-26', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa_productores`
+-- Estructura de tabla para la tabla `empresa_productores`
 --
 
 CREATE TABLE IF NOT EXISTS `empresa_productores` (
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `empresa_productores` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
--- Dumping data for table `empresa_productores`
+-- Volcado de datos para la tabla `empresa_productores`
 --
 
 INSERT INTO `empresa_productores` (`id_productor`, `nombre_productor`, `apellido_productor`, `telefono_productor`, `direccion_productor`, `rfc_productor`, `id_usuario_fk`, `id_usuario_que_registro`, `fecha_registro_prod`, `fecha_modificacion_prod`, `estado_p`) VALUES
@@ -240,7 +240,7 @@ INSERT INTO `empresa_productores` (`id_productor`, `nombre_productor`, `apellido
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa_punto_venta`
+-- Estructura de tabla para la tabla `empresa_punto_venta`
 --
 
 CREATE TABLE IF NOT EXISTS `empresa_punto_venta` (
@@ -262,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `empresa_punto_venta` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `empresa_punto_venta`
+-- Volcado de datos para la tabla `empresa_punto_venta`
 --
 
 INSERT INTO `empresa_punto_venta` (`id_punto_venta`, `nombre_punto_venta`, `rfc_punto_venta`, `pais_punto_venta`, `estado_punto_venta`, `ciudad_punto_venta`, `telefono_punto_venta`, `cp_punto_venta`, `email_punto_venta`, `direccion_punto_venta`, `id_usuario_que_registro`, `fecha_registro_pv`, `fecha_modificacion_pv`, `estado_pv`) VALUES
@@ -273,7 +273,7 @@ INSERT INTO `empresa_punto_venta` (`id_punto_venta`, `nombre_punto_venta`, `rfc_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrada_distribuidor`
+-- Estructura de tabla para la tabla `entrada_distribuidor`
 --
 
 CREATE TABLE IF NOT EXISTS `entrada_distribuidor` (
@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `entrada_distribuidor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `envios_distribuidor`
+-- Estructura de tabla para la tabla `envios_distribuidor`
 --
 
 CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
@@ -303,21 +303,23 @@ CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
   `estado_envio` int(11) NOT NULL,
   `id_punto_venta_fk` int(11) NOT NULL,
   `id_orden_dist_fk` int(11) NOT NULL,
-  PRIMARY KEY (`id_envio`)
+  PRIMARY KEY (`id_envio`),
+  KEY `id_usuario_distribuidor_fk` (`id_usuario_distribuidor_fk`),
+  KEY `id_punto_venta_fk` (`id_punto_venta_fk`),
+  KEY `id_orden_dist_fk` (`id_orden_dist_fk`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `envios_distribuidor`
+-- Volcado de datos para la tabla `envios_distribuidor`
 --
 
 INSERT INTO `envios_distribuidor` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_entrega_envio`, `id_camion_fk`, `id_usuario_distribuidor_fk`, `descripcion_envio`, `descripcion_cancelacion`, `descripcion_rechazo`, `estado_envio`, `id_punto_venta_fk`, `id_orden_dist_fk`) VALUES
-(7, '2015-07-26', '22:40:01', '0000-00-00', 2, 22, 'descripcion', NULL, NULL, 3, 10, 2),
-(8, '2015-07-26', '22:42:14', '0000-00-00', 1, 22, 'descripcion', NULL, NULL, 3, 10, 2);
+(7, '2015-07-26', '22:40:01', '0000-00-00', 2, 22, 'descripcion', 'Siempre no', NULL, 8, 10, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `envios_empaque`
+-- Estructura de tabla para la tabla `envios_empaque`
 --
 
 CREATE TABLE IF NOT EXISTS `envios_empaque` (
@@ -341,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `envios_empaque` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `envios_empaque`
+-- Volcado de datos para la tabla `envios_empaque`
 --
 
 INSERT INTO `envios_empaque` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_entrega_envio`, `id_camion_fk`, `id_receptor_fk`, `descripcion_envio`, `descripcion_cancelacion`, `descripcion_rechazo`, `estado_envio`, `id_distribuidor_fk`, `id_orden_fk`) VALUES
@@ -353,7 +355,7 @@ INSERT INTO `envios_empaque` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_en
 -- --------------------------------------------------------
 
 --
--- Table structure for table `epc`
+-- Estructura de tabla para la tabla `epc`
 --
 
 CREATE TABLE IF NOT EXISTS `epc` (
@@ -367,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `epc` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lotes`
+-- Estructura de tabla para la tabla `lotes`
 --
 
 CREATE TABLE IF NOT EXISTS `lotes` (
@@ -393,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `lotes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `lotes`
+-- Volcado de datos para la tabla `lotes`
 --
 
 INSERT INTO `lotes` (`id_lote`, `id_productor_fk`, `id_producto_fk`, `cant_cajas_lote`, `cant_kilos_lote`, `remitente_lote`, `fecha_recibo_lote`, `hora_recibo_lote`, `costo_lote`, `fecha_recoleccion`, `hora_recoleccion`, `numero_peones`, `fecha_caducidad`, `rendimiento_kg`, `rendimiento_cajas`, `id_empaque_fk`) VALUES
@@ -403,7 +405,7 @@ INSERT INTO `lotes` (`id_lote`, `id_productor_fk`, `id_producto_fk`, `cant_cajas
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordenes_distribuidor`
+-- Estructura de tabla para la tabla `ordenes_distribuidor`
 --
 
 CREATE TABLE IF NOT EXISTS `ordenes_distribuidor` (
@@ -423,12 +425,12 @@ CREATE TABLE IF NOT EXISTS `ordenes_distribuidor` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
--- Dumping data for table `ordenes_distribuidor`
+-- Volcado de datos para la tabla `ordenes_distribuidor`
 --
 
 INSERT INTO `ordenes_distribuidor` (`id_orden`, `fecha_orden`, `fecha_entrega_orden`, `costo_orden`, `descripcion_orden`, `descripcion_cancelacion`, `descripcion_rechazo`, `id_usuario_distribuidor_fk`, `id_empaque_fk`, `estado_orden`) VALUES
 (14, '2015-07-23', '2015-07-31', '21300.00', 'DescripciÃ³n de la orden, favor de confirmar lo mas pronto posible. Saludos', '', 'Sea serio por favor', 20, 1, 2),
-(15, '2015-07-24', '2015-08-03', '32710.00', 'Necesito una carga grande de limÃ³n persa, no importan mucho los calibres, sÃ³lo necesito que el peso mÃ­nimo del limÃ³n sea de 50 gramos.', 'Ya no necesito la orden, conseguÃ­ mejores precios. Gracias.', '', 20, 13, 5),
+(15, '2015-07-24', '2015-08-03', '32710.00', 'Necesito una carga grande de limÃ³n persa, no importan mucho los calibres, sÃ³lo necesito que el peso mÃ­nimo del limÃ³n sea de 50 gramos.', 'Ya no necesito la orden, conseguÃ­ mejores precios. Gracias.', '', 20, 13, 8),
 (16, '2015-07-26', '2015-07-27', '7500.00', 'Quiero que la envien lo mas rapido posivle', '', '', 22, 14, 3),
 (17, '2015-07-01', '2015-07-28', '3000.00', 'k', 'No me gusto!', '', 22, 14, 5),
 (18, '2015-07-26', '2015-07-27', '20392.80', 'Descripcion de la orden', 'Motivo de cancelacion', NULL, 20, 14, 5),
@@ -437,7 +439,7 @@ INSERT INTO `ordenes_distribuidor` (`id_orden`, `fecha_orden`, `fecha_entrega_or
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordenes_distribuidor_detalles`
+-- Estructura de tabla para la tabla `ordenes_distribuidor_detalles`
 --
 
 CREATE TABLE IF NOT EXISTS `ordenes_distribuidor_detalles` (
@@ -454,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `ordenes_distribuidor_detalles` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
--- Dumping data for table `ordenes_distribuidor_detalles`
+-- Volcado de datos para la tabla `ordenes_distribuidor_detalles`
 --
 
 INSERT INTO `ordenes_distribuidor_detalles` (`id_orden_detalles`, `cantidad_producto_od`, `unidad_producto_od`, `costo_unitario_od`, `costo_producto_od`, `id_orden_fk`, `id_producto_fk`) VALUES
@@ -483,7 +485,7 @@ INSERT INTO `ordenes_distribuidor_detalles` (`id_orden_detalles`, `cantidad_prod
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordenes_punto_venta`
+-- Estructura de tabla para la tabla `ordenes_punto_venta`
 --
 
 CREATE TABLE IF NOT EXISTS `ordenes_punto_venta` (
@@ -500,20 +502,21 @@ CREATE TABLE IF NOT EXISTS `ordenes_punto_venta` (
   PRIMARY KEY (`id_orden`),
   KEY `id_usuario_punto_venta_idx` (`id_usuario_punto_venta_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `ordenes_punto_venta`
+-- Volcado de datos para la tabla `ordenes_punto_venta`
 --
 
 INSERT INTO `ordenes_punto_venta` (`id_orden`, `fecha_orden`, `fecha_entrega_orden`, `costo_orden`, `descripcion_orden`, `descripcion_cancelacion`, `descripcion_rechazo`, `id_usuario_punto_venta_fk`, `id_distribuidor_fk`, `estado_orden`) VALUES
-(1, '2015-07-24', '2015-07-31', '1450.00', 'Sin descripciÃ³n.', 'Siempre no la quiero. Gracias.', '', 9, 13, 5),
-(2, '2015-07-26', '2015-07-27', '1200.00', '', '', '', 10, 14, 3);
+(1, '2015-07-24', '2015-07-31', '1450.00', 'Sin descripciÃ³n.', '', '', 9, 13, 6),
+(2, '2015-07-26', '2015-07-27', '1200.00', '', 'Siempre no', '', 10, 14, 8),
+(3, '2015-07-28', '2015-08-05', '3900.00', 'DescripciÃ³n de la orden del pv al dist', NULL, NULL, 9, 13, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordenes_punto_venta_detalles`
+-- Estructura de tabla para la tabla `ordenes_punto_venta_detalles`
 --
 
 CREATE TABLE IF NOT EXISTS `ordenes_punto_venta_detalles` (
@@ -527,21 +530,24 @@ CREATE TABLE IF NOT EXISTS `ordenes_punto_venta_detalles` (
   PRIMARY KEY (`id_orden_dist_detalles`),
   KEY `id_orden_dist_fk_idx` (`id_orden_dist_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `ordenes_punto_venta_detalles`
+-- Volcado de datos para la tabla `ordenes_punto_venta_detalles`
 --
 
 INSERT INTO `ordenes_punto_venta_detalles` (`id_orden_dist_detalles`, `cant_producto_odd`, `unidad_producto_odd`, `costo_unitario_odd`, `costo_producto_odd`, `id_orden_dist_fk`, `id_producto_fk`) VALUES
 (1, 50, 'KILOS', '15.00', '750.00', 1, 1),
 (2, 50, 'KILOS', '14.00', '700.00', 1, 2),
-(3, 400, 'KILOS', '3.00', '1200.00', 2, 3);
+(3, 400, 'KILOS', '3.00', '1200.00', 2, 3),
+(4, 100, 'KILOS', '9.50', '950.00', 3, 11),
+(5, 100, 'KILOS', '14.00', '1400.00', 3, 1),
+(6, 100, 'KILOS', '15.50', '1550.00', 3, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos`
+-- Estructura de tabla para la tabla `productos`
 --
 
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -552,7 +558,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
--- Dumping data for table `productos`
+-- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre_producto`, `variedad_producto`) VALUES
@@ -577,7 +583,7 @@ INSERT INTO `productos` (`id_producto`, `nombre_producto`, `variedad_producto`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos_distribuidores`
+-- Estructura de tabla para la tabla `productos_distribuidores`
 --
 
 CREATE TABLE IF NOT EXISTS `productos_distribuidores` (
@@ -588,23 +594,24 @@ CREATE TABLE IF NOT EXISTS `productos_distribuidores` (
   PRIMARY KEY (`id_productos_distribuidor`),
   KEY `id_distribuidor_fk` (`id_distribuidor_fk`),
   KEY `id_producto_fk` (`id_producto_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `productos_distribuidores`
+-- Volcado de datos para la tabla `productos_distribuidores`
 --
 
 INSERT INTO `productos_distribuidores` (`id_productos_distribuidor`, `id_distribuidor_fk`, `id_producto_fk`, `precio_venta`) VALUES
-(1, 13, 1, '0.00'),
-(2, 13, 2, '0.00'),
-(3, 13, 3, '0.00'),
-(4, 13, 4, '0.00'),
-(5, 13, 12, '0.00');
+(1, 13, 1, '14.00'),
+(2, 13, 2, '15.50'),
+(3, 13, 3, '13.00'),
+(4, 13, 4, '12.00'),
+(5, 13, 12, '12.00'),
+(6, 13, 11, '9.50');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos_empaques`
+-- Estructura de tabla para la tabla `productos_empaques`
 --
 
 CREATE TABLE IF NOT EXISTS `productos_empaques` (
@@ -619,7 +626,7 @@ CREATE TABLE IF NOT EXISTS `productos_empaques` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- Dumping data for table `productos_empaques`
+-- Volcado de datos para la tabla `productos_empaques`
 --
 
 INSERT INTO `productos_empaques` (`id_productos_empaque`, `id_empaque_fk`, `id_producto_fk`, `precio_venta`, `precio_compra`) VALUES
@@ -634,7 +641,7 @@ INSERT INTO `productos_empaques` (`id_productos_empaque`, `id_empaque_fk`, `id_p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos_productores`
+-- Estructura de tabla para la tabla `productos_productores`
 --
 
 CREATE TABLE IF NOT EXISTS `productos_productores` (
@@ -650,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `productos_productores` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `productos_productores`
+-- Volcado de datos para la tabla `productos_productores`
 --
 
 INSERT INTO `productos_productores` (`id_productos_productores`, `id_productor_fk`, `id_producto_fk`, `ubicacion_huerta`, `hectareas`, `descripcion_detalles_pp`) VALUES
@@ -664,7 +671,7 @@ INSERT INTO `productos_productores` (`id_productos_productores`, `id_productor_f
 -- --------------------------------------------------------
 
 --
--- Table structure for table `punto_venta_cajas_envio`
+-- Estructura de tabla para la tabla `punto_venta_cajas_envio`
 --
 
 CREATE TABLE IF NOT EXISTS `punto_venta_cajas_envio` (
@@ -679,45 +686,34 @@ CREATE TABLE IF NOT EXISTS `punto_venta_cajas_envio` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
 
 --
--- Dumping data for table `punto_venta_cajas_envio`
+-- Volcado de datos para la tabla `punto_venta_cajas_envio`
 --
 
 INSERT INTO `punto_venta_cajas_envio` (`id_punto_venta_cajas_envio`, `id_envio_fk`, `epc_caja`, `epc_tarima`, `enviado_dce`, `recibido_dce`) VALUES
-(47, 7, '000000000000000000005834', '010000000000000000005840', 1, 0),
-(48, 7, '000000000000000000005842', '010000000000000000005840', 1, 0),
-(49, 7, '000000000000000000005839', '010000000000000000005840', 1, 0),
-(50, 7, '000000000000000000005843', '010000000000000000005840', 1, 0),
-(51, 7, '000000000000000000005835', '010000000000000000005840', 1, 0),
-(52, 7, '000000000000000000005845', '010000000000000000005840', 1, 0),
-(53, 7, '000000000000000000005837', '010000000000000000005840', 1, 0),
-(54, 7, '000000000000000000005852', '010000000000000000005840', 1, 0),
-(55, 7, '000000000000000000005841', '010000000000000000005840', 1, 0),
-(56, 7, '000000000000000000005846', '010000000000000000005840', 1, 0),
-(57, 7, '000000000000000000005838', '010000000000000000005840', 1, 0),
-(58, 7, '000000000000000000005853', '010000000000000000005840', 1, 0),
-(59, 7, '000000000000000000005851', '010000000000000000005840', 1, 0),
-(60, 7, '000000000000000000005848', '010000000000000000005840', 1, 0),
-(61, 7, '000000000000000000005836', '010000000000000000005840', 1, 0),
-(62, 7, '000000000000000000005850', '010000000000000000005840', 1, 0),
-(63, 7, '000000000000000000005849', '010000000000000000005840', 1, 0),
-(64, 7, '000000000000000000005847', '010000000000000000005840', 1, 0),
-(65, 7, '000000000000000000005844', '010000000000000000005840', 1, 0),
-(66, 8, '000000000000000000006207', '010000000000000000006203', 1, 0),
-(67, 8, '000000000000000000006217', '010000000000000000006203', 1, 0),
-(68, 8, '000000000000000000006211', '010000000000000000006203', 1, 0),
-(69, 8, '000000000000000000006289', '010000000000000000006203', 1, 0),
-(70, 8, '000000000000000000006205', '010000000000000000006203', 1, 0),
-(71, 8, '000000000000000000006214', '010000000000000000006203', 1, 0),
-(72, 8, '000000000000000000006204', '010000000000000000006203', 1, 0),
-(73, 8, '000000000000000000006210', '010000000000000000006203', 1, 0),
-(74, 8, '000000000000000000006212', '010000000000000000006203', 1, 0),
-(75, 8, '000000000000000000006208', '010000000000000000006203', 1, 0),
-(76, 8, '000000000000000000006209', '010000000000000000006203', 1, 0);
+(47, 7, '000000000000000000005834', '010000000000000000005840', 1, 1),
+(48, 7, '000000000000000000005842', '010000000000000000005840', 1, 1),
+(49, 7, '000000000000000000005839', '010000000000000000005840', 1, 1),
+(50, 7, '000000000000000000005843', '010000000000000000005840', 1, 1),
+(51, 7, '000000000000000000005835', '010000000000000000005840', 1, 1),
+(52, 7, '000000000000000000005845', '010000000000000000005840', 1, 1),
+(53, 7, '000000000000000000005837', '010000000000000000005840', 1, 1),
+(54, 7, '000000000000000000005852', '010000000000000000005840', 1, 1),
+(55, 7, '000000000000000000005841', '010000000000000000005840', 1, 1),
+(56, 7, '000000000000000000005846', '010000000000000000005840', 1, 1),
+(57, 7, '000000000000000000005838', '010000000000000000005840', 1, 1),
+(58, 7, '000000000000000000005853', '010000000000000000005840', 1, 1),
+(59, 7, '000000000000000000005851', '010000000000000000005840', 1, 1),
+(60, 7, '000000000000000000005848', '010000000000000000005840', 1, 1),
+(61, 7, '000000000000000000005836', '010000000000000000005840', 1, 1),
+(62, 7, '000000000000000000005850', '010000000000000000005840', 1, 1),
+(63, 7, '000000000000000000005849', '010000000000000000005840', 1, 1),
+(64, 7, '000000000000000000005847', '010000000000000000005840', 1, 1),
+(65, 7, '000000000000000000005844', '010000000000000000005840', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -731,10 +727,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `estado_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nombre_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=94 ;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `contrasena_usuario`, `tipo_socio_usuario`, `nivel_autorizacion_usuario`, `fecha_creacion_usuario`, `fecha_modificacion_usuario`, `estado_usuario`) VALUES
@@ -747,17 +743,18 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `contrasena_usuario`, `t
 (78, 'DIST', '2a6d07eef8b10b84129b42424ed99327', 3, 1, '2015-07-24', '2015-07-23', 1),
 (85, 'ROOT2', '6a2cd24438d8a22f757a6a0d2f4e7a11', 4, 1, '2015-07-24', '2015-07-24', 1),
 (86, 'dist2', '2a6d07eef8b10b84129b42424ed99327', 3, 2, '2015-07-24', '2015-07-25', 1),
-(87, 'PV', '99bea2cd698b56b1a3b8c1701bd51c67', 4, 1, '2015-07-24', '2015-07-24', 1),
+(87, 'PV', '99bea2cd698b56b1a3b8c1701bd51c67', 4, 1, '2015-07-24', '2015-07-28', 1),
 (88, 'EMPAQUE', 'cefd04f07d55b35421c3fa1ed1abb530', 2, 2, '2015-07-24', '2015-07-24', 1),
 (89, 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 2, 1, '2015-07-26', '2015-07-26', 1),
 (90, 'SIMPUS1', '3b18aea56183f6bf684946b906fb773b', 3, 1, '2015-07-26', '2015-07-26', 1),
-(91, 'PV1', '6ed8b2adaa76b60eeade01720e10fb77', 4, 1, '2015-07-26', '2015-07-26', 1),
-(92, 'HH', '5e36941b3d856737e81516acd45edc50', 2, 2, '2015-07-26', '2015-07-26', 1);
+(91, 'PV1', '6ed8b2adaa76b60eeade01720e10fb77', 4, 1, '2015-07-26', '2015-07-28', 1),
+(92, 'HH', '5e36941b3d856737e81516acd45edc50', 2, 2, '2015-07-26', '2015-07-26', 1),
+(93, 'pv2', 'c50056b80f6e06f1d535275d939688ca', 4, 2, '2015-07-28', '2015-07-28', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario_distribuidor`
+-- Estructura de tabla para la tabla `usuario_distribuidor`
 --
 
 CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
@@ -777,7 +774,7 @@ CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
--- Dumping data for table `usuario_distribuidor`
+-- Volcado de datos para la tabla `usuario_distribuidor`
 --
 
 INSERT INTO `usuario_distribuidor` (`id_usuario_distribuidor`, `nombre_usuario_distribuidor`, `apellido_usuario_distribuidor`, `direccion_usuario_distribuidor`, `telefono_usuario_distribuidor`, `entradas`, `pedidos`, `envios`, `id_usuario_fk`, `id_distribuidor_fk`) VALUES
@@ -788,7 +785,7 @@ INSERT INTO `usuario_distribuidor` (`id_usuario_distribuidor`, `nombre_usuario_d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario_empaque`
+-- Estructura de tabla para la tabla `usuario_empaque`
 --
 
 CREATE TABLE IF NOT EXISTS `usuario_empaque` (
@@ -809,7 +806,7 @@ CREATE TABLE IF NOT EXISTS `usuario_empaque` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `usuario_empaque`
+-- Volcado de datos para la tabla `usuario_empaque`
 --
 
 INSERT INTO `usuario_empaque` (`id_receptor`, `nombre_receptor`, `apellido_receptor`, `direccion_receptor`, `telefono_receptor`, `pedidos`, `lotes`, `envios`, `superusuario`, `id_usuario_fk`, `id_empaque_fk`) VALUES
@@ -822,7 +819,7 @@ INSERT INTO `usuario_empaque` (`id_receptor`, `nombre_receptor`, `apellido_recep
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario_punto_venta`
+-- Estructura de tabla para la tabla `usuario_punto_venta`
 --
 
 CREATE TABLE IF NOT EXISTS `usuario_punto_venta` (
@@ -836,47 +833,56 @@ CREATE TABLE IF NOT EXISTS `usuario_punto_venta` (
   PRIMARY KEY (`id_usuario_pv`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_usuario_punto_venta_idx` (`id_punto_venta_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `usuario_punto_venta`
+-- Volcado de datos para la tabla `usuario_punto_venta`
 --
 
 INSERT INTO `usuario_punto_venta` (`id_usuario_pv`, `nombre_usuario_pv`, `apellidos_usuario_pv`, `telefono_usuario_pv`, `direccion_usuario_pv`, `id_usuario_fk`, `id_punto_venta_fk`) VALUES
 (8, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN', 85, 8),
-(9, 'ADMIN', 'ADMIN', '0000000000', 'ADMIN', 87, 9),
-(10, 'ADMIN', 'ADMIN', '000000000', 'CONOCIDO', 91, 10);
+(9, 'DAVID', 'CAZARES AGUILAR', '4525191159', 'Cuahutemoc No 13 Colonia Centro', 87, 9),
+(10, 'JOAQUIN', 'LOPEZ DORIGA', '5511234567', 'Enrique Segobiano No 8', 91, 10),
+(11, 'ANDREA', 'CAZARES AGUILAR', '4525191151', 'Cuahutemoc No 13 Colonia Centro', 93, 9);
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `camiones_distribuidor`
+-- Filtros para la tabla `camiones_distribuidor`
 --
 ALTER TABLE `camiones_distribuidor`
-  ADD CONSTRAINT `camiones_distribuidor_ibfk_1` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`);
+  ADD CONSTRAINT `camiones_distribuidor_ibfk_1` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `camiones_empaque`
+-- Filtros para la tabla `camiones_empaque`
 --
 ALTER TABLE `camiones_empaque`
-  ADD CONSTRAINT `camiones_empaque_ibfk_1` FOREIGN KEY (`id_empaque_fk`) REFERENCES `empresa_empaques` (`id_empaque`);
+  ADD CONSTRAINT `camiones_empaque_ibfk_1` FOREIGN KEY (`id_empaque_fk`) REFERENCES `empresa_empaques` (`id_empaque`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `distribuidor_cajas_envio`
+-- Filtros para la tabla `distribuidor_cajas_envio`
 --
 ALTER TABLE `distribuidor_cajas_envio`
   ADD CONSTRAINT `distribuidor_cajas_envio_ibfk_1` FOREIGN KEY (`id_envio_fk`) REFERENCES `envios_empaque` (`id_envio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `empresa_productores`
+-- Filtros para la tabla `empresa_productores`
 --
 ALTER TABLE `empresa_productores`
   ADD CONSTRAINT `empresa_productores_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `envios_empaque`
+-- Filtros para la tabla `envios_distribuidor`
+--
+ALTER TABLE `envios_distribuidor`
+  ADD CONSTRAINT `envios_distribuidor_ibfk_3` FOREIGN KEY (`id_orden_dist_fk`) REFERENCES `ordenes_punto_venta` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `envios_distribuidor_ibfk_1` FOREIGN KEY (`id_usuario_distribuidor_fk`) REFERENCES `usuario_distribuidor` (`id_usuario_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `envios_distribuidor_ibfk_2` FOREIGN KEY (`id_punto_venta_fk`) REFERENCES `empresa_punto_venta` (`id_punto_venta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `envios_empaque`
 --
 ALTER TABLE `envios_empaque`
   ADD CONSTRAINT `envios_empaque_ibfk_1` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -884,93 +890,93 @@ ALTER TABLE `envios_empaque`
   ADD CONSTRAINT `envios_empaque_ibfk_3` FOREIGN KEY (`id_receptor_fk`) REFERENCES `usuario_empaque` (`id_receptor`);
 
 --
--- Constraints for table `epc`
+-- Filtros para la tabla `epc`
 --
 ALTER TABLE `epc`
   ADD CONSTRAINT `epc_ibfk_1` FOREIGN KEY (`id_lote_fk`) REFERENCES `lotes` (`id_lote`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `lotes`
+-- Filtros para la tabla `lotes`
 --
 ALTER TABLE `lotes`
   ADD CONSTRAINT `lotes_ibfk_1` FOREIGN KEY (`id_productor_fk`) REFERENCES `empresa_productores` (`id_productor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `lotes_ibfk_2` FOREIGN KEY (`id_producto_fk`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ordenes_distribuidor`
+-- Filtros para la tabla `ordenes_distribuidor`
 --
 ALTER TABLE `ordenes_distribuidor`
   ADD CONSTRAINT `ordenes_distribuidor_ibfk_1` FOREIGN KEY (`id_usuario_distribuidor_fk`) REFERENCES `usuario_distribuidor` (`id_usuario_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ordenes_distribuidor_ibfk_2` FOREIGN KEY (`id_empaque_fk`) REFERENCES `empresa_empaques` (`id_empaque`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ordenes_distribuidor_detalles`
+-- Filtros para la tabla `ordenes_distribuidor_detalles`
 --
 ALTER TABLE `ordenes_distribuidor_detalles`
   ADD CONSTRAINT `ordenes_distribuidor_detalles_ibfk_1` FOREIGN KEY (`id_orden_fk`) REFERENCES `ordenes_distribuidor` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ordenes_distribuidor_detalles_ibfk_2` FOREIGN KEY (`id_producto_fk`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ordenes_punto_venta`
+-- Filtros para la tabla `ordenes_punto_venta`
 --
 ALTER TABLE `ordenes_punto_venta`
   ADD CONSTRAINT `ordenes_punto_venta_ibfk_1` FOREIGN KEY (`id_usuario_punto_venta_fk`) REFERENCES `usuario_punto_venta` (`id_usuario_pv`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ordenes_punto_venta_ibfk_2` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ordenes_punto_venta_detalles`
+-- Filtros para la tabla `ordenes_punto_venta_detalles`
 --
 ALTER TABLE `ordenes_punto_venta_detalles`
   ADD CONSTRAINT `ordenes_punto_venta_detalles_ibfk_1` FOREIGN KEY (`id_orden_dist_fk`) REFERENCES `ordenes_punto_venta` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ordenes_punto_venta_detalles_ibfk_2` FOREIGN KEY (`id_producto_fk`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `productos_distribuidores`
+-- Filtros para la tabla `productos_distribuidores`
 --
 ALTER TABLE `productos_distribuidores`
   ADD CONSTRAINT `productos_distribuidores_ibfk_2` FOREIGN KEY (`id_producto_fk`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `productos_distribuidores_ibfk_1` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `productos_empaques`
+-- Filtros para la tabla `productos_empaques`
 --
 ALTER TABLE `productos_empaques`
   ADD CONSTRAINT `productos_empaques_ibfk_1` FOREIGN KEY (`id_producto_fk`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `productos_empaques_ibfk_2` FOREIGN KEY (`id_empaque_fk`) REFERENCES `empresa_empaques` (`id_empaque`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `productos_productores`
+-- Filtros para la tabla `productos_productores`
 --
 ALTER TABLE `productos_productores`
   ADD CONSTRAINT `productos_productores_ibfk_1` FOREIGN KEY (`id_productor_fk`) REFERENCES `empresa_productores` (`id_productor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `productos_productores_ibfk_2` FOREIGN KEY (`id_producto_fk`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `punto_venta_cajas_envio`
+-- Filtros para la tabla `punto_venta_cajas_envio`
 --
 ALTER TABLE `punto_venta_cajas_envio`
   ADD CONSTRAINT `punto_venta_cajas_envio_ibfk_1` FOREIGN KEY (`id_envio_fk`) REFERENCES `envios_distribuidor` (`id_envio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `usuario_distribuidor`
+-- Filtros para la tabla `usuario_distribuidor`
 --
 ALTER TABLE `usuario_distribuidor`
   ADD CONSTRAINT `usuario_distribuidor_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario_distribuidor_ibfk_2` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `usuario_empaque`
+-- Filtros para la tabla `usuario_empaque`
 --
 ALTER TABLE `usuario_empaque`
   ADD CONSTRAINT `usuario_empaque_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario_empaque_ibfk_2` FOREIGN KEY (`id_empaque_fk`) REFERENCES `empresa_empaques` (`id_empaque`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `usuario_punto_venta`
+-- Filtros para la tabla `usuario_punto_venta`
 --
 ALTER TABLE `usuario_punto_venta`
-  ADD CONSTRAINT `usuario_punto_venta_ibfk_2` FOREIGN KEY (`id_punto_venta_fk`) REFERENCES `empresa_punto_venta` (`id_punto_venta`),
-  ADD CONSTRAINT `usuario_punto_venta_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `usuario_punto_venta_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuarios` (`id_usuario`),
+  ADD CONSTRAINT `usuario_punto_venta_ibfk_2` FOREIGN KEY (`id_punto_venta_fk`) REFERENCES `empresa_punto_venta` (`id_punto_venta`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
