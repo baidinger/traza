@@ -42,6 +42,12 @@
 			<input type="text" pattern="[0-9]*" title="Modelo" value="<?php echo $row['modelo']; ?>" class="form-control input" name="modelo" placeholder="modelo" required>
 		</div>
 	</div>
+	<div class="form-group">
+			<label class="col-sm-4 control-label">Descripción: </label>
+			<div class="col-sm-6">
+				<textarea title="Descripción" class="form-control input" name="descripcion" placeholder="Descripción" required><?php print $row['descripcion_camion'] ?></textarea>
+			</div>
+		</div>	
 			
 	<div class="form-group">
 		<label class="col-sm-4 control-label">Disponibilidad: </label>

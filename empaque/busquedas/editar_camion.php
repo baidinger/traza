@@ -7,11 +7,13 @@
 	$marca						=	$_POST['marca'];
 	$modelo						=	$_POST['modelo'];
 	$disponibilidad				=	$_POST['disponibilidad'];
+	$des						=	$_POST['descripcion'];
 	$id_camion					=	$_POST['id_camion'];
 
 	$consulta = "UPDATE camiones_empaque SET nombre_chofer = '$chofer', 
 					placas = '$placas', marca = '$marca', modelo = '$modelo', 
-						disponibilidad_ce = $disponibilidad WHERE id_camion = $id_camion";
+						disponibilidad_ce = $disponibilidad, 
+						descripcion_camion = '$des' WHERE id_camion = $id_camion";
 
 	if(mysql_query($consulta)){
 		mysql_close($conexion);

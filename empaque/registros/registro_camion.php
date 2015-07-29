@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-4 control-label">Modelo: </label>
+			<label class="col-sm-4 control-label">Descripción: </label>
 			<div class="col-sm-6">
 				<textarea title="Descripción" class="form-control input" name="descripcion" placeholder="Descripción" required></textarea>
 			</div>
