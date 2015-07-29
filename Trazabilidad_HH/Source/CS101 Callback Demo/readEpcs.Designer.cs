@@ -167,7 +167,7 @@ namespace CS101_CALLBACK_API_DEMO
             this.label4.Location = new System.Drawing.Point(166, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 20);
-            this.label4.Text = "Tarima:";
+            this.label4.Text = "Pallets:";
             // 
             // id_carro_lbl
             // 

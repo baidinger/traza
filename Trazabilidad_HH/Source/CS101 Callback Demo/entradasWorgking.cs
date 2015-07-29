@@ -16,6 +16,7 @@ namespace CS101_CALLBACK_API_DEMO
         public DataTable dt;
         public int preIdEnvio, preIdOrden, preIdCarro;
         public int socio, id_socio, id_usuario, datosTabla = 0;
+        public String preNombreEmpaque;
 
         public entradasWorgking(int socio, int id_socio, int id_usuario)
         {
@@ -79,35 +80,35 @@ namespace CS101_CALLBACK_API_DEMO
                 row[2] = "---";
                 row[3] = "---";
                 dt.Rows.Add(row);
-            } if (res[0].CompareTo("Error1") == 0)
-            {
-                MessageBox.Show(res[1],"Error de conexión");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show(res[1]);
-                datosTabla = 1;
-                String[] datosEnvios = res[1].Split(',');
-                int tamanio = datosEnvios.Length - 1;
-                //  e = new envios[tamanio];
-                for (int i = 0, j = 0; i < tamanio / 4; i++)
+            }else 
+                if (res[0].CompareTo("Error1") == 0)
                 {
-                    // e[i] = new envios(datosEnvios[j], datosEnvios[j + 1], datosEnvios[j + 2]);
-
-                    //arrList.Add(e[i]);
-
-                    row = dt.NewRow();
-                    row[0] = datosEnvios[j];
-                    row[1] = datosEnvios[j + 2];
-                    row[2] = datosEnvios[j + 1]; 
-                    row[3] = datosEnvios[j + 3];
-                    dt.Rows.Add(row);
-
-                    j += 4;
-
+                    MessageBox.Show(res[1],"Error de conexión");
+                    this.Close();
                 }
-            }
+                else
+                {
+                    datosTabla = 1;
+                    String[] datosEnvios = res[1].Split(',');
+                    int tamanio = datosEnvios.Length - 1;
+                    //  e = new envios[tamanio];
+                    for (int i = 0, j = 0; i < tamanio / 4; i++)
+                    {
+                        // e[i] = new envios(datosEnvios[j], datosEnvios[j + 1], datosEnvios[j + 2]);
+
+                        //arrList.Add(e[i]);
+
+                        row = dt.NewRow();
+                        row[0] = datosEnvios[j];
+                        row[1] = datosEnvios[j + 2];
+                        row[2] = datosEnvios[j + 1]; 
+                        row[3] = datosEnvios[j + 3];
+                        dt.Rows.Add(row);
+
+                        j += 4;
+
+                    }
+                }
             dataGrid1.DataSource = dt;
 
             dataGrid1.TableStyles.Clear();
@@ -189,6 +190,97 @@ namespace CS101_CALLBACK_API_DEMO
         private void dataGrid1_CurrentCellChanged(object sender, EventArgs e)
         {
             dataGrid1.Select(dataGrid1.CurrentRowIndex);
+
+            if (datosTabla == 1)
+            {
+                preIdEnvio = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][0].ToString());
+                preIdOrden = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][1].ToString());
+                preIdCarro = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][2].ToString());
+                preNombreEmpaque = dt.Rows[dataGrid1.CurrentRowIndex][3].ToString();
+
+                empaque_lbl.Text = preNombreEmpaque;
+                compl_send.Enabled = true;
+                cont.Enabled = true;
+
+
+                String r = "";
+                using (cargando c = new cargando())
+                {
+                    c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                    c.Show();
+                    c.Update();
+                    r = cuentaPallets();
+                }
+                String[] res = r.Split('*');
+
+                if (res[0].CompareTo("Error") == 0)
+                {
+                    MessageBox.Show(res[1],"Error");
+                }
+                else
+                    if (res[0].CompareTo("Error1") == 0)
+                    {
+                        MessageBox.Show(res[1]+"\n - Intente de nuevo.", "Error de conexión");
+                    }
+                    else
+                    {
+                        String[] cant = res[1].Split(',');
+                        label5.Text = cant[0];
+                        label6.Text = cant[1];
+                    }
+
+            }
         }
+
+        public String cuentaPallets()
+        {
+            string uriEnvios = Program.uri + "cuentaPallets.php";
+            HttpWebRequest request;
+            byte[] postBytes;
+            Stream requestStream;
+            HttpWebResponse response;
+            Stream responseStream;
+
+            try
+            {
+                /*PETICIÓN AL WEBSERVER*/
+                request = (HttpWebRequest)WebRequest.Create(uriEnvios);
+                request.Method = "POST";
+                request.KeepAlive = false;
+                request.ProtocolVersion = HttpVersion.Version10;
+
+                postBytes = Encoding.UTF8.GetBytes("datos=" +socio+ "," + preIdEnvio);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.AllowWriteStreamBuffering = false;
+                request.ContentLength = postBytes.Length;
+                request.AllowAutoRedirect = false;
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(postBytes, 0, postBytes.Length);
+                requestStream.Close();
+
+                /*RESPUESTA DEL WEBSERVER*/
+                response = (HttpWebResponse)request.GetResponse();
+                responseStream = response.GetResponseStream();
+
+                string jsonString = null;
+                using (StreamReader reader2 = new StreamReader(responseStream))
+                {
+                    jsonString = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                responseStream.Close();
+                response.Close();
+                return jsonString;
+
+            }
+            catch (Exception e2)
+            {
+                return "Error1*Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
+            }
+
+        }
+
+
     }
 }

@@ -398,7 +398,7 @@ namespace CS101_CALLBACK_API_DEMO
             }
             else
             {
-                MessageBox.Show("No se encontró tarima","Error");
+                MessageBox.Show("Error al guardar.  \n - Solo se puede guardar un Pallet.","Error");
             }
         }
 

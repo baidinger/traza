@@ -401,9 +401,9 @@ namespace CS101_CALLBACK_API_DEMO
 
         private void dataGrid1_CurrentCellChanged(object sender, EventArgs e)
         {
+            dataGrid1.Select(dataGrid1.CurrentRowIndex);
             if (datosTabla == 1)
             {
-                dataGrid1.Select(dataGrid1.CurrentRowIndex);
                 //envios k = this.e[dataGrid1.CurrentRowIndex];
                 preIdEnvio = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][0].ToString());
                 preIdOrden = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][1].ToString());

@@ -34,8 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.empaque_lbl = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cont = new System.Windows.Forms.Button();
+            this.compl_send = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,23 +76,25 @@
             this.empaque_lbl.Size = new System.Drawing.Size(271, 20);
             this.empaque_lbl.Text = "empaque_lbl";
             // 
-            // button1
+            // cont
             // 
-            this.button1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(4, 212);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 25);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Continuar";
+            this.cont.Enabled = false;
+            this.cont.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.cont.Location = new System.Drawing.Point(4, 212);
+            this.cont.Name = "cont";
+            this.cont.Size = new System.Drawing.Size(83, 25);
+            this.cont.TabIndex = 4;
+            this.cont.Text = "Continuar";
             // 
-            // button2
+            // compl_send
             // 
-            this.button2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(181, 212);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 25);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Finalizar envio";
+            this.compl_send.Enabled = false;
+            this.compl_send.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.compl_send.Location = new System.Drawing.Point(181, 212);
+            this.compl_send.Name = "compl_send";
+            this.compl_send.Size = new System.Drawing.Size(136, 25);
+            this.compl_send.TabIndex = 5;
+            this.compl_send.Text = "Completar envio";
             // 
             // button3
             // 
@@ -146,8 +148,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.compl_send);
+            this.Controls.Add(this.cont);
             this.Controls.Add(this.empaque_lbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -167,8 +169,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label empaque_lbl;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cont;
+        private System.Windows.Forms.Button compl_send;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

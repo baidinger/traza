@@ -135,7 +135,7 @@
             // 
             // carro_cb
             // 
-            this.carro_cb.Location = new System.Drawing.Point(73, 50);
+            this.carro_cb.Location = new System.Drawing.Point(76, 50);
             this.carro_cb.Name = "carro_cb";
             this.carro_cb.Size = new System.Drawing.Size(127, 23);
             this.carro_cb.TabIndex = 3;
@@ -157,7 +157,7 @@
             this.orden_cb.Items.Add("5");
             this.orden_cb.Items.Add("6");
             this.orden_cb.Items.Add("7");
-            this.orden_cb.Location = new System.Drawing.Point(73, 13);
+            this.orden_cb.Location = new System.Drawing.Point(76, 13);
             this.orden_cb.Name = "orden_cb";
             this.orden_cb.Size = new System.Drawing.Size(127, 23);
             this.orden_cb.TabIndex = 1;
@@ -168,7 +168,7 @@
             this.label2.Location = new System.Drawing.Point(4, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 20);
-            this.label2.Text = "id Orden:";
+            this.label2.Text = "N° orden:";
             // 
             // enviosWorking
             // 
