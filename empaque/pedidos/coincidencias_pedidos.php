@@ -124,12 +124,10 @@
 								<td class="centro">
 									<label>$ <?php echo $row['costo_orden']; ?></label>
 								</td>
-								<!--<td></td>-->
-			          			<td class="centro">---</td>
-								<td class="centro"> 
+								<td class="centro">---</td>
+								<td class="centro">
 
-
-		        			<a href="#"  
+							<a href="#"  
 		          				tabindex="0"		          				
 		          				data-placement="top"
 		          				data-trigger="focus"
@@ -156,9 +154,9 @@
 		          									<td><?php echo '('.$row2['id_receptor_fk'].') '. $row2['nombre_receptor'].' '. $row2['apellido_receptor']; ?></td>
 		          								</tr>
 		          							  <table>">
-								<span class="label label-info">
+								<span class="label label-primary">
 									Enviado</span> 
-		          			</a>
+							</a>
 									
 										
 								</td>
@@ -323,35 +321,6 @@
 		    	<?php
 		    }
 		?>
-			<!-- Modal -
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h3 class="modal-title" id="myModalLabel">$$ Cambiar Precio $$</h3>
-			      </div>
-			      <div class="modal-body fondo-blanco">
-			      	<div style="margin:0px auto; width:400px; height:50px;">
-			        	<form class="form-inline" method="post" action="javascript:modificarCosto()">
-						  <div class="form-group">
-						    <label class="sr-only" for="exampleInputAmount">Cantidad (in dollars)</label>
-						    <div class="input-group">
-						      <div class="input-group-addon">$</div>
-						      	<input type="number" step="0.01" class="form-control" min="1" id="cantidad_costo" name="cantidad_costo" placeholder="Cantidad">
-						    	<input type="hidden" name="id_orden" id="id_orden">
-						    	<input type="hidden" name="tipo_edicion" id="tipo_edicion">
-						    </div>
-						  </div>
-						  <button onclick="" class="btn btn-primary">Aceptar</button>
-						  <button class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						</form>
-					</div>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			-->
 			<!-- Modal ORDEN-->
 			<div class="modal fade" id="myModalOrden" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog modal-lg" role="document">

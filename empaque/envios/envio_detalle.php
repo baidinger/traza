@@ -27,13 +27,13 @@
 								$productos = mysql_query($cadena);
 								
 
-			      				$cadena = "SELECT * FROM ordenes_distribuidor, envios_empaque, usuario_empaque, empresa_distribuidores where ordenes_distribuidor.id_orden = envios_empaque.id_orden_fk AND usuario_empaque.id_empaque_fk = ordenes_distribuidor.id_empaque_fk AND usuario_empaque.id_usuario_fk = ".$_SESSION['id_usuario']." AND ordenes_distribuidor.id_orden=$id_orden" ;
+			      				$cadena = "SELECT * FROM ordenes_distribuidor, envios_empaque, usuario_empaque, empresa_distribuidores where empresa_distribuidores.id_distribuidor = envios_empaque.id_distribuidor_fk AND ordenes_distribuidor.id_orden = envios_empaque.id_orden_fk AND usuario_empaque.id_empaque_fk = $_SESSION[id_empaque] AND usuario_empaque.id_receptor = envios_empaque.id_receptor_fk AND envios_empaque.id_envio=$id_envio" ;
 			      				$resultado = mysql_query($cadena);
 			      				$row = mysql_fetch_array($resultado);
 			      			?>
 					      	<div>
 					      		<div class="alert alert-info">En la siguiente tabla podrá visualizarse la información referente al ::envío::</div>
-					      		<table class="table">
+					      		<table class="table" style="font-size:14px">
 					      			<tbody>
 					      				<tr>
 					      					<td><strong>Distribuidor:</strong></td>
@@ -66,6 +66,8 @@
 					      				<tr>
 					      					<td><strong>Fecha de envío</strong></td>
 					      					<td><?php echo $row['fecha_envio'] . " a las " . $row['hora_envio'] ?></td>
+					      					<td><strong>Número del camión:</strong></td>
+					      					<td><?php echo $row['id_camion_fk']  ?></td>
 					      				</tr>
 					      				<tr>
 					      					
@@ -84,6 +86,8 @@
 					      					 	case 8: echo "<span class='label label-danger'>Cancel. por dist.</span>"; break;
 					      					 	case 9: echo "<span class='label label-danger'>Rechazado por dist.</span>"; break;
 										 } ?></td>
+										 <td><strong>(ID) Usuario que envió:</strong></td>
+					      					<td><?php echo "(".$row['id_receptor'].") ".$row['nombre_receptor']." ".$row['apellido_receptor']  ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Destino:</strong></td>
@@ -122,6 +126,14 @@
 			          	print ", $paises[$pais_c]";
 
 						 ?></td>
+						 <?php
+						$consulta = "SELECT count(epc_tarima) as num FROM distribuidor_cajas_envio, envios_empaque where id_orden_fk = $id_orden AND id_envio_fk = id_envio AND id_envio = $id_envio";
+						 $r = mysql_query($consulta);
+						 if($r != null)
+						 	if($row2 = mysql_fetch_array($r));
+						 ?>
+						 <td><strong>Núm. Cajas enviadas</strong></td>
+						 <td><?php print $row2['num'] ?></td>
 					      				</tr>
 					      			</tbody>
 					      		</table>

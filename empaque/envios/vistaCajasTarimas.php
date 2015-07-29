@@ -8,7 +8,7 @@
     <div role="tabpanel" class="tab-pane fade in active" id="cajas">
         <div style="color:#000000;">
         <div id="paginacion-resultados-epc">
-            <table class="table table-hover">
+            <table class="table table-hover" style="font-size: 14px">
               <thead>
                 <tr>
                   <th class="centro">#</th>
@@ -79,7 +79,7 @@
     <div role="tabpanel" class="tab-pane fade" id="tarimas">
          <div style="color:#000000;">
           <div id="paginacion-resultados-epc-tarima">
-            <table class="table table-hover">
+            <table class="table table-hover" style="font-size: 14px">
               <thead>
                 <tr>
                   <th class="centro">#</th>

@@ -17,7 +17,13 @@
 				<?php
 				$buscar = $_POST['buscar'];
 				include('../../mod/conexion.php');
-				$consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where id_empaque_fk = $_SESSION[id_empaque] AND lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%' )";
+				print $consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, 
+					cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, 
+					costo_lote, id_empaque_fk, nombre_productor, apellido_productor, 
+					nombre_producto, variedad_producto from lotes, productos_productores ,empresa_productores, 
+					productos where productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND id_empaque_fk = $_SESSION[id_empaque] AND 
+					productos_productores.id_producto_fk = productos.id_producto AND productos_productores.id_productor_fk = empresa_productores.id_productor 
+					AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%' )";
 				$result_receptores = mysql_query($consulta);
 				$i=1;
 				//$result_receptores = mysql_query("select id_receptor, id_usuario, nombre_receptor, apellido_receptor, telefono_receptor, direccion_receptor, nombre_usuario, estado_usuario, nivel_autorizacion_usuario from usuario_empaque, usuarios where usuario_empaque.id_usuario_fk = usuarios.id_usuario AND usuario_empaque.id_empaque_fk = ".$id_empaque." order by nombre_receptor ASC, apellido_receptor ASC" );
