@@ -84,9 +84,10 @@
             this.cont.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.cont.Location = new System.Drawing.Point(4, 212);
             this.cont.Name = "cont";
-            this.cont.Size = new System.Drawing.Size(83, 25);
+            this.cont.Size = new System.Drawing.Size(85, 25);
             this.cont.TabIndex = 4;
             this.cont.Text = "Continuar";
+            this.cont.Click += new System.EventHandler(this.cont_Click);
             // 
             // compl_send
             // 
@@ -111,7 +112,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(4, 146);
+            this.label3.Location = new System.Drawing.Point(4, 153);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(204, 20);
             this.label3.Text = "N° de pallets enviados:";
@@ -119,21 +120,21 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(4, 162);
+            this.label4.Location = new System.Drawing.Point(4, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(204, 20);
             this.label4.Text = "N° de pallets leidos:";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(164, 148);
+            this.label5.Location = new System.Drawing.Point(164, 155);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.Text = "----";
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(164, 164);
+            this.label6.Location = new System.Drawing.Point(164, 184);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 20);
             this.label6.Text = "----";
@@ -142,7 +143,7 @@
             // 
             this.showPallet.Enabled = false;
             this.showPallet.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.showPallet.Location = new System.Drawing.Point(233, 148);
+            this.showPallet.Location = new System.Drawing.Point(230, 154);
             this.showPallet.Name = "showPallet";
             this.showPallet.Size = new System.Drawing.Size(83, 36);
             this.showPallet.TabIndex = 14;

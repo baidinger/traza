@@ -26,18 +26,18 @@
 			/*
 				--------------- 	POSICIONES DEL ARREGLO	-----------------------
 					0.- id_usuario
-					1.- nombre del usuario
+					1.- nombre de usuario
 					2.- tipo_socio
 					3.- nivel de autorizacion
 					
 				-------EMPAQUE-------
-					4.- id_receptor
-					5.-nombre del receptor
-					6.- apellido del receptor
+					4.- id_receptor / id de usuario
+					5.- nombre del receptor / Nombre del usuario
+					6.- apellido del receptor /Apellido del usuario
 
-					7.- id del empaque
-					8.- Nombre del empaque
-					9.- empaque
+					7.- id del empaque / distribuidor / productor / punto de venta
+					8.- Nombre del empaque / distribuidor / productor / punto de venta
+					9.- empaque / distribuidor / productor / punto de venta
 
 					10.- privilegio envios
 					11.- privilegio recibido

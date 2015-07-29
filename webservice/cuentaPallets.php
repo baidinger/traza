@@ -13,7 +13,6 @@
 		case 1://productor
 		break;
 		case 2://empaque
-
 		break;
 		case 3://distribuidor
 			if($tipo == 1){

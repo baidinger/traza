@@ -137,3 +137,4 @@ C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\
 C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.pdb
 C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 CALLBACK API DEMO.pdb
 C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.showPallets.resources
+C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcsEntradas.resources
