@@ -3,7 +3,7 @@
 
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#cajas" aria-controls="home" role="tab" data-toggle="tab">Cajas</a></li>
-    <li role="presentation"><a href="#tarimas" aria-controls="profile" role="tab" data-toggle="tab">Tarimas</a></li>
+    <li role="presentation"><a href="#tarimas" aria-controls="profile" role="tab" data-toggle="tab">Pallets</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -15,7 +15,7 @@
               <thead>
                 <tr>
                   <th class="centro">#</th>
-                  <th class="centro">Tarima</th>
+                  <th class="centro">Pallet</th>
                   <th class="centro">Caja</th>
                   <th class="centro">Enviado</th>
                   <th class="centro">Recibido</th>
@@ -86,7 +86,7 @@
               <thead>
                 <tr>
                   <th class="centro">#</th>
-                  <th class="centro">EPC de tarima</th>
+                  <th class="centro">EPC de pallet</th>
                   <th class="centro">Número de cajas</th>
                   <th class="centro">EPC de las cajas</th>
                 </tr>
