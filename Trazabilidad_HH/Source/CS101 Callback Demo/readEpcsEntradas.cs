@@ -383,9 +383,9 @@ namespace CS101_CALLBACK_API_DEMO
                     if (resp[0].CompareTo("Error") == 0)
                         MessageBox.Show(resp[1], "Error");
                     else
-                        if (res[0].CompareTo("Error1") == 0)
+                        if (resp[0].CompareTo("Error1") == 0)
                         {
-                            MessageBox.Show(res[1] + "\n - Intente de nuevo.", "Error de conexión");
+                            MessageBox.Show(resp[1] + "\n - Intente de nuevo.", "Error de conexión");
                         }
                         else
                         {
