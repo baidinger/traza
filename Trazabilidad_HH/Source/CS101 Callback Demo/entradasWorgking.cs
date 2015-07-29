@@ -16,9 +16,9 @@ namespace CS101_CALLBACK_API_DEMO
         public DataTable dt;
         public int preIdEnvio, preIdOrden, preIdCarro;
         public int socio, id_socio, id_usuario, datosTabla = 0, rowIndex = -10;
-        public String preNombreEmpaque;
+        public String preNombreEmpaque, nombreSocio;
 
-        public entradasWorgking(int socio, int id_socio, int id_usuario)
+        public entradasWorgking(int socio, int id_socio, int id_usuario, String nombreSocio)
         {
             InitializeComponent();
 
@@ -44,6 +44,7 @@ namespace CS101_CALLBACK_API_DEMO
             this.socio = socio;
             this.id_socio = id_socio;
             this.id_usuario = id_usuario;
+            this.nombreSocio = nombreSocio;
 
             using (cargando c = new cargando())
             {
@@ -304,6 +305,22 @@ namespace CS101_CALLBACK_API_DEMO
                 c.Update();
                 /*LLENAR LA TABLA CON LOS ENVIOS PENDIENTES*/
                 refreshEnviosPendientes();
+            }
+        }
+
+        private void cont_Click(object sender, EventArgs e)
+        {
+            using (cargando c = new cargando())
+            {
+                c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                c.Show();
+                c.Update();
+
+                using (readEpcsEntradas inventario = new readEpcsEntradas(socio, id_socio, preIdOrden, preIdCarro, nombreSocio, preNombreEmpaque, id_usuario))
+                {
+                    inventario.ShowDialog();
+                    this.Close();
+                }
             }
         }
 

@@ -31,11 +31,10 @@
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.dataGrid1 = new System.Windows.Forms.DataGrid();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cajasNum = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.envioNumber = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.verCajasbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dataGrid1
@@ -47,21 +46,6 @@
             this.dataGrid1.Size = new System.Drawing.Size(313, 178);
             this.dataGrid1.TabIndex = 0;
             this.dataGrid1.CurrentCellChanged += new System.EventHandler(this.dataGrid1_CurrentCellChanged);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(5, 210);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 20);
-            this.label1.Text = "Cantidad de cajas:";
-            // 
-            // cajasNum
-            // 
-            this.cajasNum.Location = new System.Drawing.Point(142, 210);
-            this.cajasNum.Name = "cajasNum";
-            this.cajasNum.Size = new System.Drawing.Size(78, 20);
-            this.cajasNum.Text = "---";
             // 
             // label3
             // 
@@ -88,6 +72,15 @@
             this.button1.Text = "Atras";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // verCajasbtn
+            // 
+            this.verCajasbtn.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.verCajasbtn.Location = new System.Drawing.Point(5, 208);
+            this.verCajasbtn.Name = "verCajasbtn";
+            this.verCajasbtn.Size = new System.Drawing.Size(87, 27);
+            this.verCajasbtn.TabIndex = 8;
+            this.verCajasbtn.Text = "Ver cajas";
+            // 
             // showPallets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -95,11 +88,10 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(320, 240);
             this.ControlBox = false;
+            this.Controls.Add(this.verCajasbtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.envioNumber);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cajasNum);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGrid1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -113,10 +105,9 @@
         #endregion
 
         private System.Windows.Forms.DataGrid dataGrid1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label cajasNum;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label envioNumber;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button verCajasbtn;
     }
 }

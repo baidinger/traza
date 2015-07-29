@@ -13,6 +13,7 @@ namespace CS101_CALLBACK_API_DEMO
     public partial class workingPlace : Form
     {
         public int socio, id_socio, id_usuario;
+        public String nombreSocio;
         public workingPlace(String result, String user, String pass)
         {
             InitializeComponent();
@@ -28,6 +29,8 @@ namespace CS101_CALLBACK_API_DEMO
             id_usuario = int.Parse(datos[4]);
             socio = int.Parse(datos[2]);
             id_socio = int.Parse(datos[7]);
+            this.nombreSocio = datos[8];
+
             switch(socio){
                case 1:
                 break;
@@ -97,7 +100,7 @@ namespace CS101_CALLBACK_API_DEMO
 
         private void recibos_btn_Click(object sender, EventArgs e)
         {
-            using (entradasWorgking eW = new entradasWorgking(socio, id_socio, id_usuario))
+            using (entradasWorgking eW = new entradasWorgking(socio, id_socio, id_usuario, nombreSocio))
             {
                 eW.ShowDialog();
             }
