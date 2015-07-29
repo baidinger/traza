@@ -48,7 +48,7 @@
 
 			if($tipo == 3){
 				$pallet = $datos[3];
-				$query = "SELECT count(epc_cajas) FROM distribuidor_cajas_envio WHERE id_envio_fk = $id_envio AND enviado_dce = 1 AND epc_tarima = $pallet GROUP BY epc_tarima";
+				$query = "SELECT count(epc_caja) FROM distribuidor_cajas_envio WHERE id_envio_fk = $id_envio AND enviado_dce = 1 AND epc_tarima = $pallet GROUP BY epc_tarima";
 
 				$result = mysql_query($query);
 				if($result){
