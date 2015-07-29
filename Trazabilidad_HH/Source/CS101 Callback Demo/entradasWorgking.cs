@@ -15,7 +15,7 @@ namespace CS101_CALLBACK_API_DEMO
     {
         public DataTable dt;
         public int preIdEnvio, preIdOrden, preIdCarro;
-        public int socio, id_socio, id_usuario, datosTabla = 0;
+        public int socio, id_socio, id_usuario, datosTabla = 0, rowIndex = -10;
         public String preNombreEmpaque;
 
         public entradasWorgking(int socio, int id_socio, int id_usuario)
@@ -192,45 +192,49 @@ namespace CS101_CALLBACK_API_DEMO
         {
             dataGrid1.Select(dataGrid1.CurrentRowIndex);
 
-            if (datosTabla == 1)
+            if (dataGrid1.CurrentRowIndex != rowIndex)
             {
-                preIdEnvio = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][0].ToString());
-                preIdOrden = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][1].ToString());
-                preIdCarro = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][2].ToString());
-                preNombreEmpaque = dt.Rows[dataGrid1.CurrentRowIndex][3].ToString();
 
-                String r = "";
-                using (cargando c = new cargando())
+                if (datosTabla == 1)
                 {
-                    c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
-                    c.Show();
-                    c.Update();
-                    r = cuentaPallets();
-                }
-                String[] res = r.Split('*');
+                    preIdEnvio = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][0].ToString());
+                    preIdOrden = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][1].ToString());
+                    preIdCarro = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][2].ToString());
+                    preNombreEmpaque = dt.Rows[dataGrid1.CurrentRowIndex][3].ToString();
 
-                if (res[0].CompareTo("Error") == 0)
-                {
-                    MessageBox.Show(res[1],"Error");
-                }
-                else
-                    if (res[0].CompareTo("Error1") == 0)
+                    String r = "";
+                    using (cargando c = new cargando())
                     {
-                        MessageBox.Show(res[1]+"\n - Intente de nuevo.", "Error de conexión");
+                        c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                        c.Show();
+                        c.Update();
+                        r = cuentaPallets();
+                    }
+                    String[] res = r.Split('*');
+
+                    if (res[0].CompareTo("Error") == 0)
+                    {
+                        MessageBox.Show(res[1], "Error");
                     }
                     else
-                    {
-                        String[] cant = res[1].Split(',');
-                        label5.Text = cant[0];
-                        label6.Text = cant[1];
-                        empaque_lbl.Text = preNombreEmpaque;
-                        compl_send.Enabled = true;
-                        cont.Enabled = true;
-                        showPallet.Enabled = true;
-                    }
+                        if (res[0].CompareTo("Error1") == 0)
+                        {
+                            MessageBox.Show(res[1] + "\n - Intente de nuevo.", "Error de conexión");
+                        }
+                        else
+                        {
+                            String[] cant = res[1].Split(',');
+                            label5.Text = cant[0];
+                            label6.Text = cant[1];
+                            empaque_lbl.Text = preNombreEmpaque;
+                            compl_send.Enabled = true;
+                            cont.Enabled = true;
+                            showPallet.Enabled = true;
+                        }
 
+                }
+                rowIndex = dataGrid1.CurrentRowIndex;
             }
-
 
         }
 

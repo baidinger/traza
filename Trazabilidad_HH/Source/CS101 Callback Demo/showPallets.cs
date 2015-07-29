@@ -14,7 +14,7 @@ namespace CS101_CALLBACK_API_DEMO
     public partial class showPallets : Form
     {
         public DataTable dt;
-        public int id_envio, socio, datosTabla = 0;
+        public int id_envio, socio, datosTabla = 0, rowIndex = -10;
         public String pallet="";
 
         public showPallets(int socio, int id_envio)
@@ -31,7 +31,10 @@ namespace CS101_CALLBACK_API_DEMO
             col = dt.Columns.Add();
             col.ColumnName = "EPC del Pallet";
             col.DataType = typeof(string);
+
             col = dt.Columns.Add();
+            col.ColumnName = "N° de cajas";
+            col.DataType = typeof(string);
 
             using (cargando c = new cargando())
             {
@@ -90,17 +93,20 @@ namespace CS101_CALLBACK_API_DEMO
             dataGrid1.TableStyles.Clear();
             DataGridTableStyle tableStyle = new DataGridTableStyle();
             tableStyle.MappingName = dt.TableName;
-
+            int y = 0;
             foreach (DataColumn item in dt.Columns)
             {
                 DataGridTextBoxColumn tbcName = new DataGridTextBoxColumn();
-                tbcName.Width = 285;
+                if(y == 0)
+                    tbcName.Width = 200;
+                else
+                    tbcName.Width = 85;
                 tbcName.MappingName = item.ColumnName;
                 tbcName.HeaderText = item.ColumnName;
                 tableStyle.GridColumnStyles.Add(tbcName);
-
+                y++;
             }
-
+            y = 0;
             dataGrid1.TableStyles.Add(tableStyle);
 
             dataGrid1.Refresh();
@@ -161,38 +167,41 @@ namespace CS101_CALLBACK_API_DEMO
 
         private void dataGrid1_CurrentCellChanged(object sender, EventArgs e)
         {
-            //dataGrid1.Select(dataGrid1.CurrentRowIndex);
+            dataGrid1.Select(dataGrid1.CurrentRowIndex);
 
-            if (datosTabla == 1)
+            if (dataGrid1.CurrentRowIndex != rowIndex)
             {
-                pallet = dt.Rows[dataGrid1.CurrentRowIndex][0].ToString();
-
-                String r = "";
-                using (cargando c = new cargando())
+                if (datosTabla == 1)
                 {
-                    c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
-                    c.Show();
-                    c.Update();
-                    r = cuentaCajas();
-                }
-                String[] res = r.Split('*');
+                    pallet = dt.Rows[dataGrid1.CurrentRowIndex][0].ToString();
 
-                if (res[0].CompareTo("Error") == 0)
-                {
-                    MessageBox.Show(res[1], "Error");
-                }
-                else
-                    if (res[0].CompareTo("Error1") == 0)
+                    String r = "";
+                    using (cargando c = new cargando())
                     {
-                        MessageBox.Show(res[1] + "\n - Intente de nuevo.", "Error de conexión");
+                        c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                        c.Show();
+                        c.Update();
+                        r = cuentaCajas();
+                    }
+                    String[] res = r.Split('*');
+
+                    if (res[0].CompareTo("Error") == 0)
+                    {
+                        MessageBox.Show(res[1], "Error");
                     }
                     else
-                    {
-                        cajasNum.Text = res[1];
-                    }
+                        if (res[0].CompareTo("Error1") == 0)
+                        {
+                            MessageBox.Show(res[1] + "\n - Intente de nuevo.", "Error de conexión");
+                        }
+                        else
+                        {
+                            cajasNum.Text = res[1];
+                        }
 
+                }
+                rowIndex = dataGrid1.CurrentRowIndex;
             }
-
 
 
         }
