@@ -13,6 +13,7 @@
 						<th class="centro">ID</th>
 						<th>Empaque</th>
 						<th class="centro">Fecha</th>
+						<!-- <th class="centro">Camión</th> -->
 						<th class="derecha">Costo</th>
 						<th class="centro">Env / Rec</th>
 						<th class="centro">Estado</th>
@@ -37,10 +38,11 @@
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ 
 
-							$consulta4 = "SELECT id_envio FROM envios_empaque WHERE id_orden_fk = ".$row['id_orden']." LIMIT 1";
+							$consulta4 = "SELECT id_envio, id_camion_fk FROM envios_empaque WHERE id_orden_fk = ".$row['id_orden']." LIMIT 1";
 							$resultado4 = mysql_query($consulta4);
 							while($row4 = mysql_fetch_array($resultado4)){
-								$idEnvioFk = $row4['id_envio'];	
+								$idEnvioFk = $row4['id_envio'];
+								$idCamionFk = $row4['id_camion_fk'];
 
 								$consulta2 = "SELECT epc_caja FROM distribuidor_cajas_envio WHERE recibido_dce = 1 AND id_envio_fk = $idEnvioFk LIMIT 1";
 								$resultado2 = mysql_query($consulta2);
@@ -100,6 +102,7 @@
 						          			</a>
 						          		</td>
 						          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
+						          		<!-- <td class="centro"><a href="../camiones/"><?php echo $idCamionFk; ?></a></td> -->
 						          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
 						          		<td class="centro"><?php echo $totalEnviados." / ".$totalRecibidos; ?></td>
 						          		<?php
@@ -120,7 +123,7 @@
 					          				}
 					          			?>
 						          		<td class="derecha">
-						          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
+						          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>, <?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 							        	</td>
 						    	    </tr>
 							<?php 

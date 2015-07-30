@@ -10,8 +10,8 @@
 				<thead>
 					<tr>
 						<th class="centro">#</th>
-						<th class="centro">Placas</th>
-						<th class="centro">EPC</th>
+						<th class="centro">Pallet</th>
+						<th class="centro">Caja</th>
 						<th class="centro">Enviado</th>
 						<th class="centro">Recibido</th>
 					</tr>

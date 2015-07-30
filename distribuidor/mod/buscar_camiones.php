@@ -11,6 +11,7 @@
 				<thead>
 					<tr>
 						<th class="centro">#</th>
+						<th class="centro">ID</th>
 						<th>Nombre del Chofer</th>
 						<th class="centro">Placas</th>
 						<th class="centro">Marca</th>
@@ -38,6 +39,7 @@
 						while($row = mysql_fetch_array($resultado)){ ?>
 							<tr>
 				          		<td class="centro"><?php echo $cont; ?></td>
+				          		<td class="centro"><?php echo $placas = $row['id_camion_distribuidor']; ?></td>
 				          		<td><?php echo $row['nombre_chofer_camion_distribuidor']; ?></td>
 				          		<td class="centro"><?php echo $placas = $row['placas_camion_distribuidor']; ?></td>
 				          		<td class="centro"><?php echo $row['marca_camion_distribuidor']; ?></td>
