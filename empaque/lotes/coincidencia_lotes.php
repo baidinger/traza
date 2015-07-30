@@ -17,7 +17,7 @@
 				<?php
 				$buscar = $_POST['buscar'];
 				include('../../mod/conexion.php');
-				print $consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, 
+				$consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, 
 					cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, 
 					costo_lote, id_empaque_fk, nombre_productor, apellido_productor, 
 					nombre_producto, variedad_producto from lotes, productos_productores ,empresa_productores, 
