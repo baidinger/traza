@@ -16,7 +16,9 @@
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
-	<?php if(isset($_REQUEST['epc'])) { ?>
+	<?php if(isset($_REQUEST['epc'])) { 
+		print "select * from empresa_productores, empresa_empaques, productos_productores, productos, lotes, epc_caja where empresa_productores.id_productor = productos_productores.id_productor_fk AND productos.id_producto = productos_productores.id_producto_fk AND productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND lotes.id_lote = epc_caja.id_lote_fk AND lotes.id_empaque_fk = empresa_empaques.id_empaque AND epc_caja.epc_caja = '$epc'";
+		?>
 	<p>La trazabilidad del EPC <?php print $epc ?> es la que sigue</p>
 	<?php  } ?>
 </div>

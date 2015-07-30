@@ -18,7 +18,7 @@
 		"join productos ON productos.id_producto = ordenes_distribuidor_detalles.id_producto_fk ".
 		"where id_orden_fk = $id_orden");
  ?>
- <div style="width: 60%; float:left">
+ <div style="font-size: 14px; width: 60%; float:left">
     <div class="alert alert-info"><h4>Descripción de orden: </h4></div>
     
 
@@ -27,7 +27,7 @@
     </div>
     <hr>
 </div>
-<div style="width: 30%; float:right">
+<div style="font-size: 14px; width: 30%; float:right">
   <div class="alert alert-info" style="width:100%; ">
       <h4>Otros datos</h4> 
   </div>
@@ -40,7 +40,7 @@
  <div style="clear:both"></div>
  
 <br>
-<table class="table table-hover">
+<table class="table table-hover" style="font-size: 14px">
 	<thead>
 		<tr>
           <th class="centro">#</th>

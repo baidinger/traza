@@ -1,6 +1,3 @@
-
-
-
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#cajas" aria-controls="home" role="tab" data-toggle="tab">Cajas</a></li>
     <li role="presentation"><a href="#tarimas" aria-controls="profile" role="tab" data-toggle="tab">Pallets</a></li>
@@ -11,7 +8,7 @@
     <div role="tabpanel" class="tab-pane fade in active" id="cajas">
         <div style="color:#000000;">
         <div id="paginacion-resultados-epc">
-            <table class="table table-hover">
+            <table class="table table-hover" style="font-size: 14px">
               <thead>
                 <tr>
                   <th class="centro">#</th>
@@ -82,7 +79,7 @@
     <div role="tabpanel" class="tab-pane fade" id="tarimas">
          <div style="color:#000000;">
           <div id="paginacion-resultados-epc-tarima">
-            <table class="table table-hover">
+            <table class="table table-hover" style="font-size: 14px">
               <thead>
                 <tr>
                   <th class="centro">#</th>

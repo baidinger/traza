@@ -6,7 +6,7 @@
   }
 
     include('../mod/conexion.php');
-    $consulta = "select pedidos, lotes, envios, superusuario, nombre_empaque, id_empaque, nombre_receptor from usuario_empaque, empresa_empaques where usuario_empaque.id_empaque_fk = empresa_empaques.id_empaque AND usuario_empaque.id_usuario_fk = ".$_SESSION['id_usuario'];
+    $consulta = "select id_receptor, pedidos, lotes, envios, superusuario, nombre_empaque, id_empaque, nombre_receptor from usuario_empaque, empresa_empaques where usuario_empaque.id_empaque_fk = empresa_empaques.id_empaque AND usuario_empaque.id_usuario_fk = ".$_SESSION['id_usuario'];
     $_empaque = mysql_query($consulta);
      if($row = mysql_fetch_array($_empaque)) {
       /**** privilegios ****/
@@ -21,6 +21,7 @@
        $_SESSION['id_empaque'] = $row['id_empaque'];
 
        $nombre_usuario = $row['nombre_receptor'];
+       $_SESSION['id_receptor'] = $row['id_receptor'];
 
      }
      mysql_close();
@@ -267,6 +268,6 @@ if($_GET("op") == "caja_traza") {
 }
 
 </script>
-<span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Versión: 1.3,  fec. mod. 05/07/15</span>
+<span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Sistema para la Trazabilidad Agrícola Versión: 1.4,  fec. mod. 2/08/15</span>
 </body>
 </html>

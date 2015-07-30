@@ -1,4 +1,4 @@
-<?php 
+<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 	include("../../mod/conexion.php");
 	$id_envio = $_GET['id'];
 	$id_orden = $_GET['orden'];
