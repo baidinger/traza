@@ -53,6 +53,12 @@
 						$datos_usuario = "Error*La tarima no pertenece a este envio";
 				}else{
 
+					for($i = 0; $i < count($epcCajas); $i++){
+						$query = "INSERT INTO distribuidor_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 0, 1)";
+
+						mysql_query($query);
+					}
+
 					$datos_usuario = "Bien*La tarima NO esta registrada como ENVIADA en ningún envio. \n -Se registró como NO ENVIADA pero SI RECIBIDA.";
 				}			
 			}else
