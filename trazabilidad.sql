@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 30, 2015 at 02:14 AM
+-- Generation Time: Jul 30, 2015 at 03:17 AM
 -- Server version: 5.5.40
 -- PHP Version: 5.4.12
 
@@ -361,7 +361,11 @@ CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
   `estado_envio` int(11) NOT NULL,
   `id_punto_venta_fk` int(11) NOT NULL,
   `id_orden_dist_fk` int(11) NOT NULL,
-  PRIMARY KEY (`id_envio`)
+  PRIMARY KEY (`id_envio`),
+  KEY `id_orden_dist_fk` (`id_orden_dist_fk`),
+  KEY `id_punto_venta_fk` (`id_punto_venta_fk`),
+  KEY `id_usuario_distribuidor_fk` (`id_usuario_distribuidor_fk`),
+  KEY `id_camion_fk` (`id_camion_fk`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
 
 --
@@ -403,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `envios_empaque` (
 --
 
 INSERT INTO `envios_empaque` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_entrega_envio`, `id_camion_fk`, `id_receptor_fk`, `descripcion_envio`, `descripcion_cancelacion`, `descripcion_rechazo`, `estado_envio`, `id_distribuidor_fk`, `id_orden_fk`) VALUES
-(1, '2015-07-24', '08:08:25', '0000-00-00', 23, 1, '', NULL, NULL, 5, 13, 14),
+(1, '2015-07-24', '08:08:25', '0000-00-00', 4, 1, '', NULL, NULL, 5, 13, 14),
 (4, '2015-07-26', '20:38:49', '0000-00-00', 1, 11, 'descripcion', NULL, NULL, 3, 14, 16),
 (5, '2015-07-26', '22:48:31', '0000-00-00', 1, 12, 'descripcion', NULL, NULL, 5, 13, 18),
 (6, '2015-07-26', '23:06:34', '0000-00-00', 1, 12, 'descripcion', NULL, NULL, 3, 14, 19),
@@ -413,10 +417,10 @@ INSERT INTO `envios_empaque` (`id_envio`, `fecha_envio`, `hora_envio`, `fecha_en
 -- --------------------------------------------------------
 
 --
--- Table structure for table `epc`
+-- Table structure for table `epc_caja`
 --
 
-CREATE TABLE IF NOT EXISTS `epc` (
+CREATE TABLE IF NOT EXISTS `epc_caja` (
   `epc_caja` varchar(24) COLLATE utf8_spanish_ci NOT NULL,
   `id_lote_fk` int(11) NOT NULL,
   PRIMARY KEY (`epc_caja`),
@@ -425,10 +429,10 @@ CREATE TABLE IF NOT EXISTS `epc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Dumping data for table `epc`
+-- Dumping data for table `epc_caja`
 --
 
-INSERT INTO `epc` (`epc_caja`, `id_lote_fk`) VALUES
+INSERT INTO `epc_caja` (`epc_caja`, `id_lote_fk`) VALUES
 ('000000000000000000005328', 6),
 ('9731', 7);
 
@@ -984,18 +988,28 @@ ALTER TABLE `entrada_punto_venta`
   ADD CONSTRAINT `entrada_punto_venta_ibfk_1` FOREIGN KEY (`id_envio_fk`) REFERENCES `envios_distribuidor` (`id_envio`);
 
 --
+-- Constraints for table `envios_distribuidor`
+--
+ALTER TABLE `envios_distribuidor`
+  ADD CONSTRAINT `envios_distribuidor_ibfk_4` FOREIGN KEY (`id_orden_dist_fk`) REFERENCES `ordenes_punto_venta` (`id_orden`),
+  ADD CONSTRAINT `envios_distribuidor_ibfk_1` FOREIGN KEY (`id_camion_fk`) REFERENCES `camiones_distribuidor` (`id_camion_distribuidor`),
+  ADD CONSTRAINT `envios_distribuidor_ibfk_2` FOREIGN KEY (`id_usuario_distribuidor_fk`) REFERENCES `usuario_distribuidor` (`id_usuario_distribuidor`),
+  ADD CONSTRAINT `envios_distribuidor_ibfk_3` FOREIGN KEY (`id_punto_venta_fk`) REFERENCES `empresa_punto_venta` (`id_punto_venta`);
+
+--
 -- Constraints for table `envios_empaque`
 --
 ALTER TABLE `envios_empaque`
+  ADD CONSTRAINT `envios_empaque_ibfk_4` FOREIGN KEY (`id_camion_fk`) REFERENCES `camiones_empaque` (`id_camion`),
   ADD CONSTRAINT `envios_empaque_ibfk_1` FOREIGN KEY (`id_distribuidor_fk`) REFERENCES `empresa_distribuidores` (`id_distribuidor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `envios_empaque_ibfk_2` FOREIGN KEY (`id_orden_fk`) REFERENCES `ordenes_distribuidor` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `envios_empaque_ibfk_3` FOREIGN KEY (`id_receptor_fk`) REFERENCES `usuario_empaque` (`id_receptor`);
 
 --
--- Constraints for table `epc`
+-- Constraints for table `epc_caja`
 --
-ALTER TABLE `epc`
-  ADD CONSTRAINT `epc_ibfk_1` FOREIGN KEY (`id_lote_fk`) REFERENCES `lotes` (`id_lote`) ON UPDATE CASCADE;
+ALTER TABLE `epc_caja`
+  ADD CONSTRAINT `epc_caja_ibfk_1` FOREIGN KEY (`id_lote_fk`) REFERENCES `lotes` (`id_lote`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lotes`
