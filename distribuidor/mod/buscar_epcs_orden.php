@@ -5,31 +5,31 @@
 	</head>
 
 	<body>
+		<?php 
+			$idOrdenFk = $_POST['orden'];
+			$idEnvioFk = $_POST['envio'];
+
+			include('../../mod/conexion.php');
+
+			$consulta = "SELECT envepq.id_camion_fk, entdist.fecha_entrada, entdist.hora_entrada FROM envios_empaque AS envepq, entrada_distribuidor AS entdist WHERE envepq.id_envio = $idEnvioFk AND envepq.id_envio = entdist.id_envio_fk";
+			$resultado = mysql_query($consulta);
+			$row = mysql_fetch_array($resultado);
+
+			$idCamionFk = $row['id_camion_fk'];
+			$fechaEntrada = $row['fecha_entrada'];
+			$horaEntrada = $row['hora_entrada'];
+		?>
+		<table class="table">
+			<tr>
+				<td><label class="lbl-nueva-orden">Camión:</label></td>
+				<td><label class="lbl-nueva-orden"><a href="../camiones/" class="lbl-nueva-orden"><?php echo $idCamionFk; ?></a></label></td>
+				<td class="derecha"><label class="lbl-nueva-orden">Fecha:</label></td>
+				<td><input type="date" class="form-control" value="<?php echo $fechaEntrada; ?>" readonly></td>
+				<td class="derecha"><label class="lbl-nueva-orden">Hora:</label></td>
+				<td><input type="time" class="form-control" value="<?php echo $horaEntrada; ?>" readonly></td>
+			</tr>
+		</table>
 		<div id="paginacion-resultados-epcs">
-			<?php 
-				$idOrdenFk = $_POST['orden'];
-				$idEnvioFk = $_POST['envio'];
-
-				include('../../mod/conexion.php');
-
-				$consulta = "SELECT envepq.id_camion_fk, entdist.fecha_entrada, entdist.hora_entrada FROM envios_empaque AS envepq, entrada_distribuidor AS entdist WHERE envepq.id_envio = $idEnvioFk AND envepq.id_orden_fk = $idOrdenFk AND envepq.id_orden_fk = entdist.id_orden_fk";
-				$resultado = mysql_query($consulta);
-				$row = mysql_fetch_array($resultado);
-
-				$idCamionFk = $row['id_camion_fk'];
-				$fechaEntrada = $row['fecha_entrada'];
-				$horaEntrada = $row['hora_entrada'];
-			?>
-			<table class="table">
-				<tr>
-					<td><label class="lbl-nueva-orden">Camión:</label></td>
-					<td><label class="lbl-nueva-orden"><a href="../camiones/" class="lbl-nueva-orden"><?php echo $idCamionFk; ?></a></label></td>
-					<td class="derecha"><label class="lbl-nueva-orden">Fecha:</label></td>
-					<td><input type="date" class="form-control" value="<?php echo $fechaEntrada; ?>" readonly></td>
-					<td class="derecha"><label class="lbl-nueva-orden">Hora:</label></td>
-					<td><input type="time" class="form-control" value="<?php echo $horaEntrada; ?>" readonly></td>
-				</tr>
-			</table>
 			<table class="table">
 				<thead>
 					<tr>

@@ -282,7 +282,7 @@
 
 					success: function(data){
 						$('#contenedor-detalles-orden').html(data);
-						$('#titulo-detalles').text('Detalles de la Órden ' + orden + ' - Enviados y Recibidos');
+						$('#titulo-detalles').text('Detalles del Envío ' + envio + ' - Enviados y Recibidos');
 						$('#modalDetalles').modal('show');
 					}
 				});

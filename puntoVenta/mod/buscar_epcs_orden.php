@@ -5,6 +5,11 @@
 	</head>
 
 	<body>
+		<?php 
+			$idEnvio = $_POST['envio'];
+
+			include('../../mod/conexion.php');
+		?>
 		<div id="paginacion-resultados-epcs">
 			<table class="table">
 				<thead>
@@ -19,10 +24,6 @@
 
 				<tbody>
 					<?php 
-						$idEnvio = $_POST['orden'];
-
-						include('../../mod/conexion.php');
-
 						$cont = 1;
 						$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $idEnvio ORDER BY epc_tarima ASC, epc_caja ASC";
 						$resultado = mysql_query($consulta);

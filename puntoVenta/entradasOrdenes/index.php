@@ -165,7 +165,7 @@
 							          			?>
 								          		
 								          		<td class="derecha">
-								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
+								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>, <?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 									        	</td>
 								    	    </tr>
 										<?php 
@@ -287,15 +287,15 @@
 				alert('Búsqueda avanzada');
 			}
 
-			function mostrarDetalles(orden){
+			function mostrarDetalles(orden, envio){
 				$.ajax({
 					type: 'POST',
 					url: '../mod/buscar_epcs_orden.php',
-					data: {'orden':orden},
+					data: {'envio':envio},
 
 					success: function(data){
 						$('#contenedor-detalles-orden').html(data);
-						$('#titulo-detalles').text('Detalles de la Órden ' + orden + ' - Enviados y Recibidos');
+						$('#titulo-detalles').text('Detalles de la Orden ' + orden + ' - Enviados y Recibidos');
 						$('#modalDetalles').modal('show');
 					}
 				});
