@@ -7,7 +7,7 @@
     		</div>
 
     		<div style="width:50%; margin: 30px auto">
-    		<form id="formulario" class="form-horizontal" role="form" method="post" action="lotes/registro_nuevo_lote_admin.php">
+    		<form id="formulario" class="form-horizontal" role="form" method="post" action="lotes/generarTags.php">
 
 	      	<div class="modal-body" style="width:100%; float: left">
 	      		<div class="alert alert-info">DETALLES DEL LOTE</div>
@@ -18,7 +18,7 @@
 			    		<select class="form-control">
 			    		<?php 
 			    			include('../../mod/conexion.php');
-							$consulta = "select id_lote, fecha_recibo_lote from lotes where id_empaque_fk = $_SESSION[id_empaque]";
+							$consulta = "SELECT id_lote, fecha_recibo_lote FROM lotes LEFT JOIN epc_caja ON lotes.id_lote = epc_caja.id_lote_fk WHERE id_empaque_fk = $_SESSION[id_empaque]";
 							$result = mysql_query($consulta);
 							if(mysql_num_rows($result) > 0 ){
 								 while($row = mysql_fetch_array($result)) {
@@ -69,7 +69,7 @@
 		     
 			  	<hr>
 			  	<center>
-		     			<button id="guardar" class="btn btn-primary" disabled><i  class="glyphicon glyphicon-ok"></i> Registrar e imprimir</button>
+		     			<button id="guardar" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Registrar e imprimir</button>
 		     			<input type="hidden" name="url" value="../index.php?op=admon_lotes">
 		     	</center>
 		     		</div>
