@@ -42,75 +42,73 @@
       		</div>
 			<div class="contenido-general-2">
 				<div class="div-contenedor-form">
-					<form class="form-horizontal" role="form" method="post" action="../mod/editar_usuario.php">
-			      		<div>
-			      			<?php
-			      				include('../../mod/conexion.php');
+		      		<div>
+		      			<?php
+		      				include('../../mod/conexion.php');
 
-			      				$consulta = "SELECT id_distribuidor_fk FROM usuario_distribuidor WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
-								$resultado = mysql_query($consulta);
-								$row = mysql_fetch_array($resultado);
-								$id_distribuidor_fk = $row['id_distribuidor_fk'];
+		      				$consulta = "SELECT id_distribuidor_fk FROM usuario_distribuidor WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+							$resultado = mysql_query($consulta);
+							$row = mysql_fetch_array($resultado);
+							$id_distribuidor_fk = $row['id_distribuidor_fk'];
 
-			      				$consulta = "SELECT * FROM empresa_distribuidores WHERE id_distribuidor = $id_distribuidor_fk";
-			      				$resultado = mysql_query($consulta);
-			      				$row = mysql_fetch_array($resultado);
-			      			?>
-					      	<div class="modal-body">
-					      		<table class="table">
-					      			<tbody>
-					      				<tr>
-					      					<td><strong>Tipo de Socio:</strong></td>
-					      					<td>DISTRIBUIDOR</td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Distribuidor:</strong></td>
-					      					<td><?php echo $row['nombre_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>RFC:</strong></td>
-					      					<td><?php echo $row['rfc_distribuidor']; ?> </td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Ubicación:</strong></td>
-					      					<td>
-					      						<script type="text/javascript">
-					      							document.write(obtenerEstado(<?php echo $row['pais_distribuidor']; ?>, <?php echo $row['estado_distribuidor']; ?>) + ", " + obtenerPais(<?php echo $row['pais_distribuidor']; ?>));
-												</script>
-					      					</td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Ciudad:</strong></td>
-					      					<td><?php echo $row['ciudad_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Dirección:</strong></td>
-					      					<td><?php echo $row['direccion_distribuidor']." C.P. ".$row['cp_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Teléfono(s):</strong></td>
-					      					<td><?php echo $row['tel1_distribuidor']." & ".$row['tel2_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Email:</strong></td>
-					      					<td><?php echo $row['email_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Fecha de Registro:</strong></td>
-					      					<td><?php echo $row['fecha_registro_dist']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Fecha de modificación:</strong></td>
-					      					<td><?php echo $row['fecha_modificacion_dist']; ?></td>
-					      				</tr>
-					      			</tbody>
-					      		</table>
-					      		<center>
-					      			<a href="../" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
-					      		</center>
-					      	</div>
-					    </div>
-			      	</form>
+		      				$consulta = "SELECT * FROM empresa_distribuidores WHERE id_distribuidor = $id_distribuidor_fk";
+		      				$resultado = mysql_query($consulta);
+		      				$row = mysql_fetch_array($resultado);
+		      			?>
+				      	<div class="modal-body">
+				      		<table class="table">
+				      			<tbody>
+				      				<tr>
+				      					<td><strong>Tipo de Socio:</strong></td>
+				      					<td>DISTRIBUIDOR</td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Distribuidor:</strong></td>
+				      					<td><?php echo $row['nombre_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>RFC:</strong></td>
+				      					<td><?php echo $row['rfc_distribuidor']; ?> </td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Ubicación:</strong></td>
+				      					<td>
+				      						<script type="text/javascript">
+				      							document.write(obtenerEstado(<?php echo $row['pais_distribuidor']; ?>, <?php echo $row['estado_distribuidor']; ?>) + ", " + obtenerPais(<?php echo $row['pais_distribuidor']; ?>));
+											</script>
+				      					</td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Ciudad:</strong></td>
+				      					<td><?php echo $row['ciudad_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Dirección:</strong></td>
+				      					<td><?php echo $row['direccion_distribuidor']." C.P. ".$row['cp_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Teléfono(s):</strong></td>
+				      					<td><?php echo $row['tel1_distribuidor']." & ".$row['tel2_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Email:</strong></td>
+				      					<td><?php echo $row['email_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Fecha de Registro:</strong></td>
+				      					<td><?php echo $row['fecha_registro_dist']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Fecha de modificación:</strong></td>
+				      					<td><?php echo $row['fecha_modificacion_dist']; ?></td>
+				      				</tr>
+				      			</tbody>
+				      		</table>
+				      		<center>
+				      			<a href="../" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
+				      		</center>
+				      	</div>
+				    </div>
 					<?php
 						mysql_close();
 					?>

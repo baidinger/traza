@@ -38,16 +38,17 @@
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
 						<img class="img-header" src="../../img/nuevo_envio.png"> <span id="lbl-titulo">Lista de Camiones</span>
+						<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 					</h3>
 				</h3>
 			</div>
 			<br>
 			<div class="div-buscar">
 				<div class="form-inline">
-					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del chofer, placas, marca, modelo..." onkeyup="if(event.keyCode == 13) buscarCamiones();" autofocus>
+					<input type="text" class="form-control" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del chofer, placas, marca, modelo..." onkeyup="if(event.keyCode == 13) buscarCamiones();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarCamiones();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<a href="../nuevoCamion/" class="btn btn-success" style="float: right;" id="btnAgregarCamion"><i class="glyphicon glyphicon-plus"></i> Agregar Camion</a>
-					<a href="../camiones/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+					<a href="../nuevoCamion/" class="btn btn-success" id="btnAgregarCamion"><i class="glyphicon glyphicon-plus"></i> Agregar Camion</a>
+					<a href="../camiones/" class="btn btn-info" id="btnMostrarTodos"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
 			<div class="contenido-general-2">
@@ -160,6 +161,7 @@
 
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
+			$('#btnReportes').tooltip();
 			$('.btn-editar').tooltip();
 			$('.btn-alta').tooltip();
 			$('.btn-baja').tooltip();
@@ -181,11 +183,15 @@
 							$('.img-header').attr('src', '../../img/buscar.png');
 							$('#lbl-titulo').text('Resultado de la búsqueda "' + camionBuscar + '"');
 							$('#inputBuscar').select();
-							$('#btn-mostrar-todos').css('display', 'block');
+							$('#btnMostrarTodos').css('display', 'block');
 							$('.contenido-general-2').html(data);
 						}
 					});
 				}
+			}
+
+			function generacionReportes(){
+				alert('Generación e impresión de reportes');
 			}
 
 			function editarCamion(camion){

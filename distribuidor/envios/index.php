@@ -41,16 +41,17 @@
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
 						<img class="img-header" src="../../img/historial_envios.png"> <span id="lbl-titulo">Historial de Envíos</span>
+						<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 					</h3>
 				</h3>
 			</div>
 			<br>
 			<div class="div-buscar">
 				<div class="form-inline">
-					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del punto de venta..." onkeyup="if(event.keyCode == 13) buscarEnvios();" autofocus>
+					<input type="text" class="form-control" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del punto de venta..." onkeyup="if(event.keyCode == 13) buscarEnvios();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarEnvios();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<button class="btn btn-success" style="float: right;" id="btnBuscar" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
-					<a href="../envios/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+					<button class="btn btn-success" id="btnAvanzada" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<a href="../envios/" class="btn btn-info" id="btnMostrarTodos"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
 			<div class="contenido-general-2">
@@ -244,6 +245,7 @@
 			$('#paginacion-resultados').simplePagination();
 			$('.popover-punto-venta').popover();
 			$('.popover-estado').popover();
+			$('#btnReportes').tooltip();
 			$('#btn-epcs').tooltip();
 
 			function buscarEnvios(){
@@ -263,7 +265,7 @@
 							$('.img-header').attr('src', '../../img/buscar.png');
 							$('#lbl-titulo').text('Resultado de la búsqueda "' + pvBuscar + '"');
 							$('#inputBuscar').select();
-							$('#btn-mostrar-todos').css('display', 'block');
+							$('#btnMostrarTodos').css('display', 'block');
 							$('.contenido-general-2').html(data);
 						}
 					});
@@ -272,6 +274,10 @@
 
 			function busquedaAvanzada(){
 				alert('Búsqueda avanzada');
+			}
+
+			function generacionReportes(){
+				alert('Generación e impresión de reportes');
 			}
 
 			function mostrarDetallesEPCs(envio){

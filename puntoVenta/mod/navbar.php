@@ -22,14 +22,15 @@
 	  	<div class="collapse navbar-collapse" id="navbar-collapse-01">
 	  		<ul class="nav navbar-nav">
 				<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;Órdenes <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="../nuevaOrden/">Nueva orden</a></li>
 						<li class="divider"></li>
 			            <li><a href="../historialOrdenes/">Historial de órdenes</a></li>
 						<li><a href="../entradasOrdenes/">Entrada de órdenes</a></li>
-						</ul>
+					</ul>
 				</li>
+				<li><a href="../estadisticas/"><span class="glyphicon glyphicon-stats"></span> &nbsp;Estadísticas</a></li>
 				<?php
 					if($_SESSION['nivel_socio'] == 1){ ?>
 						<li class="dropdown">

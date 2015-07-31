@@ -9,7 +9,25 @@
 			$idEnvio = $_POST['envio'];
 
 			include('../../mod/conexion.php');
+			
+			$consulta = "SELECT envdist.id_camion_fk, entpv.fecha_entrada_punto_venta, entpv.hora_entrada_punto_venta FROM envios_distribuidor AS envdist, entrada_punto_venta AS entpv WHERE envdist.id_envio = $idEnvio AND envdist.id_envio = entpv.id_envio_fk";
+			$resultado = mysql_query($consulta);
+			$row = mysql_fetch_array($resultado);
+
+			$idCamionFk = $row['id_camion_fk'];
+			$fechaEntrada = $row['fecha_entrada_punto_venta'];
+			$horaEntrada = $row['hora_entrada_punto_venta'];
 		?>
+		<table class="table">
+			<tr>
+				<td><label class="lbl-nueva-orden">Camión:</label></td>
+				<td><label class="lbl-nueva-orden"><a href="#" class="lbl-nueva-orden"><?php echo $idCamionFk; ?></a></label></td>
+				<td class="derecha"><label class="lbl-nueva-orden">Fecha:</label></td>
+				<td><input type="date" class="form-control" value="<?php echo $fechaEntrada; ?>" readonly></td>
+				<td class="derecha"><label class="lbl-nueva-orden">Hora:</label></td>
+				<td><input type="time" class="form-control" value="<?php echo $horaEntrada; ?>" readonly></td>
+			</tr>
+		</table>
 		<div id="paginacion-resultados-epcs">
 			<table class="table">
 				<thead>
@@ -32,18 +50,18 @@
 								<td class="centro"><?php echo $cont; ?></td>
 								<td class="centro"><?php echo $row['epc_tarima']; ?></td>
 								<!-- <td class="centro"><?php echo $row['epc_caja']; ?></td> -->
-								<td class="centro"><a href="../trazabilidadCajas/?epc_caja=<?php echo $row['epc_caja']; ?>" class="btn btn-link"><?php echo $row['epc_caja']; ?></a> </td>
+								<td class="centro"><a href="../trazabilidadCajas/?epc_caja=<?php echo $row['epc_caja']; ?>"><?php echo $row['epc_caja']; ?></a> </td>
 								<?php 
 									$enviado = $row['enviado_dce'];
 									$recibido = $row['recibido_dce'];
 
 									if($enviado == 1)
-										echo "<td class='centro'><i class='glyphicon glyphicon-ok'></i></td>";
+										echo "<td class='centro alert alert-success'><i class='glyphicon glyphicon-ok'></i></td>";
 									else
 										echo "<td class='centro alert alert-danger'><i class='glyphicon glyphicon-remove'></i></td>";
 
 									if($recibido == 1)
-										echo "<td class='centro'><i class='glyphicon glyphicon-ok'></i></td>";
+										echo "<td class='centro alert alert-success'><i class='glyphicon glyphicon-ok'></i></td>";
 									else
 										echo "<td class='centro alert alert-danger'><i class='glyphicon glyphicon-remove'></i></td>";
 								?>
