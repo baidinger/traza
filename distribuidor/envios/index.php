@@ -40,17 +40,18 @@
 			<div class="modal-header">
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
-						<img class="img-header" src="../../img/historial_envios.png"> Historial de Envíos
+						<img class="img-header" src="../../img/historial_envios.png"> <span id="lbl-titulo">Historial de Envíos</span>
+						<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 					</h3>
 				</h3>
 			</div>
 			<br>
 			<div class="div-buscar">
 				<div class="form-inline">
-					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del punto de venta..." onkeyup="if(event.keyCode == 13) buscarEnvios();" autofocus>
+					<input type="text" class="form-control" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del punto de venta..." onkeyup="if(event.keyCode == 13) buscarEnvios();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarEnvios();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<button class="btn btn-success" style="float: right;" id="btnBuscar" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
-					<a href="../envios/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+					<button class="btn btn-success" id="btnAvanzada" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<a href="../envios/" class="btn btn-info" id="btnMostrarTodos"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
 			<div class="contenido-general-2">
@@ -65,10 +66,12 @@
 					<table class="table">
 						<thead>
 							<tr>
+								<th class="centro">Env</th>
 								<th class="centro">Ped</th>
 								<th>Punto de Venta</th>
 								<th class="centro">Fecha Envio</th>
 								<th class="centro">Fecha Entrega</th>
+								<!-- <th class="centro">Camión</th> -->
 								<th class="centro">Estado</th>
 								<th></th>
 							</tr>
@@ -85,10 +88,11 @@
 
 								$cont = 0;
 								$cancelar = 1;
-							    $consulta = "SELECT envdis.id_envio, envdis.id_orden_dist_fk, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, envdis.fecha_envio, envdis.hora_envio, envdis.fecha_entrega_envio, envdis.estado_envio FROM ordenes_punto_venta AS ordspv, empresa_punto_venta AS mpsapv, envios_distribuidor AS envdis WHERE envdis.id_orden_dist_fk = ordspv.id_orden AND envdis.id_punto_venta_fk = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk ORDER BY envdis.id_envio DESC";
+							    $consulta = "SELECT envdis.id_envio, envdis.id_orden_dist_fk, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, envdis.fecha_envio, envdis.hora_envio, envdis.fecha_entrega_envio, envdis.id_camion_fk, envdis.estado_envio FROM ordenes_punto_venta AS ordspv, empresa_punto_venta AS mpsapv, envios_distribuidor AS envdis WHERE envdis.id_orden_dist_fk = ordspv.id_orden AND envdis.id_punto_venta_fk = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk ORDER BY envdis.id_envio DESC";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ ?>
 									<tr>
+										<td class="centro"><?php echo $row['id_envio']; ?></td>
 						          		<td class="centro"><?php echo $row['id_orden_dist_fk']; ?></td>
 						          		<td>
 						          			<?php 
@@ -133,6 +137,7 @@
 						          		</td>
 						          		<td class="centro"><?php echo $row['fecha_envio']; ?></td>
 						          		<td class="centro"><?php echo $row['fecha_entrega_envio']; ?></td>
+						          		<!-- <td class="centro"><a href="../camiones/"><?php echo $row['id_camion_fk']; ?></a></td> -->
 						          		<?php
 					          				$estado = $row['estado_envio'];
 
@@ -240,6 +245,7 @@
 			$('#paginacion-resultados').simplePagination();
 			$('.popover-punto-venta').popover();
 			$('.popover-estado').popover();
+			$('#btnReportes').tooltip();
 			$('#btn-epcs').tooltip();
 
 			function buscarEnvios(){
@@ -259,7 +265,7 @@
 							$('.img-header').attr('src', '../../img/buscar.png');
 							$('#lbl-titulo').text('Resultado de la búsqueda "' + pvBuscar + '"');
 							$('#inputBuscar').select();
-							$('#btn-mostrar-todos').css('display', 'block');
+							$('#btnMostrarTodos').css('display', 'block');
 							$('.contenido-general-2').html(data);
 						}
 					});
@@ -270,15 +276,19 @@
 				alert('Búsqueda avanzada');
 			}
 
-			function mostrarDetallesEPCs(orden){
+			function generacionReportes(){
+				alert('Generación e impresión de reportes');
+			}
+
+			function mostrarDetallesEPCs(envio){
 				$.ajax({
 					type: 'POST',
 					url: '../mod/buscar_epcs_pedido.php',
-					data: {'orden':orden},
+					data: {'envio':envio},
 
 					success: function(data){
 						$('#contenedor-detalles-orden').html(data);
-						$('#titulo-detalles').text('Detalles de la Órden ' + orden + ' - Enviados y Recibidos');
+						$('#titulo-detalles').text('Detalles del Envío ' + envio + ' - Enviados y Recibidos');
 						$('#modalDetalles').modal('show');
 					}
 				});

@@ -41,16 +41,17 @@
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
 						<img class="img-header" src="../../img/historial_entradas.png"> <span id="lbl-titulo">Entrada de Órdenes</span>
+						<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 					</h3>
 				</h3>
 			</div>
 			<br>
 			<div class="div-buscar">
 				<div class="form-inline">
-					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del empaque..." onkeyup="if(event.keyCode == 13) buscarOrdenes();" autofocus>
+					<input type="text" class="form-control" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del empaque..." onkeyup="if(event.keyCode == 13) buscarOrdenes();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarOrdenes();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<button class="btn btn-success" style="float: right;" id="btnBuscar" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
-					<a href="../entradasOrdenes/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+					<button class="btn btn-success" id="btnAvanzada" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<a href="../entradasOrdenes/" class="btn btn-info" id="btnMostrarTodos"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
 			<div class="contenido-general-2">
@@ -62,6 +63,7 @@
 								<th class="centro">ID</th>
 								<th>Empaque</th>
 								<th class="centro">Fecha</th>
+								<!-- <th class="centro">Camión</th> -->
 								<th class="derecha">Costo</th>
 								<th class="centro">Env / Rec</th>
 								<th class="centro">Estado</th>
@@ -84,10 +86,11 @@
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ 
 
-									$consulta4 = "SELECT id_envio FROM envios_empaque WHERE id_orden_fk = ".$row['id_orden']." LIMIT 1";
+									$consulta4 = "SELECT id_envio, id_camion_fk FROM envios_empaque WHERE id_orden_fk = ".$row['id_orden']." LIMIT 1";
 									$resultado4 = mysql_query($consulta4);
 									while($row4 = mysql_fetch_array($resultado4)){
-										$idEnvioFk = $row4['id_envio'];	
+										$idEnvioFk = $row4['id_envio'];
+										$idCamionFk = $row4['id_camion_fk'];
 
 										$consulta2 = "SELECT epc_caja FROM distribuidor_cajas_envio WHERE recibido_dce = 1 AND id_envio_fk = $idEnvioFk LIMIT 1";
 										$resultado2 = mysql_query($consulta2);
@@ -147,6 +150,7 @@
 								          			</a>
 								          		</td>
 								          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
+								          		<!-- <td class="centro"><a href="../camiones/"><?php echo $idCamionFk; ?></a></td> -->
 								          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
 								          		<td class="centro"><?php echo $totalEnviados." / ".$totalRecibidos; ?></td>
 								          		<?php
@@ -167,7 +171,7 @@
 							          				}
 							          			?>
 								          		<td class="derecha">
-								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
+								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden'] ?>, <?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 									        	</td>
 								    	    </tr>
 									<?php 
@@ -211,7 +215,7 @@
 							<p><label>Estado:</label></p>
 							<p>
 								<select class="form-control" name="inputEstado" id="selectEstado">
-									<option value="2">RECHAZADO</option>
+									<option value="9">RECHAZADO</option>
 								</select>
 							</p>
 							<br>
@@ -259,8 +263,8 @@
 			$('#paginacion-resultados').simplePagination();
 			$('.popover-empaque').popover();
 			$('.popover-estado').popover();
+			$('#btnReportes').tooltip();
 			$('#btn-detalles').tooltip();
-			$('#btn-cancelar').tooltip();
 
 			function buscarOrdenes(){
 				var empaqueBuscar = $('#inputBuscar').val();
@@ -279,7 +283,7 @@
 							$('.img-header').attr('src', '../../img/buscar.png');
 							$('#lbl-titulo').text('Resultado de la búsqueda "' + empaqueBuscar + '"');
 							$('#inputBuscar').select();
-							$('#btn-mostrar-todos').css('display', 'block');
+							$('#btnMostrarTodos').css('display', 'block');
 							$('.contenido-general-2').html(data);
 						}
 					});
@@ -290,11 +294,15 @@
 				alert('Búsqueda avanzada');
 			}
 
-			function mostrarDetalles(orden){
+			function generacionReportes(){
+				alert('Generación e impresión de reportes');
+			}
+
+			function mostrarDetalles(orden, envio){
 				$.ajax({
 					type: 'POST',
 					url: '../mod/buscar_epcs_orden.php',
-					data: {'orden':orden},
+					data: {'orden':orden, 'envio':envio},
 
 					success: function(data){
 						$('#contenedor-detalles-orden').html(data);

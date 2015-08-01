@@ -19,13 +19,12 @@
 			$descripcionRechazo = $row['descripcion_rechazo'];
 			$fechaEntregaOrden = $row['fecha_entrega_orden'];
 		?>
-		<div class="form-inline">
-			<center>
-				<label>Fecha de entrega:</label>
-				<input type="date" class="form-control" value="<?php echo $fechaEntregaOrden; ?>" readonly>
-			</center>
-		</div>
-		<br><br>
+		<table class="table">
+			<tr>
+				<td class="derecha"><label class="lbl-nueva-orden">Fecha de entrega:</label></td>
+				<td style="width: 20%;"><input type="date" class="form-control" value="<?php echo $fechaEntregaOrden; ?>" readonly></td>
+			</tr>
+		</table>
 		<table class="table">
 			<thead>
 				<tr>

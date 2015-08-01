@@ -38,16 +38,17 @@
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
 						<img class="img-header" src="../../img/historial_entradas.png"> &nbsp;Entrada de Órdenes
+						<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 					</h3>
 				</h3>
 			</div>
 			<br>
 			<div class="div-buscar">
 				<div class="form-inline">
-					<input type="text" class="form-control" style="width: 40%;" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del distribuidor..." onkeyup="if(event.keyCode == 13) buscarOrdenes();" autofocus>
+					<input type="text" class="form-control" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del distribuidor..." onkeyup="if(event.keyCode == 13) buscarOrdenes();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarOrdenes();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<button class="btn btn-success" style="float: right;" id="btnBuscar" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
-					<a href="../entradasOrdenes/" class="btn btn-info" id="btn-mostrar-todos" style="float: right; margin-right: 10px; display: none;" id="btnBuscar"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
+					<button class="btn btn-success" id="btnAvanzada" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<a href="../entradasOrdenes/" class="btn btn-info" id="btnMostrarTodos"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
 			<div class="contenido-general-2">
@@ -165,7 +166,7 @@
 							          			?>
 								          		
 								          		<td class="derecha">
-								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
+								          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>, <?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 									        	</td>
 								    	    </tr>
 										<?php 
@@ -257,6 +258,7 @@
 			$('#paginacion-resultados').simplePagination();
 			$('.popover-distribuidor').popover();
 			$('.popover-estado').popover();
+			$('#btnReportes').tooltip();
 			$('#btn-detalles').tooltip();
 
 			function buscarOrdenes(){
@@ -276,7 +278,7 @@
 							$('.img-header').attr('src', '../../img/buscar.png');
 							$('#lbl-titulo').text('Resultado de la búsqueda "' + distribuidorBuscar + '"');
 							$('#inputBuscar').select();
-							$('#btn-mostrar-todos').css('display', 'block');
+							$('#btnMostrarTodos').css('display', 'block');
 							$('.contenido-general-2').html(data);
 						}
 					});
@@ -287,15 +289,19 @@
 				alert('Búsqueda avanzada');
 			}
 
-			function mostrarDetalles(orden){
+			function generacionReportes(){
+				alert('Generación e impresión de reportes');
+			}
+
+			function mostrarDetalles(orden, envio){
 				$.ajax({
 					type: 'POST',
 					url: '../mod/buscar_epcs_orden.php',
-					data: {'orden':orden},
+					data: {'envio':envio},
 
 					success: function(data){
 						$('#contenedor-detalles-orden').html(data);
-						$('#titulo-detalles').text('Detalles de la Órden ' + orden + ' - Enviados y Recibidos');
+						$('#titulo-detalles').text('Detalles de la Orden ' + orden + ' - Enviados y Recibidos');
 						$('#modalDetalles').modal('show');
 					}
 				});

@@ -5,13 +5,36 @@
 	</head>
 
 	<body>
+		<?php 
+			$idEnvio = $_POST['envio'];
+
+			include('../../mod/conexion.php');
+
+			$consulta = "SELECT id_camion_fk, fecha_envio, hora_envio FROM envios_distribuidor WHERE id_envio = $idEnvio";
+			$resultado = mysql_query($consulta);
+			$row = mysql_fetch_array($resultado);
+
+			$idCamionFk = $row['idCamionFk'];
+			$fechaEnvio = $row['fecha_envio'];
+			$horaEnvio = $row['hora_envio'];
+		?>
+		<table class="table">
+			<tr>
+				<td><label class="lbl-nueva-orden">Camión:</label></td>
+				<td><label class="lbl-nueva-orden"><a href="../camiones/">1</a></label></td>
+				<td class="derecha"><label class="lbl-nueva-orden">Fecha:</label></td>
+				<td><input type="date" class="form-control" value="<?php echo $fechaEnvio; ?>" readonly></td>
+				<td class="derecha"><label class="lbl-nueva-orden">Hora:</label></td>
+				<td><input type="time" class="form-control" value="<?php echo $horaEnvio; ?>" readonly></td>
+			</tr>
+		</table>
 		<div id="paginacion-resultados-epcs">
 			<table class="table">
 				<thead>
 					<tr>
 						<th class="centro">#</th>
-						<th class="centro">Tarima</th>
-						<th class="centro">EPC</th>
+						<th class="centro">Pallet</th>
+						<th class="centro">Caja</th>
 						<th class="centro">Enviado</th>
 						<th class="centro">Recibido</th>
 					</tr>
@@ -19,30 +42,26 @@
 
 				<tbody>
 					<?php 
-						$idOrden = $_POST['orden'];
-
-						include('../../mod/conexion.php');
-
 						$cont = 1;
-						$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $idOrden ORDER BY epc_tarima ASC, epc_caja ASC";
+						$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $idEnvio ORDER BY epc_tarima ASC, epc_caja ASC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)) { ?>
 							<tr>
 								<td class="centro"><?php echo $cont; ?></td>
 								<td class="centro"><?php echo $row['epc_tarima']; ?></td>
 								<!-- <td class="centro"><?php echo $row['epc_caja']; ?></td> -->
-								<td class="centro"><a href="../trazabilidadCajas/?epc_caja=<?php echo $row['epc_caja']; ?>" class="btn btn-link"><?php echo $row['epc_caja']; ?></a> </td>
+								<td class="centro"><a href="../trazabilidadCajas/?epc_caja=<?php echo $row['epc_caja']; ?>"><?php echo $row['epc_caja']; ?></a> </td>
 								<?php 
 									$enviado = $row['enviado_dce'];
 									$recibido = $row['recibido_dce'];
 
 									if($enviado == 1)
-										echo "<td class='centro'><i class='glyphicon glyphicon-ok'></i></td>";
+										echo "<td class='centro alert alert-success'><i class='glyphicon glyphicon-ok'></i></td>";
 									else
 										echo "<td class='centro alert alert-danger'><i class='glyphicon glyphicon-remove'></i></td>";
 
 									if($recibido == 1)
-										echo "<td class='centro'><i class='glyphicon glyphicon-ok'></i></td>";
+										echo "<td class='centro alert alert-success'><i class='glyphicon glyphicon-ok'></i></td>";
 									else
 										echo "<td class='centro alert alert-danger'><i class='glyphicon glyphicon-remove'></i></td>";
 								?>

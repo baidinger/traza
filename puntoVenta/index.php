@@ -58,6 +58,7 @@
 								<li><a href="entradasOrdenes/">Entrada de órdenes</a></li>
 	  						</ul>
 						</li>
+						<li><a href="estadisticas/"><span class="glyphicon glyphicon-stats"></span> &nbsp;Estadísticas</a></li>
 						<?php
 							if($_SESSION['nivel_socio'] == 1){ ?>
 								<li class="dropdown">

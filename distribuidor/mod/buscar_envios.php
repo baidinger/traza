@@ -10,10 +10,12 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th class="centro">Env</th>
 						<th class="centro">Ped</th>
 						<th>Punto de Venta</th>
 						<th class="centro">Fecha Envio</th>
 						<th class="centro">Fecha Entrega</th>
+						<!-- <th class="centro">Camión</th> -->
 						<th class="centro">Estado</th>
 						<th></th>
 					</tr>
@@ -32,10 +34,11 @@
 
 						$cont = 0;
 						$cancelar = 1;
-					    $consulta = "SELECT envdis.id_envio, envdis.id_orden_dist_fk, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, envdis.fecha_envio, envdis.hora_envio, envdis.fecha_entrega_envio, envdis.estado_envio FROM ordenes_punto_venta AS ordspv, empresa_punto_venta AS mpsapv, envios_distribuidor AS envdis WHERE envdis.id_orden_dist_fk = ordspv.id_orden AND envdis.id_punto_venta_fk = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk AND mpsapv.nombre_punto_venta LIKE '%$puntoVenta%' ORDER BY envdis.id_envio DESC";
+					    $consulta = "SELECT envdis.id_envio, envdis.id_orden_dist_fk, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, envdis.fecha_envio, envdis.hora_envio, envdis.fecha_entrega_envio, envdis.id_camion_fk, envdis.estado_envio FROM ordenes_punto_venta AS ordspv, empresa_punto_venta AS mpsapv, envios_distribuidor AS envdis WHERE envdis.id_orden_dist_fk = ordspv.id_orden AND envdis.id_punto_venta_fk = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk AND mpsapv.nombre_punto_venta LIKE '%$puntoVenta%' ORDER BY envdis.id_envio DESC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ ?>
 							<tr>
+								<td class="centro"><?php echo $row['id_envio']; ?></td>
 				          		<td class="centro"><?php echo $row['id_orden_dist_fk']; ?></td>
 				          		<td>
 				          			<?php 
@@ -80,6 +83,7 @@
 				          		</td>
 				          		<td class="centro"><?php echo $row['fecha_envio']; ?></td>
 				          		<td class="centro"><?php echo $row['fecha_entrega_envio']; ?></td>
+				          		<!-- <td class="centro"><a href="../camiones/"><?php echo $row['id_camion_fk']; ?></a></td> -->
 				          		<?php
 			          				$estado = $row['estado_envio'];
 

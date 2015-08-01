@@ -425,7 +425,7 @@ namespace CS101_CALLBACK_API_DEMO
                 request.KeepAlive = false;
                 request.ProtocolVersion = HttpVersion.Version10;
 
-                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + id_carro + "," + id_orden + "," + cajas + "," + tarima);
+                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + id_carro + "," + id_orden + "," + cajas + "," + tarima + "," + id_usuario);
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.AllowWriteStreamBuffering = false;
                 request.ContentLength = postBytes.Length;
@@ -458,9 +458,9 @@ namespace CS101_CALLBACK_API_DEMO
             }
         }
 
-        public String finalizarPreEnvio()
+        public String finalizarEntrada()
         {
-            string regEnvios = Program.uri + "finalizarPreEnvios.php";
+            string regEnvios = Program.uri + "finalizarEntrada.php";
             HttpWebRequest request;
             byte[] postBytes;
             Stream requestStream;
@@ -514,8 +514,8 @@ namespace CS101_CALLBACK_API_DEMO
             switch (type)
             {
                 case ButtonClickType.Finalizar:
-                   // MessageBox.Show("Finalizar");
-                    String result;
+                    MessageBox.Show("Finalizar");
+                   /* String result;
                     using (cargando c = new cargando())
                     {
                         c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
@@ -538,7 +538,7 @@ namespace CS101_CALLBACK_API_DEMO
                             env.ShowDialog();
                         }
                     }
-                    
+                    */
                     
                     break;
                 case ButtonClickType.Clear:

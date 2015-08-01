@@ -40,69 +40,67 @@
       		</div>
 			<div class="contenido-general-2">
 				<div class="div-contenedor-form">
-					<form class="form-horizontal" role="form" method="post" action="../mod/editar_usuario.php">
-			      		<div>
-			      			<?php
-			      				include('../../mod/conexion.php');
+		      		<div>
+		      			<?php
+		      				include('../../mod/conexion.php');
 
-			      				$consulta = "SELECT usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nivel_autorizacion_usuario, usus.fecha_creacion_usuario, usus.fecha_modificacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor FROM usuarios AS usus, usuario_distribuidor AS usudist WHERE usudist.id_usuario_fk = usus.id_usuario AND usus.id_usuario = ".$_SESSION['id_usuario'];
-			      				$resultado = mysql_query($consulta);
-			      				$row = mysql_fetch_array($resultado);
-			      			?>
-					      	<div class="modal-body">
-					      		<table class="table">
-					      			<tbody>
-					      				<tr>
-					      					<td><strong>Tipo de Socio:</strong></td>
-					      					<td>DISTRIBUIDOR</td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Nivel de Usuario:</strong></td>
-					      					<td>
-					      						<?php 
-					      							if($row['nivel_autorizacion_usuario'] == 1)
-					      								echo "USUARIO ADMINISTRADOR";
-					      							else
-					      								echo "USUARIO NORMAL";
-					      						?>
-					      					</td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Usuario:</strong></td>
-					      					<td><?php echo $_SESSION['nombre_usuario']; ?> </td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Contraseña:</strong></td>
-					      					<td><a href="../contrasena/">*****************************</a></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Nombre:</strong></td>
-					      					<td><?php echo $row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Teléfono:</strong></td>
-					      					<td><?php echo $row['telefono_usuario_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Dirección:</strong></td>
-					      					<td><?php echo $row['direccion_usuario_distribuidor']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Fecha de Registro:</strong></td>
-					      					<td><?php echo $row['fecha_creacion_usuario']; ?></td>
-					      				</tr>
-					      				<tr>
-					      					<td><strong>Fecha de Modificación:</strong></td>
-					      					<td><?php echo $row['fecha_modificacion_usuario']; ?></td>
-					      				</tr>
-					      			</tbody>
-					      		</table>
-					      		<center>
-					      			<a href="../" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
-					      		</center>
-					      	</div>
-					    </div>
-			      	</form>
+		      				$consulta = "SELECT usudist.nombre_usuario_distribuidor, usudist.apellido_usuario_distribuidor, usus.nivel_autorizacion_usuario, usus.fecha_creacion_usuario, usus.fecha_modificacion_usuario, usudist.direccion_usuario_distribuidor, usudist.telefono_usuario_distribuidor FROM usuarios AS usus, usuario_distribuidor AS usudist WHERE usudist.id_usuario_fk = usus.id_usuario AND usus.id_usuario = ".$_SESSION['id_usuario'];
+		      				$resultado = mysql_query($consulta);
+		      				$row = mysql_fetch_array($resultado);
+		      			?>
+				      	<div class="modal-body">
+				      		<table class="table">
+				      			<tbody>
+				      				<tr>
+				      					<td><strong>Tipo de Socio:</strong></td>
+				      					<td>DISTRIBUIDOR</td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Nivel de Usuario:</strong></td>
+				      					<td>
+				      						<?php 
+				      							if($row['nivel_autorizacion_usuario'] == 1)
+				      								echo "USUARIO ADMINISTRADOR";
+				      							else
+				      								echo "USUARIO NORMAL";
+				      						?>
+				      					</td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Usuario:</strong></td>
+				      					<td><?php echo $_SESSION['nombre_usuario']; ?> </td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Contraseña:</strong></td>
+				      					<td><a href="../contrasena/">*****************************</a></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Nombre:</strong></td>
+				      					<td><?php echo $row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Teléfono:</strong></td>
+				      					<td><?php echo $row['telefono_usuario_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Dirección:</strong></td>
+				      					<td><?php echo $row['direccion_usuario_distribuidor']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Fecha de Registro:</strong></td>
+				      					<td><?php echo $row['fecha_creacion_usuario']; ?></td>
+				      				</tr>
+				      				<tr>
+				      					<td><strong>Fecha de Modificación:</strong></td>
+				      					<td><?php echo $row['fecha_modificacion_usuario']; ?></td>
+				      				</tr>
+				      			</tbody>
+				      		</table>
+				      		<center>
+				      			<a href="../" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
+				      		</center>
+				      	</div>
+				    </div>
 					<?php
 						mysql_close();
 					?>

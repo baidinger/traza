@@ -10,7 +10,7 @@
 
 			include('../../mod/conexion.php');
 
-			$consulta = "SELECT descripcion_orden, descripcion_cancelacion, descripcion_rechazo, fecha_entrega_orden FROM ordenes_punto_venta WHERE id_orden = $idOrden";
+			$consulta = "SELECT ords.descripcion_orden, ords.descripcion_cancelacion, ords.descripcion_rechazo, ords.fecha_entrega_orden, ususpv.nombre_usuario_pv, ususpv.apellidos_usuario_pv FROM ordenes_punto_venta AS ords, usuario_punto_venta AS ususpv WHERE id_orden = $idOrden AND ususpv.id_usuario_pv = ords.id_usuario_punto_venta_fk";
 			$resultado = mysql_query($consulta);
 			$row = mysql_fetch_array($resultado);
 
@@ -18,14 +18,17 @@
 			$descripcionCancelacion = $row['descripcion_cancelacion'];
 			$descripcionRechazo = $row['descripcion_rechazo'];
 			$fechaEntregaOrden = $row['fecha_entrega_orden'];
+			$usuarioPuntoVenta = $row['nombre_usuario_pv']." ".$row['apellidos_usuario_pv'];
 		?>
-		<div class="form-inline">
-			<center>
-				<label>Fecha de entrega:</label>
-				<input type="date" class="form-control" value="<?php echo $fechaEntregaOrden; ?>" readonly>
-			</center>
-		</div>
-		<br><br>
+		<table class="table">
+			<tr>
+				<td><label class="lbl-nueva-orden">Solicitante:</label></td>
+				<td><input type="text" class="form-control" value="<?php echo $usuarioPuntoVenta; ?>" readonly></td>
+				<td class="derecha"><label class="lbl-nueva-orden">Fecha de entrega:</label></td>
+				<td><input type="date" class="form-control" value="<?php echo $fechaEntregaOrden; ?>" readonly></td>
+			</tr>
+		</table>
+		
 		<table class="table">
 			<thead>
 				<tr>

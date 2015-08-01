@@ -3,7 +3,7 @@ body{
 }
 
 .body-logeo{
-	background: #7FBF22 url('../img/fondo-body.jpg') no-repeat;
+	background: #7FBF22 url('../img/fondo-body.jpg') no-repeat fixed center;
 	background-position: top center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -71,7 +71,7 @@ h3.titulo-contenido{
 }
 
 .fondo-body{
-	background: #7FBF22 url('../img/fondo-body.jpg') no-repeat;
+	background: #7FBF22 url('../img/fondo-body.jpg') no-repeat fixed center;
 	background-position: top center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -152,4 +152,29 @@ textarea{
 
 .lbl-nueva-orden{
 	padding-top: 5px;
+}
+
+#btnReportes{
+	float: right;
+	width: 50px;
+	height: 50px;
+}
+
+#btnAvanzada, #btnAgregarProducto, #btnAgregarCamion, #btnRegistrarUsuario{
+	float: right;
+}
+
+#btnMostrarTodos{
+	display: none;
+	float: right;
+	margin-right: 10px;
+}
+
+#inputBuscar{
+	width: 40%;
+}
+
+#graph{
+	margin: 0px auto;
+	width: 50%;
 }
