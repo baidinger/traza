@@ -46,7 +46,7 @@ namespace CS101_CALLBACK_API_DEMO
         public static bool barcodemodule = false;
 
        
-        public static string uri = "http://192.168.0.105/traza/webservice/";
+        public static string uri = "http://192.168.0.105/webservice/";
 
        // private static string appGuid = "WRITE AN UNIQUE GUID HERE";
        // private static System.Threading.Mutex mutex;
@@ -83,7 +83,7 @@ namespace CS101_CALLBACK_API_DEMO
                         String host = sr.ReadLine();
                         sr.Close();
 
-                        uri = "http://" + host + "/traza/webservice/";
+                        uri = "http://" + host + "/webservice/";
                     }
 
                 }

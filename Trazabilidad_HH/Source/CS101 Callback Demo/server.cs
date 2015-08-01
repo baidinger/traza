@@ -38,7 +38,7 @@ namespace CS101_CALLBACK_API_DEMO
             {
                 sw.WriteLine(host_lbl.Text);
                 sw.Flush();
-                Program.uri = "http://" + host_lbl.Text + "/traza/webservice/";
+                Program.uri = "http://" + host_lbl.Text + "/webservice/";
                 MessageBox.Show("Nuevo Host guardado exitosamente.","Cambio exitoso");
             }
 
