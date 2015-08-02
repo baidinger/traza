@@ -80,6 +80,7 @@
             this.verCajasbtn.Size = new System.Drawing.Size(87, 27);
             this.verCajasbtn.TabIndex = 8;
             this.verCajasbtn.Text = "Ver cajas";
+            this.verCajasbtn.Click += new System.EventHandler(this.verCajasbtn_Click);
             // 
             // showPallets
             // 

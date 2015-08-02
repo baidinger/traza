@@ -39,7 +39,20 @@
 				if($result){
 					$datos_usuario = "Bien*";
 					while($row = mysql_fetch_array($result)){
+
 						$datos_usuario .= $row['epc_tarima'].",".$row['cajas'].",";
+
+						$q = "SELECT count(epc_caja) FROM distribuidor_cajas_envio WHERE id_envio_fk = $id_envio AND enviado_dce = 1 AND epc_tarima = '".$row['epc_tarima']."' GROUP BY epc_tarima";
+						$resultado = mysql_query($q);
+						 $r = mysql_fetch_array($resultado);
+
+						 $datos_usuario .= $r[0].",";
+
+						$q = "SELECT count(epc_caja) FROM distribuidor_cajas_envio WHERE id_envio_fk = $id_envio AND recibido_dce = 1 AND epc_tarima = '".$row['epc_tarima']."' GROUP BY epc_tarima";
+						$resultado = mysql_query($q);
+						 $r = mysql_fetch_array($resultado);
+
+						 $datos_usuario .= $r[0].",";
 					}
 				}else
 					$datos_usuario = "Error*Error en la lectura de pallets.";
@@ -56,6 +69,20 @@
 				}else
 					$datos_usuario = "Error*Error en la lectura de las cajas de los pallets.";
 			}
+
+			/*if($tipo == 4){
+				$query = "SELECT epc_tarima, count(epc_tarima) AS cajas  FROM distribuidor_cajas_envio WHERE id_envio_fk = $id_envio GROUP BY epc_tarima";
+
+				$result = mysql_query($query);
+				if($result){
+					$datos_usuario = "Bien*";
+					while($row = mysql_fetch_array($result)){
+						$datos_usuario .= $row['epc_tarima'].",".$row['cajas'].",";
+					}
+				}else
+					$datos_usuario = "Error*Error en la lectura de pallets.";
+			}*/
+
 		break;
 		case 4://punto venta
 		break;

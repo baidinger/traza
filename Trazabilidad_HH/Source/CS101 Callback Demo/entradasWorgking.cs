@@ -120,7 +120,9 @@ namespace CS101_CALLBACK_API_DEMO
                     tbcName.Width = 80;
                 tbcName.MappingName = item.ColumnName;
                 tbcName.HeaderText = item.ColumnName;
+                
                 tableStyle.GridColumnStyles.Add(tbcName);
+                
                 y++;
             }
             y = 0;
@@ -322,6 +324,14 @@ namespace CS101_CALLBACK_API_DEMO
                     this.Close();
                 }
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+           /* using (showPallets sp = new showPallets(socio, preIdEnvio, 4))
+            {
+                sp.ShowDialog();
+            }*/
         }
 
 
