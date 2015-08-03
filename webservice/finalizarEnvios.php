@@ -52,25 +52,11 @@
 								$datos_usuario = "Error*El Envio ha sido finalizao y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
 					}
 
-
-					/*$query = "UPDATE ordenes_distribuidor SET estado_orden = 3 WHERE id_orden = $orden";
-					$r = mysql_query($query);
-
-					if($r)
-						$datos_usuario = "Bien*El Pre-Envio y la Orden han sido enviados.";
-					else
-						$datos_usuario = "Error*El Pre-Envio ha sido enviado y la orden no. \n -La orden debio enviarse puesto que ya no tiene envios pendientes.";*/
-
 				}else
 					$datos_usuario = "Bien*El Envio ha sido entregado exitosamente.\n -Finalice todos los envios de la orden para que la orden sea Finalizada";
 
 			}else
 				$datos_usuario = "Error*Error al finalizar el envio";
-
-
-
-
-			//$datos_usuario .= "Bien*Envio finalizado y entrega exitosa.";		
 		}else{
 			if($enviado > $recibido){
 				$datos_usuario .= "Error*No se han recibido las cajas que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
