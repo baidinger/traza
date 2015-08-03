@@ -21,6 +21,8 @@ namespace CS101_CALLBACK_API_DEMO
         {
             InitializeComponent();
 
+            verCajasbtn.Enabled = false;
+
             this.socio = socio;
             this.id_envio = id_envio;
             this.envioNumber.Text = id_envio+"";
@@ -33,7 +35,15 @@ namespace CS101_CALLBACK_API_DEMO
             col.DataType = typeof(string);
 
             col = dt.Columns.Add();
-            col.ColumnName = "N° de cajas";
+            col.ColumnName = "N° de cajas total";
+            col.DataType = typeof(string);
+
+            col = dt.Columns.Add();
+            col.ColumnName = "N° Cajas enviadas";
+            col.DataType = typeof(string);
+
+            col = dt.Columns.Add();
+            col.ColumnName = "N° Cajas recibidas";
             col.DataType = typeof(string);
 
             using (cargando c = new cargando())
@@ -67,6 +77,8 @@ namespace CS101_CALLBACK_API_DEMO
                 row = dt.NewRow();
                 row[0] = "---";
                 row[1] = "---";
+                row[2] = "---";
+                row[3] = "---";
                 dt.Rows.Add(row);
             }
             else
@@ -80,14 +92,16 @@ namespace CS101_CALLBACK_API_DEMO
                     datosTabla = 1;
                     String[] datosEnvios = res[1].Split(',');
                     int tamanio = datosEnvios.Length - 1;
-                    for (int i = 0, j=0; i < tamanio/2; i++)
+                    for (int i = 0, j=0; i < tamanio/4; i++)
                     {
 
                         row = dt.NewRow();
                         row[0] = datosEnvios[j];
                         row[1] = datosEnvios[j+1];
+                        row[2] = datosEnvios[j + 2];
+                        row[3] = datosEnvios[j + 3];
                         dt.Rows.Add(row);
-                        j += 2;
+                        j += 4;
 
                     }
                 }
@@ -101,9 +115,9 @@ namespace CS101_CALLBACK_API_DEMO
             {
                 DataGridTextBoxColumn tbcName = new DataGridTextBoxColumn();
                 if(y == 0)
-                    tbcName.Width = 200;
+                    tbcName.Width = 180;
                 else
-                    tbcName.Width = 85;
+                    tbcName.Width = 130;
                 tbcName.MappingName = item.ColumnName;
                 tbcName.HeaderText = item.ColumnName;
                 tableStyle.GridColumnStyles.Add(tbcName);
@@ -176,8 +190,9 @@ namespace CS101_CALLBACK_API_DEMO
             {
                 if (datosTabla == 1)
                 {
-                  /*  pallet = dt.Rows[dataGrid1.CurrentRowIndex][0].ToString();
-
+                    pallet = dt.Rows[dataGrid1.CurrentRowIndex][0].ToString();
+                    verCajasbtn.Enabled = true;
+                    /*
                     String r = "";
                     using (cargando c = new cargando())
                     {
@@ -255,6 +270,11 @@ namespace CS101_CALLBACK_API_DEMO
             {
                 return "Error1*Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
             }
+        }
+
+        private void verCajasbtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

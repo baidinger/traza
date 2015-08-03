@@ -112,7 +112,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(4, 153);
+            this.label3.Location = new System.Drawing.Point(4, 148);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(204, 20);
             this.label3.Text = "N° de pallets enviados:";
@@ -120,21 +120,21 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(4, 182);
+            this.label4.Location = new System.Drawing.Point(4, 181);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(204, 20);
-            this.label4.Text = "N° de pallets leidos:";
+            this.label4.Text = "N° de pallets llegados:";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(164, 155);
+            this.label5.Location = new System.Drawing.Point(164, 150);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.Text = "----";
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(164, 184);
+            this.label6.Location = new System.Drawing.Point(163, 184);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 20);
             this.label6.Text = "----";
@@ -143,9 +143,9 @@
             // 
             this.showPallet.Enabled = false;
             this.showPallet.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.showPallet.Location = new System.Drawing.Point(230, 154);
+            this.showPallet.Location = new System.Drawing.Point(234, 147);
             this.showPallet.Name = "showPallet";
-            this.showPallet.Size = new System.Drawing.Size(83, 36);
+            this.showPallet.Size = new System.Drawing.Size(83, 47);
             this.showPallet.TabIndex = 14;
             this.showPallet.Text = "Ver pallets";
             this.showPallet.Click += new System.EventHandler(this.showPallet_Click);
