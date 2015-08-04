@@ -52,12 +52,12 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(5, 4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(203, 20);
-            this.label3.Text = "Pallets del Número de envio:";
+            this.label3.Size = new System.Drawing.Size(130, 20);
+            this.label3.Text = "Pallets del envio";
             // 
             // envioNumber
             // 
-            this.envioNumber.Location = new System.Drawing.Point(214, 4);
+            this.envioNumber.Location = new System.Drawing.Point(127, 4);
             this.envioNumber.Name = "envioNumber";
             this.envioNumber.Size = new System.Drawing.Size(100, 20);
             this.envioNumber.Text = "envioNumber";

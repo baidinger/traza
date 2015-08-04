@@ -292,7 +292,7 @@ namespace CS101_CALLBACK_API_DEMO
 
         private void showPallet_Click(object sender, EventArgs e)
         {
-            using (showPallets sp = new showPallets(socio, preIdEnvio))
+            using (showPallets sp = new showPallets(socio, preIdEnvio, preIdOrden, preIdCarro))
             {
                 sp.ShowDialog();
             }
@@ -332,6 +332,81 @@ namespace CS101_CALLBACK_API_DEMO
             {
                 sp.ShowDialog();
             }*/
+        }
+
+        private void compl_send_Click(object sender, EventArgs e)
+        {
+            using (cargando c = new cargando())
+            {
+                c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                c.Show();
+                c.Update();
+
+                String result = finalizarEnvio();
+                String[] r = result.Split('*');
+
+                if (r[0].CompareTo("Error") == 0)
+                {
+                    MessageBox.Show(r[1], "Error al finalizar");
+                }
+                else
+                {
+                    MessageBox.Show(r[1], "Operación exitosa");
+
+                    refreshEnviosPendientes();
+                    label5.Text = "---";
+                    label6.Text = "---";
+                }
+            }
+        }
+
+        public String finalizarEnvio()
+        {
+            string uriEnvios = Program.uri + "finalizarEnvios.php";
+            HttpWebRequest request;
+            byte[] postBytes;
+            Stream requestStream;
+            HttpWebResponse response;
+            Stream responseStream;
+
+            try
+            {
+                /*PETICIÓN AL WEBSERVER*/
+                request = (HttpWebRequest)WebRequest.Create(uriEnvios);
+                request.Method = "POST";
+                request.KeepAlive = false;
+                request.ProtocolVersion = HttpVersion.Version10;
+
+                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + preIdOrden + "," + preIdEnvio);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.AllowWriteStreamBuffering = false;
+                request.ContentLength = postBytes.Length;
+                request.AllowAutoRedirect = false;
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(postBytes, 0, postBytes.Length);
+                requestStream.Close();
+
+                /*RESPUESTA DEL WEBSERVER*/
+                response = (HttpWebResponse)request.GetResponse();
+                responseStream = response.GetResponseStream();
+
+                string jsonString = null;
+                using (StreamReader reader2 = new StreamReader(responseStream))
+                {
+                    jsonString = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                responseStream.Close();
+                response.Close();
+                return jsonString;
+
+            }
+            catch (Exception e2)
+            {
+                return "Error*Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
+            }
+
         }
 
 
