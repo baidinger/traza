@@ -1,8 +1,9 @@
 <div id="paginacion-resultados" style="width:95%; margin: 0 auto">
-		    <table class="table table-hover">
+		    <table class="table table-hover" style="font-size: 14px">
 		    	<thead>
 			        <tr>
 			          <th>#</th>
+			          <th>Núm. Lote</th>
 			          <th>Nombre de productor</th>
 			          <th>Producto</th>
 			          <th>Cant. cajas</th>
@@ -23,7 +24,7 @@
 					nombre_producto, variedad_producto from lotes, productos_productores ,empresa_productores, 
 					productos where productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND id_empaque_fk = $_SESSION[id_empaque] AND 
 					productos_productores.id_producto_fk = productos.id_producto AND productos_productores.id_productor_fk = empresa_productores.id_productor 
-					AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%' )";
+					AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%') ORDER BY id_lote DESC";
 				$result_receptores = mysql_query($consulta);
 				$i=1;
 				//$result_receptores = mysql_query("select id_receptor, id_usuario, nombre_receptor, apellido_receptor, telefono_receptor, direccion_receptor, nombre_usuario, estado_usuario, nivel_autorizacion_usuario from usuario_empaque, usuarios where usuario_empaque.id_usuario_fk = usuarios.id_usuario AND usuario_empaque.id_empaque_fk = ".$id_empaque." order by nombre_receptor ASC, apellido_receptor ASC" );
@@ -34,6 +35,7 @@
 					 	?>
 					 	<tr>
 			        		<td><?php echo $i; ?></td>
+			        		<td class="centro"><?php echo $row['id_lote']; ?></td>
 				          	<td><?php echo $row['nombre_productor'] ." ". $row['apellido_productor']; ?></td>
 				          	<td><?php echo $row['nombre_producto'] . " - ". $row['variedad_producto']; ?></td>
 				          	<td><?php echo $row['cant_cajas_lote']; ?></td>

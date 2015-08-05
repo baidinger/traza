@@ -1,6 +1,6 @@
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#cajas" aria-controls="home" role="tab" data-toggle="tab">Cajas</a></li>
-    <li role="presentation"><a href="#tarimas" aria-controls="profile" role="tab" data-toggle="tab">Pallets</a></li>
+    <li role="presentation"><a href="#tarimas" aria-controls="profile" role="tab" data-toggle="tab">Palets</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -12,7 +12,7 @@
               <thead>
                 <tr>
                   <th class="centro">#</th>
-                  <th class="centro">Pallet</th>
+                  <th class="centro">Palet</th>
                   <th class="centro">Caja</th>
                   <th class="centro">Enviado</th>
                   <th class="centro">Recibido</th>
@@ -35,7 +35,7 @@
                           <tr>
                             <td class="centro"><?php echo $i; ?></td>
                             <td class="centro"><?php echo $row['epc_tarima']; ?></td>
-                            <td class="centro"><?php echo "<a href='index.php?epc_caja=".$row['epc_caja']."&op=caja_traza' class='btn btn-link'>".$row['epc_caja']."</a>"; ?> </td>
+                            <td class="centro"><?php echo "<a href='index.php?op=trazabilidad&epc=$row[epc_caja]' class='btn btn-link'>".$row['epc_caja']."</a>"; ?> </td>
                             
                               <?php if($row['enviado_dce'] == 1){ ?>
                               <td class="centro">
@@ -83,7 +83,7 @@
               <thead>
                 <tr>
                   <th class="centro">#</th>
-                  <th class="centro">EPC de pallet</th>
+                  <th class="centro">EPC del palet</th>
                   <th class="centro">Número de cajas</th>
                   <th class="centro">EPC de las cajas</th>
                 </tr>

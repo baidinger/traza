@@ -63,7 +63,7 @@
 	  	<center>
 	  		<button type="button" style="width:150px" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	  		<input type="hidden" name="id_camion" value="<?php echo $row['id_camion']; ?>">
-	 		<button type="submit" style="width:150px" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
+	 		<button type="submit" style="width:150px" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Guardar cambios</button>
 	 	</center>
     </div>
 	</div>
