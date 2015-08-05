@@ -26,6 +26,15 @@
 				$datos_usuario = "Error*Error";
 		break;
 		case 4://punto venta
+			$query = "SELECT id_envio, id_camion_fk, id_orden_dist_fk, nombre_distribuidor FROM envios_distribuidor AS ed, empresa_distribuidores AS em_dist, ordenes_punto_venta AS opv  WHERE em_dist.id_distribuidor = opv.id_distribuidor_fk AND opv.id_orden = ed.id_orden_dist_fk AND ed.id_punto_venta_fk = $id_usuario AND estado_envio = 3";
+			$r = mysql_query($query);
+			if(mysql_num_rows($r) > 0){
+				$datos_usuario = "Bien*";
+				while($row=mysql_fetch_array($r)){
+					$datos_usuario .= $row['id_envio'].",".$row['id_camion_fk'].",".$row['id_orden_dist_fk'].",".$row['nombre_distribuidor'].",";;
+				}
+			}else
+				$datos_usuario = "Error*Error";
 		break;
 	}
 
