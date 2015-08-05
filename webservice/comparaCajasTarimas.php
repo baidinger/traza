@@ -35,9 +35,10 @@
 					$r = mysql_query($consulta);
 				
 
-					if(mysql_num_rows($r) > 0){
-						$y = 0;
-						for($i = 0; $i < count($epcCajas); $i++){
+					if(mysql_num_rows($r) > 0)
+					{
+						for($i = 0; $i < count($epcCajas); $i++)
+						{
 							$consulta = "SELECT * FROM distribuidor_cajas_envio WHERE epc_caja = '".$epcCajas[$i]."' AND id_envio_fk = $id_envio AND epc_tarima = '$tarima'";
 							$resultado = mysql_query($consulta);
 
@@ -46,16 +47,18 @@
 							else
 								$consulta = "INSERT INTO distribuidor_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 0, 1)";
 
-							if($y == 0){
+							$q = "SELECT id_envio_fk FROM entrada_distribuidor WHERE id_envio_fk = $id_envio";
+							$re = mysql_query($q);
+							if(mysql_num_rows($re) == 0)
+							{ 
 								$consulta = "INSERT INTO entrada_distribuidor(id_envio_fk, fecha_entrada, hora_entrada, id_usuario_distribuidor_fk) VALUES($id_envio, '".date("Y-m-d")."', '".date("H:i:s")."', $id_usuario)";
 								mysql_query($consulta);
 							}
 
-							$y++;
+
 							mysql_query($consulta);
 						}	
 
-						$y = 0;
 
 						$datos_usuario = "Bien*Registro Exitoso";
 					}else
@@ -92,9 +95,10 @@
 					$r = mysql_query($consulta);
 				
 
-					if(mysql_num_rows($r) > 0){
-						$y = 0;
-						for($i = 0; $i < count($epcCajas); $i++){
+					if(mysql_num_rows($r) > 0)
+					{
+						for($i = 0; $i < count($epcCajas); $i++)
+						{
 							$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE epc_caja = '".$epcCajas[$i]."' AND id_envio_fk = $id_envio AND epc_tarima = '$tarima'";
 							$resultado = mysql_query($consulta);
 
@@ -103,16 +107,18 @@
 							else
 								$consulta = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 0, 1)";
 
-							if($y == 0){
-								$consulta = "INSERT INTO entrada_distribuidor(id_envio_fk, fecha_entrada, hora_entrada, id_usuario_distribuidor_fk) VALUES($id_envio, '".date("Y-m-d")."', '".date("H:i:s")."', $id_usuario)";
+							$q = "SELECT id_envio_fk FROM entrada_punto_venta WHERE id_envio_fk = $id_envio";
+							$re = mysql_query($q);
+							if(mysql_num_rows($re) == 0)
+							{ 
+								$consulta = "INSERT INTO entrada_punto_venta(id_envio_fk, fecha_entrada_punto_venta, hora_entrada_punto_venta, id_usuario_punto_venta_fk) VALUES($id_envio, '".date("Y-m-d")."', '".date("H:i:s")."', $id_usuario)";
 								mysql_query($consulta);
 							}
+							
 
-							$y++;
 							mysql_query($consulta);
 						}	
 
-						$y = 0;
 
 						$datos_usuario = "Bien*Registro Exitoso";
 					}else

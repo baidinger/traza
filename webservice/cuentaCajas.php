@@ -25,6 +25,14 @@ switch($socio){
 			
 		break;
 		case 4://punto venta
+			$query = "SELECT epc_caja, enviado_dce, recibido_dce FROM punto_venta_cajas_envio WHERE epc_tarima = '$palet' AND id_envio_fk = $envio";
+
+			$result = mysql_query($query);
+			$datos_usuario .= "Bien*";
+			while ( $row = mysql_fetch_array($result)) {
+				$datos_usuario .= $row['epc_caja'].",".$row['enviado_dce'].",".$row['recibido_dce'].",";
+			}
+			
 		break;
 	}
 
