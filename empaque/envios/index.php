@@ -54,7 +54,7 @@
 		function mostrarCajasTarimas(id){
 			var parametros = {'idenvio':id};
 			//alert(idOrden);
-				$("#mititulo").html("Cajas y Pallets");
+				$("#mititulo").html("Cajas y Palets");
 				$.ajax({
 					type: 'POST',
 					url: 'envios/vistaCajasTarimas.php',

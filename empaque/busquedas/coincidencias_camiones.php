@@ -10,7 +10,7 @@
  ?>
 
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
-	    <table class="table table-hover">
+	    <table class="table table-hover" style="font-size: 14px">
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>

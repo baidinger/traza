@@ -121,7 +121,7 @@
               <span class="glyphicon glyphicon-tags"></span> &nbsp;Etiquetas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                <li><a href="index.php?op=imprimir">Cajas</a></li>
-               <li><a href="index.php?op=pallets">Pallets</a></li>
+               <li><a href="index.php?op=palets">Palets</a></li>
                <li><a href="index.php?op=trazabilidad">Trazabilidad</a></li>
             </ul>
         </li>
@@ -219,6 +219,19 @@ if($_GET("op") == "reg_new_user")
 
 if($_GET("op") == "imprimir") 
   $("#views").load("tags/imprimirtags.php");
+
+if($_GET("op") == "epcgenerados") 
+   $.ajax({
+      type: 'POST',
+      url: 'tags/epcgenerados.php',
+      data: {'lote':$_GET("lote")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+  //$("#views").load("tags/epcgenerados.php");
+
 
 if($_GET("op") == "trazabilidad") 
   $.ajax({
