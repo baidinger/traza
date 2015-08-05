@@ -93,11 +93,12 @@
             // 
             this.compl_send.Enabled = false;
             this.compl_send.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.compl_send.Location = new System.Drawing.Point(181, 212);
+            this.compl_send.Location = new System.Drawing.Point(207, 212);
             this.compl_send.Name = "compl_send";
-            this.compl_send.Size = new System.Drawing.Size(136, 25);
+            this.compl_send.Size = new System.Drawing.Size(109, 25);
             this.compl_send.TabIndex = 5;
-            this.compl_send.Text = "Completar envio";
+            this.compl_send.Text = "Finalizar envio";
+            this.compl_send.Click += new System.EventHandler(this.compl_send_Click);
             // 
             // button3
             // 
