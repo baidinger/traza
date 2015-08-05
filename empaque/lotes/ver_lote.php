@@ -22,13 +22,13 @@
 			      			<?php
 			      				include('../../mod/conexion.php');
 			      				$id_lote = $_POST['id'];
-			      				$consulta = "select id_lote, telefono_productor, rfc_productor, id_productor_fk, id_producto_fk, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote,  id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto from lotes, empresa_productores, productos where lotes.id_producto_fk = productos.id_producto AND lotes.id_productor_fk = empresa_productores.id_productor AND id_lote = $id_lote";
+			      				$consulta = "SELECT * FROM lotes, productos_productores, empresa_productores, productos WHERE id_productos_productores = id_productos_productores_fk AND id_producto = id_producto_fk AND id_productor = id_productor_fk AND id_lote = $id_lote";
 			      				$resultado = mysql_query($consulta);
 			      				$row = mysql_fetch_array($resultado);
 			      			?>
 					      	<div>
 					      		<p class="alert alert-info">DATOS DEL PRODUCTOR</p>
-					      		<table class="table">
+					      		<table class="table" style="font-size: 14px">
 					      			<tbody>
 					      				<tr>
 					      					<td width="200"><strong>Nombre:</strong></td>
@@ -50,7 +50,7 @@
 					      		</table>
 								
 								<p class="alert alert-info">DATOS DE LA COMPRA</p>
-					      		<table class="table">
+					      		<table class="table" style="font-size: 14px">
 					      			<tbody>
 					      				<tr>
 					      					<td width="200"><strong>Remitente:</strong></td>
@@ -65,12 +65,12 @@
 					      					<td><?php echo $row['variedad_producto']; ?> </td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Cant. cajas:</strong></td>
-					      					<td><?php echo $row['cant_cajas_lote']; ?></td>
+					      					<td><strong>Cant. cajas / rend. cajas:</strong></td>
+					      					<td><?php echo $row['cant_cajas_lote']." / ".$row['rendimiento_cajas']; ?></td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Cant. kilos:</strong></td>
-					      					<td><?php echo $row['cant_kilos_lote']; ?></td>
+					      					<td><strong>Cant. kilos / rend. kilos:</strong></td>
+					      					<td><?php echo $row['cant_kilos_lote']." / ".$row['rendimiento_kg']; ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Fecha de compra:</strong></td>

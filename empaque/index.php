@@ -207,8 +207,31 @@ if($_GET("op") == "bus_camion")
 if($_GET("op") == "bus_distribuidor") 
   $("#views").load("busquedas/Busc_distribuidores.php");
 
+if($_GET("op") == "editar_dist") 
+   $.ajax({
+      type: 'POST',
+      url: 'busquedas/editarDistribuidor.php',
+      data: {'id':$_GET("id")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+  //$("#views").load("busquedas/editarDistribuidor.php");
+
 if($_GET("op") == "bus_pv") 
   $("#views").load("busquedas/Busc_punto_venta.php");
+
+if($_GET("op") == "editar_pv") 
+   $.ajax({
+      type: 'POST',
+      url: 'busquedas/editarPuntoVenta.php',
+      data: {'id':$_GET("id")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
 
 /***** Alfonso *****/
 if($_GET("op") == "contrasena") 

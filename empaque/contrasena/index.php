@@ -4,10 +4,10 @@
 	<head>
 		<title>Trazabilidad</title>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="../css/estilos.css">
+		<!--<link rel="stylesheet" type="text/css" href="../css/estilos.css">-->
 	</head>
 	<body>		
-		<div class="contenido-general">
+		<div class="contenido-general" style="width: 600px; margin: 100px auto">
 			<div class="contenido-general-2">
 				<div class="div-contenedor-form">
 					<form class="form-horizontal" role="form" method="post" action="../mod/cambiar_contrasena.php">
