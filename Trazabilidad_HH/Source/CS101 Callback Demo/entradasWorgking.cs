@@ -377,7 +377,7 @@ namespace CS101_CALLBACK_API_DEMO
                 request.KeepAlive = false;
                 request.ProtocolVersion = HttpVersion.Version10;
 
-                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + preIdOrden + "," + preIdEnvio);
+                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + preIdOrden + "," + preIdEnvio+","+preIdCarro);
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.AllowWriteStreamBuffering = false;
                 request.ContentLength = postBytes.Length;
