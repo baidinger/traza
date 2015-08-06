@@ -379,6 +379,8 @@ namespace CS101_CALLBACK_API_DEMO
                     refreshEnviosPendientes();
                     label5.Text = "---";
                     label6.Text = "---";
+                    cont.Enabled = false;
+                    compl_send.Enabled = false;
                 }
             }
         }
