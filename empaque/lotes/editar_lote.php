@@ -61,7 +61,7 @@
 			    		name="cantidad_cajas" 
 			    		placeholder="Cantidad de cajas" required min ="0" value="<?php print $row['cant_cajas_lote'] ?>"> <label style="float: left; margin-left: 20px">/</label> 
 			    		<input style="width: 150px; float: left; margin-left: 20px" <?php if($_SESSION['nivel_socio'] == 2) print "disabled" ?> type="number" class="form-control input" 
-			    		name="rend_cajas"
+			    		name="rendimiento_cajas"
 			    		placeholder="Rend. cajas" required min ="0" value="<?php print $row['rendimiento_cajas'] ?>">
 			    	</td>
 				</tr>

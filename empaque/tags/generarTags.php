@@ -36,7 +36,7 @@ mysql_query($consulta);
 
 /**** OBTENER EL TIPO DE PRODUCTO DEL LOTE ***/
 
-print $consulta = "SELECT id_producto_fk FROM lotes, productos_productores WHERE id_productos_productores = id_productos_productores_fk AND id_lote = $id_lote";
+$consulta = "SELECT id_producto_fk FROM lotes, productos_productores WHERE id_productos_productores = id_productos_productores_fk AND id_lote = $id_lote";
 $result = mysql_query($consulta);
 $id_producto = "";
 if( $row = mysql_fetch_array( $result ) ){
@@ -46,31 +46,31 @@ if( $row = mysql_fetch_array( $result ) ){
 	return;
 }
 
-print "<br>ID_PRODUCTO: ".$id_producto."<br>";
+//print "<br>ID_PRODUCTO: ".$id_producto."<br>";
 
 /*** OBTENER EL SERIAL NUMBER ****/
-print $consulta = "SELECT substring(epc_caja, 10, 6) as product_type, substring(epc_caja, 16,9) as serial_number from epc_caja, lotes, productos_productores WHERE id_lote_fk = id_lote and id_productos_productores = id_productos_productores_fk and id_producto_fk = $id_producto and id_empaque_fk = $_SESSION[id_empaque] ORDER BY serial_number DESC";
+ $consulta = "SELECT substring(epc_caja, 10, 6) as product_type, substring(epc_caja, 16,9) as serial_number from epc_caja, lotes, productos_productores WHERE id_lote_fk = id_lote and id_productos_productores = id_productos_productores_fk and id_producto_fk = $id_producto and id_empaque_fk = $_SESSION[id_empaque] ORDER BY serial_number DESC";
 $result = mysql_query($consulta);
 $serial_number = "0";
 if( $row = mysql_fetch_array( $result ) ){
 	$serial_number = $row['serial_number'];
 }
 
-print "<br>SERIAL_NUMBER: ".$serial_number."<br>";
+// "<br>SERIAL_NUMBER: ".$serial_number."<br>";
 
 /**** GENERAR ****/
 $epc = "";
 $EPCS = "";
 while($numero_etiquetas-- > 0){
 	$serial_number++;
-	$epc = "01";
+	$epc = "00";
 	$id_empaque = $_SESSION['id_empaque'];
 	$epc .= str_pad($id_empaque, 7,"0",STR_PAD_LEFT);
 	$epc .= str_pad($id_producto, 6,"0", STR_PAD_LEFT);
 	$epc .= str_pad($serial_number, 9,"0", STR_PAD_LEFT);
 	$EPCS .= $epc."<br>";
-	print $consulta = "INSERT INTO epc_caja VALUES('$epc',$id_lote)";
-	print "<br>";
+	$consulta = "INSERT INTO epc_caja VALUES('$epc',$id_lote)";
+	//print "<br>";
 	mysql_query($consulta);
 }
 mysql_close();
