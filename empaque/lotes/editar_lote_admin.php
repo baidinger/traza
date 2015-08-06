@@ -1,19 +1,20 @@
 <?php 
 	include('../../mod/conexion.php');
-	$id_lote 		=	$_POST['id_lote'];
-	$id_producto 		=	$_POST['id_producto'];
-	$cantidad_cajas 	= 	$_POST['cantidad_cajas'];
-	$cantidad_kilos		=	$_POST['cantidad_kilos'];
-	$nombre_remitente	=	strtoupper($_POST['nombre_remitente']);
-	$costo_lote			=	$_POST['costo_lote'];
-	/*$rango_inicial		=	$_POST['rango_inicial'];
-	$rango_final		=	$_POST['rango_final'];*/
+	$id_lote 					=	$_POST['id_lote'];
+	$id_productos_productores 	=	$_POST['id_productos_productores'];
+	$cantidad_cajas 			= 	$_POST['cantidad_cajas'];
+	$cantidad_kilos				=	$_POST['cantidad_kilos'];
+	$rendimiento_cajas 			= 	$_POST['rendimiento_cajas'];
+	$rendimiento_kilos			=	$_POST['rendimiento_kg'];
+	$nombre_remitente			=	strtoupper($_POST['nombre_remitente']);
+	$costo_lote					=	$_POST['costo_lote'];
 
 	$url			=	$_POST['url'];
 
 
-     $cadena = " UPDATE lotes set id_producto_fk = $id_producto, cant_cajas_lote = $cantidad_cajas, 
-		cant_kilos_lote = $cantidad_kilos, remitente_lote = '$nombre_remitente', costo_lote = $costo_lote  where id_lote = $id_lote"; 
+     $cadena = " UPDATE lotes set id_productos_productores_fk = $id_productos_productores, cant_cajas_lote = $cantidad_cajas, 
+		cant_kilos_lote = $cantidad_kilos, remitente_lote = '$nombre_remitente', rendimiento_kg = $rendimiento_kilos, 
+		rendimiento_cajas = $rendimiento_cajas, costo_lote = $costo_lote  where id_lote = $id_lote"; 
 
 	if(mysql_query($cadena)){
 			mysql_close($conexion);
