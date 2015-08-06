@@ -12,7 +12,7 @@
  ?>
 
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
-	    <table class="table table-hover">
+	    <table class="table table-hover" style="font-size: 14px">
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
@@ -82,8 +82,8 @@
 			          	<?php } ?>
 	          			<td class="centro">
 	          				<div style="width:90px; margin:0px auto;">
-		          				<a style="float:left; cursor:pointer;"> 
-		          					<span onclick="editar(<?php print $row['id_distribuidor'] ?>)"  data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
+		          				<a href="index.php?op=editar_dist&id=<?php print $row['id_distribuidor'] ?>" style="float:left; "> 
+		          					<span data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 		          				</a>
 		          				<div style="width:20px; height:10px; float:left;"></div> 
 		          				<!-- ACCION HABILITAR -->
@@ -136,25 +136,7 @@
 			
 		?>
 
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-       				<h3 class="modal-title">
-       					<img class="img-header" src="img/distribuidor.png"> Editar Distribuidor
-       				</h3>
-			      </div>
-			      <div id="data-child" class="modal-body">
-
-
-			      		
-			        
-			      </div>
-			    </div>
-			  </div>
-			</div>
+			
 
 			
 
@@ -162,33 +144,6 @@
 	<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 
 	<script type="text/javascript">
-		//obtenerPais(<?php print $row['pais_distribuidor'] ?>)
 		$('#paginacion-resultados').simplePagination();
-		function editar(id){
-					var params = {'id':id};
-					$.ajax({
-						type: 'POST',
-						url: 'busquedas/editarDistribuidor.php',
-						data: params,
-
-						success: function(data){
-							$('#data-child').html(data);
-						},
-						beforeSend: function(data ) {
-					    $("#data-child").html("<center><img src=\"img/cargando.gif\"></center>");
-					  }
-					});
-			}
-/*
-		function obtenerPais(i){
-			if(i == 0) $("#edo").html("MEXICO"); 
-			if(i == 1) $("#edo").html("ESTADOS UNIDOS"); 
-			if(i == 2) $("#edo").html("CANADÁ"); 
-			if(i == 3) $("#edo").html("JAPÓN"); 
-			if(i == 4) $("#edo").html("AUSTRALIA"); 
-		}*/
-
-
-
 		</script>
 	

@@ -42,7 +42,7 @@
 
 				if(mysql_query(" INSERT INTO usuario_punto_venta (nombre_usuario_pv,".
 					" apellidos_usuario_pv, direccion_usuario_pv,".
-					" telefono_usuario_pv, id_usuario_fk, id_punto_venta) VALUES ".
+					" telefono_usuario_pv, id_usuario_fk, id_punto_venta_fk) VALUES ".
 					"('ADMIN','ADMIN','ADMIN','0000000000',".$id_usuario.",".$id_punto_venta.")")){	
 					mysql_close($conexion);
 					header ("Location: ../index.php?op=".$regreso."");

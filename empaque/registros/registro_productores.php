@@ -50,32 +50,27 @@
 	    		<input type="text" pattern="[0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}" title="Ingresa 10, 11, 12 y 13 dígitos" class="form-control input" name="telefono_productor" id="" placeholder="Teléfono del productor" required>
 	     	</div>
 		  </div>
-		  <div class="form-group">
-	    	<label class="col-sm-3 control-label">Dirección: </label>
-	    	<div class="col-sm-8">
-	    		<textarea type="text" class="form-control input" name="direccion_productor" id="" placeholder="Dirección del productor" required></textarea>
-	     	</div>
-		  </div>
+		 
 		</div>
 
 		<div class="modal-body" style="width:40%; float: right">
      		<div class="alert alert-info">UBICACIÓN DEL PRODUCTOR</div>
 		  <div class="form-group">
-	    	<label class="col-sm-4 control-label">Fecha de recolección: </label>
+	    	 <div class="form-group">
+	    	<label class="col-sm-3 control-label">Dirección: </label>
 	    	<div class="col-sm-8">
-	    		<input type="date" class="form-control input" 
-	    		name="fecha_recoleccion" >
-         	</div>
+	    		<textarea type="text" class="form-control input" name="direccion_productor" id="" placeholder="Dirección del productor" required></textarea>
+	     	</div>
+		  </div>
 		  </div>
 		  <center>
 
-	 			<button class="btn btn-default" data-dismiss="modal" style="width:150px">Cerrar</button>
+	 			<a href="index.php?op=bus_productor" class="btn btn-default" data-dismiss="modal" style="width:150px">Atrás</a>
 	 			<button id="enviar" type="submit" class="btn btn-primary" style="width:150px"><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
 	 			<input type="hidden" name="socio" value="bus_productor">
 	 		</center>
 		</div>
 
-	  	<hr>
 	  	<!--<span>Nota: Todos los campos son obligatorios</span>-->
 	  	
 	 </form>	

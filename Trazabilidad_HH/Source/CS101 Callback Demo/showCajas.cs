@@ -11,41 +11,44 @@ using System.IO;
 
 namespace CS101_CALLBACK_API_DEMO
 {
-    public partial class showPallets : Form
+    public partial class showCajas : Form
     {
+        public int Socio, id_Envio, id_Orden, id_Carro, datosTabla = 0, rowIndex = -10;
+        public String Palet = "";
         public DataTable dt;
-        public int id_envio, socio, id_orden, id_carro, datosTabla = 0, rowIndex = -10;
-        public String pallet="";
 
-        public showPallets(int socio, int id_envio, int id_Orden, int id_Carro)
+        public showCajas(int socio, int id_envio, int id_orden, int id_carro, String palet)
         {
             InitializeComponent();
 
-            verCajasbtn.Enabled = false;
+            this.Socio = socio;
+            this.id_Envio = id_envio;
+            this.id_Orden = id_orden;
+            this.id_Carro = id_carro;
+            this.Palet = palet;
 
-            this.socio = socio;
-            this.id_envio = id_envio;
-            this.id_orden = id_Orden;
-            this.id_carro = id_Carro;
-            this.envioNumber.Text = id_envio+"";
+            this.palet_lbl.Text = Palet;
+            this.envio_lbl.Text = id_Envio + "";
+            this.orden_lbl.Text = id_Orden + "";
+            this.carro_lbl.Text = id_Carro + "";
 
             dt = new DataTable();
             DataColumn col;
 
             col = dt.Columns.Add();
-            col.ColumnName = "EPC del Pallet";
+            col.ColumnName = "#";
+            col.DataType = typeof(int);
+
+            col = dt.Columns.Add();
+            col.ColumnName = "EPC de la caja";
             col.DataType = typeof(string);
 
             col = dt.Columns.Add();
-            col.ColumnName = "N° de cajas total";
+            col.ColumnName = "Enviado";
             col.DataType = typeof(string);
 
             col = dt.Columns.Add();
-            col.ColumnName = "N° Cajas enviadas";
-            col.DataType = typeof(string);
-
-            col = dt.Columns.Add();
-            col.ColumnName = "N° Cajas recibidas";
+            col.ColumnName = "Recibido";
             col.DataType = typeof(string);
 
             using (cargando c = new cargando())
@@ -54,12 +57,11 @@ namespace CS101_CALLBACK_API_DEMO
                 c.Show();
                 c.Update();
                 /*LLENAR LA TABLA CON LOS ENVIOS PENDIENTES*/
-                refreshPallets();
+                refreshCajas();
             }
         }
 
-        public void refreshPallets()
-        {
+        public void refreshCajas(){
             dt.Rows.Clear();
             String r = "";
             DataRow row;
@@ -89,16 +91,16 @@ namespace CS101_CALLBACK_API_DEMO
                     datosTabla = 1;
                     String[] datosEnvios = res[1].Split(',');
                     int tamanio = datosEnvios.Length - 1;
-                    for (int i = 0, j=0; i < tamanio/4; i++)
+                    for (int i = 0, j = 0; i < tamanio / 3; i++)
                     {
 
                         row = dt.NewRow();
-                        row[0] = datosEnvios[j];
-                        row[1] = datosEnvios[j+1];
-                        row[2] = datosEnvios[j + 2];
-                        row[3] = datosEnvios[j + 3];
+                        row[0] = i+1;
+                        row[1] = datosEnvios[j];
+                        row[2] = datosEnvios[j + 1];
+                        row[3] = datosEnvios[j + 2];
                         dt.Rows.Add(row);
-                        j += 4;
+                        j += 3;
 
                     }
                 }
@@ -111,10 +113,13 @@ namespace CS101_CALLBACK_API_DEMO
             foreach (DataColumn item in dt.Columns)
             {
                 DataGridTextBoxColumn tbcName = new DataGridTextBoxColumn();
-                if(y == 0)
+                if (y == 1)
                     tbcName.Width = 180;
                 else
-                    tbcName.Width = 130;
+                    if(y==0)
+                        tbcName.Width = 30;
+                    else
+                        tbcName.Width = 55;
                 tbcName.MappingName = item.ColumnName;
                 tbcName.HeaderText = item.ColumnName;
                 tableStyle.GridColumnStyles.Add(tbcName);
@@ -128,7 +133,7 @@ namespace CS101_CALLBACK_API_DEMO
 
         public String webServiceDataGrid()
         {
-            string uriEnvios = Program.uri + "cuentaPallets.php";
+            string uriEnvios = Program.uri + "cuentaCajas.php";
             HttpWebRequest request;
             byte[] postBytes;
             Stream requestStream;
@@ -143,7 +148,7 @@ namespace CS101_CALLBACK_API_DEMO
                 request.KeepAlive = false;
                 request.ProtocolVersion = HttpVersion.Version10;
 
-                postBytes = Encoding.UTF8.GetBytes("datos=2," + socio + "," +id_envio);
+                postBytes = Encoding.UTF8.GetBytes("datos=" + Socio + "," + id_Envio + "," + Palet);
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.AllowWriteStreamBuffering = false;
                 request.ContentLength = postBytes.Length;
@@ -182,73 +187,13 @@ namespace CS101_CALLBACK_API_DEMO
         private void dataGrid1_CurrentCellChanged(object sender, EventArgs e)
         {
             dataGrid1.Select(dataGrid1.CurrentRowIndex);
-
             if (dataGrid1.CurrentRowIndex != rowIndex)
             {
                 if (datosTabla == 1)
                 {
-                    pallet = dt.Rows[dataGrid1.CurrentRowIndex][0].ToString();
-                    verCajasbtn.Enabled = true;
+                    traza_btn.Enabled = true;
                 }
                 rowIndex = dataGrid1.CurrentRowIndex;
-            }
-
-
-        }
-
-        public String cuentaCajas()
-        {
-            string uriEnvios = Program.uri + "cuentaPallets.php";
-            HttpWebRequest request;
-            byte[] postBytes;
-            Stream requestStream;
-            HttpWebResponse response;
-            Stream responseStream;
-
-            try
-            {
-                /*PETICIÓN AL WEBSERVER*/
-                request = (HttpWebRequest)WebRequest.Create(uriEnvios);
-                request.Method = "POST";
-                request.KeepAlive = false;
-                request.ProtocolVersion = HttpVersion.Version10;
-
-                postBytes = Encoding.UTF8.GetBytes("datos=3," + socio + "," + id_envio+ "," + pallet);
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.AllowWriteStreamBuffering = false;
-                request.ContentLength = postBytes.Length;
-                request.AllowAutoRedirect = false;
-
-                requestStream = request.GetRequestStream();
-                requestStream.Write(postBytes, 0, postBytes.Length);
-                requestStream.Close();
-
-                /*RESPUESTA DEL WEBSERVER*/
-                response = (HttpWebResponse)request.GetResponse();
-                responseStream = response.GetResponseStream();
-
-                string jsonString = null;
-                using (StreamReader reader2 = new StreamReader(responseStream))
-                {
-                    jsonString = reader2.ReadToEnd();
-                    reader2.Close();
-                }
-                responseStream.Close();
-                response.Close();
-                return jsonString;
-
-            }
-            catch (Exception e2)
-            {
-                return "Error1*Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
-            }
-        }
-
-        private void verCajasbtn_Click(object sender, EventArgs e)
-        {
-            using (showCajas sc = new showCajas(socio, id_envio, id_orden, id_carro, pallet))
-            {
-                sc.ShowDialog();
             }
         }
     }

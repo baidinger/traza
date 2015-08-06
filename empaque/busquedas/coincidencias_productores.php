@@ -9,7 +9,7 @@
 ?>
 
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
-	    <table class="table table-hover">
+	    <table class="table table-hover" style="font-size: 14px">
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
@@ -17,7 +17,6 @@
 		          <th>Nombre  del productor</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">Teléfono</th>
-		          <!--<th class="centro">Dirección del productor</th>-->
 		          <th class="centro">Estado</th>
 		          <th class="centro">Operación</th>
 		        </tr>
@@ -87,7 +86,19 @@
         <?php 
 
 
-        }}else{
+        }else
+        {
+        	
+        		 ?>
+		    	 <br><br>
+		    	 <br>
+		    	 	<div style="width:500px; margin:0px auto;" class="alert alert-info centro" role="alert"> 
+		    	 		<strong>No se encontraron PRODUCTORES registrados.</strong>
+		    	 	</div>
+		    	 	<br><br>
+		    	<?php	
+        }
+    }else{
         		 ?>
 		    	 <br><br>
 		    	 <br>
