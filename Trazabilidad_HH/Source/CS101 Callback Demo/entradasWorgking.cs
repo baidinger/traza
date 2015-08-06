@@ -250,14 +250,14 @@ namespace CS101_CALLBACK_API_DEMO
                                 showPallet.Enabled = true;
                             }
 
-                    } 
-                }
+                    }
 
-                if (socio == 4)
-                {
-                    empaque_lbl.Text = preNombreEmpaque;
-                    compl_send.Enabled = true;
-                    cont.Enabled = true;
+                    if (socio == 4)
+                    {
+                        empaque_lbl.Text = preNombreEmpaque;
+                        compl_send.Enabled = true;
+                        cont.Enabled = true;
+                    }
                 }
                 rowIndex = dataGrid1.CurrentRowIndex;
             }
@@ -381,6 +381,7 @@ namespace CS101_CALLBACK_API_DEMO
                     label6.Text = "---";
                     cont.Enabled = false;
                     compl_send.Enabled = false;
+                    showPallet.Enabled = false;
                 }
             }
         }
