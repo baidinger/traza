@@ -60,15 +60,18 @@
 
 				$r = mysql_query($query);
 
-				if(mysql_num_rows($r) > 0){
+				if(mysql_num_rows($r) > 0)
+				{
 
 					$query = "UPDATE envios_distribuidor SET estado_envio = 3 WHERE id_envio = $id_envio";
 					$r = mysql_query($query);
 
-					if($r){
+					if($r)
+					{
 						$query = "SELECT id_envio FROM envios_distribuidor WHERE id_orden_dist_fk = $orden AND estado_envio = 7";
 						$result = mysql_query($query);
-						if(mysql_num_rows($result) == 0){
+						if(mysql_num_rows($result) == 0)
+						{
 							$query = "UPDATE ordenes_punto_venta SET estado_orden = 3 WHERE id_orden = $orden";
 							$r = mysql_query($query);
 							if($r)

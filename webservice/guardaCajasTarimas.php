@@ -43,7 +43,7 @@
 				$id_envio = $row['id_envio'];
 
 				for($i = 0; $i < count($epcCajas); $i++){
-					$query = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 1, 0)";
+					$query = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, id_camion_distribuidor_fk, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', $carro, 1, 0)";
 
 					mysql_query($query);
 				}

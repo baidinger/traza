@@ -68,6 +68,15 @@
 							$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.";
 						break;
 				case 4: //punto venta
+						$q = "SELECT id_usuario_pv, nombre_usuario_pv, apellidos_usuario_pv, id_punto_venta, nombre_punto_venta  FROM usuario_punto_venta AS upv, empresa_punto_venta AS epv WHERE upv.id_usuario_fk = ".$row['id_usuario']." AND upv.id_punto_venta_fk = epv.id_punto_venta";
+						$r = mysql_query($q);
+						if(mysql_num_rows($r) > 0){
+							$rows = mysql_fetch_array($r);
+							$datos_usuario .= ",".$rows['id_usuario_pv'].",".$rows['nombre_usuario_pv'].",".$rows['apellidos_usuario_pv'].",".$rows['id_punto_venta'].",".$rows['nombre_punto_venta'].","."Punto de venta,1,0";
+						}else
+							$datos_usuario = "Error*Error: \n - El usuario y contraseña estan incorrectos.\n - El usuario no tiene privilegios.
+							";
+
 						break;
 			}
 

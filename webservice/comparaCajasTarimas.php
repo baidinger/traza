@@ -47,18 +47,18 @@
 							else
 								$consulta = "INSERT INTO distribuidor_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 0, 1)";
 
-							$q = "SELECT id_envio_fk FROM entrada_distribuidor WHERE id_envio_fk = $id_envio";
-							$re = mysql_query($q);
-							if(mysql_num_rows($re) == 0)
-							{ 
-								$consulta = "INSERT INTO entrada_distribuidor(id_envio_fk, fecha_entrada, hora_entrada, id_usuario_distribuidor_fk) VALUES($id_envio, '".date("Y-m-d")."', '".date("H:i:s")."', $id_usuario)";
-								mysql_query($consulta);
-							}
-
+						
 
 							mysql_query($consulta);
 						}	
 
+						$q = "SELECT id_envio_fk FROM entrada_distribuidor WHERE id_envio_fk = $id_envio";
+						$re = mysql_query($q);
+						if(mysql_num_rows($re) == 0)
+						{ 
+							$consulta = "INSERT INTO entrada_distribuidor(id_envio_fk, fecha_entrada, hora_entrada, id_usuario_distribuidor_fk) VALUES($id_envio, '".date("Y-m-d")."', '".date("H:i:s")."', $id_usuario)";
+							mysql_query($consulta);
+						}
 
 						$datos_usuario = "Bien*Registro Exitoso";
 					}else
@@ -86,12 +86,12 @@
 				$id_envio = $row['id_envio'];
 
 
-				$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE epc_tarima = '$tarima'";
+				$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_camion_distribuidor_fk = $carro";
 				$r = mysql_query($consulta);
 
 				if(mysql_num_rows($r) > 0){
 
-					$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $id_envio AND epc_tarima = '$tarima'";
+					$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $id_envio AND id_camion_distribuidor_fk = $carro";
 					$r = mysql_query($consulta);
 				
 
@@ -99,39 +99,38 @@
 					{
 						for($i = 0; $i < count($epcCajas); $i++)
 						{
-							$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE epc_caja = '".$epcCajas[$i]."' AND id_envio_fk = $id_envio AND epc_tarima = '$tarima'";
+							$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE epc_caja = '".$epcCajas[$i]."' AND id_envio_fk = $id_envio AND id_camion_distribuidor_fk = $carro";
 							$resultado = mysql_query($consulta);
 
 							if(mysql_num_rows($resultado) > 0)
-								$consulta = "UPDATE punto_venta_cajas_envio SET recibido_dce = 1 WHERE epc_caja = '".$epcCajas[$i]."' AND id_envio_fk = $id_envio AND epc_tarima = '$tarima'";
+								$consulta = "UPDATE punto_venta_cajas_envio SET recibido_dce = 1 WHERE epc_caja = '".$epcCajas[$i]."' AND id_envio_fk = $id_envio AND id_camion_distribuidor_fk = $carro";
 							else
-								$consulta = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 0, 1)";
-
-							$q = "SELECT id_envio_fk FROM entrada_punto_venta WHERE id_envio_fk = $id_envio";
-							$re = mysql_query($q);
-							if(mysql_num_rows($re) == 0)
-							{ 
-								$consulta = "INSERT INTO entrada_punto_venta(id_envio_fk, fecha_entrada_punto_venta, hora_entrada_punto_venta, id_usuario_punto_venta_fk) VALUES($id_envio, '".date("Y-m-d")."', '".date("H:i:s")."', $id_usuario)";
-								mysql_query($consulta);
-							}
-							
+								$consulta = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, id_camion_distribuidor_fk, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$carro', 0, 1)";							
 
 							mysql_query($consulta);
 						}	
 
+						$q = "SELECT id_envio_fk FROM entrada_punto_venta WHERE id_envio_fk = $id_envio";
+						$re = mysql_query($q);
+						if(mysql_num_rows($re) == 0)
+						{ 
+							$consulta = "INSERT INTO entrada_punto_venta(id_envio_fk, fecha_entrada_punto_venta, hora_entrada_punto_venta, id_usuario_punto_venta_fk) VALUES($id_envio, '".date("Y-m-d")."', '".date("H:i:s")."', $id_usuario)";
+							mysql_query($consulta);
+						}
+
 
 						$datos_usuario = "Bien*Registro Exitoso";
 					}else
-						$datos_usuario = "Error*La tarima no pertenece a este envio";
+						$datos_usuario = "Error*El carro no pertenece a este envio";
 				}else{
 
 					for($i = 0; $i < count($epcCajas); $i++){
-						$query = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, epc_tarima, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', '$tarima', 0, 1)";
+						$query = "INSERT INTO punto_venta_cajas_envio(id_envio_fk, epc_caja, id_camion_distribuidor_fk, enviado_dce, recibido_dce) VALUES($id_envio, '".$epcCajas[$i]."', $carro, 0, 1)";
 
 						mysql_query($query);
 					}
 
-					$datos_usuario = "Bien*La tarima NO esta registrada como ENVIADA en ningún envio. \n -Se registró como NO ENVIADA pero SI RECIBIDA.";
+					$datos_usuario = "Bien*El carro NO esta registrada como ENVIADO en ningún envio. \n -Se registró como NO ENVIADA pero SI RECIBIDA.";
 				}			
 			}else
 					$datos_usuario = "Error*Error";

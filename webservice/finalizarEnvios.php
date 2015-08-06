@@ -8,6 +8,7 @@
 	$socio  = $datos[0];
 	$orden  = $datos[1]; 
 	$envio 	= $datos[2];
+	$carro  = $datos[3];
 
 	switch($socio){
 		case 1://productor
@@ -53,8 +54,14 @@
 								$query = "UPDATE ordenes_distribuidor SET estado_orden = 4 WHERE id_orden = $orden";
 								$r = mysql_query($query);
 
-									if($r)
+									if($r){
+
 										$datos_usuario = "Bien*El Envio y la Orden han sido Finalizados.";
+
+										$quer = "UPDATE camiones_empaques SET disponibilidad_ce = 0 WHERE id_camion = $carro";
+
+										mysql_query($quer);
+									}
 									else
 										$datos_usuario = "Error*El Envio ha sido finalizao y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
 							}
@@ -109,13 +116,19 @@
 							if($estadoOrden['estado_orden'] == 6)
 								$datos_usuario = "Bien*El envio ha sido finalizado exitosamente. \n -La orden no se finalizó porque aún pueden llegar envios de la orden.";
 							else{
-								$query = "UPDATE ordenes_punto_venta SET estado_orden = 4 WHERE id_orden_dist_fk = $orden";
+								$query = "UPDATE ordenes_punto_venta SET estado_orden = 4 WHERE id_orden = $orden";
 								$r = mysql_query($query);
 
 									if($r)
+									{
 										$datos_usuario = "Bien*El Envio y la Orden han sido Finalizados.";
+
+										$quer = "UPDATE camiones_distribuidor SET disponibilidad_camion_distribuidor = 0 WHERE id_camion_distribuidor = $carro";
+
+										mysql_query($quer);
+									}
 									else
-										$datos_usuario = "Error*El Envio ha sido finalizao y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
+										$datos_usuario = "Error*El Envio ha sido finalizado y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
 							}
 
 						}else
