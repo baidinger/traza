@@ -339,16 +339,16 @@
 			$contadorPallets = 1;
 			$totalOrden = 0;
 
-			$consulta = "SELECT epc_tarima FROM punto_venta_cajas_envio WHERE id_envio_fk = $envio GROUP BY epc_tarima ORDER BY epc_tarima ASC";
+			$consulta = "SELECT id_camion_distribuidor_fk FROM punto_venta_cajas_envio WHERE id_envio_fk = $envio GROUP BY id_camion_distribuidor_fk ORDER BY id_camion_distribuidor_fk ASC";
 			$resultado = mysql_query($consulta);
 			while($row = mysql_fetch_array($resultado)){
-				$epcPallet = $row['epc_tarima'];
+				$epcPallet = $row['id_camion_distribuidor_fk'];
 
 				$this->SetTextColor(255, 255, 255);
 				$this->SetFillColor(28, 124, 176);
 				$this->SetFont('Arial', 'B', 9);
 
-				$this->Cell(196, 6, 'PALLET '.$contadorPallets.': '.$epcPallet, 1, 0, 'C', 1);
+				$this->Cell(196, 6, 'CAMIÓN '.$contadorPallets.': '.$epcPallet, 1, 0, 'C', 1);
 				$this->Ln();
 
 				$this->Cell(16, 6, 'NO.', 1, 0, 'C', 1);
@@ -358,7 +358,7 @@
 				$this->Ln();
 				
 				$contador = 1;
-				$consulta2 = "SELECT epc_caja, enviado_dce, recibido_dce FROM punto_venta_cajas_envio WHERE id_envio_fk = $envio AND epc_tarima = '$epcPallet' ORDER BY epc_caja ASC";
+				$consulta2 = "SELECT epc_caja, enviado_dce, recibido_dce FROM punto_venta_cajas_envio WHERE id_envio_fk = $envio AND id_camion_distribuidor_fk = '$epcPallet' ORDER BY epc_caja ASC";
 				$resultado2 = mysql_query($consulta2);
 				while($row2 = mysql_fetch_array($resultado2)){
 					$this->SetFont('Arial', '', 9);
