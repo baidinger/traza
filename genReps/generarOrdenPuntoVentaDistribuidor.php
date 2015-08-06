@@ -11,6 +11,9 @@
  <?php
  	$idOrden = $_POST['orden'];
 
+ 	include('paises.php');
+	$paises = new Paises();
+
 	include('../mod/conexion.php');
 
 	// DATOS DE LA ORDEN
@@ -36,8 +39,8 @@
 
 	$nombreDistribuidor = $row['nombre_distribuidor'];
 	$rfcDistribuidor = $row['rfc_distribuidor'];
-	$paisDistribuidor = $row['pais_distribuidor'];
-	$estadoDistribuidor = $row['estado_distribuidor'];
+	$paisDistribuidor = $paises->obtenerPais($row['pais_distribuidor']);
+	$estadoDistribuidor = $paises->obtenerEstado($row['pais_distribuidor'], $row['estado_distribuidor']);
 	$ciudadDistribuidor = $row['ciudad_distribuidor'];
 	$direccionDistribuidor = $row['direccion_distribuidor'];
 	$cpDistribuidor = $row['cp_distribuidor'];
@@ -58,8 +61,8 @@
 
 	$nombrePuntoVenta = $row['nombre_punto_venta'];
 	$rfcPuntoVenta = $row['rfc_punto_venta'];
-	$paisPuntoVenta = $row['pais_punto_venta'];
-	$estadoPuntoVenta = $row['estado_punto_venta'];
+	$paisPuntoVenta = $paises->obtenerPais($row['pais_punto_venta']);
+	$estadoPuntoVenta = $paises->obtenerEstado($row['pais_punto_venta'], $row['estado_punto_venta']);
 	$ciudadPuntoVenta = $row['ciudad_punto_venta'];
 	$direccionPuntoVenta = $row['direccion_punto_venta'];
 	$cpPuntoVenta = $row['cp_punto_venta'];
