@@ -58,7 +58,9 @@
 
 										$datos_usuario = "Bien*El Envio y la Orden han sido Finalizados.";
 
-										$quer = "UPDATE camiones_empaques SET disponibilidad_ce = 0 WHERE id_camion = $carro"
+										$quer = "UPDATE camiones_empaques SET disponibilidad_ce = 0 WHERE id_camion = $carro";
+
+										mysql_query($quer);
 									}
 									else
 										$datos_usuario = "Error*El Envio ha sido finalizao y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
@@ -118,7 +120,13 @@
 								$r = mysql_query($query);
 
 									if($r)
+									{
 										$datos_usuario = "Bien*El Envio y la Orden han sido Finalizados.";
+
+										$quer = "UPDATE camiones_distribuidor SET disponibilidad_camion_distribuidor = 0 WHERE id_camion_distribuidor = $carro";
+
+										mysql_query($quer);
+									}
 									else
 										$datos_usuario = "Error*El Envio ha sido finalizao y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
 							}
