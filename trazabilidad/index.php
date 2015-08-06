@@ -4,7 +4,7 @@
 	if(isset($_REQUEST['epc']))
 		$epc = $_REQUEST['epc'];
 
-
+include("../../mod/conexion.php");
 ?>
 
 <div class="modal-header">
@@ -20,8 +20,12 @@
 
 	<?php if(isset($_REQUEST['epc'])) { 
 
-		include("../../mod/conexion.php");
+		
+/******************************************************************
 
+TRAZABILIDAD DE EPC ENVIADO PERO NO ENTREGADO
+
+*********************************************************************************/
 		$consulta = "SELECT * FROM empresa_productores, empresa_distribuidores, empresa_empaques, productos_productores, productos, lotes, epc_caja, distribuidor_cajas_envio, envios_empaque, ordenes_distribuidor, usuario_empaque, usuario_distribuidor where empresa_distribuidores.id_distribuidor = envios_empaque.id_distribuidor_fk AND envios_empaque.id_receptor_fk = usuario_empaque.id_receptor AND usuario_distribuidor.id_usuario_distribuidor = ordenes_distribuidor.id_usuario_distribuidor_fk AND empresa_productores.id_productor = productos_productores.id_productor_fk AND productos.id_producto = productos_productores.id_producto_fk AND productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND lotes.id_lote = epc_caja.id_lote_fk AND epc_caja.epc_caja = distribuidor_cajas_envio.epc_caja AND distribuidor_cajas_envio.id_envio_fk = envios_empaque.id_envio AND envios_empaque.id_orden_fk = ordenes_distribuidor.id_orden AND lotes.id_empaque_fk = empresa_empaques.id_empaque AND epc_caja.epc_caja = '$epc'";
 
 		$result = mysql_query($consulta);
@@ -131,6 +135,11 @@
 		<?php }
 	} else {
 
+/******************************************************************
+
+TRAZABILIDAD EN EL EMPAQUE
+
+*********************************************************************************/
 		$consulta = "SELECT * FROM empresa_productores, empresa_empaques, productos_productores, productos, lotes, epc_caja where empresa_productores.id_productor = productos_productores.id_productor_fk AND productos.id_producto = productos_productores.id_producto_fk AND productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND lotes.id_lote = epc_caja.id_lote_fk AND lotes.id_empaque_fk = empresa_empaques.id_empaque AND epc_caja.epc_caja = '$epc'";
 		$result = mysql_query($consulta);
 		if(mysql_num_rows($result) > 0){
@@ -189,7 +198,7 @@
 	     </div>
 	     <div style="clear:both"></div>
 	     <p>&nbsp;</p>
-	      <div class="modal-body" style="width:32%; float: left; margin-left:1%">
+	      <div class="modal-body" style="width:32%; float: left;">
       		<div class="alert alert-info">EMPAQUE</div>
   			<table class="table" style="font-size: 14px">
 				<tr>

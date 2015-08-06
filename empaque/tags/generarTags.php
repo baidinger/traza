@@ -74,6 +74,6 @@ while($numero_etiquetas-- > 0){
 	mysql_query($consulta);
 }
 mysql_close();
-header("Location: ../index.php?op=epcgenerados=".$id_lote);
+header("Location: ../index.php?op=epcgenerados&lote=".$id_lote);
 ?>
 
