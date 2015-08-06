@@ -300,7 +300,7 @@
 			function generacionReportes(){
 				var orden = $('#idOrdenDetalles').val();
 				var envio = $('#idEnvioDetalles').val();
-				var params = {'orden':orden, 'envio':envio};
+				var params = {'orden':orden, 'envio':envio, 'tipo':2};
 
 				$.ajax({
 					type: 'POST',

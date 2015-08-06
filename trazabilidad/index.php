@@ -8,14 +8,36 @@ include("../../mod/conexion.php");
 ?>
 
 <div class="modal-header">
-	<?php if(isset($_REQUEST['epc'])) { ?><label style="float: left; color: white; font-size: 18px"><strong>Trazabilidad: <?php print $epc ?><strong></label> <?php } ?>
-	<div style="float: right">
-		<form action="javascript:buscar()">
-			<label style="color: white"><strong>EPC</strong></label> <input id="epc" class="input" name="epc" min="24" max="24">
-			<input type="submit" class="btn btn-primary" value="Buscar">
-		</form>
-	</div>
-	<p>&nbsp;</p>
+	<?php if(isset($_REQUEST['epc'])) { ?>
+		<h3 class="titulo-header">
+			<!-- <img class="img-header" src="../../img/logo_trazabilidad.png"> --> Trazabilidad: <?php echo $epc; ?>
+			<div style="float: right; margin-top: -8px;">
+				<form action="javascript:buscar()" class="form-inline">
+					<input type="text" class="form-control" id="epc" name="epc" min="24" max="24" placeholder="Buscar EPC..." style="width: 300px;">
+					<input type="submit" class="btn btn-default" value="Buscar">
+					<!-- <label style="color: white"><strong>EPC</strong></label>
+					<input id="epc" class="input" name="epc" min="24" max="24">
+					<input type="submit" class="btn btn-primary" value="Buscar"> -->
+				</form>
+			</div>
+			<!-- <div style="float: right">
+				<form action="javascript:buscar()">
+					<label style="color: white"><strong>EPC</strong></label> <input id="epc" class="input" name="epc" min="24" max="24">
+					<input type="submit" class="btn btn-primary" value="Buscar">
+				</form>
+			</div> -->
+		</h3>
+	<?php } else{ ?>
+		<h3 class="titulo-header">
+			<!-- <img class="img-header" src="../../img/logo_trazabilidad.png"> --> Trazabilidad: 
+			<div style="float: right; margin-top: -8px;">
+				<form action="javascript:buscar()" class="form-inline">
+					<input type="text" class="form-control" id="epc" name="epc" min="24" max="24" placeholder="Buscar EPC..." style="width: 300px;">
+					<input type="submit" class="btn btn-default" value="Buscar">
+				</form>
+			</div>
+		</h3>
+	<?php } ?>
 </div>
 
 	<?php if(isset($_REQUEST['epc'])) { 

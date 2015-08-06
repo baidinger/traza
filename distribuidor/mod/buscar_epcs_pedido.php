@@ -50,7 +50,7 @@
 								<td class="centro"><?php echo $cont; ?></td>
 								<td class="centro"><?php echo $row['epc_tarima']; ?></td>
 								<!-- <td class="centro"><?php echo $row['epc_caja']; ?></td> -->
-								<td class="centro"><a href="../trazabilidadCajas/?epc_caja=<?php echo $row['epc_caja']; ?>"><?php echo $row['epc_caja']; ?></a> </td>
+								<td class="centro"><a href="../trazaEPC/?epc=<?php echo $row['epc_caja']; ?>"><?php echo $row['epc_caja']; ?></a> </td>
 								<?php 
 									$enviado = $row['enviado_dce'];
 									$recibido = $row['recibido_dce'];

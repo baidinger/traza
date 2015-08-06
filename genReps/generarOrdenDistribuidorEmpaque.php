@@ -11,6 +11,9 @@
  <?php
  	$idOrden = $_POST['orden'];
 
+ 	include('paises.php');
+	$paises = new Paises();
+
 	include('../mod/conexion.php');
 
 	// DATOS DE LA ORDEN
@@ -36,8 +39,8 @@
 
 	$nombreEmpaque = $row['nombre_empaque'];
 	$rfcEmpaque = $row['rfc_empaque'];
-	$paisEmpaque = $row['pais_empaque'];
-	$estadoEmpaque = $row['estado_empaque'];
+	$paisEmpaque = $paises->obtenerPais($row['pais_empaque']);
+	$estadoEmpaque = $paises->obtenerEstado($row['pais_empaque'], $row['estado_empaque']);
 	$ciudadEmpaque = $row['ciudad_empaque'];
 	$direccionEmpaque = $row['direccion_empaque'];
 	$cpEmpaque = $row['cp_empaque'];
@@ -58,8 +61,8 @@
 
 	$nombreDistribuidor = $row['nombre_distribuidor'];
 	$rfcDistribuidor = $row['rfc_distribuidor'];
-	$paisDistribuidor = $row['pais_distribuidor'];
-	$estadoDistribuidor = $row['estado_distribuidor'];
+	$paisDistribuidor = $paises->obtenerPais($row['pais_distribuidor']);
+	$estadoDistribuidor = $paises->obtenerEstado($row['pais_distribuidor'], $row['estado_distribuidor']);
 	$ciudadDistribuidor = $row['ciudad_distribuidor'];
 	$direccionDistribuidor = $row['direccion_distribuidor'];
 	$cpDistribuidor = $row['cp_distribuidor'];

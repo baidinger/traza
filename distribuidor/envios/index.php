@@ -282,7 +282,7 @@
 			function generacionReportes(){
 				var pedido = $('#idPedidoDetalles').val();
 				var envio = $('#idEnvioDetalles').val();
-				var params = {'orden':pedido, 'envio':envio};
+				var params = {'orden':pedido, 'envio':envio, 'tipo':1};
 
 				$.ajax({
 					type: 'POST',

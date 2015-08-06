@@ -11,6 +11,11 @@
  <?php
  	$idOrden = $_POST['orden'];
  	$idEnvio = $_POST['envio'];
+ 	// Envio = 1, Recepcion = 2
+ 	$tipoRep = $_POST['tipo'];
+
+ 	include('paises.php');
+	$paises = new Paises();
 
 	include('../mod/conexion.php');
 
@@ -53,8 +58,8 @@
 
 	$nombreDistribuidor = $row['nombre_distribuidor'];
 	$rfcDistribuidor = $row['rfc_distribuidor'];
-	$paisDistribuidor = $row['pais_distribuidor'];
-	$estadoDistribuidor = $row['estado_distribuidor'];
+	$paisDistribuidor = $paises->obtenerPais($row['pais_distribuidor']);
+	$estadoDistribuidor = $paises->obtenerEstado($row['pais_distribuidor'], $row['estado_distribuidor']);
 	$ciudadDistribuidor = $row['ciudad_distribuidor'];
 	$direccionDistribuidor = $row['direccion_distribuidor'];
 	$cpDistribuidor = $row['cp_distribuidor'];
@@ -75,8 +80,8 @@
 
 	$nombrePuntoVenta = $row['nombre_punto_venta'];
 	$rfcPuntoVenta = $row['rfc_punto_venta'];
-	$paisPuntoVenta = $row['pais_punto_venta'];
-	$estadoPuntoVenta = $row['estado_punto_venta'];
+	$paisPuntoVenta = $paises->obtenerPais($row['pais_punto_venta']);
+	$estadoPuntoVenta = $paises->obtenerEstado($row['pais_punto_venta'], $row['estado_punto_venta']);
 	$ciudadPuntoVenta = $row['ciudad_punto_venta'];
 	$direccionPuntoVenta = $row['direccion_punto_venta'];
 	$cpPuntoVenta = $row['cp_punto_venta'];
@@ -89,12 +94,15 @@
 
 	class PDF extends FPDF {
 
-		function encabezado($orden, $estado, $fOrden, $fEntrega, $envio, $fEnvio, $hEnvio, $fRecep, $hRecep){
+		function encabezado($orden, $estado, $fOrden, $fEntrega, $envio, $fEnvio, $hEnvio, $fRecep, $hRecep, $tipo){
 			$this->SetFont('Arial', 'B', 9);
 			$this->Cell(40, 5, 'NO. DE ENVÍO', 0, 0, 'C');
 
 			$this->SetFont('Arial', 'B', 18);
-			$this->Cell(116, 10, 'RECEPCIÓN DE ORDEN DE COMPRA', 0, 0, 'C');
+			if($tipo == 1)
+				$this->Cell(116, 10, 'ENVÍO DE ORDEN DE COMPRA', 0, 0, 'C');
+			else
+				$this->Cell(116, 10, 'RECEPCIÓN DE ORDEN DE COMPRA', 0, 0, 'C');
 
 			$this->SetFont('Arial', 'B', 9);
 			$this->Cell(40, 5, 'NO. DE ORDEN', 0, 0, 'C');
@@ -316,9 +324,14 @@
 			mysql_close();
 		}
 
-		function detallesRecepcion($envio, $descOrden, $descCancelacion, $descRechazo){
+		function detallesRecepcion($envio, $descOrden, $descCancelacion, $descRechazo, $tipo){
 			$this->SetFont('Arial', 'B', 8);
-			$this->Cell(196, 4, 'DETALLES DE RECEPCIÓN', 0, 0, 'L');
+
+			if($tipo == 1)
+				$this->Cell(196, 4, 'DETALLES DE ENVÍO', 0, 0, 'L');
+			else
+				$this->Cell(196, 4, 'DETALLES DE RECEPCIÓN', 0, 0, 'L');
+
 			$this->Ln();
 
 			include('../mod/conexion.php');
@@ -453,10 +466,10 @@
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
 
-	$pdf->encabezado($idOrden, $estadoOrden, $fechaOrden, $fechaEntrega, $idEnvio, $fechaEnvio, $horaEnvio, $fechaRecepcion, $horaRecepcion);
+	$pdf->encabezado($idOrden, $estadoOrden, $fechaOrden, $fechaEntrega, $idEnvio, $fechaEnvio, $horaEnvio, $fechaRecepcion, $horaRecepcion, $tipoRep);
 	$pdf->datosEmpresas($nombrePuntoVenta, $rfcPuntoVenta, $direccionPuntoVenta, $cpPuntoVenta, $paisPuntoVenta, $estadoPuntoVenta, $ciudadPuntoVenta, $tel1PuntoVenta, $emailPuntoVenta, $nombreDistribuidor, $rfcDistribuidor, $direccionDistribuidor, $cpDistribuidor, $paisDistribuidor, $estadoDistribuidor, $ciudadDistribuidor, $tel1Distribuidor, $tel2Distribuidor, $emailDistribuidor);
 	$pdf->detallesOrden($idOrden, $descripcionOrden, $descripcionCancelacion, $descripcionRechazo);
-	$pdf->detallesRecepcion($idEnvio, $descripcionOrden, $descripcionCancelacion, $descripcionRechazo);
+	$pdf->detallesRecepcion($idEnvio, $descripcionOrden, $descripcionCancelacion, $descripcionRechazo, $tipoRep);
 	$pdf->terminosCondiciones();
 
 	$directorio = '../docs/';
