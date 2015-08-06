@@ -41,7 +41,7 @@
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
 						<img class="img-header" src="../../img/historial_envios.png"> <span id="lbl-titulo">Historial de Envíos</span>
-						<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
+						<!-- <button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button> -->
 					</h3>
 				</h3>
 			</div>
@@ -156,7 +156,7 @@
 					          				}
 					          			?>
 						          		<td class="derecha">
-						          			<button class="btn btn-info" id="btn-epcs" onClick="mostrarDetallesEPCs(<?php echo $row['id_envio']; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
+						          			<button class="btn btn-info" id="btn-epcs" onClick="mostrarDetallesEPCs(<?php echo $row['id_orden_dist_fk']; ?>, <?php echo $row['id_envio']; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 							        	</td>
 						    	    </tr>
 								<?php $cont++; 
@@ -190,6 +190,9 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h3 class="titulo-header">
 							<img class="img-header" src="../../img/detalles_orden.png"> <span id="titulo-detalles">Detalles de la Órden</span>
+							<input type="hidden" name="idPedidoDetalles" id="idPedidoDetalles">
+							<input type="hidden" name="idEnvioDetalles" id="idEnvioDetalles">
+							<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 						</h3>
 					</div>
 					<div class="modal-body">
@@ -277,10 +280,32 @@
 			}
 
 			function generacionReportes(){
-				alert('Generación e impresión de reportes');
+				var pedido = $('#idPedidoDetalles').val();
+				var envio = $('#idEnvioDetalles').val();
+				var params = {'orden':pedido, 'envio':envio};
+
+				$.ajax({
+					type: 'POST',
+					url: '../../genReps/generarRecepcionPuntoVentaDistribuidor.php',
+					data: params,
+
+					beforeSend: function(){
+						$('#contenedor-detalles-orden').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+					},
+
+					success: function(data){
+						var urlPDF = "../../docs/recepciondeordendecomprapv" + pedido + ".pdf";
+						$('#contenedor-detalles-orden').html("");
+						$('#modalDetalles').modal('toggle');
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
 			}
 
-			function mostrarDetallesEPCs(envio){
+			function mostrarDetallesEPCs(pedido, envio){
+				$('#idPedidoDetalles').val(pedido);
+				$('#idEnvioDetalles').val(envio);
+
 				$.ajax({
 					type: 'POST',
 					url: '../mod/buscar_epcs_pedido.php',

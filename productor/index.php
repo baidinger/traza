@@ -77,7 +77,7 @@
 								include('../mod/conexion.php');
 
 								$cont = 0;
-							    $consulta = "SELECT lts.id_lote, empqs.nombre_empaque, prods.nombre_producto, prods.variedad_producto, lts.cant_cajas_lote, lts.cant_kilos_lote, lts.fecha_recibo_lote, lts.costo_lote FROM productos AS prods, lotes AS lts, empresa_empaques AS empqs, empresa_productores WHERE lts.id_producto_fk = prods.id_producto AND empresa_productores.id_usuario_fk = ".$_SESSION['id_usuario']." AND lts.id_productor_fk = empresa_productores.id_productor AND lts.id_empaque_fk = empqs.id_empaque ORDER BY lts.id_lote DESC";
+							    $consulta = "SELECT * from lotes, productos_productores, productos, empresa_productores, empresa_empaques where id_productos_productores = id_productos_productores_fk AND id_producto = id_producto_fk AND id_productor_fk = id_productor AND id_empaque_fk = id_empaque AND id_usuario_fk = $_SESSION[id_usuario]";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ ?>
 									<tr>

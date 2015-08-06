@@ -1,4 +1,4 @@
-<?php <?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
+ <?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
 		include('../../mod/conexion.php');
 
 		$idProducto	=	$_POST['idProducto'];
@@ -17,7 +17,7 @@
 		}
 
 		if($bandera == 0){
-			$query="INSERT INTO productos_empaques(id_empaque_fk, id_producto_fk, precio_venta, precio_compra) VALUES ($idEmpaque, $idProducto,0,0)";
+			print $query="INSERT INTO productos_empaques(id_empaque_fk, id_producto_fk, precio_venta, precio_compra) VALUES ($idEmpaque, $idProducto,0,0)";
 			mysql_query($query);
 		}else
 			echo "e";
