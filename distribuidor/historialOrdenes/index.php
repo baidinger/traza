@@ -38,7 +38,7 @@
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
 						<img class="img-header" src="../../img/historial.png"> <span id="lbl-titulo">Historial de Órdenes</span>
-						<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
+						<!-- <button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button> -->
 					</h3>
 				</h3>
 			</div>
@@ -209,6 +209,8 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h3 class="titulo-header">
 							<img class="img-header" src="../../img/detalles_orden.png"> <span id="titulo-detalles">Detalles de la Orden</span>
+							<input type="hidden" name="idOrdenDetalles" id="idOrdenDetalles">
+							<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 						</h3>
 					</div>
 					<div class="modal-body">
@@ -262,7 +264,25 @@
 			}
 
 			function generacionReportes(){
-				alert('Generación e impresión de reportes');
+				var orden = $('#idOrdenDetalles').val();
+				var params = {'orden':orden};
+
+				$.ajax({
+					type: 'POST',
+					url: '../../genReps/generarOrdenDistribuidorEmpaque.php',
+					data: params,
+
+					beforeSend: function(){
+						$('#contenedor-detalles-orden').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+					},
+
+					success: function(data){
+						var urlPDF = "../../docs/ordendecompradist" + orden + ".pdf";
+						$('#contenedor-detalles-orden').html("");
+						$('#modalDetalles').modal('toggle');
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
 			}
 
 			function mostrarModalEstado(orden){
@@ -272,6 +292,8 @@
 			}
 
 			function mostrarDetalles(orden){
+				$('#idOrdenDetalles').val(orden);
+
 				$.ajax({
 					type: 'POST',
 					url: '../mod/buscar_detalles_orden.php',
