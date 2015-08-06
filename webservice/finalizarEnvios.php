@@ -116,7 +116,7 @@
 							if($estadoOrden['estado_orden'] == 6)
 								$datos_usuario = "Bien*El envio ha sido finalizado exitosamente. \n -La orden no se finalizó porque aún pueden llegar envios de la orden.";
 							else{
-								$query = "UPDATE ordenes_punto_venta SET estado_orden = 4 WHERE id_orden_dist_fk = $orden";
+								$query = "UPDATE ordenes_punto_venta SET estado_orden = 4 WHERE id_orden = $orden";
 								$r = mysql_query($query);
 
 									if($r)
@@ -128,7 +128,7 @@
 										mysql_query($quer);
 									}
 									else
-										$datos_usuario = "Error*El Envio ha sido finalizao y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
+										$datos_usuario = "Error*El Envio ha sido finalizado y la orden no. \n -La orden debio finalizarse puesto que ya no tiene envios.";
 							}
 
 						}else
