@@ -61,10 +61,11 @@ namespace CS101_CALLBACK_API_DEMO
             this.id_carro = id_carro;
             this.nombreSocio = nombreSocio;
 
-            /*if (socio == 2)
-                socio_lbl.Text = "Empaque";
-            if(socio == 3)
-                socio_lbl.Text = "Distribuidor";*/
+            if (socio == 4)
+            {
+                label4.Visible = false;
+                tarima_lbl.Visible = false;
+            }
 
             socio_lbl.Text = sender+"";
             id_orden_lbl.Text = id_orden+"";
@@ -345,65 +346,116 @@ namespace CS101_CALLBACK_API_DEMO
         /******GUARDO LAS CAJAS Y TARIMAS******/
         private void Save()
         {
-            if (tarimaCont == 1)
+            if (socio == 3)
             {
                 if (m_tagTable.Items.Count > 0)
                 {
-                    String epcs = "";
-                    DateTime date = DateTime.Now;
-                    string tipo;
-                    String tarima = "", cajas = "", respuesta = "";
-                    using (cargando c = new cargando())
+                    if (tarimaCont == 1)
                     {
-                        c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
-                        c.Show();
-                        c.Update();
-                        foreach (TagCallbackInfo data in m_tagTable.Items)
+                        String epcs = "";
+                        DateTime date = DateTime.Now;
+                        string tipo;
+                        String tarima = "", cajas = "", respuesta = "";
+                        using (cargando c = new cargando())
                         {
-                            epcs += data.epc.ToString() + ",";
-                            tipo = data.epc.ToString().Substring(0, 2);
-                            if (tipo.CompareTo("01") == 0)
+                            c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                            c.Show();
+                            c.Update();
+                            foreach (TagCallbackInfo data in m_tagTable.Items)
                             {
-                                tarima = data.epc.ToString();
+                                epcs += data.epc.ToString() + ",";
+                                tipo = data.epc.ToString().Substring(0, 2);
+                                if (tipo.CompareTo("01") == 0)
+                                {
+                                    tarima = data.epc.ToString();
+                                }
+                                else
+                                {
+                                    if (cajas.CompareTo("") == 0)
+                                        cajas += data.epc.ToString();
+                                    else
+                                        cajas += "*" + data.epc.ToString();
+                                }
+
+                            }
+
+                            respuesta = compararCajasTarimasService(cajas, tarima);
+                        }
+                        String[] resp = respuesta.Split('*');
+
+                        if (resp[0].CompareTo("Error") == 0)
+                            MessageBox.Show(resp[1], "Error");
+                        else
+                            if (resp[0].CompareTo("Error1") == 0)
+                            {
+                                MessageBox.Show(resp[1] + "\n - Intente de nuevo.", "Error de conexión");
                             }
                             else
                             {
+                                m_tagTable.Clear();
+                                startMenu1.UpdateTimeElapsed(000);
+                                startMenu1.UpdateTagCount(000);
+                                cajas_lbl.Text = "000";
+                                tarima_lbl.Text = "000";
+                                MessageBox.Show(resp[1], "Comparación exitosa");
+                            }
+
+
+                    }
+                    else
+                        MessageBox.Show("Error al guardar.  \n - Solo se puede guardar un solo Pallet por lectura de cajas.", "Error");
+                }
+                else
+                    MessageBox.Show("No hay epcs");
+            }
+
+            if (socio == 4)
+            {
+                if (m_tagTable.Items.Count > 0)
+                {
+                    if (tarimaCont == 0)
+                    {
+                        String epcs = "";
+                        DateTime date = DateTime.Now;
+                        String cajas = "", respuesta = "";
+                        using (cargando c = new cargando())
+                        {
+                            c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                            c.Show();
+                            c.Update();
+                            foreach (TagCallbackInfo data in m_tagTable.Items)
+                            {
+                                epcs += data.epc.ToString() + ",";
+
                                 if (cajas.CompareTo("") == 0)
                                     cajas += data.epc.ToString();
                                 else
                                     cajas += "*" + data.epc.ToString();
+
                             }
 
+                            respuesta = compararCajasTarimasService(cajas, "");
                         }
+                        String[] resp = respuesta.Split('*');
 
-                        respuesta = compararCajasTarimasService(cajas, tarima);
-                    }
-                    String[] resp = respuesta.Split('*');
-
-                    if (resp[0].CompareTo("Error") == 0)
-                        MessageBox.Show(resp[1], "Error");
-                    else
-                        if (resp[0].CompareTo("Error1") == 0)
-                        {
-                            MessageBox.Show(resp[1] + "\n - Intente de nuevo.", "Error de conexión");
-                        }
+                        if (resp[0].CompareTo("Error") == 0)
+                            MessageBox.Show("Algo fue mal en el registro de cajas y tarimas", "Error");
                         else
                         {
                             m_tagTable.Clear();
                             startMenu1.UpdateTimeElapsed(000);
                             startMenu1.UpdateTagCount(000);
                             cajas_lbl.Text = "000";
-                            tarima_lbl.Text = "000";
-                            MessageBox.Show(resp[1], "Comparación exitosa");
+                            MessageBox.Show(resp[1], "Registro exitoso");
                         }
 
+                    }
+                    else
+                        MessageBox.Show("No puede guardar palets a los puntos de venta.", "Error");
                 }
                 else
-                    MessageBox.Show("No hay epcs");
-            }
-            else
-            {
-                MessageBox.Show("Error al guardar.  \n - Solo se puede guardar un solo Pallet por lectura de cajas.","Error");
+                    MessageBox.Show("No hay epcs", "Error");
+
             }
         }
 

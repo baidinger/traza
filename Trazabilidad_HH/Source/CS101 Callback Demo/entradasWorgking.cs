@@ -38,13 +38,25 @@ namespace CS101_CALLBACK_API_DEMO
             col.DataType = typeof(string);
 
             col = dt.Columns.Add();
-            col.ColumnName = "Empaque";
+            if(socio == 3)
+                col.ColumnName = "Empaque";
+            if(socio == 4)
+                col.ColumnName = "Distribuidor";
             col.DataType = typeof(string);
 
             this.socio = socio;
             this.id_socio = id_socio;
             this.id_usuario = id_usuario;
             this.nombreSocio = nombreSocio;
+
+            if (socio == 4)
+            {
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+                showPallet.Visible = false;
+            }
 
             using (cargando c = new cargando())
             {
@@ -205,36 +217,47 @@ namespace CS101_CALLBACK_API_DEMO
                     preIdCarro = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][2].ToString());
                     preNombreEmpaque = dt.Rows[dataGrid1.CurrentRowIndex][3].ToString();
 
-                    String r = "";
-                    using (cargando c = new cargando())
+                    if (socio == 3)
                     {
-                        c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
-                        c.Show();
-                        c.Update();
-                        r = cuentaPallets();
-                    }
-                    String[] res = r.Split('*');
 
-                    if (res[0].CompareTo("Error") == 0)
-                    {
-                        MessageBox.Show(res[1], "Error");
-                    }
-                    else
-                        if (res[0].CompareTo("Error1") == 0)
+                        String r = "";
+                        using (cargando c = new cargando())
                         {
-                            MessageBox.Show(res[1] + "\n - Intente de nuevo.", "Error de conexión");
+                            c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                            c.Show();
+                            c.Update();
+                            r = cuentaPallets();
+                        }
+                        String[] res = r.Split('*');
+
+                        if (res[0].CompareTo("Error") == 0)
+                        {
+                            MessageBox.Show(res[1], "Error");
                         }
                         else
-                        {
-                            String[] cant = res[1].Split(',');
-                            label5.Text = cant[0];
-                            label6.Text = cant[1];
-                            empaque_lbl.Text = preNombreEmpaque;
-                            compl_send.Enabled = true;
-                            cont.Enabled = true;
-                            showPallet.Enabled = true;
-                        }
+                            if (res[0].CompareTo("Error1") == 0)
+                            {
+                                MessageBox.Show(res[1] + "\n - Intente de nuevo.", "Error de conexión");
+                            }
+                            else
+                            {
+                                String[] cant = res[1].Split(',');
+                                label5.Text = cant[0];
+                                label6.Text = cant[1];
+                                empaque_lbl.Text = preNombreEmpaque;
+                                compl_send.Enabled = true;
+                                cont.Enabled = true;
+                                showPallet.Enabled = true;
+                            }
 
+                    } 
+                }
+
+                if (socio == 4)
+                {
+                    empaque_lbl.Text = preNombreEmpaque;
+                    compl_send.Enabled = true;
+                    cont.Enabled = true;
                 }
                 rowIndex = dataGrid1.CurrentRowIndex;
             }

@@ -406,7 +406,7 @@ namespace CS101_CALLBACK_API_DEMO
                        
                     }
                     else
-                        MessageBox.Show("Error al guardar.  \n - Solo se puede guardar si se lee un Pallet.", "Error");
+                        MessageBox.Show("Error al guardar.  \n - Solo se puede guardar si se lee un solo Pallet.", "Error");
                 }
                 else
                     MessageBox.Show("No hay epcs");
@@ -420,7 +420,6 @@ namespace CS101_CALLBACK_API_DEMO
                     {
                         String epcs = "";
                         DateTime date = DateTime.Now;
-                        string tipo;
                         String cajas = "", respuesta = "";
                         using (cargando c = new cargando())
                         {
