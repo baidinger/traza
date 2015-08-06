@@ -1,27 +1,6 @@
 <?php 
 	include("../../mod/conexion.php");
 	$buscar = $_POST['buscar'];
-	
-/*$consulta = "select id_orden, fecha_orden, fecha_entrega_orden, ".
-				"costo_orden, descripcion_orden, id_usuario_distribuidor_fk, id_empaque_fk, ".
-				"estatus_orden, id_empaque, nombre_empaque, nombre_distribuidor from ordenes_distribuidor join empresa_empaques ".
-				"ON empresa_empaques.id_empaque = ordenes_distribuidor.id_empaque_fk join usuario_distribuidor ".
-				"ON usuario_distribuidor.id_usuario_distribuidor = ordenes_distribuidor.id_usuario_distribuidor_fk ".
-				"join empresa_distribuidores ON empresa_distribuidores.id_distribuidor = usuario_distribuidor.id_distribuidor_fk ".
-				"where empresa_empaques.id_usuario_que_registro = ".$_SESSION['id_usuario'];*/
-/*	$c = "SELECT * FROM empresa_empaques as ee, usuario_empaque as ue where ee.id_empaque = ue.id_empaque_fk AND ue.id_usuario_fk = ".$_SESSION['id_usuario'];
-	$r = mysql_query($c);
-	$id_empaque = "";
-	if($r)
-		if(mysql_num_rows($r) > 0)
-		{
-			$row = mysql_fetch_array($r);
-			$id_empaque = $row['id_empaque'];
-		}
-		else
-			return;
-			*/
-			
 
 
 	$consulta = "select id_orden, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  = '$buscar') ORDER BY id_orden DESC";
@@ -288,6 +267,9 @@
 			           <td > 
 			           	<a style="float:right; cursor:hand" onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')">
 			           		<span class="glyphicon glyphicon-eye-open"></span>&nbsp;
+			           	</a>&nbsp;
+			           	<a style="float:right; cursor:hand" onclick="generacionReportes(<?php echo $row['id_orden'] ?>)">
+			           		<span class="glyphicon glyphicon-print"></span>&nbsp;
 			           	</a>
 			           </td>
 		        	</tr>
@@ -375,4 +357,19 @@
 			  $('[data-toggle="tooltip"]').tooltip()
 			  $('[data-toggle="popover"]').popover();
 			});
+
+		function generacionReportes(orden){
+				var params = {'orden':orden};
+
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarOrdenDistribuidorEmpaque.php',
+					data: params,
+
+					success: function(data){
+						var urlPDF = "../docs/ordendecompradist" + orden + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
 	</script>

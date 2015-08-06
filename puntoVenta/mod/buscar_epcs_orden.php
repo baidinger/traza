@@ -33,7 +33,7 @@
 				<thead>
 					<tr>
 						<th class="centro">#</th>
-						<th class="centro">Pallet</th>
+						<!-- <th class="centro">Camión</th> -->
 						<th class="centro">Caja</th>
 						<th class="centro">Enviado</th>
 						<th class="centro">Recibido</th>
@@ -43,12 +43,12 @@
 				<tbody>
 					<?php 
 						$cont = 1;
-						$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $idEnvio ORDER BY epc_tarima ASC, epc_caja ASC";
+						$consulta = "SELECT * FROM punto_venta_cajas_envio WHERE id_envio_fk = $idEnvio ORDER BY id_camion_distribuidor_fk ASC, epc_caja ASC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)) { ?>
 							<tr>
 								<td class="centro"><?php echo $cont; ?></td>
-								<td class="centro"><?php echo $row['epc_tarima']; ?></td>
+								<!-- <td class="centro"><?php echo $row['id_camion_distribuidor_fk']; ?></td> -->
 								<!-- <td class="centro"><?php echo $row['epc_caja']; ?></td> -->
 								<td class="centro"><a href="../trazaEPC/?epc=<?php echo $row['epc_caja']; ?>"><?php echo $row['epc_caja']; ?></a> </td>
 								<?php 
