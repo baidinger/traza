@@ -36,13 +36,14 @@ namespace CS101_CALLBACK_API_DEMO
                 break;
                case 2:
                     label2.Text = "Nombre del empaque:";
-                    recibos_btn.Enabled = false;
+                    recibos_btn.Visible = false;
                 break;
                case 3:
                     label2.Text = "Nombre del distribuidor:";
                 break;
                case 4:
                     label2.Text = "Nombre del punto de venta:";
+                    envios_btn.Visible = false;
                 break;
            }
 

@@ -29,7 +29,7 @@
 					}
 
 				}else
-					$datos_usuario = "Error*Error en la lectura de pallets.";
+					$datos_usuario = "Error*Error en la lectura de palets.";
 			}
 
 			if($tipo == 2){
@@ -67,27 +67,27 @@
 					$row = mysql_fetch_array($result);
 					$datos_usuario = "Bien*".$row[0];
 				}else
-					$datos_usuario = "Error*Error en la lectura de las cajas de los pallets.";
+					$datos_usuario = "Error*Error en la lectura de las cajas de los palets.";
 			}
 
 		break;
 		case 4://punto venta
 
 			if($tipo == 1){
-				$query = "SELECT epc_tarima FROM punto_venta_cajas_envio WHERE id_envio_fk = $id_envio AND enviado_dce = 1 GROUP BY epc_tarima";
+				$query = "SELECT epc_caja FROM punto_venta_cajas_envio WHERE id_envio_fk = $id_envio AND enviado_dce = 1";
 
 				$result = mysql_query($query);
 				if($result){
 					$datos_usuario = "Bien*".mysql_num_rows($result).",";
 
-					$query = "SELECT epc_tarima FROM punto_venta_cajas_envio WHERE id_envio_fk = $id_envio AND recibido_dce = 1 GROUP BY epc_tarima";
+					$query = "SELECT epc_caja FROM punto_venta_cajas_envio WHERE id_envio_fk = $id_envio AND recibido_dce = 1";
 					$result = mysql_query($query);
 					if($result){
 						$datos_usuario .= mysql_num_rows($result);
 					}
 
 				}else
-					$datos_usuario = "Error*Error en la lectura de pallets.";
+					$datos_usuario = "Error*Error en la lectura de cajas.";
 			}
 
 			if($tipo == 2){
