@@ -48,7 +48,22 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 
 *********************************************************************************/
 
-		$consulta = "SELECT * from empresa_productores, empresa_distribuidores, empresa_empaques, productos_productores, productos, lotes, epc_caja, distribuidor_cajas_envio, envios_empaque, ordenes_distribuidor, usuario_empaque, usuario_distribuidor, entrada_distribuidor, punto_venta_cajas_envio, ordenes_punto_venta, envios_distribuidor, empresa_punto_venta where empresa_distribuidores.id_distribuidor = envios_empaque.id_distribuidor_fk AND envios_empaque.id_receptor_fk = usuario_empaque.id_receptor AND usuario_distribuidor.id_usuario_distribuidor = ordenes_distribuidor.id_usuario_distribuidor_fk AND empresa_productores.id_productor = productos_productores.id_productor_fk AND productos.id_producto = productos_productores.id_producto_fk AND productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND lotes.id_lote = epc_caja.id_lote_fk AND epc_caja.epc_caja = distribuidor_cajas_envio.epc_caja AND distribuidor_cajas_envio.id_envio_fk = envios_empaque.id_envio AND envios_empaque.id_orden_fk = ordenes_distribuidor.id_orden AND lotes.id_empaque_fk = empresa_empaques.id_empaque AND entrada_distribuidor.id_envio_fk = envios_empaque.id_envio AND epc_caja.epc_caja = punto_venta_cajas_envio.epc_caja AND punto_venta_cajas_envio.id_envio_fk = envios_distribuidor.id_envio AND envios_distribuidor.id_punto_venta_fk= empresa_punto_venta.id_punto_venta AND ordenes_punto_venta.id_orden = envios_distribuidor.id_orden_dist_fk AND epc_caja.epc_caja = '$epc'";
+		print $consulta = "SELECT ubicacion_huerta, hectareas, nombre_producto,
+			nombre_productor, rfc_productor, direccion_productor,
+			id_lote, remitente_lote, fecha_recibo_lote,
+			nombre_empaque, rfc_empaque, nombre_distribuidor, rfc_distribuidor,
+			ordenes_distribuidor.id_orden as id_orden_distribuidor,
+			ordenes_distribuidor.fecha_orden as fecha_orden_distribuidor,
+			ordenes_distribuidor.estado_orden as estado_orden_distribuidor,
+			envios_empaque.id_envio as id_envio_empaque, envios_empaque.fecha_envio as fecha_envio_empaque,
+			envios_empaque.estado_envio as estado_envio_empaque,
+			nombre_punto_venta, rfc_punto_venta, ordenes_punto_venta.id_orden as id_orden_punto_venta,
+			ordenes_punto_venta.fecha_orden as fecha_orden_punto_venta, 
+			ordenes_punto_venta.estado_orden as estado_orden_punto_venta,
+			envios_distribuidor.id_envio as id_envio_distribuidor,
+			envios_distribuidor.fecha_envio as fecha_envio_distribuidor,
+			envios_distribuidor.estado_envio as estado_envio_distribuidor
+			 from empresa_productores, empresa_distribuidores, empresa_empaques, productos_productores, productos, lotes, epc_caja, distribuidor_cajas_envio, envios_empaque, ordenes_distribuidor, usuario_empaque, usuario_distribuidor, entrada_distribuidor, punto_venta_cajas_envio, ordenes_punto_venta, envios_distribuidor, empresa_punto_venta where empresa_distribuidores.id_distribuidor = envios_empaque.id_distribuidor_fk AND envios_empaque.id_receptor_fk = usuario_empaque.id_receptor AND usuario_distribuidor.id_usuario_distribuidor = ordenes_distribuidor.id_usuario_distribuidor_fk AND empresa_productores.id_productor = productos_productores.id_productor_fk AND productos.id_producto = productos_productores.id_producto_fk AND productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND lotes.id_lote = epc_caja.id_lote_fk AND epc_caja.epc_caja = distribuidor_cajas_envio.epc_caja AND distribuidor_cajas_envio.id_envio_fk = envios_empaque.id_envio AND envios_empaque.id_orden_fk = ordenes_distribuidor.id_orden AND lotes.id_empaque_fk = empresa_empaques.id_empaque AND entrada_distribuidor.id_envio_fk = envios_empaque.id_envio AND epc_caja.epc_caja = punto_venta_cajas_envio.epc_caja AND punto_venta_cajas_envio.id_envio_fk = envios_distribuidor.id_envio AND envios_distribuidor.id_punto_venta_fk= empresa_punto_venta.id_punto_venta AND ordenes_punto_venta.id_orden = envios_distribuidor.id_orden_dist_fk AND epc_caja.epc_caja = '$epc'";
 		$result = mysql_query($consulta);
 		if(mysql_num_rows($result) > 0){ 
 			if ($row = mysql_fetch_array($result)) { ?>
@@ -137,16 +152,16 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				<table class="table" style="font-size: 14px">
 				<tr>
 					<td width="140"><strong>Núm. orden</strong></td>
-					<td><?php print $row['ordenes_distribuidor.id_orden'] ?></td>
+					<td><?php print $row['id_orden_distribuidor'] ?></td>
 				</tr>
 				<tr>
 					<td><strong>fecha</strong></td>
-					<td><?php print $row['fecha_orden'] ?></td>
+					<td><?php print $row['fecha_orden_distribuidor'] ?></td>
 				</tr>
 				<tr>
 					<td><strong>estado</strong></td>
 					<td><?php 
-	      					 switch($row['estado_orden']){
+	      					 switch($row['estado_orden_distribuidor']){
 	      					 	case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
 	      					 	case 2: echo "<span class='label label-danger'>Rechazado por emp.</span>"; break;
 	      					 	case 3: echo "<span class='label label-primary'>Enviado</span>"; break;
@@ -166,7 +181,7 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				<table class="table" style="font-size: 14px">
 				<tr>
 					<td width="140"><strong>Núm. envío</strong></td>
-					<td><?php print $row['id_envio'] ?></td>
+					<td><?php print $row['id_envio_empaque'] ?></td>
 				</tr>
 				<tr>
 					<td><strong>Núm. camión</strong></td>
@@ -174,12 +189,12 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				</tr>
 				<tr>
 					<td><strong>fecha</strong></td>
-					<td><?php print $row['fecha_envio'] ?></td>
+					<td><?php print $row['fecha_envio_empaque'] ?></td>
 				</tr>
 				<tr>
 				<td><strong>estado</strong></td>
 					<td><?php 
-	      					 switch($row['estado_envio']){
+	      					 switch($row['estado_envio_empaque']){
 	      					 	case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
 	      					 	case 2: echo "<span class='label label-danger'>Rechazado por emp.</span>"; break;
 	      					 	case 3: echo "<span class='label label-primary'>Enviado</span>"; break;
@@ -220,16 +235,16 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				<table class="table" style="font-size: 14px">
 				<tr>
 					<td width="140"><strong>Núm. orden</strong></td>
-					<td><?php print $row['ordenes_punto_venta.id_orden'] ?></td>
+					<td><?php print $row['id_orden_punto_venta'] ?></td>
 				</tr>
 				<tr>
 					<td><strong>fecha</strong></td>
-					<td><?php print $row['fecha_orden'] ?></td>
+					<td><?php print $row['fecha_orden_punto_venta'] ?></td>
 				</tr>
 				<tr>
 					<td><strong>estado</strong></td>
 					<td><?php 
-	      					 switch($row['estado_orden']){
+	      					 switch($row['estado_orden_punto_venta']){
 	      					 	case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
 	      					 	case 2: echo "<span class='label label-danger'>Rechazado por emp.</span>"; break;
 	      					 	case 3: echo "<span class='label label-primary'>Enviado</span>"; break;
@@ -245,11 +260,11 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 			</table>
 	     </div>
 	     <div class="modal-body" style="width:32%; float: left; margin-left:1%">
-	  		<div class="alert alert-info">ENVÍO AL DISTRIBUIDOR</div>
+	  		<div class="alert alert-info">ENVÍO AL PUNTO DE VENTA</div>
 				<table class="table" style="font-size: 14px">
 				<tr>
 					<td width="140"><strong>Núm. envío</strong></td>
-					<td><?php print $row['id_envio'] ?></td>
+					<td><?php print $row['id_envio_distribuidor'] ?></td>
 				</tr>
 				<tr>
 					<td><strong>Núm. camión</strong></td>
@@ -257,12 +272,12 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				</tr>
 				<tr>
 					<td><strong>fecha</strong></td>
-					<td><?php print $row['fecha_envio'] ?></td>
+					<td><?php print $row['fecha_envio_distribuidor'] ?></td>
 				</tr>
 				<tr>
 				<td><strong>estado</strong></td>
 					<td><?php 
-	      					 switch($row['estado_envio']){
+	      					 switch($row['estado_envio_distribuidor']){
 	      					 	case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
 	      					 	case 2: echo "<span class='label label-danger'>Rechazado por emp.</span>"; break;
 	      					 	case 3: echo "<span class='label label-primary'>Enviado</span>"; break;
@@ -275,10 +290,10 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 	      					 } ?>
 	      			</td>
 	      		</tr>
-	      		<tr>
+	      		<!--<tr>
 	      			<td><strong>Fecha de entrega<strong></td>
-	      			<td><?php print $row['fecha_entrada']." a las ".$row['hora_entrada'] ?></td>
-	      		</tr>
+	      			<td><?php print $row['fecha_entrada_punto_venta']." a las ".$row['hora_entrada'] ?></td>
+	      		</tr>-->
 			</table>
 	     </div>
 		<?php }
