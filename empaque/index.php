@@ -255,6 +255,17 @@ if($_GET("op") == "epcgenerados")
         $('#views').html(data);
       }
     });
+
+if($_GET("numpalets")) 
+   $.ajax({
+      type: 'POST',
+      url: 'tags/paletsgenerados.php',
+      data: {'numero_etiquetas':$_GET("numpalets")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
   //$("#views").load("tags/epcgenerados.php");
 
 

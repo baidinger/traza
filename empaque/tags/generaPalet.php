@@ -6,7 +6,7 @@
 	</div>
 
 	<div style="width:50%; margin: 30px auto">
-		<form id="formulario" class="form-horizontal" role="form" method="post" action="tags/generartagspalets.php">
+		<form id="formulario" class="form-horizontal" role="form" method="get" action="index.php">
 
       	<div class="modal-body" style="width:100%; float: left">
       		<div class="alert alert-info">GENERAR PALETS </div>
@@ -14,7 +14,7 @@
 		    	<label class="col-sm-3 control-label">Número de etiquetas (RFID): </label>
 		    	<div class="col-sm-9">
 		    		<input  type="number" min="0" class="form-control input" 
-		    		name="numero_etiquetas" 
+		    		name="numpalets" 
 		    		placeholder="No. etiquetas" required>
 	         	</div>
 			  </div>
