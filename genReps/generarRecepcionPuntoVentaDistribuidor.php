@@ -400,6 +400,7 @@
 			$this->Ln();
 
 			if(!empty($descOrden)){
+				$this->SetTextColor(0, 0, 0);
 				$this->SetFont('Arial', 'B', 8);
 				$this->Cell(196, 4, 'DESCRIPCIÓN DE LA ORDEN', 0, 0, 'L');
 
