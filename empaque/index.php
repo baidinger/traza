@@ -96,7 +96,9 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-apple"></span> &nbsp;Mi empaque <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <?php if($_SESSION['nivel_socio'] == 1) { ?>
               <li><a href="index.php?op=asig_pro_empaque">Asignar productos</a></li>
+              <?php } ?>
               <?php if($_SESSION['pedidos'] == 1) {?>
               <li><a href="index.php?op=pedidos">Pedidos</a></li>
               <?php } if($_SESSION['envios'] == 1){ ?>
@@ -125,7 +127,7 @@
                <li><a href="index.php?op=trazabilidad">Trazabilidad</a></li>
             </ul>
         </li>
-          <li><a href="#">
+          <li><a href="index.php?op=estadisticas">
           <span class="glyphicon glyphicon-stats"></span> &nbsp;Estadísticas</a></li>
         <?php } ?>
       </ul>
@@ -297,6 +299,12 @@ if($_GET("op") == "datos_generales")
 
 if($_GET("op") == "envios") 
   $("#views").load("envios/index.php");
+
+if($_GET("op") == "palets") 
+  $("#views").load("tags/generaPalet.php");
+
+if($_GET("op") == "estadisticas") 
+  $("#views").load("estadisticas/estadisticas.php");
 
 if($_GET("op") == "caja_traza") {
   epc = $_GET("epc_caja");
