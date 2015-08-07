@@ -14,14 +14,14 @@
 			$resultado = mysql_query($consulta);
 			$row = mysql_fetch_array($resultado);
 
-			$idCamionFk = $row['idCamionFk'];
+			$idCamionFk = $row['id_camion_fk'];
 			$fechaEnvio = $row['fecha_envio'];
 			$horaEnvio = $row['hora_envio'];
 		?>
 		<table class="table">
 			<tr>
 				<td><label class="lbl-nueva-orden">Camión:</label></td>
-				<td><label class="lbl-nueva-orden"><a href="../camiones/">1</a></label></td>
+				<td><label class="lbl-nueva-orden"><a href="../camiones/"><?php echo $idCamionFk; ?></a></label></td>
 				<td class="derecha"><label class="lbl-nueva-orden">Fecha:</label></td>
 				<td><input type="date" class="form-control" value="<?php echo $fechaEnvio; ?>" readonly></td>
 				<td class="derecha"><label class="lbl-nueva-orden">Hora:</label></td>
