@@ -51,11 +51,11 @@ namespace CS101_CALLBACK_API_DEMO
 
             if (socio == 4)
             {
-                label3.Visible = false;
-                label4.Visible = false;
-                label5.Visible = false;
-                label6.Visible = false;
-                showPallet.Visible = false;
+                label3.Text = "N° de cajas enviadas";
+                label4.Text = "N° de cajas recibidas";
+              //  label5.Visible = false;
+               // label6.Visible = false;
+                showPallet.Text = "Ver cajas";
             }
 
             using (cargando c = new cargando())
@@ -217,8 +217,8 @@ namespace CS101_CALLBACK_API_DEMO
                     preIdCarro = int.Parse(dt.Rows[dataGrid1.CurrentRowIndex][2].ToString());
                     preNombreEmpaque = dt.Rows[dataGrid1.CurrentRowIndex][3].ToString();
 
-                    if (socio == 3)
-                    {
+                  //  if (socio == 3)
+                  //  {
 
                         String r = "";
                         using (cargando c = new cargando())
@@ -250,14 +250,14 @@ namespace CS101_CALLBACK_API_DEMO
                                 showPallet.Enabled = true;
                             }
 
-                    }
+                 //   }
 
-                    if (socio == 4)
+                 /*   if (socio == 4)
                     {
                         empaque_lbl.Text = preNombreEmpaque;
                         compl_send.Enabled = true;
                         cont.Enabled = true;
-                    }
+                    }*/
                 }
                 rowIndex = dataGrid1.CurrentRowIndex;
             }
@@ -315,9 +315,23 @@ namespace CS101_CALLBACK_API_DEMO
 
         private void showPallet_Click(object sender, EventArgs e)
         {
-            using (showPallets sp = new showPallets(socio, preIdEnvio, preIdOrden, preIdCarro))
-            {
-                sp.ShowDialog();
+            switch(socio){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    using (showPallets sp = new showPallets(socio, preIdEnvio, preIdOrden, preIdCarro))
+                    {
+                        sp.ShowDialog();
+                    }
+                    break;
+                case 4:
+                    using (showCajas sc = new showCajas(socio, preIdEnvio, preIdOrden, preIdCarro, ""))
+                    {
+                        sc.ShowDialog();
+                    }
+                    break;
             }
         }
 
@@ -373,16 +387,21 @@ namespace CS101_CALLBACK_API_DEMO
                     MessageBox.Show(r[1], "Error al finalizar");
                 }
                 else
-                {
-                    MessageBox.Show(r[1], "Operación exitosa");
+                    if (r[0].CompareTo("Error2") == 0)
+                    {
+                        //MessageBox.Show(r[1], "Error al finalizar");
 
-                    refreshEnviosPendientes();
-                    label5.Text = "---";
-                    label6.Text = "---";
-                    cont.Enabled = false;
-                    compl_send.Enabled = false;
-                    showPallet.Enabled = false;
-                }
+                    }else
+                    {
+                        MessageBox.Show(r[1], "Operación exitosa");
+
+                        refreshEnviosPendientes();
+                        label5.Text = "---";
+                        label6.Text = "---";
+                        cont.Enabled = false;
+                        compl_send.Enabled = false;
+                        showPallet.Enabled = false;
+                    }
             }
         }
 

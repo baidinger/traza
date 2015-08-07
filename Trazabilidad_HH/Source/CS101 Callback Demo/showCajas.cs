@@ -32,6 +32,20 @@ namespace CS101_CALLBACK_API_DEMO
             this.orden_lbl.Text = id_Orden + "";
             this.carro_lbl.Text = id_Carro + "";
 
+            switch (socio)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    this.palet_lbl.Visible = false;
+                    this.label1.Visible = false;
+                    break;
+            }
+
             dt = new DataTable();
             DataColumn col;
 
