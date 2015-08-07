@@ -196,8 +196,8 @@ namespace CS101_CALLBACK_API_DEMO
         private System.Windows.Forms.Button btn_clear;
         private System.Windows.Forms.Label lb_rate;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        public System.Windows.Forms.Button button1;
 
     }
 }

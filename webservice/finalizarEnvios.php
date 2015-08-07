@@ -73,9 +73,9 @@
 						$datos_usuario = "Error*Error al finalizar el envio";
 				}else{
 					if($enviado > $recibido){
-						$datos_usuario .= "Error*No se han recibido las cajas que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
+						$datos_usuario .= "Error2*No se han recibido las cajas que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
 					}else
-						$datos_usuario .= "Error*Se han recibido mas cajas de las que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
+						$datos_usuario .= "Error3*Se han recibido mas cajas de las que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
 				}
 
 			}
@@ -138,9 +138,9 @@
 						$datos_usuario = "Error*Error al finalizar el envio";
 				}else{
 					if($enviado > $recibido){
-						$datos_usuario .= "Error*No se han recibido las cajas que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
+						$datos_usuario .= "Error2*No se han recibido las cajas que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
 					}else
-						$datos_usuario .= "Error*Se han recibido mas cajas de las que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
+						$datos_usuario .= "Error3*Se han recibido mas cajas de las que se enviaron.\n - Cajas enviadas: $enviado \n - Cajas recibidas: $recibido";
 				}
 
 			}

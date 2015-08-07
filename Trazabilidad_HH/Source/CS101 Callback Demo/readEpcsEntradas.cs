@@ -54,6 +54,8 @@ namespace CS101_CALLBACK_API_DEMO
         {
             InitializeComponent();
 
+            startMenu1.button1.Visible = false;
+
             this.id_usuario = id_usuario;
             this.socio = socio;
             this.id_socio = id_socio;
@@ -563,34 +565,11 @@ namespace CS101_CALLBACK_API_DEMO
 
         void startMenu1_OnButtonClick(ButtonClickType type)
         {
+            
             switch (type)
             {
                 case ButtonClickType.Finalizar:
-                    MessageBox.Show("Finalizar");
-                   /* String result;
-                    using (cargando c = new cargando())
-                    {
-                        c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
-                        c.Show();
-                        c.Update();
-                        result = finalizarPreEnvio();
-                    }
-                    String[] r = result.Split('*');
 
-                    if (r[0].CompareTo("Error") == 0)
-                    {
-                        MessageBox.Show(r[1], "Error al enviar");
-                    }
-                    else
-                    {
-                        MessageBox.Show(r[1], "Operación exitosa");
-                        this.Close();
-                        using (enviosWorking env = new enviosWorking(socio, id_socio, id_usuario))
-                        {
-                            env.ShowDialog();
-                        }
-                    }
-                    */
                     
                     break;
                 case ButtonClickType.Clear:

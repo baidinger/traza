@@ -387,16 +387,21 @@ namespace CS101_CALLBACK_API_DEMO
                     MessageBox.Show(r[1], "Error al finalizar");
                 }
                 else
-                {
-                    MessageBox.Show(r[1], "Operación exitosa");
+                    if (r[0].CompareTo("Error2") == 0)
+                    {
+                        //MessageBox.Show(r[1], "Error al finalizar");
 
-                    refreshEnviosPendientes();
-                    label5.Text = "---";
-                    label6.Text = "---";
-                    cont.Enabled = false;
-                    compl_send.Enabled = false;
-                    showPallet.Enabled = false;
-                }
+                    }else
+                    {
+                        MessageBox.Show(r[1], "Operación exitosa");
+
+                        refreshEnviosPendientes();
+                        label5.Text = "---";
+                        label6.Text = "---";
+                        cont.Enabled = false;
+                        compl_send.Enabled = false;
+                        showPallet.Enabled = false;
+                    }
             }
         }
 
