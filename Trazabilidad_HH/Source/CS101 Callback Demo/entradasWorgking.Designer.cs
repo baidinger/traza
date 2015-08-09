@@ -43,7 +43,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.showPallet = new System.Windows.Forms.Button();
             this.actualizar_btn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.rechazar_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dataGrid1
@@ -162,14 +162,16 @@
             this.actualizar_btn.Text = "Actualizar";
             this.actualizar_btn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button1
+            // rechazar_btn
             // 
-            this.button1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(96, 212);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 25);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Rechazar envio";
+            this.rechazar_btn.Enabled = false;
+            this.rechazar_btn.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.rechazar_btn.Location = new System.Drawing.Point(96, 212);
+            this.rechazar_btn.Name = "rechazar_btn";
+            this.rechazar_btn.Size = new System.Drawing.Size(105, 25);
+            this.rechazar_btn.TabIndex = 23;
+            this.rechazar_btn.Text = "Rechazar envio";
+            this.rechazar_btn.Click += new System.EventHandler(this.rechazar_btn_Click);
             // 
             // entradasWorgking
             // 
@@ -178,7 +180,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(320, 240);
             this.ControlBox = false;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.rechazar_btn);
             this.Controls.Add(this.actualizar_btn);
             this.Controls.Add(this.showPallet);
             this.Controls.Add(this.label6);
@@ -216,6 +218,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button showPallet;
         private System.Windows.Forms.Button actualizar_btn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button rechazar_btn;
     }
 }

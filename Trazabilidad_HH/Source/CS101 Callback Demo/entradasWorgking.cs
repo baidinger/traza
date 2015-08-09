@@ -248,6 +248,7 @@ namespace CS101_CALLBACK_API_DEMO
                                 compl_send.Enabled = true;
                                 cont.Enabled = true;
                                 showPallet.Enabled = true;
+                                rechazar_btn.Enabled = true;
                             }
 
                  //   }
@@ -379,8 +380,9 @@ namespace CS101_CALLBACK_API_DEMO
                 c.Show();
                 c.Update();
 
-                String result = finalizarEnvio();
+                String result = finalizarEnvio("1");
                 String[] r = result.Split('*');
+                //MessageBox.Show(result);
 
                 if (r[0].CompareTo("Error") == 0)
                 {
@@ -389,7 +391,36 @@ namespace CS101_CALLBACK_API_DEMO
                 else
                     if (r[0].CompareTo("Error2") == 0)
                     {
-                        //MessageBox.Show(r[1], "Error al finalizar");
+                        using (mostrarMessage mM = new mostrarMessage("¿Seguro?", "¿Seguro que deseas finalizar el envio "+preIdEnvio+"?", r[1]))
+                       {
+                           mM.Location = new Point((320 - mM.Width) / 2, (240 - mM.Height) / 2);
+                            
+                           if (mM.ShowDialog() == DialogResult.OK)
+                           {
+                               //MessageBox.Show("Finalizó el envio");
+                               String res = finalizarEnvio("2");
+                               String[] re = res.Split('*');
+
+                               if (re[0].CompareTo("Error") == 0)
+                               {
+                                   MessageBox.Show(re[1], "Error al finalizar");
+                               }
+                               else
+                               {
+                                   MessageBox.Show(re[1], "Operación exitosa");
+
+                                   refreshEnviosPendientes();
+                                   label5.Text = "---";
+                                   label6.Text = "---";
+                                   cont.Enabled = false;
+                                   compl_send.Enabled = false;
+                                   showPallet.Enabled = false;
+                                   rechazar_btn.Enabled = false;
+                               }
+
+                           }
+                       }
+
 
                     }else
                     {
@@ -401,11 +432,12 @@ namespace CS101_CALLBACK_API_DEMO
                         cont.Enabled = false;
                         compl_send.Enabled = false;
                         showPallet.Enabled = false;
+                        rechazar_btn.Enabled = false;
                     }
             }
         }
 
-        public String finalizarEnvio()
+        public String finalizarEnvio(String tipo)
         {
             string uriEnvios = Program.uri + "finalizarEnvios.php";
             HttpWebRequest request;
@@ -422,7 +454,7 @@ namespace CS101_CALLBACK_API_DEMO
                 request.KeepAlive = false;
                 request.ProtocolVersion = HttpVersion.Version10;
 
-                postBytes = Encoding.UTF8.GetBytes("datos=" + socio + "," + preIdOrden + "," + preIdEnvio+","+preIdCarro);
+                postBytes = Encoding.UTF8.GetBytes("datos="+tipo+"," + socio + "," + preIdOrden + "," + preIdEnvio+","+preIdCarro);
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.AllowWriteStreamBuffering = false;
                 request.ContentLength = postBytes.Length;
@@ -452,6 +484,38 @@ namespace CS101_CALLBACK_API_DEMO
                 return "Error*Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
             }
 
+        }
+
+        private void rechazar_btn_Click(object sender, EventArgs e)
+        {
+            using (mostrarMessage mM = new mostrarMessage("¿Seguro?", "¿Seguro que deseas rechazar el envio " + preIdEnvio + "?","Si rechaza el envio ya no podrá quitar esta acción"))
+            {
+                mM.Location = new Point((320 - mM.Width) / 2, (240 - mM.Height) / 2);
+
+                if (mM.ShowDialog() == DialogResult.OK)
+                {
+                   // MessageBox.Show("Rechazó el envio");
+                    String res = finalizarEnvio("3");
+                    String[] re = res.Split('*');
+
+                    if (re[0].CompareTo("Error") == 0)
+                    {
+                        MessageBox.Show(re[1], "Error al finalizar");
+                    }
+                    else
+                    {
+                        MessageBox.Show(re[1], "Operación exitosa");
+
+                        refreshEnviosPendientes();
+                        label5.Text = "---";
+                        label6.Text = "---";
+                        cont.Enabled = false;
+                        compl_send.Enabled = false;
+                        showPallet.Enabled = false;
+                        rechazar_btn.Enabled = false;
+                    }
+                }
+            }
         }
 
 
