@@ -48,7 +48,7 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 
 *********************************************************************************/
 
-		print $consulta = "SELECT ubicacion_huerta, hectareas, nombre_producto,
+		$consulta = "SELECT ubicacion_huerta, hectareas, nombre_producto,
 			nombre_productor, rfc_productor, direccion_productor,
 			id_lote, remitente_lote, fecha_recibo_lote,
 			nombre_empaque, rfc_empaque, nombre_distribuidor, rfc_distribuidor,
