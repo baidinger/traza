@@ -219,6 +219,18 @@ if($_GET("op") == "editar_dist")
         $('#views').html(data);
       }
     });
+
+ if($_GET("op") == "editar_emp") 
+   $.ajax({
+      type: 'POST',
+      url: 'busquedas/editarEmpaque.php',
+      data: {'id':$_GET("id")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+
   //$("#views").load("busquedas/editarDistribuidor.php");
 
 if($_GET("op") == "bus_pv") 

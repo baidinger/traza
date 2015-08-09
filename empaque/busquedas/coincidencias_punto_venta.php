@@ -18,7 +18,7 @@
 		          <th class="centro">Estado</th>
 		          <th class="centro">Ciudad</th>
 		          <th class="centro">Estado</th>
-		          <th class="centro">Operación</th>
+		          <th class="centro"></th>
 		        </tr>
       		</thead>
       		<tbody>
@@ -76,11 +76,11 @@
 			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
 			          	<?php } ?>
 			          			<td class="centro">
-			          				<div style="width:90px; margin:0px auto;">
+			          				<div style="width:70px; margin:0px; float: right">
 				          				<a href="index.php?op=editar_pv&id=<?php print $row['id_punto_venta'] ?>" style="float:left;"> 
 				          					<span data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 				          				</a>
-				          				<div style="width:20px; height:10px; float:left;"></div> 
+				          				<div style="width:10px; height:10px; float:left;"></div> 
 				          				<!-- ACCION HABILITAR -->
 				          				<?php if($row['estado_pv'] == 1){ ?>
 				          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_punto_venta']; ?>&status=0&rol=4"> 
@@ -91,7 +91,7 @@
 					          					<span data-toggle="tooltip" data-placement="top" title="Activar" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 					          			</a>
 				          				<?php } ?>
-				          				<div style="width:20px; height:10px; float:left;"></div> 
+				          				<div style="width:10px; height:10px; float:left;"></div> 
 				          				<a style="float:left; cursor:pointer;"> 
 				          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 				          				</a>
@@ -138,5 +138,7 @@
 
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
-
+			$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 		</script>

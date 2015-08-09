@@ -12,7 +12,7 @@
 	<body>
 		<?php 
 			$titulo = "Búsqueda de distribuidor";
-			$placeholder="Buscar distribuidor";
+			$placeholder="Nombre del distribuidor";
 			$imagen = "distribuidor.png";
 			$ruta = "index.php?op=reg_distribuidor";
 			include("formulario_busqueda_empresa.php"); ?>

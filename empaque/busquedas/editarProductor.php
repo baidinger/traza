@@ -39,7 +39,7 @@
 					  <div class="form-group">
 				    	<label class="col-sm-2 control-label">Dirección: </label>
 				    	<div class="col-sm-10">
-				    		<input type="text" value="<?php echo $row['direccion_productor']; ?>" class="form-control input" name="direccion_productor" id="" placeholder="Dirección del productor" required>
+				    		<textarea type="text"  class="form-control input" name="direccion_productor" id="" placeholder="Dirección del productor" required><?php echo $row['direccion_productor']; ?></textarea>
 			         	</div>
 					  </div>
 				  	<center>

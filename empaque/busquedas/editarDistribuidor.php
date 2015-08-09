@@ -100,7 +100,7 @@
 		  </div>
 	  	<hr>
 	  	<center>
-	  			<a href="index.php?op=bus_distribuidor" type="button" class="btn btn-default" style="width: 150px" >Cerrar</a>
+	  			<a href="index.php?op=bus_distribuidor" type="button" class="btn btn-default" style="width: 150px" >Regresar</a>
 	  			<input type="hidden" name="id_distribuidor" value="<?php echo $row['id_distribuidor']; ?>">
      			<button type="submit" class="btn btn-primary" style="width: 150px"><i  class="glyphicon glyphicon-ok"></i> Guardar cambios</button>
      		</center>
