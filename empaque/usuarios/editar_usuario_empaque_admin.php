@@ -29,11 +29,11 @@ if( (strcmp($_SESSION['id_usuario'],$id_usuario)==0) && $_SESSION['nivel_socio']
 			pedidos = $pedidos where id_receptor =  $id_receptor")){
 			if(strcmp($contra, $contrasena_usuario) == 0)
 			{
-				mysql_query("update usuarios set nombre_usuario = '$nombre_usuario' WHERE id_usuario = $id_usuario");
+				mysql_query("update usuarios set nombre_usuario = '$nombre_usuario', fecha_modificacion_usuario = '".date("Y-m-d")."' WHERE id_usuario = $id_usuario");
 			}
 			else
 			{
-				mysql_query("update usuarios set nombre_usuario = '$nombre_usuario', contrasena_usuario = '".md5($contrasena_usuario)."' WHERE id_usuario = $id_usuario");	
+				mysql_query("update usuarios set nombre_usuario = '$nombre_usuario', contrasena_usuario = '".md5($contrasena_usuario)."', fecha_modificacion_usuario = '".date("Y-m-d")."' WHERE id_usuario = $id_usuario");	
 			}
 
 			mysql_close($conexion);

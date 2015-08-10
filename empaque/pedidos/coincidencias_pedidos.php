@@ -1,9 +1,10 @@
 <?php 
 	include("../../mod/conexion.php");
 	$buscar = $_POST['buscar'];
+	$filtro = $_POST['filtro'];
 
 
-	$consulta = "select id_orden, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  = '$buscar') ORDER BY id_orden DESC";
+	$consulta = "select id_orden, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  = '$buscar' ) ".$filtro." ORDER BY id_orden DESC";
 	$result_ordenes = mysql_query($consulta);
 	if(mysql_num_rows($result_ordenes) > 0){
 
@@ -272,6 +273,7 @@
 			           	<a style="float:right; cursor:hand" onclick="generacionReportes(<?php echo $row['id_orden'] ?>)">
 			           		<span class="glyphicon glyphicon-print"></span>&nbsp;
 			           	</a>
+
 			           </td>
 		        	</tr>
 		        <?php  
@@ -325,24 +327,7 @@
 			  </div>
 			</div>
 
-
-	<!-- Modal -->
-			<div class="modal fade" id="infoestadistica" role="dialog"  tabindex="-1" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h3 class="modal-title"><div>Estadísticas</div></h3>
-			      </div>
-			      <div class="modal-body fondo-blanco">
-				   	<div id="piechart" style="width: 900px; height: 500px;"></div>
-				  </div>
-				  <div class="modal-footer">
-				    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+			
 
 			<!-- Modal -->
 			<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -393,27 +378,4 @@
 				});
 			}
 	</script>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-					    <script type="text/javascript">
-					      google.load("visualization", "1", {packages:["corechart"]});
-					      google.setOnLoadCallback(drawChart);
-					      function drawChart() {
-					        var data = google.visualization.arrayToDataTable([
-					          ['Language', 'Speakers (in millions)'],
-					          ['German',  5.85],
-					          ['French',  1.66],
-					          ['Italian', 0.316],
-					          ['Romansh', 0.0791]
-					        ]);
 
-					      var options = {
-					        legend: 'none',
-					        pieSliceText: 'label',
-					        title: 'Swiss Language Use (100 degree rotation)',
-					        pieStartAngle: 100,
-					      };
-
-					        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-					        chart.draw(data, options);
-					      }
-					    </script>

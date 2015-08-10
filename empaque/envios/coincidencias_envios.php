@@ -146,4 +146,20 @@
 			  $('[data-toggle="tooltip"]').tooltip()
 			  $('[data-toggle="popover"]').popover();
 			});
+
+			function generacionReportes(orden){
+				var params = {'orden':orden};
+
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRecepcionDistribuidorEmpaque.php',
+					data: params,
+
+					success: function(data){
+						var urlPDF = "../docs/recepciondeordendecompradist" + orden + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
+
 		</script>

@@ -6,12 +6,8 @@
   $id_usuario_distribuidor        = $_POST['usuario'];
 	include("../../mod/conexion.php");
 
-	/*echo "select id_orden_detalles, cantidad_producto_od, ".
-		"unidad_producto_od, costo_producto_od, nombre_producto, variedad_producto ".
-		"from ordenes_distribuidor_detalles ".
-		"join productos ON productos.id_producto = ordenes_distribuidor_detalles.id_orden_fk".
-		"where id_orden_fk = $id_orden";
-*/
+  
+
 	$result	=	mysql_query("select id_orden_detalles, cantidad_producto_od, ".
 		"unidad_producto_od,costo_unitario_od, costo_producto_od, nombre_producto, variedad_producto ".
 		"from ordenes_distribuidor_detalles ".
