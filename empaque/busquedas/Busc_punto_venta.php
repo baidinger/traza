@@ -11,7 +11,7 @@
 	<body>
 		<?php 
 			$titulo = "Búsqueda de punto de venta";
-			$placeholder="Buscar punto de venta";
+			$placeholder="Nombre punto de venta";
 			$imagen = "pv.png";
 			$ruta = "index.php?op=reg_punto_venta";
 			include("formulario_busqueda_empresa.php"); ?>

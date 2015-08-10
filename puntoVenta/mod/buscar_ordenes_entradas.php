@@ -12,7 +12,8 @@
 					<tr>
 						<th class="centro">ID</th>
 						<th>Distribuidor</th>
-						<th class="centro">Fecha</th>
+						<th class="centro">Fecha Orden</th>
+						<th class="centro">Fecha Entrega</th>
 						<th class="derecha">Costo</th>
 						<th class="centro">Env / Rec</th>
 						<th class="centro">Estado</th>
@@ -37,7 +38,7 @@
 						$idUsuarioPvFK = $row['id_punto_venta_fk'];
 
 						$cont = 0;
-					    $consulta = "SELECT ords.id_orden, epqs.id_distribuidor, epqs.nombre_distribuidor, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_punto_venta AS ords, empresa_distribuidores AS epqs WHERE ords.id_distribuidor_fk = epqs.id_distribuidor AND ords.id_usuario_punto_venta_fk = $idUsuarioPvFK AND epqs.nombre_distribuidor LIKE '%$distribuidor%'";
+					    $consulta = "SELECT ords.id_orden, epqs.id_distribuidor, epqs.nombre_distribuidor, ords.fecha_orden, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_punto_venta AS ords, empresa_distribuidores AS epqs WHERE ords.id_distribuidor_fk = epqs.id_distribuidor AND ords.id_usuario_punto_venta_fk = $idUsuarioPvFK AND epqs.nombre_distribuidor LIKE '%$distribuidor%'";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ 
 
@@ -103,7 +104,8 @@
 						          				<?php echo $row['nombre_distribuidor']; ?>
 						          			</a>
 						          		</td>
-						          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
+						          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_orden'])); ?></td>
+						          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_entrega_orden'])); ?></td>
 						          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
 						          		<td class="centro"><?php echo $totalEnviados." / ".$totalRecibidos; ?></td>
 
@@ -126,7 +128,7 @@
 					          			?>
 						          		
 						          		<td class="derecha">
-						          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
+						          			<button class="btn btn-info" id="btn-detalles" onClick="mostrarDetalles(<?php echo $row['id_orden']; ?>, <?php echo $idEnvioFk; ?>)" data-toggle="tooltip" title="Ver detalles epcs"><i class="glyphicon glyphicon-tags"></i></button>
 							        	</td>
 						    	    </tr>
 								<?php 

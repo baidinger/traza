@@ -24,8 +24,8 @@
 	$resultado = mysql_query($consulta);
 	$row = mysql_fetch_array($resultado);
 
-	$fechaOrden = $row['fecha_orden'];
-	$fechaEntrega = $row['fecha_entrega_orden'];
+	$fechaOrden = date('d/m/Y', strtotime($row['fecha_orden']));
+	$fechaEntrega = date('d/m/Y', strtotime($row['fecha_entrega_orden']));
 	$costoOrden = $row['costo_orden'];
 	$descripcionOrden = $row['descripcion_orden'];
 	$descripcionCancelacion = $row['descripcion_cancelacion'];
@@ -40,7 +40,7 @@
 	$resultado = mysql_query($consulta);
 	$row = mysql_fetch_array($resultado);
 
-	$fechaEnvio = $row['fecha_envio'];
+	$fechaEnvio = date('d/m/Y', strtotime($row['fecha_envio']));
 	$horaEnvio = $row['hora_envio'];
 
 	// DATOS DE LA RECEPCIÓN
@@ -48,7 +48,7 @@
 	$resultado = mysql_query($consulta);
 	$row = mysql_fetch_array($resultado);
 
-	$fechaRecepcion = $row['fecha_entrada_punto_venta'];
+	$fechaRecepcion = date('d/m/Y', strtotime($row['fecha_entrada_punto_venta']));
 	$horaRecepcion = $row['hora_entrada_punto_venta'];
 
 	// DATOS DEL DISTRIBUIDOR
@@ -86,7 +86,7 @@
 	$direccionPuntoVenta = $row['direccion_punto_venta'];
 	$cpPuntoVenta = $row['cp_punto_venta'];
 	$tel1PuntoVenta = $row['telefono_punto_venta'];
-	$emailPuntoVenta = $row['email_distribuidor'];
+	$emailPuntoVenta = $row['email_punto_venta'];
 
 	mysql_close();
 

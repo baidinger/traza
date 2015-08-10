@@ -11,7 +11,7 @@
 	<body>
 		<?php 
 			$titulo = "Búsqueda de productores";
-			$placeholder="Buscar productor / usuario";
+			$placeholder="Nombre productor / usuario";
 			$imagen = "productor.png";
 			$ruta = "index.php?op=reg_productor";
 			include("formulario_busqueda_empresa.php"); ?>

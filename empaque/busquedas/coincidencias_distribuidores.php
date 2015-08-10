@@ -22,7 +22,7 @@
 		          <th class="centro">Ubicación</th>
 		          <th class="centro">Teléfono</th>
 		          <th class="centro">Estado</th>
-		          <th class="centro">Operación</th>
+		          <th class="centro"></th>
 		        </tr>
       		</thead>
       		<tbody>
@@ -81,11 +81,11 @@
 			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
 			          	<?php } ?>
 	          			<td class="centro">
-	          				<div style="width:90px; margin:0px auto;">
+	          				<div style="width:70px; margin:0px; float: right">
 		          				<a href="index.php?op=editar_dist&id=<?php print $row['id_distribuidor'] ?>" style="float:left; "> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 		          				</a>
-		          				<div style="width:20px; height:10px; float:left;"></div> 
+		          				<div style="width:10px; height:10px; float:left;"></div> 
 		          				<!-- ACCION HABILITAR -->
 		          				<?php if($row['estado_d'] == 1){ ?>
 		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_distribuidor']; ?>&status=0&rol=3"> 
@@ -98,7 +98,7 @@
 		          				<?php } ?>
 		          				<!--   - - - - - - - - - - - -  - - - - -  -->
 
-		          				<div style="width:20px; height:10px; float:left;"></div> 
+		          				<div style="width:10px; height:10px; float:left;"></div> 
 		          				<a style="float:left; cursor:pointer;"> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 		          				</a>
@@ -145,5 +145,8 @@
 
 	<script type="text/javascript">
 		$('#paginacion-resultados').simplePagination();
+		$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 		</script>
 	

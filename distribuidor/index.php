@@ -69,15 +69,19 @@
 			            <?php if($privEnvios == 1) { ?>
 			            	<li><a href="envios/"><span class="glyphicon glyphicon-folder-open"></span> &nbsp; Envios</a></li>
 			            <?php } ?>
-			            <li><a href="productos/"><span class="glyphicon glyphicon-apple"></span> &nbsp;Productos</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-road"></span> &nbsp;Camiones <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="nuevoCamion/">Agregar camion</a></li>
-								<li class="divider"></li>
-								<li><a href="camiones/">Lista de camiones</a></li>
-							</ul>
-						</li>
+			            <?php if($_SESSION['nivel_socio'] == 1){ ?>
+			            	<li><a href="productos/"><span class="glyphicon glyphicon-apple"></span> &nbsp;Productos</a></li>
+			            <?php } ?>
+			            <?php if($_SESSION['nivel_socio'] == 1){ ?>
+			            	<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-road"></span> &nbsp;Camiones <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="nuevoCamion/">Agregar camion</a></li>
+									<li class="divider"></li>
+									<li><a href="camiones/">Lista de camiones</a></li>
+								</ul>
+							</li>
+			            <?php } ?>
 						<li><a href="estadisticas/"><span class="glyphicon glyphicon-stats"></span> &nbsp;Estadísticas</a></li>
 						<?php 
 							if($_SESSION['nivel_socio'] == 1){ ?>
@@ -109,6 +113,14 @@
 			  	</div>
 		  	</div>
 		</nav>
+
+		<div>
+			<?php 
+				// $date = "2009-12-25";
+				// $my_date = date('d/m/Y', strtotime($date));
+				// echo $my_date;
+			?>
+		</div>
 
 		<script type="text/javascript" src="../lib/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="../lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>

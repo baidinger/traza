@@ -22,7 +22,7 @@
 		<table class="table">
 			<tr>
 				<td><label class="lbl-nueva-orden">Camión:</label></td>
-				<td><label class="lbl-nueva-orden"><a href="../camiones/" class="lbl-nueva-orden"><?php echo $idCamionFk; ?></a></label></td>
+				<td><label class="lbl-nueva-orden"><a href="#" class="lbl-nueva-orden"><?php echo $idCamionFk; ?></a></label></td>
 				<td class="derecha"><label class="lbl-nueva-orden">Fecha:</label></td>
 				<td><input type="date" class="form-control" value="<?php echo $fechaEntrada; ?>" readonly></td>
 				<td class="derecha"><label class="lbl-nueva-orden">Hora:</label></td>

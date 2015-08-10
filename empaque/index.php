@@ -32,6 +32,7 @@
 	<meta charset="utf-8">
 		<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="script/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
     <link rel="icon" type="image/png" href="../img/logo_trazabilidad.png" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
@@ -219,6 +220,18 @@ if($_GET("op") == "editar_dist")
         $('#views').html(data);
       }
     });
+
+ if($_GET("op") == "editar_emp") 
+   $.ajax({
+      type: 'POST',
+      url: 'busquedas/editarEmpaque.php',
+      data: {'id':$_GET("id")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+
   //$("#views").load("busquedas/editarDistribuidor.php");
 
 if($_GET("op") == "bus_pv") 

@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
 	$buscar = $_POST['buscar'];
 
 ?>
@@ -21,13 +21,8 @@
 				<?php
 				include('../../mod/conexion.php');
 				$buscar = $_POST['buscar'];
-				$consulta = "select id_usuario_fk, id_empaque_fk, id_empaque, nombre_empaque from usuario_empaque, empresa_empaques where usuario_empaque.id_usuario_fk = ".$_SESSION['id_usuario']." AND usuario_empaque.id_empaque_fk = empresa_empaques.id_empaque";
-				$empaque = mysql_query($consulta);
-				 if($row = mysql_fetch_array($empaque)) {
-				 	 $nombre_empaque = $row['nombre_empaque'];
-				 	 $id_empaque = $row['id_empaque'];
-				 }
-				$result_receptores = mysql_query("select id_receptor, id_usuario, nombre_receptor, apellido_receptor, telefono_receptor, direccion_receptor, nombre_usuario, estado_usuario, nivel_autorizacion_usuario, pedidos, lotes, envios from usuario_empaque, usuarios where usuario_empaque.id_usuario_fk = usuarios.id_usuario AND usuario_empaque.id_empaque_fk = ".$id_empaque." AND (nombre_receptor like '%$buscar%' OR apellido_receptor like '%$buscar%') order by nombre_receptor ASC, apellido_receptor ASC" );
+				 $consulta = "SELECT id_receptor, id_usuario, nombre_receptor, apellido_receptor, telefono_receptor, direccion_receptor, nombre_usuario, estado_usuario, nivel_autorizacion_usuario, pedidos, lotes, envios from usuario_empaque, usuarios where usuario_empaque.id_usuario_fk = usuarios.id_usuario AND usuario_empaque.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_receptor like '%$buscar%' OR apellido_receptor like '%$buscar%' OR nombre_usuario LIKE '%$buscar%') order by nombre_receptor ASC, apellido_receptor ASC" ;
+				 $result_receptores = mysql_query($consulta);
 				$i=1;
 				if($result_receptores){
 					
@@ -48,7 +43,7 @@
 				          			<td> <span class="label label-success"> Activo </span> </td>
 				          			<td class="centro">
 
-				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $id_empaque?>,<?php print $row['id_usuario'] ?>)" > 
+				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $_SESSION['id_empaque']?>,<?php print $row['id_usuario'] ?>)" > 
 				          					<span data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="glyphicon glyphicon-edit"></span>
 				          				</a>&nbsp;&nbsp;
 				          				<?php if($row['nivel_autorizacion_usuario'] == 2) { ?>

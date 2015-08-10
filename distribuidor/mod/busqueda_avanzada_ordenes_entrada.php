@@ -25,6 +25,11 @@
 				<tbody>
 					<?php
 						$empaque = $_POST['empaque'];
+						$estado  = $_POST['estado'];
+						$fecha1  = $_POST['fecha1'];
+						$fecha2  = $_POST['fecha2'];
+						$costo1  = $_POST['costo1'];
+						$costo2  = $_POST['costo2'];
 
 						include('../../mod/conexion.php');
 
@@ -34,10 +39,26 @@
 						// $id_distribuidor_fk = $row['id_usuario_distribuidor'];
 						$id_distribuidor_fk = $row['id_distribuidor_fk'];
 
+						$consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_orden, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs, usuario_distribuidor AS usudist, empresa_distribuidores AS empdist WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = usudist.id_usuario_distribuidor AND usudist.id_distribuidor_fk = empdist.id_distribuidor AND empdist.id_distribuidor = $id_distribuidor_fk";
+
+						if(!empty($empaque))
+							$consulta.= " AND epqs.nombre_empaque LIKE '%$empaque%'";
+
+						if($estado != 0)
+							$consulta.= " AND ords.estado_orden = $estado";
+
+						if(!empty($fecha1) && !empty($fecha2))
+							$consulta.= " AND ords.fecha_orden BETWEEN '$fecha1' AND '$fecha2'";
+
+						if(strlen($costo1) != 0 && strlen($costo2) != 0)
+							$consulta.= " AND ords.costo_orden BETWEEN '$costo1' AND '$costo2'";
+
+						$consulta.=" ORDER BY ords.id_orden DESC";
+
 						$cont = 0;
 						$verAcciones = 0;
 					    // $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
-					    $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_orden, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs, usuario_distribuidor AS usudist, empresa_distribuidores AS empdist WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = usudist.id_usuario_distribuidor AND usudist.id_distribuidor_fk = empdist.id_distribuidor AND empdist.id_distribuidor = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
+					    // $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_orden, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs, usuario_distribuidor AS usudist, empresa_distribuidores AS empdist WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = usudist.id_usuario_distribuidor AND usudist.id_distribuidor_fk = empdist.id_distribuidor AND empdist.id_distribuidor = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ 
 
@@ -146,7 +167,7 @@
 				</div>
 			<?php } else{ ?>
 				<div class="alert alert-info" role="alert" style="text-align: center;">
-					<strong>Sin resultados...</strong> No se encontraron coincidencias para "<?php echo $empaque; ?>".
+					<strong>Sin resultados...</strong> No se encontraron coincidencias.
 				</div>
 			<?php } ?>
 
