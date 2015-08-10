@@ -292,7 +292,7 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 	      		</tr>
 	      		<!--<tr>
 	      			<td><strong>Fecha de entrega<strong></td>
-	      			<td><?php print $row['fecha_entrada_punto_venta']." a las ".$row['hora_entrada'] ?></td>
+	      			<td><?php //print $row['fecha_entrada_punto_venta']." a las ".$row['hora_entrada'] ?></td>
 	      		</tr>-->
 			</table>
 	     </div>
