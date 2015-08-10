@@ -50,7 +50,7 @@
 				<div class="form-inline">
 					<input type="text" class="form-control" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del punto de venta..." onkeyup="if(event.keyCode == 13) buscarEnvios();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarEnvios();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<button class="btn btn-success" id="btnAvanzada" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<button class="btn btn-success" id="btnAvanzada" data-toggle="modal" data-target="#modalBusquedaAvanzada"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
 					<a href="../envios/" class="btn btn-info" id="btnMostrarTodos"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
@@ -135,8 +135,8 @@
 						          				<?php echo $row['nombre_punto_venta']; ?>
 						          			</a>
 						          		</td>
-						          		<td class="centro"><?php echo $row['fecha_envio']; ?></td>
-						          		<td class="centro"><?php echo $row['fecha_entrega_envio']; ?></td>
+						          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_envio'])); ?></td>
+						          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_entrega_envio'])); ?></td>
 						          		<!-- <td class="centro"><a href="../camiones/"><?php echo $row['id_camion_fk']; ?></a></td> -->
 						          		<?php
 					          				$estado = $row['estado_envio'];
@@ -179,6 +179,59 @@
 					<?php 
 						mysql_close();
 					?>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade bs-example-modal-lg" id="modalBusquedaAvanzada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="titulo-header">
+							<img class="img-header" src="../../img/buscar.png"> <span id="titulo-estado">Búsqueda Avanzada</span>
+						</h3>
+					</div>
+					<div class="modal-body">
+						<div class="form-horizontal">
+							<div class="form-group">
+						    	<label class="col-sm-2 control-label">Punto de Venta: </label>
+						    	<div class="col-sm-10">
+						    		<td style="border-color: #F8F8F8;"><input type="text" class="form-control" name="inputPuntoVenta" id="inputPuntoVenta" placeholder="Nombre del punto de venta..."></td>
+						    	</div>
+						  	</div>
+						  	<div class="form-group">
+						    	<label class="col-sm-2 control-label">Estado: </label>
+						    	<div class="col-sm-10">
+						    		<select class="form-control" name="inputEstado" id="inputEstado">
+										<option value="0">TODOS</option>
+										<option value="1">PENDIENTE</option>
+										<option value="6">APROBADO</option>
+										<option value="7">PRE-ENVIO</option>
+										<option value="3">ENVIADO</option>
+										<option value="8">CANCELADO POR DISTRIBUIDOR</option>
+										<option value="10">CANCELADO POR PUNTO DE VENTA</option>
+										<option value="9">RECHAZADO POR DISTRIBUIDOR</option>
+										<option value="11">RECHAZADO POR PUNTO DE VENTA</option>
+										<option value="4">CONCRETADO</option>
+									</select>
+						    	</div>
+						  	</div>
+						</div>
+						<br>
+						<table class="table">
+							<tr>
+								<td style="border-color: #F8F8F8;"><label class="lbl-nueva-orden">De:</label></td>
+								<td style="border-color: #F8F8F8;"><input type="date" class="form-control" name="inputFecha1" id="inputFecha1" placeholder="Seleccionar fecha..."></td>
+								<td style="border-color: #F8F8F8;"><label class="lbl-nueva-orden">A:</label></td>
+								<td style="border-color: #F8F8F8;"><input type="date" class="form-control" name="inputFecha2" id="inputFecha2" placeholder="Seleccionar fecha..."></td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+						<button type="button" class="btn btn-primary" onclick="busquedaAvanzada()"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -276,7 +329,26 @@
 			}
 
 			function busquedaAvanzada(){
-				alert('Búsqueda avanzada');
+				var params = {'puntoventa':$('#inputPuntoVenta').val(), 'estado':$('#inputEstado').val(), 'fecha1':$('#inputFecha1').val(), 'fecha2':$('#inputFecha2').val()};
+
+				$.ajax({
+					type: 'POST',
+					url: '../mod/busqueda_avanzada_envios.php',
+					data: params,
+
+					beforeSend: function(){
+						$('#modalBusquedaAvanzada').modal('toggle');
+						$('.contenido-general-2').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+					},
+
+					success: function(data){
+						$('.img-header').attr('src', '../../img/buscar.png');
+						$('#lbl-titulo').text('Resultado de la Búsqueda Avanzada');
+						$('#inputBuscar').select();
+						$('#btnMostrarTodos').css('display', 'block');
+						$('.contenido-general-2').html(data);
+					}
+				});
 			}
 
 			function generacionReportes(){

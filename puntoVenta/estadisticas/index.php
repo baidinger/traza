@@ -41,9 +41,35 @@
         		</h3>
       		</div>
 			<div class="contenido-general-2">
-				<div style="width: 50%; float: left;">
-					<h3>Historial de Órdenes</h3>
-					<div id="graficaOrdenes" style="width: 100%; height: 400px;"></div>
+				<div id="cargando-graficas" style="display: block">
+					<center>
+						<h2>¡Generando Gráficas!</h2>
+						<h3>Por favor espere...</h3>
+						<img src="../../img/cargando.gif">
+					</center>
+				</div>
+				<div id="graficas-cargadas" style="display: none">
+					<div style="width: 50%; margin: 0px auto;">
+						<h3>Historial de Órdenes</h3>
+						<div id="graficaOrdenes" style="width: 100%; height: 400px;"></div>
+
+						<?php 
+							include('../../mod/conexion.php');
+
+							$consulta = "SELECT id_punto_venta_fk FROM usuario_punto_venta WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+							$resultado = mysql_query($consulta);
+							$row = mysql_fetch_array($resultado);
+							$idUsuarioPvFK = $row['id_punto_venta_fk'];
+
+							$datosGraficaOrdenes = array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0);
+
+							$consulta = "SELECT ords.estado_orden, COUNT(ords.id_orden) AS total_ordenes FROM ordenes_punto_venta AS ords, empresa_distribuidores AS epqs WHERE ords.id_distribuidor_fk = epqs.id_distribuidor AND ords.id_usuario_punto_venta_fk = $idUsuarioPvFK GROUP BY ords.estado_orden";
+							$resultado = mysql_query($consulta);
+							while($row = mysql_fetch_array($resultado)){
+								$datosGraficaOrdenes[$row['estado_orden']] = $row['total_ordenes'];
+							}
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -53,21 +79,26 @@
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 		<script type="text/javascript">
+			$(window).load(function() {
+				$('#cargando-graficas').css('display', 'none');
+				$('#graficas-cargadas').css('display', 'block');
+			});
+
 			google.load("visualization", "1", {packages:["corechart"]});
 			google.setOnLoadCallback(drawChartOrdenes);
 
 			function drawChartOrdenes() {
 				var data = google.visualization.arrayToDataTable([
 					['ESTADO',							'TOTAL'],
-					['PENDIENTES',						1],
-					['APROBADOS',						2],
-					['PRE-ENVIO',						1],
-					['ENVIADO',							2],
-					['CANCELADO POR DISTRIBUIDOR',		1],
-					['CANCELADO POR PUNTO DE VENTA',	2],
-					['RECHAZADO POR DISTRIBUIDOR',		1],
-					['RECHAZADO POR PUNTO DE VENTA',	1],
-					['CONCRETADO',						10]
+					['PENDIENTES',						<?php echo $datosGraficaOrdenes[1]; ?>],
+					['APROBADOS',						<?php echo $datosGraficaOrdenes[6]; ?>],
+					['PRE-ENVIO',						<?php echo $datosGraficaOrdenes[7]; ?>],
+					['ENVIADO',							<?php echo $datosGraficaOrdenes[3]; ?>],
+					['CANCELADO POR DISTRIBUIDOR',		<?php echo $datosGraficaOrdenes[8]; ?>],
+					['CANCELADO POR PUNTO DE VENTA',	<?php echo $datosGraficaOrdenes[10]; ?>],
+					['RECHAZADO POR DISTRIBUIDOR',		<?php echo $datosGraficaOrdenes[9]; ?>],
+					['RECHAZADO POR PUNTO DE VENTA',	<?php echo $datosGraficaOrdenes[11]; ?>],
+					['CONCRETADO',						<?php echo $datosGraficaOrdenes[4]; ?>]
 				]);
 
 				var options = {

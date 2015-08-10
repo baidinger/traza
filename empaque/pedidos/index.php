@@ -31,7 +31,7 @@
 		    	<label class="col-sm-2 control-label">Estado: </label>
 			    <div class="col-sm-9">
 			      	<select id="estado" class="form-control input">
-			      		<option>-- Elige una opción</option>
+			      		<option value="0">-- Elige una opción</option>
 			      		<option value="5">Cancel. por empaque</option>
 			      		<option value="8">Cancel. por distribuidor</option>
 			      		<option value="6">Aprobada</option>
@@ -45,7 +45,7 @@
 	  		<div class="form-group">
 		    	<label class="col-sm-2 control-label">Costo: </label>
 			    <div class="col-sm-3">
-			      	<select class="form-control input">
+			      	<select id="costo" onchange="verificar()" class="form-control input">
 			      		<option>---</option>
 			      		<option>Menor que</option>
 			      		<option>Igual que</option>
@@ -54,10 +54,10 @@
 			      	</select>
 			    </div>
 			    <div class="col-sm-3">
-			      	<input class="form-control input" type="number" min="0">
+			      	<input id="costo_inicio" class="form-control input" type="number" value="0.0" min="0">
 			    </div> 
 			    <div class="col-sm-3">
-			      	<input class="form-control input" type="number" min="0">
+			      	<input id="costo_fin" class="form-control input" type="number" value="0.0" min="0">
 			    </div> 
 	  		</div>
 	  		<div class="form-group">
@@ -99,6 +99,12 @@
 
 	
 	<script type="text/javascript">
+		function verificar(){
+			if($("#costo").val() == 4)
+				$("#costo_fin").css("visibility","true");
+			else
+				$("#costo_fin").css("visibility","false");
+		}
 
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();

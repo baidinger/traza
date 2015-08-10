@@ -23,6 +23,11 @@
 				<tbody>
 					<?php
 						$puntoVenta = $_POST['puntoventa'];
+						$estado  = $_POST['estado'];
+						$fecha1  = $_POST['fecha1'];
+						$fecha2  = $_POST['fecha2'];
+						$costo1  = $_POST['costo1'];
+						$costo2  = $_POST['costo2'];
 
 						include('../../mod/conexion.php');
 
@@ -31,8 +36,24 @@
 						$row = mysql_fetch_array($resultado);
 						$id_distribuidor_fk = $row['id_distribuidor_fk'];
 
+						$consulta = "SELECT ordspv.id_orden, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, ordspv.fecha_orden, ordspv.fecha_entrega_orden, ordspv.costo_orden, ordspv.estado_orden FROM ordenes_punto_venta AS ordspv, usuario_punto_venta AS ususpv, empresa_punto_venta AS mpsapv WHERE ordspv.id_usuario_punto_venta_fk = ususpv.id_usuario_pv AND ususpv.id_usuario_pv = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk";
+
+						if(!empty($puntoVenta))
+							$consulta.= " AND mpsapv.nombre_punto_venta LIKE '%$puntoVenta%'";
+
+						if($estado != 0)
+							$consulta.= " AND ordspv.estado_orden = $estado";
+
+						if(!empty($fecha1) && !empty($fecha2))
+							$consulta.= " AND ordspv.fecha_orden BETWEEN '$fecha1' AND '$fecha2'";
+
+						if(strlen($costo1) != 0 && strlen($costo2) != 0)
+							$consulta.= " AND ordspv.costo_orden BETWEEN '$costo1' AND '$costo2'";
+
+						$consulta.=" ORDER BY ordspv.id_orden DESC";
+
 						$cont = 0;
-					    $consulta = "SELECT ordspv.id_orden, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, ordspv.fecha_orden, ordspv.fecha_entrega_orden, ordspv.costo_orden, ordspv.estado_orden FROM ordenes_punto_venta AS ordspv, usuario_punto_venta AS ususpv, empresa_punto_venta AS mpsapv WHERE ordspv.id_usuario_punto_venta_fk = ususpv.id_usuario_pv AND ususpv.id_usuario_pv = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk AND mpsapv.nombre_punto_venta LIKE '%$puntoVenta%' ORDER BY ordspv.id_orden DESC";
+					    // $consulta = "SELECT ordspv.id_orden, mpsapv.id_punto_venta, mpsapv.nombre_punto_venta, ordspv.fecha_orden, ordspv.fecha_entrega_orden, ordspv.costo_orden, ordspv.estado_orden FROM ordenes_punto_venta AS ordspv, usuario_punto_venta AS ususpv, empresa_punto_venta AS mpsapv WHERE ordspv.id_usuario_punto_venta_fk = ususpv.id_usuario_pv AND ususpv.id_usuario_pv = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk AND mpsapv.nombre_punto_venta LIKE '%$puntoVenta%' ORDER BY ordspv.id_orden DESC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ ?>
 							<tr>
@@ -117,7 +138,7 @@
 				</div>
 			<?php } else{ ?>
 				<div class="alert alert-info" role="alert" style="text-align: center;">
-					<strong>Sin resultados...</strong> No se encontraron coincidencias para "<?php echo $puntoVenta; ?>".
+					<strong>Sin resultados...</strong> No se encontraron coincidencias.
 				</div>
 			<?php } ?>
 

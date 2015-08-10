@@ -96,11 +96,11 @@
 				      				</tr>
 				      				<tr>
 				      					<td><strong>Fecha de Registro:</strong></td>
-				      					<td><?php echo $row['fecha_registro_dist']; ?></td>
+				      					<td><?php echo date('d/m/Y', strtotime($row['fecha_registro_dist'])); ?></td>
 				      				</tr>
 				      				<tr>
 				      					<td><strong>Fecha de modificación:</strong></td>
-				      					<td><?php echo $row['fecha_modificacion_dist']; ?></td>
+				      					<td><?php echo date('d/m/Y', strtotime($row['fecha_modificacion_dist'])); ?></td>
 				      				</tr>
 				      			</tbody>
 				      		</table>
