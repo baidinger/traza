@@ -78,12 +78,17 @@
 			          	</td>
 			          	
 			           <td align="center"> 
-			           	<a  href="#" onclick = "mostrarCajasTarimas(<?php echo $row['id_envio']; ?>)" data-toggle="modal" data-target="#myModal">
+			           	<a style="float: right" onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"  href="#">
+				        	<span data-toggle="tooltip" title ="Detalles de envío" class="glyphicon glyphicon-eye-open"></span>
+				    	</a>
+				    	<div style="width:10px; height:10px; float:right;"></div> 
+			           	<a style="float: right" href="#" onclick = "mostrarCajasTarimas(<?php echo $row['id_envio']; ?>)" data-toggle="modal" data-target="#myModal">
 				        	<span title="Mostrar cajas" data-toggle="tooltip" class="glyphicon glyphicon-tags"></span>
-				    	</a>&nbsp;&nbsp;
-			           	<a onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"  href="#">
-				        	<span title ="Detalles de envío" class="glyphicon glyphicon-eye-open"></span>
-				    	</a>&nbsp;&nbsp;
+				    	</a>
+			           	<div style="width:10px; height:10px; float:right;"></div> 
+			           	<a style="float:right; cursor:hand" onclick="generacionReportes(<?php echo $row['id_orden'] ?>)">
+			           		<span data-toggle="tooltip" title="Generar reporte" class="glyphicon glyphicon-print"></span>
+			           	</a>
 				    	
 			           	</td>
 		        	</tr>
@@ -137,5 +142,8 @@
 		<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 		<script type="text/javascript">
 			$('#paginacion-resultados').simplePagination();
-
+			$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			  $('[data-toggle="popover"]').popover();
+			});
 		</script>

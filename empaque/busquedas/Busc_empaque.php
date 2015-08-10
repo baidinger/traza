@@ -11,7 +11,7 @@
 	<body>
 		<?php 
 			$titulo = "Búsqueda de empaques";
-			$placeholder="Buscar empaque";
+			$placeholder="Nombre del empaque";
 			$imagen = "empaque.png";
 			$ruta = "index.php?op=reg_empaque";
 			include("formulario_busqueda_empresa.php"); ?>

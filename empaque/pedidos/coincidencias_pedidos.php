@@ -267,7 +267,8 @@
 			           <td > 
 			           	<a style="float:right; cursor:hand" onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')">
 			           		<span class="glyphicon glyphicon-eye-open"></span>&nbsp;
-			           	</a>&nbsp;
+			           	</a>
+			           	<div style="width:10px; height:10px; float:right;"></div> 
 			           	<a style="float:right; cursor:hand" onclick="generacionReportes(<?php echo $row['id_orden'] ?>)">
 			           		<span class="glyphicon glyphicon-print"></span>&nbsp;
 			           	</a>
@@ -325,6 +326,24 @@
 			</div>
 
 
+	<!-- Modal -->
+			<div class="modal fade" id="infoestadistica" role="dialog"  tabindex="-1" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h3 class="modal-title"><div>Estadísticas</div></h3>
+			      </div>
+			      <div class="modal-body fondo-blanco">
+				   	<div id="piechart" style="width: 900px; height: 500px;"></div>
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
 			<!-- Modal -->
 			<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  <div class="modal-dialog" role="document">
@@ -350,6 +369,7 @@
 			    </div>
 			  </div>
 			</div>
+
 	<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 	<script type="text/javascript">
 		$('#paginacion-resultados').simplePagination();
@@ -373,3 +393,27 @@
 				});
 			}
 	</script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+					    <script type="text/javascript">
+					      google.load("visualization", "1", {packages:["corechart"]});
+					      google.setOnLoadCallback(drawChart);
+					      function drawChart() {
+					        var data = google.visualization.arrayToDataTable([
+					          ['Language', 'Speakers (in millions)'],
+					          ['German',  5.85],
+					          ['French',  1.66],
+					          ['Italian', 0.316],
+					          ['Romansh', 0.0791]
+					        ]);
+
+					      var options = {
+					        legend: 'none',
+					        pieSliceText: 'label',
+					        title: 'Swiss Language Use (100 degree rotation)',
+					        pieStartAngle: 100,
+					      };
+
+					        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+					        chart.draw(data, options);
+					      }
+					    </script>

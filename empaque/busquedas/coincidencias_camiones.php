@@ -52,11 +52,11 @@
 			          			<td class="centro"> <p class="label label-danger"> Inactivo </p> </td>
 			          	<?php } ?>
 	          			<td class="centro">
-	          				<div style="width:90px; margin:0px auto;">
+	          				<div style="width:70px; margin:0px; float: right">
 		          				<a style="float:left; cursor:pointer;"> 
-		          					<span onclick="editar(<?php print $row['id_camion'] ?>)"  data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
+		          					<span data-toggle="tooltip" onclick="editar(<?php print $row['id_camion'] ?>)"  data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 		          				</a>
-		          				<div style="width:20px; height:10px; float:left;"></div> 
+		          				<div style="width:10px; height:10px; float:left;"></div> 
 		          				<!-- ACCION HABILITAR -->
 		          				<?php if($row['estado_ce'] == 1){ ?>
 		          				<a style="float:left;" href="busquedas/habilitar.php?id=<?php echo $row['id_camion']; ?>&status=0&rol=5"> 
@@ -69,7 +69,7 @@
 		          				<?php } ?>
 		          				<!--   - - - - - - - - - - - -  - - - - -  -->
 
-		          				<div style="width:20px; height:10px; float:left;"></div> 
+		          				<div style="width:10px; height:10px; float:left;"></div> 
 		          				<a style="float:left; cursor:pointer;"> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 		          				</a>
@@ -133,7 +133,9 @@
 	<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 
 	<script type="text/javascript">
-		//obtenerPais(<?php print $row['pais_distribuidor'] ?>)
+		$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			});
 		$('#paginacion-resultados').simplePagination();
 		function editar(id){
 					var params = {'id':id};

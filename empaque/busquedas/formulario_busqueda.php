@@ -22,7 +22,7 @@
 		<button  data-toggle="tooltip" title="Búsqueda avanzada" class="btn btn-primary" ><span class="glyphicon glyphicon-filter"></span>&nbsp;</button>			
 	</div>
 	<div style="float:right; margin-top: 20px; margin-right:50px;">
-		<button data-toggle="tooltip" title="Estadísticas" class="btn btn-success" ><span class="glyphicon glyphicon-stats"></span>&nbsp;</button>
+		<button data-toggle="modal" data-target="#infoestadistica" title="Estadísticas" class="btn btn-success" ><span class="glyphicon glyphicon-stats"></span>&nbsp;</button>
 		<button  data-toggle="tooltip" title="Generar reporte" class="btn btn-success"><span class="glyphicon glyphicon-save-file"></span>&nbsp;</button>
 	</div>
 

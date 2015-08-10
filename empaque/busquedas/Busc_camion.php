@@ -11,7 +11,7 @@
 	<body>
 		<?php 
 			$titulo = "Búsqueda de camiones";
-			$placeholder="Buscar núm camión / chofer";
+			$placeholder="Núm camión / chofer";
 			$imagen = "camion.png";
 			$ruta = "index.php?op=reg_camion";
 			include("formulario_busqueda_empresa.php"); ?>
