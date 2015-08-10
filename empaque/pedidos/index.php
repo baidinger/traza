@@ -18,8 +18,8 @@
 	<div style="clear:both"></div>
 	<div id="data"></div>
 
-	<div class="modal fade" id="filtro" role="dialog" >
-	  <div class="modal-dialog" role="document">
+	<div class="modal fade"  id="filtro" role="dialog" >
+	  <div class="modal-dialog" style="width: 700px" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -29,8 +29,8 @@
 	      	<div class="form-horizontal">
 		   	<div class="form-group">
 		    	<label class="col-sm-2 control-label">Estado: </label>
-			    <div class="col-sm-9">
-			      	<select id="estado" class="form-control input">
+			    <div class="col-sm-4">
+			      	<select id="status" class="form-control input">
 			      		<option value="0">-- Elige una opción</option>
 			      		<option value="5">Cancel. por empaque</option>
 			      		<option value="8">Cancel. por distribuidor</option>
@@ -46,36 +46,36 @@
 		    	<label class="col-sm-2 control-label">Costo: </label>
 			    <div class="col-sm-3">
 			      	<select id="costo" onchange="verificar()" class="form-control input">
-			      		<option>---</option>
-			      		<option>Menor que</option>
-			      		<option>Igual que</option>
-			      		<option>Mayor que</option>
-			      		<option>Entre</option>
+			      		<option value="0">---</option>
+			      		<option value="1">Menor que</option>
+			      		<option value="2">Igual que</option>
+			      		<option value="3">Mayor que</option>
+			      		<option value="4">Entre</option>
 			      	</select>
 			    </div>
 			    <div class="col-sm-3">
-			      	<input id="costo_inicio" class="form-control input" type="number" value="0.0" min="0">
+			      	<input id="costo_inicio" disabled class="form-control input" type="number" value="0.0" min="0">
 			    </div> 
 			    <div class="col-sm-3">
-			      	<input id="costo_fin" class="form-control input" type="number" value="0.0" min="0">
+			      	<input id="costo_fin" style="display: none" class="form-control input" type="number" value="0.0" min="0">
 			    </div> 
 	  		</div>
 	  		<div class="form-group">
 		    	<label class="col-sm-2 control-label">Fecha de pedido: </label>
 			    <div class="col-sm-3">
-			      	<select class="form-control input">
-			      		<option>---</option>
-			      		<option>Menor que</option>
-			      		<option>Igual que</option>
-			      		<option>Mayor que</option>
-			      		<option>Entre</option>
+			      	<select id="fecha" onchange="verificar2()" class="form-control input">
+			      		<option value="0">---</option>
+			      		<option value="1">Menor que</option>
+			      		<option value="2">Igual que</option>
+			      		<option value="3">Mayor que</option>
+			      		<option value="4">Entre</option>
 			      	</select>
 			    </div>
 			    <div class="col-sm-3">
-			      	<input class="form-control input" type="number" min="0">
+			      	<input id="fecha_i" value="<?php print date("Y-m-d") ?>" disabled class="form-control input" type="date" min="0">
 			    </div> 
 			    <div class="col-sm-3">
-			      	<input class="form-control input" type="number" min="0">
+			      	<input id="fecha_f" value="<?php print date("Y-m-d") ?>" style="display:none" class="form-control input" type="date" min="0">
 			    </div> 
 
 	  		</div>
@@ -87,7 +87,7 @@
 		  <div class="modal-footer">
 		  	<center>
 			    <button style="width: 150px" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			    <button onclick="aplicar()" style="width: 150px" class="btn btn-primary">Aplicar</button>
+			    <button onclick="aplicar()" style="width: 150px" class="btn btn-primary" data-dismiss="modal">Aplicar</button>
 			    <input type="hidden" id="filtro">
 		    </center>
 	      </div>
@@ -99,12 +99,35 @@
 
 	
 	<script type="text/javascript">
+
 		function verificar(){
+			//alert("cambio a " + $("#costo").val());
+			if($("#costo").val() == 0)
+				$("#costo_inicio").attr("disabled","disabled");
+			else 
+				$("#costo_inicio").removeAttr("disabled");
+
 			if($("#costo").val() == 4)
-				$("#costo_fin").css("visibility","true");
+				$("#costo_fin").css("display","block");
 			else
-				$("#costo_fin").css("visibility","false");
+				$("#costo_fin").css("display","none");
 		}
+
+		function verificar2(){
+			//alert("cambio a " + $("#costo").val());
+			if($("#fecha").val() == 0)
+				$("#fecha_i").attr("disabled","disabled");
+			else 
+				$("#fecha_i").removeAttr("disabled");
+
+			if($("#fecha").val() == 4)
+				$("#fecha_f").css("display","block");
+			else
+				$("#fecha_f").css("display","none");
+		}
+
+
+		
 
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
@@ -181,8 +204,25 @@
 		}
 
 		function aplicar(){
-			alert($("#estado").val());
-			$("#filtro").val(" AND estado_orden = '" + $("#estado").val() + "'" );
+			var consulta = "";
+			if($("#status").val() == 0) 
+				consulta = "";
+			else consulta =  " AND estado_orden = '" + $("#status").val() + "' " ;
+
+			switch($("#costo").val())
+			{
+				case 0: break;
+				case 1: consulta += " AND costo_orden > "+$("#costo_inicio").val();  break;
+				case 2: break;
+				case 3: break;
+				case 4: consulta += " AND costo_orden > "+$("#costo_inicio").val()+" AND costo_orden < "+$("#costo_fin").val(); break;
+			}
+				
+
+				
+
+			$("#filtro").val(cadena);
+			buscar();
 		}
 
 	</script>
