@@ -47,7 +47,7 @@
 				<div class="form-inline">
 					<input type="text" class="form-control" name="inputBuscar" id="inputBuscar" placeholder="Buscar por nombre del distribuidor..." onkeyup="if(event.keyCode == 13) buscarOrdenes();" autofocus>
 					<button class="btn btn-primary" id="btnBuscar" onclick="buscarOrdenes();"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-					<button class="btn btn-success" id="btnAvanzada" onclick="busquedaAvanzada();"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
+					<button class="btn btn-success" id="btnAvanzada" data-toggle="modal" data-target="#modalBusquedaAvanzada"><i class="glyphicon glyphicon-search"></i> Búsqueda Avanzada</button>
 					<a href="../entradasOrdenes/" class="btn btn-info" id="btnMostrarTodos"><i class="glyphicon glyphicon-th-list"></i> Mostrar Todos</a>
 				</div>
 			</div>
@@ -59,7 +59,8 @@
 							<tr>
 								<th class="centro">ID</th>
 								<th>Distribuidor</th>
-								<th class="centro">Fecha</th>
+								<th class="centro">Fecha Orden</th>
+								<th class="centro">Fecha Entrega</th>
 								<th class="derecha">Costo</th>
 								<th class="centro">Env / Rec</th>
 								<th class="centro">Estado</th>
@@ -77,7 +78,7 @@
 								$idUsuarioPvFK = $row['id_punto_venta_fk'];
 
 								$cont = 0;
-							    $consulta = "SELECT ords.id_orden, epqs.id_distribuidor, epqs.nombre_distribuidor, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_punto_venta AS ords, empresa_distribuidores AS epqs WHERE ords.id_distribuidor_fk = epqs.id_distribuidor AND ords.id_usuario_punto_venta_fk = $idUsuarioPvFK";
+							    $consulta = "SELECT ords.id_orden, epqs.id_distribuidor, epqs.nombre_distribuidor, ords.fecha_orden, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_punto_venta AS ords, empresa_distribuidores AS epqs WHERE ords.id_distribuidor_fk = epqs.id_distribuidor AND ords.id_usuario_punto_venta_fk = $idUsuarioPvFK";
 								$resultado = mysql_query($consulta);
 								while($row = mysql_fetch_array($resultado)){ 
 
@@ -143,7 +144,8 @@
 								          				<?php echo $row['nombre_distribuidor']; ?>
 								          			</a>
 								          		</td>
-								          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
+								          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_orden'])); ?></td>
+								          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_entrega_orden'])); ?></td>
 								          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ','); ?></td>
 								          		<td class="centro"><?php echo $totalEnviados." / ".$totalRecibidos; ?></td>
 
@@ -192,6 +194,68 @@
 					<?php 
 						mysql_close();
 					?>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade bs-example-modal-lg" id="modalBusquedaAvanzada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="titulo-header">
+							<img class="img-header" src="../../img/buscar.png"> <span id="titulo-estado">Búsqueda Avanzada</span>
+						</h3>
+					</div>
+					<div class="modal-body">
+						<div class="form-horizontal">
+							<div class="form-group">
+						    	<label class="col-sm-2 control-label">Distribuidor: </label>
+						    	<div class="col-sm-10">
+						    		<td style="border-color: #F8F8F8;"><input type="text" class="form-control" name="inputDistribuidor" id="inputDistribuidor" placeholder="Nombre del distribuidor..."></td>
+						    	</div>
+						  	</div>
+						  	<div class="form-group">
+						    	<label class="col-sm-2 control-label">Estado: </label>
+						    	<div class="col-sm-10">
+						    		<select class="form-control" name="inputEstado" id="inputEstado">
+										<option value="0">TODOS</option>
+										<option value="1">PENDIENTE</option>
+										<option value="6">APROBADO</option>
+										<option value="7">PRE-ENVIO</option>
+										<option value="3">ENVIADO</option>
+										<option value="8">CANCELADO POR DISTRIBUIDOR</option>
+										<option value="10">CANCELADO POR PUNTO DE VENTA</option>
+										<option value="9">RECHAZADO POR DISTRIBUIDOR</option>
+										<option value="11">RECHAZADO POR PUNTO DE VENTA</option>
+										<option value="4">CONCRETADO</option>
+									</select>
+						    	</div>
+						  	</div>
+						</div>
+						<br>
+						<table class="table">
+							<tr>
+								<td style="border-color: #F8F8F8;"><label class="lbl-nueva-orden">De:</label></td>
+								<td style="border-color: #F8F8F8;"><input type="date" class="form-control" name="inputFecha1" id="inputFecha1" placeholder="Seleccionar fecha..."></td>
+								<td style="border-color: #F8F8F8;"><label class="lbl-nueva-orden">A:</label></td>
+								<td style="border-color: #F8F8F8;"><input type="date" class="form-control" name="inputFecha2" id="inputFecha2" placeholder="Seleccionar fecha..."></td>
+							</tr>
+						</table>
+						
+						<table class="table">
+							<tr>
+								<td style="border-color: #F8F8F8;"><label class="lbl-nueva-orden">De:</label></td>
+								<td style="border-color: #F8F8F8;"><input type="number" min="0" class="form-control" name="inputCosto1" id="inputCosto1" placeholder="Costo mínimo..."></td>
+								<td style="border-color: #F8F8F8;"><label class="lbl-nueva-orden">A:</label></td>
+								<td style="border-color: #F8F8F8;"><input type="number" min="0" class="form-control" name="inputCosto2" id="inputCosto2" placeholder="Costo máximo..."></td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cerrar</button>
+						<button type="button" class="btn btn-primary" onclick="busquedaAvanzada()"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -289,7 +353,26 @@
 			}
 
 			function busquedaAvanzada(){
-				alert('Búsqueda avanzada');
+				var params = {'distribuidor':$('#inputDistribuidor').val(), 'estado':$('#inputEstado').val(), 'fecha1':$('#inputFecha1').val(), 'fecha2':$('#inputFecha2').val(), 'costo1':$('#inputCosto1').val(), 'costo2':$('#inputCosto2').val()};
+
+				$.ajax({
+					type: 'POST',
+					url: '../mod/busqueda_avanzada_ordenes_entrada.php',
+					data: params,
+
+					beforeSend: function(){
+						$('#modalBusquedaAvanzada').modal('toggle');
+						$('.contenido-general-2').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+					},
+
+					success: function(data){
+						$('.img-header').attr('src', '../../img/buscar.png');
+						$('#lbl-titulo').text('Resultado de la Búsqueda Avanzada');
+						$('#inputBuscar').select();
+						$('#btnMostrarTodos').css('display', 'block');
+						$('.contenido-general-2').html(data);
+					}
+				});
 			}
 
 			function generacionReportes(){

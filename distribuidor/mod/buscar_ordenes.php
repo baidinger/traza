@@ -12,7 +12,8 @@
 					<tr>
 						<th class="centro">ID</th>
 						<th>Empaque</th>
-						<th class="centro">Fecha</th>
+						<th class="centro">Fecha Orden</th>
+						<th class="centro">Fecha Entrega</th>
 						<th class="derecha">Costo</th>
 						<th class="centro">Estado</th>
 						<th></th>
@@ -28,10 +29,12 @@
 						$consulta = "SELECT id_distribuidor_fk, id_usuario_distribuidor FROM usuario_distribuidor WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
 						$resultado = mysql_query($consulta);
 						$row = mysql_fetch_array($resultado);
-						$id_distribuidor_fk = $row['id_usuario_distribuidor'];
+						// $id_distribuidor_fk = $row['id_usuario_distribuidor'];
+						$id_distribuidor_fk = $row['id_distribuidor_fk'];
 
 						$cont = 0;
-					    $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
+					    // $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
+					    $consulta = "SELECT ords.id_orden, epqs.id_empaque, epqs.nombre_empaque, ords.fecha_orden, ords.fecha_entrega_orden, ords.costo_orden, ords.estado_orden FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs, usuario_distribuidor AS usudist, empresa_distribuidores AS empdist WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = usudist.id_usuario_distribuidor AND usudist.id_distribuidor_fk = empdist.id_distribuidor AND empdist.id_distribuidor = $id_distribuidor_fk AND epqs.nombre_empaque LIKE '%$empaque%' ORDER BY ords.id_orden DESC";
 						$resultado = mysql_query($consulta);
 						while($row = mysql_fetch_array($resultado)){ ?>
 							<tr>
@@ -77,7 +80,8 @@
 				          				<?php echo $row['nombre_empaque']; ?>
 				          			</a>
 				          		</td>
-				          		<td class="centro"><?php echo $row['fecha_entrega_orden']; ?></td>
+				          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_orden'])); ?></td>
+				          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_entrega_orden'])); ?></td>
 				          		<td class="derecha"><?php echo "$ ".number_format($row['costo_orden'], 2, '.', ',')	; ?></td>
 			          			<?php
 			          				$estado = $row['estado_orden'];

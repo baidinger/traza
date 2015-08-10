@@ -81,8 +81,8 @@
 				          				<?php echo $row['nombre_punto_venta']; ?>
 				          			</a>
 				          		</td>
-				          		<td class="centro"><?php echo $row['fecha_envio']; ?></td>
-				          		<td class="centro"><?php echo $row['fecha_entrega_envio']; ?></td>
+				          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_envio'])); ?></td>
+				          		<td class="centro"><?php echo date('d/m/Y', strtotime($row['fecha_entrega_envio'])); ?></td>
 				          		<!-- <td class="centro"><a href="../camiones/"><?php echo $row['id_camion_fk']; ?></a></td> -->
 				          		<?php
 			          				$estado = $row['estado_envio'];

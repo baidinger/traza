@@ -41,13 +41,52 @@
         		</h3>
       		</div>
 			<div class="contenido-general-2">
-				<div style="width: 50%; float: left;">
-					<h3>Historial de Órdenes</h3>
-					<div id="graficaOrdenes" style="width: 100%; height: 400px;"></div>
+				<div id="cargando-graficas" style="display: block">
+					<center>
+						<h2>¡Generando Gráficas!</h2>
+						<h3>Por favor espere...</h3>
+						<img src="../../img/cargando.gif">
+					</center>
 				</div>
-				<div style="width: 50%; float: right;">
-					<h3>Historial de Pedidos</h3>
-					<div id="graficaPedidos" style="width: 100%; height: 400px;"></div>
+
+				<div id="graficas-cargadas" style="display: none">
+					<div style="width: 50%; float: left;">
+						<h3>Historial de Órdenes</h3>
+						<div id="graficaOrdenes" style="width: 100%; height: 400px;"></div>
+
+						<?php 
+							include('../../mod/conexion.php');
+
+							$consulta = "SELECT id_distribuidor_fk, id_usuario_distribuidor FROM usuario_distribuidor WHERE id_usuario_fk = ".$_SESSION['id_usuario'];
+							$resultado = mysql_query($consulta);
+							$row = mysql_fetch_array($resultado);
+							// $id_distribuidor_fk = $row['id_usuario_distribuidor'];
+							$id_distribuidor_fk = $row['id_distribuidor_fk'];
+
+							$datosGraficaOrdenes = array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0);
+
+							$consulta = "SELECT ords.estado_orden, COUNT(ords.id_orden) AS total_ordenes FROM ordenes_distribuidor AS ords, empresa_empaques AS epqs, usuario_distribuidor AS usudist, empresa_distribuidores AS empdist WHERE ords.id_empaque_fk = epqs.id_empaque AND ords.id_usuario_distribuidor_fk = usudist.id_usuario_distribuidor AND usudist.id_distribuidor_fk = empdist.id_distribuidor AND empdist.id_distribuidor = $id_distribuidor_fk GROUP BY ords.estado_orden";
+							$resultado = mysql_query($consulta);
+							while($row = mysql_fetch_array($resultado)){
+								$datosGraficaOrdenes[$row['estado_orden']] = $row['total_ordenes'];
+							}
+						?>
+
+					</div>
+					<div style="width: 50%; float: right;">
+						<h3>Historial de Pedidos</h3>
+						<div id="graficaPedidos" style="width: 100%; height: 400px;"></div>
+
+						<?php 
+							$datosGraficaPedidos = array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0);
+
+							$consulta = "SELECT ordspv.estado_orden, COUNT(id_orden) AS total_ordenes FROM ordenes_punto_venta AS ordspv, usuario_punto_venta AS ususpv, empresa_punto_venta AS mpsapv WHERE ordspv.id_usuario_punto_venta_fk = ususpv.id_usuario_pv AND ususpv.id_punto_venta_fk = mpsapv.id_punto_venta AND ordspv.id_distribuidor_fk = $id_distribuidor_fk GROUP BY ordspv.estado_orden";
+							$resultado = mysql_query($consulta);
+							while($row = mysql_fetch_array($resultado)){
+								$datosGraficaPedidos[$row['estado_orden']] = $row['total_ordenes'];
+							}
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -57,6 +96,11 @@
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 		<script type="text/javascript">
+			$(window).load(function() {
+				$('#cargando-graficas').css('display', 'none');
+				$('#graficas-cargadas').css('display', 'block');
+			});
+
 			google.load("visualization", "1", {packages:["corechart"]});
 			google.setOnLoadCallback(drawChartOrdenes);
 
@@ -66,15 +110,15 @@
 			function drawChartOrdenes() {
 				var data = google.visualization.arrayToDataTable([
 					['ESTADO',						'TOTAL'],
-					['PENDIENTES',					2],
-					['APROBADOS',					5],
-					['PRE-ENVIO',					1],
-					['ENVIADO',						3],
-					['CANCELADO POR EMPAQUE',		3],
-					['CANCELADO POR DISTRIBUIDOR',	2],
-					['RECHAZADO POR EMPAQUE',		1],
-					['RECHAZADO POR DISTRIBUIDOR',	1],
-					['CONCRETADO',					22]
+					['PENDIENTES',					<?php echo $datosGraficaOrdenes[1]; ?>],
+					['APROBADOS',					<?php echo $datosGraficaOrdenes[6]; ?>],
+					['PRE-ENVIO',					<?php echo $datosGraficaOrdenes[7]; ?>],
+					['ENVIADO',						<?php echo $datosGraficaOrdenes[3]; ?>],
+					['CANCELADO POR EMPAQUE',		<?php echo $datosGraficaOrdenes[5]; ?>],
+					['CANCELADO POR DISTRIBUIDOR',	<?php echo $datosGraficaOrdenes[8]; ?>],
+					['RECHAZADO POR EMPAQUE',		<?php echo $datosGraficaOrdenes[2]; ?>],
+					['RECHAZADO POR DISTRIBUIDOR',	<?php echo $datosGraficaOrdenes[9]; ?>],
+					['CONCRETADO',					<?php echo $datosGraficaOrdenes[4]; ?>]
 				]);
 
 				var options = {
@@ -91,15 +135,15 @@
 			function drawChartPedidos() {
 				var data = google.visualization.arrayToDataTable([
 					['ESTADO',							'TOTAL'],
-					['PENDIENTES',						1],
-					['APROBADOS',						2],
-					['PRE-ENVIO',						1],
-					['ENVIADO',							2],
-					['CANCELADO POR DISTRIBUIDOR',		1],
-					['CANCELADO POR PUNTO DE VENTA',	2],
-					['RECHAZADO POR DISTRIBUIDOR',		1],
-					['RECHAZADO POR PUNTO DE VENTA',	1],
-					['CONCRETADO',						10]
+					['PENDIENTES',						<?php echo $datosGraficaPedidos[1]; ?>],
+					['APROBADOS',						<?php echo $datosGraficaPedidos[6]; ?>],
+					['PRE-ENVIO',						<?php echo $datosGraficaPedidos[7]; ?>],
+					['ENVIADO',							<?php echo $datosGraficaPedidos[3]; ?>],
+					['CANCELADO POR DISTRIBUIDOR',		<?php echo $datosGraficaPedidos[8]; ?>],
+					['CANCELADO POR PUNTO DE VENTA',	<?php echo $datosGraficaPedidos[10]; ?>],
+					['RECHAZADO POR DISTRIBUIDOR',		<?php echo $datosGraficaPedidos[9]; ?>],
+					['RECHAZADO POR PUNTO DE VENTA',	<?php echo $datosGraficaPedidos[11]; ?>],
+					['CONCRETADO',						<?php echo $datosGraficaPedidos[4]; ?>]
 				]);
 
 				var options = {

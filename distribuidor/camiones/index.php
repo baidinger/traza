@@ -1,7 +1,7 @@
 <?php
 	@session_start();
 
-	if(!isset($_SESSION['tipo_socio'])){
+	if(!isset($_SESSION['tipo_socio']) || $_SESSION['nivel_socio'] != 1){
 		header('Location: ../');
 	}
 	else{
@@ -92,7 +92,7 @@
 								while($row = mysql_fetch_array($resultado)){ ?>
 									<tr>
 						          		<td class="centro"><?php echo $cont; ?></td>
-						          		<td class="centro"><?php echo $placas = $row['id_camion_distribuidor']; ?></td>
+						          		<td class="centro"><?php echo $row['id_camion_distribuidor']; ?></td>
 						          		<td><?php echo $row['nombre_chofer_camion_distribuidor']; ?></td>
 						          		<td class="centro"><?php echo $placas = $row['placas_camion_distribuidor']; ?></td>
 						          		<td class="centro"><?php echo $row['marca_camion_distribuidor']; ?></td>

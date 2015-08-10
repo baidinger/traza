@@ -88,11 +88,11 @@
 				      				</tr>
 				      				<tr>
 				      					<td><strong>Fecha de Creación:</strong></td>
-				      					<td><?php echo $row['fecha_creacion_usuario']; ?></td>
+				      					<td><?php echo date('d/m/Y', strtotime($row['fecha_creacion_usuario'])); ?></td>
 				      				</tr>
 				      				<tr>
 				      					<td><strong>Fecha de Modificación:</strong></td>
-				      					<td><?php echo $row['fecha_modificacion_usuario']; ?></td>
+				      					<td><?php echo date('d/m/Y', strtotime($row['fecha_modificacion_usuario'])); ?></td>
 				      				</tr>
 				      			</tbody>
 				      		</table>

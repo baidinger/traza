@@ -21,8 +21,8 @@
 	$resultado = mysql_query($consulta);
 	$row = mysql_fetch_array($resultado);
 
-	$fechaOrden = $row['fecha_orden'];
-	$fechaEntrega = $row['fecha_entrega_orden'];
+	$fechaOrden = date('d/m/Y', strtotime($row['fecha_orden']));
+	$fechaEntrega = date('d/m/Y', strtotime($row['fecha_entrega_orden']));
 	$costoOrden = $row['costo_orden'];
 	$descripcionOrden = $row['descripcion_orden'];
 	$descripcionCancelacion = $row['descripcion_cancelacion'];

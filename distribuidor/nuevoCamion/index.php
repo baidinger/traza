@@ -1,7 +1,7 @@
 <?php
 	@session_start();
 
-	if(!isset($_SESSION['tipo_socio'])){
+	if(!isset($_SESSION['tipo_socio']) || $_SESSION['nivel_socio'] != 1){
 		header('Location: ../');
 	}
 	else{
