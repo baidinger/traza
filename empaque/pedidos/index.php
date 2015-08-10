@@ -5,55 +5,110 @@
 		<meta charset="UTF-8">
 		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
 		<link rel="stylesheet" type="text/css" href="css/views.css">
+		
 	</head>
 
 	<body>
 		<?php 
 			$titulo = "Búsqueda de pedidos";
-			$placeholder="Buscar distribuidor / número orden";
+			$placeholder="Nombre del distribuidor / número orden";
 			$imagen = "detalles_orden.png";
 			include("../busquedas/formulario_busqueda.php"); ?>
-		<!--<div class="contenedor-form">
-			
-	  		<div class="modal-header">
-	    		<h3 class="modal-title">
-	    			<img class="img-header" src="../img/detalles_orden.png"> Búsqueda de Pedidos
-	    		</h3>
+		
+	<div style="clear:both"></div>
+	<div id="data"></div>
+
+	<div class="modal fade" id="filtro" role="dialog" >
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="modal-title"><div>Búsqueda avanzada</div></h3>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="form-horizontal">
+		   	<div class="form-group">
+		    	<label class="col-sm-2 control-label">Estado: </label>
+			    <div class="col-sm-9">
+			      	<select id="estado" class="form-control input">
+			      		<option value="0">-- Elige una opción</option>
+			      		<option value="5">Cancel. por empaque</option>
+			      		<option value="8">Cancel. por distribuidor</option>
+			      		<option value="6">Aprobada</option>
+			      		<option value="2">Rechazad. por empaque</option>
+			      		<option value="9">Rechazad. por distribuidor</option>
+			      		<option value="4">Concretada</option>
+			      		<option value="3">Enviada</option>
+			      	</select>
+			    </div>
+	  		</div>
+	  		<div class="form-group">
+		    	<label class="col-sm-2 control-label">Costo: </label>
+			    <div class="col-sm-3">
+			      	<select id="costo" onchange="verificar()" class="form-control input">
+			      		<option>---</option>
+			      		<option>Menor que</option>
+			      		<option>Igual que</option>
+			      		<option>Mayor que</option>
+			      		<option>Entre</option>
+			      	</select>
+			    </div>
+			    <div class="col-sm-3">
+			      	<input id="costo_inicio" class="form-control input" type="number" value="0.0" min="0">
+			    </div> 
+			    <div class="col-sm-3">
+			      	<input id="costo_fin" class="form-control input" type="number" value="0.0" min="0">
+			    </div> 
+	  		</div>
+	  		<div class="form-group">
+		    	<label class="col-sm-2 control-label">Fecha de pedido: </label>
+			    <div class="col-sm-3">
+			      	<select class="form-control input">
+			      		<option>---</option>
+			      		<option>Menor que</option>
+			      		<option>Igual que</option>
+			      		<option>Mayor que</option>
+			      		<option>Entre</option>
+			      	</select>
+			    </div>
+			    <div class="col-sm-3">
+			      	<input class="form-control input" type="number" min="0">
+			    </div> 
+			    <div class="col-sm-3">
+			      	<input class="form-control input" type="number" min="0">
+			    </div> 
+
 	  		</div>
 
-	  	</div>
+	  		</div>
+	  		<div style="clear:both"></div>
+	  		<p>&nbsp;</p>
+		  </div>
+		  <div class="modal-footer">
+		  	<center>
+			    <button style="width: 150px" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			    <button onclick="aplicar()" style="width: 150px" class="btn btn-primary">Aplicar</button>
+			    <input type="hidden" id="filtro">
+		    </center>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
-	  	 
-	<div class="busqueda-form">
-				<div class="form-group">
-			    	<label for="inputBuscar" class="col-sm-2 control-label">Buscar</label>
-			    	<div class="col-sm-10">
-			      		<input onkeyup="if(event.keyCode == 13) buscar();" type="text" class="form-control" id="inputBuscar" placeholder="Buscar distribuidor">
-			    	</div>
-			  	</div>
-		</div>
-<div style="float:left; margin-top: 20px; margin-left:10px;">
-			<button type="submit" class="btn btn-primary" onclick="buscar()">Buscar</button>
-		</div>
 
-<
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>-->
-<div style="clear:both"></div>
-<div id="data">
-
-</div>
-</body>
 
 	
-
-
 	<script type="text/javascript">
-		
+		function verificar(){
+			if($("#costo").val() == 4)
+				$("#costo_fin").css("visibility","true");
+			else
+				$("#costo_fin").css("visibility","false");
+		}
+
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
-					var params = {'buscar':Buscar};
+					var params = {'buscar':Buscar, 'filtro':$('#filtro').val()};
 					$.ajax({
 						type: 'POST',
 						url: 'pedidos/coincidencias_pedidos.php',
@@ -91,24 +146,7 @@
 
 			});
 		}
-/*
-		function modificarEstado(){
-			var id 			=	$('#id').val();
-			var estado 		=	$('#estado').val();
-			var type		=	"changeState";
-			var parametros	=	{'id':id, 'type':type, 'estado':estado};
 
-			$.ajax({
-				type:'post',
-				url:'pedidos/modificarPedidos.php',
-				data: parametros,
-				success: function(data){
-					$(location).attr('href','index.php?op=pedidos'); 
-				}
-
-			});
-		}
-*/
 		function infoModalShow(id, estado){
 			if(estado == 6){ 
 				$('#info_modal').html(
@@ -129,6 +167,7 @@
 				$('#titulo_orden').html('¡Cancelar Orden!');
 
 			}
+
 			if(estado == 2){ 
 				$('#info_modal').html(
 					'<div class="alert alert-danger" role="alert"> <strong> ¿Seguro? </strong> <p>Ten encuenta que si se rechaza una orden se reconoce que el proceso de la orden no ha sido el adecuado</p></div><label>Motivo de rechazo:</label><textarea required class="form-control" name="motivo"></textarea>'
@@ -141,6 +180,11 @@
 			$('#infoModal').modal('show');
 		}
 
+		function aplicar(){
+			alert($("#estado").val());
+			$("#filtro").val(" AND estado_orden = '" + $("#estado").val() + "'" );
+		}
+
 	</script>
-	
+	</body>	
 </html>

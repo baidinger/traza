@@ -50,7 +50,7 @@
 					  <div class="form-group">
 				    	<label class="col-sm-2 control-label">Dirección: </label>
 				    	<div class="col-sm-10">
-				    		<input type="text" value="<?php echo $row['direccion_receptor']; ?>" class="form-control input" name="direccion_receptor" id="" placeholder="Dirección del receptor" required>
+				    		<textarea type="text" class="form-control input" name="direccion_receptor" id="" placeholder="Dirección del receptor" required><?php echo $row['direccion_receptor']; ?></textarea>
 			         	</div>
 					  </div>
 					  
