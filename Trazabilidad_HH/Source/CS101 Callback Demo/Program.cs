@@ -154,7 +154,9 @@ namespace CS101_CALLBACK_API_DEMO
 
                 //Application.Run(new MenuForm());
                 //Application.Run(new TagInventoryForm());
-                Application.Run(new sesion());
+                //Application.Run(new sesion());
+
+                Application.Run(new Trazabilidad());
 
                 ReaderCE.Disconnect();
 
