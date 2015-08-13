@@ -106,5 +106,14 @@ namespace CS101_CALLBACK_API_DEMO
                 eW.ShowDialog();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (readEpcsTrazabilidad ret = new readEpcsTrazabilidad())
+            {
+                ret.ShowDialog();
+            }
+        }
+
     }
 }
