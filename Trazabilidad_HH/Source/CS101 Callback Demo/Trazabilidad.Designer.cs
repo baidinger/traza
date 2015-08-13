@@ -120,6 +120,7 @@
             this.nom_pv.Size = new System.Drawing.Size(291, 20);
             this.nom_pv.TabIndex = 8;
             this.nom_pv.Text = "nom_pv";
+            this.nom_pv.Click += new System.EventHandler(this.nom_pv_Click);
             // 
             // acept_btn
             // 

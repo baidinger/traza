@@ -63,7 +63,7 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				 	case 9: $datos_usuario .= "Rechazado por dist."; break;
 				}
 
-				 $datos_usuario .= "*ENVIO AL DISTRIBUIDOR,".$row['id_envio_empaque'].",".$row['id_camion_fk'].",".$row['fecha_envio_empaque'].",";
+				 $datos_usuario .= "*ENVIO AL DISTRIBUIDOR,".$row['id_envio_empaque'].",".$row['num_camion'].",".$row['fecha_envio_empaque'].",";
 
 
 				switch($row['estado_envio_empaque']){
@@ -78,7 +78,7 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				 	case 9: $datos_usuario .= "Rechazado por dist."; break;
 				} 
 
-				$datos_usuario .= ",".$row['fecha_entrada']." a las ".$row['hora_entrada'];
+				$datos_usuario .= ",".$row['fecha_entrada_distribuidor']." a las ".$row['hora_entrada_distribuidor'];
 
 				$datos_usuario .= "*PUNTO DE VENTA,".$row['nombre_punto_venta'].",".$row['rfc_punto_venta'];
 
@@ -97,7 +97,7 @@ TRAZABILIDAD DE EPC ENVIADO DEL DISTRIBUIDOR AL PUNTO DE VENTA
 				 	case 9: $datos_usuario .= "Rechazado por dist."; break;
 				} 
 
-				$datos_usuario .= "*ENVIO AL PUNTO DE VENTA,".$row['id_envio_distribuidor'].",".$row['id_camion_fk'].",".$row['fecha_envio_distribuidor'].",";
+				$datos_usuario .= "*ENVIO AL PUNTO DE VENTA,".$row['id_envio_distribuidor'].",".$row['num_camion_dist'].",".$row['fecha_envio_distribuidor'].",";
 
 
 				switch($row['estado_envio_distribuidor']){
