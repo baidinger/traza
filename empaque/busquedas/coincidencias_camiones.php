@@ -1,5 +1,5 @@
 <?php 
-	
+
 	$buscar = $_POST['buscar'];
 	
 	include("../../mod/conexion.php");
@@ -9,12 +9,11 @@
 	if(mysql_num_rows($result_productores) > 0){
  ?>
 
-<div id="paginacion-resultados" style="width:95%; margin:0px auto;">
+	<div id="paginacion-resultados" style="width:95%; margin:0px auto;">
 	    <table class="table table-hover" style="font-size: 14px">
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
-		          
 		          <th class="centro">Núm. camión</th>
 		          <th>Chofer</th>
 		          <th class="centro">Placas</th>
@@ -53,8 +52,8 @@
 			          	<?php } ?>
 	          			<td class="centro">
 	          				<div style="width:70px; margin:0px; float: right">
-		          				<a style="float:left; cursor:pointer;"> 
-		          					<span data-toggle="tooltip" onclick="editar(<?php print $row['id_camion'] ?>)"  data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
+		          				<a data-toggle="modal" data-target="#myModal"  onclick="editar(<?php print $row['id_camion'] ?>)" style="float:left; cursor:pointer;"> 
+		          					<span data-toggle="tooltip"  data-placement="top" title="Editar" class="editar glyphicon glyphicon-edit" aria-hidden="true"></span>
 		          				</a>
 		          				<div style="width:10px; height:10px; float:left;"></div> 
 		          				<!-- ACCION HABILITAR -->
@@ -118,16 +117,11 @@
        				</h3>
 			      </div>
 			      <div id="data-child" class="modal-body">
-
-
-			      		
 			        
 			      </div>
 			    </div>
 			  </div>
 			</div>
-
-			
 
 
 	<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
@@ -137,6 +131,7 @@
 			  $('[data-toggle="tooltip"]').tooltip()
 			});
 		$('#paginacion-resultados').simplePagination();
+
 		function editar(id){
 					var params = {'id':id};
 					$.ajax({
