@@ -55,18 +55,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-       <!-- <?php if($_SESSION['nivel_socio'] == 1){ ?>
-      	
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <span class="glyphicon glyphicon-th-large"></span>&nbsp;Registrar <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="index.php?op=reg_empaque">Empaque</a></li>
-            <li><a href="index.php?op=reg_distribuidor">Distribuidor</a></li>
-            <li><a href="index.php?op=reg_punto_venta">Punto de venta</a></li>
-          </ul>
-        </li>
-        <?php } ?>-->
          <?php if($_SESSION['nivel_socio'] == 1){ ?>
       	<!-- Administrar cuentas -->
         <li class="dropdown">
@@ -79,7 +67,7 @@
             <?php } ?>
             <li><a  href="index.php?op=bus_camion">Camiones</a></li>
             <li><a  href="index.php?op=bus_distribuidor">Distribuidores</a></li>
-            <li><a  href="index.php?op=bus_pv">Punto de venta</a></li>
+            <li><a  href="index.php?op=bus_pv">Puntos de venta</a></li>
           </ul>
         </li>
         
