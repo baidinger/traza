@@ -34,23 +34,32 @@
 			  	<p>&nbsp;</p>
 			  	<div class="form-group">
 			    	<label class="col-sm-3 control-label">Tipo de producto </label>
+			    	
 			    	<div id="contenedor-productos-productor" class="col-sm-9">
 			    		<div class="alert alert-info" role="alert"><p>Seleccione un productor para continuar</p></div>
 		         	</div>
 				  </div>
 				  <div class="form-group">
-			    	<label class="col-sm-3 control-label">Cantidad de cajas: </label>
+			    	<label class="col-sm-3 control-label">Precio x kilo: </label>
 			    	<div class="col-sm-9">
 			    		<input type="number" class="form-control input" 
+			    		name="precio" id="precio" 
+			    		placeholder="precio" disabled required min ="0">
+		         	</div>
+				  </div>
+				  <div class="form-group">
+			    	<label class="col-sm-3 control-label">Cantidad de cajas: </label>
+			    	<div class="col-sm-3">
+			    		<input type="number" value="0" class="form-control input" 
 			    		name="cantidad_cajas" 
 			    		placeholder="Cantidad de cajas" required min ="0">
 		         	</div>
 				  </div>
 				  <div class="form-group">
 			    	<label class="col-sm-3 control-label">Cantidad de kilos: </label>
-			    	<div class="col-sm-9">
-			    		<input type="number" class="form-control input" 
-			    		name="cantidad_kilos" 
+			    	<div class="col-sm-3">
+			    		<input onblur="calcularP()" value="0" type="number" class="form-control input" 
+			    		name="cantidad_kilos" id="cantidad_kilos"
 			    		placeholder="Número de kilos" min="0" required>
 		         	</div>
 				  </div>
@@ -65,8 +74,8 @@
 				  <div class="form-group">
 			    	<label class="col-sm-3 control-label">Costo lote: </label>
 			    	<div class="col-sm-9">
-			    		<input type="number" min="0" class="form-control input" 
-			    		name="costo_lote" 
+			    		<input disabled type="number" value="0.0" min="0" class="form-control input" 
+			    		name="costo_lote" id="costo_lote"
 			    		placeholder="Costo del lote" required>
 		         	</div>
 				  </div>
@@ -155,6 +164,17 @@
 	<script type="text/javascript">
 			$('#tabla-detalles-orden').hide();
 
+			function calcularP(){
+				//alert($("#precio").val());
+				if($("#precio").val().length > 0){
+					if($("#cantidad_kilos").val().length > 0)
+					{
+						$("#costo_lote").val( $("#precio").val() * $("#cantidad_kilos").val());
+						//alert($("#precio").val() * $("#cantidad_kilos").val());
+					}
+				}
+			}
+
 			function guardar(){
 				if($('#selectProducto').length == 0){
 					alert("Se debe seleccionar un productor con productos asignados");
@@ -198,6 +218,19 @@
 				});
 			}
 
-			
+			function obtenerPrecio(){
+				$.ajax({
+					type: 'POST',
+					url: 'buscar/buscar_precio_producto.php',
+					data: {'id':$("#selectProducto").val()},
+
+					success: function(data){
+						$('#precio').val(data);
+						calcularP();
+					}
+				});	
+
+			}
+
 		</script>
 </html>

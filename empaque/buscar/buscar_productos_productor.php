@@ -15,7 +15,7 @@
 
 				if(mysql_num_rows($resultado ) > 0){
 				?>
-		<select style="float:right" class="col-sm-9 form-control" name="id_productos_productores" id="selectProducto">
+		<select onchange="obtenerPrecio()" style="float:right" class="col-sm-9 form-control" name="id_productos_productores" id="selectProducto">
 			<?php 
 
 				while($row = mysql_fetch_array($resultado)){ ?>
@@ -27,6 +27,8 @@
 		<script type="text/javascript">
 			if($('#selectProducto').length > 0){
 				$("#guardar").removeAttr("disabled");
+
+			obtenerPrecio();
 		}
 		</script>
 		
