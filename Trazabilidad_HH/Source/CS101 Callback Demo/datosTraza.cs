@@ -573,5 +573,111 @@ namespace CS101_CALLBACK_API_DEMO
 
         }
 
+        public datosTraza(int y, String[] pv, String[] ordPv, String[] envPv)
+        {
+            InitializeComponent();
+
+            this.Text = "Datos de " + pv[1];
+            this.pv = pv;
+            this.ordPv = ordDist;
+            this.enviDist = envPv;
+
+            labelsP = new Label[pv.Length];
+
+            labelsP[0] = new Label();
+            labelsP[0].Location = new System.Drawing.Point(2, 2);
+            labelsP[0].Name = "dist_lbl";
+            labelsP[0].Size = new System.Drawing.Size(200, 20);
+            labelsP[0].Text = "PUNTO DE VENTA";
+            labelsP[0].Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+
+            for (int i = 1; i < pv.Length; i++)
+            {
+                labelsP[i] = new Label();
+                labelsP[i].Location = new System.Drawing.Point(10, 2 + (i * 20));
+                labelsP[i].Size = new System.Drawing.Size(300, 20);
+                switch (i)
+                {
+                    case 1:
+                        labelsP[i].Text = "Nombre: " + pv[i];
+                        break;
+                    case 2:
+                        labelsP[i].Text = "RFC: " + pv[i];
+                        break;
+                }
+                this.Controls.Add(labelsP[i]);
+
+            }
+
+            labelsE = new Label[ordPv.Length];
+            labelsE[0] = new Label();
+            labelsE[0].Location = new System.Drawing.Point(2, 60);
+            labelsE[0].Name = "ord_pv_lbl";
+            labelsE[0].Size = new System.Drawing.Size(200, 20);
+            labelsE[0].Text = "Orden del punto de venta";
+            labelsE[0].Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+
+            for (int i = 1; i < ordPv.Length; i++)
+            {
+                labelsE[i] = new Label();
+                labelsE[i].Location = new System.Drawing.Point(10, 60 + (i * 20));
+                labelsE[i].Size = new System.Drawing.Size(300, 20);
+                switch (i)
+                {
+                    case 1:
+                        labelsE[i].Text = "N° de orden: " + ordPv[i];
+                        break;
+                    case 2:
+                        labelsE[i].Text = "Fecha: " + ordPv[i];
+                        break;
+                    case 3:
+                        labelsE[i].Text = "Estado: " + ordPv[i];
+                        break;
+                }
+                this.Controls.Add(labelsE[i]);
+
+            }
+
+            labelsV = new Label[envPv.Length];
+            labelsV[0] = new Label();
+            labelsV[0].Location = new System.Drawing.Point(2, 140);
+            labelsV[0].Name = "env_pv_lbl";
+            labelsV[0].Size = new System.Drawing.Size(200, 20);
+            labelsV[0].Text = "Envio al Punto de venta";
+            labelsV[0].Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+
+            for (int i = 1; i < envPv.Length; i++)
+            {
+                labelsV[i] = new Label();
+                labelsV[i].Location = new System.Drawing.Point(10, 140 + (i * 20));
+                labelsV[i].Size = new System.Drawing.Size(300, 20);
+                switch (i)
+                {
+                    case 1:
+                        labelsV[i].Text = "N° de envio: " + envPv[i];
+                        break;
+                    case 2:
+                        labelsV[i].Text = "N° de camión: " + envPv[i];
+                        break;
+                    case 3:
+                        labelsV[i].Text = "Fecha: " + envPv[i];
+                        break;
+                    case 4:
+                        labelsV[i].Text = "Estado: " + envPv[i];
+                        break;
+                    case 5:
+                        labelsV[i].Text = "Fecha de entrega: " + envPv[i];
+                        break;
+                }
+                this.Controls.Add(labelsV[i]);
+
+            }
+
+            this.Controls.Add(labelsV[0]);
+            this.Controls.Add(labelsE[0]);
+            this.Controls.Add(labelsP[0]);
+
+        }
+
     }
 }

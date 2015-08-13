@@ -255,5 +255,13 @@ namespace CS101_CALLBACK_API_DEMO
                 }
             }
         }
+
+        private void nom_pv_Click(object sender, EventArgs e)
+        {
+            using (datosTraza dT = new datosTraza(4, pv, ordPv, envPv))
+            {
+                dT.ShowDialog();
+            }
+        }
     }
 }
