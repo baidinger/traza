@@ -134,10 +134,10 @@ TRAZABILIDAD DE EPC ENVIADO Y ENTREGADO AL DISTRIBUIDOR
 
 				$datos_usuario .= "*DISTRIBUIDOR,".$row['nombre_distribuidor'].",".$row['rfc_distribuidor'];
 
-				$datos_usuario .= "*ORDEN DEL DISTRIBUIDOR,".$row['id_orden_distribuidor'].",".$row['fecha_orden_distribuidor'].",";
+				$datos_usuario .= "*ORDEN DEL DISTRIBUIDOR,".$row['id_orden'].",".$row['fecha_orden'].",";
 
 
-				switch($row['estado_orden_distribuidor'])
+				switch($row['estado_orden'])
 				{
 				 	case 1: $datos_usuario .= "Pendiente"; break;
 				 	case 2: $datos_usuario .= "Rechazado por emp."; break;
@@ -151,10 +151,10 @@ TRAZABILIDAD DE EPC ENVIADO Y ENTREGADO AL DISTRIBUIDOR
 				}
 			
 
-	  			$datos_usuario .= "*ENVIO AL DISTRIBUIDOR,".$row['id_envio_empaque'].",".$row['id_camion_fk'].",".$row['fecha_envio_empaque'].",";
+	  			$datos_usuario .= "*ENVIO AL DISTRIBUIDOR,".$row['id_envio'].",".$row['id_camion_fk'].",".$row['fecha_envio'].",";
 
 
-				switch($row['estado_envio_empaque']){
+				switch($row['estado_envio']){
 				 	case 1: $datos_usuario .= "Pendiente"; break;
 				 	case 2: $datos_usuario .= "Rechazado por emp."; break;
 				 	case 3: $datos_usuario .= "Enviado"; break;
@@ -189,39 +189,39 @@ TRAZABILIDAD DE EPC ENVIADO PERO NO ENTREGADO
 
 			$datos_usuario .= "*EMPAQUE,".$row['nombre_empaque'].",".$row['rfc_empaque'];
 
-			$datos_usuario .= "*ORDEN DEL DISTRIBUIDOR,".$row['id_orden_distribuidor'].",".$row['fecha_orden_distribuidor'].",";
+			$datos_usuario .= "*ORDEN DEL DISTRIBUIDOR,".$row['id_orden'].",".$row['fecha_orden'].",";
 
 
-			switch($row['estado_orden_distribuidor'])
-			{
-			 	case 1: $datos_usuario .= "Pendiente"; break;
-			 	case 2: $datos_usuario .= "Rechazado por emp."; break;
-			 	case 3: $datos_usuario .= "Enviado"; break;
-			 	case 4: $datos_usuario .= "Concretado"; break;
-			 	case 5: $datos_usuario .= "Cancel. por emp."; break;
-			 	case 6: $datos_usuario .= "Aprobado"; break;
-			 	case 7: $datos_usuario .= "Pre-envío"; break;
-			 	case 8: $datos_usuario .= "Cancel. por dist."; break;
-			 	case 9: $datos_usuario .= "Rechazado por dist."; break;
-			}
+				switch($row['estado_orden'])
+				{
+				 	case 1: $datos_usuario .= "Pendiente"; break;
+				 	case 2: $datos_usuario .= "Rechazado por emp."; break;
+				 	case 3: $datos_usuario .= "Enviado"; break;
+				 	case 4: $datos_usuario .= "Concretado"; break;
+				 	case 5: $datos_usuario .= "Cancel. por emp."; break;
+				 	case 6: $datos_usuario .= "Aprobado"; break;
+				 	case 7: $datos_usuario .= "Pre-envío"; break;
+				 	case 8: $datos_usuario .= "Cancel. por dist."; break;
+				 	case 9: $datos_usuario .= "Rechazado por dist."; break;
+				}
+			
 
-			$datos_usuario .= "*ENVIO AL DISTRIBUIDOR,".$row['id_envio_empaque'].",".$row['id_camion_fk'].",".$row['fecha_envio_empaque'].",";
+	  			$datos_usuario .= "*ENVIO AL DISTRIBUIDOR,".$row['id_envio'].",".$row['id_camion_fk'].",".$row['fecha_envio'].",";
 
 
-			switch($row['estado_envio_empaque'])
-			{
-			 	case 1: $datos_usuario .= "Pendiente"; break;
-			 	case 2: $datos_usuario .= "Rechazado por emp."; break;
-			 	case 3: $datos_usuario .= "Enviado"; break;
-			 	case 4: $datos_usuario .= "Concretado"; break;
-			 	case 5: $datos_usuario .= "Cancel. por emp."; break;
-			 	case 6: $datos_usuario .= "Aprobado"; break;
-			 	case 7: $datos_usuario .= "Pre-envío"; break;
-			 	case 8: $datos_usuario .= "Cancel. por dist."; break;
-			 	case 9: $datos_usuario .= "Rechazado por dist."; break;
-			} 
+				switch($row['estado_envio']){
+				 	case 1: $datos_usuario .= "Pendiente"; break;
+				 	case 2: $datos_usuario .= "Rechazado por emp."; break;
+				 	case 3: $datos_usuario .= "Enviado"; break;
+				 	case 4: $datos_usuario .= "Concretado"; break;
+				 	case 5: $datos_usuario .= "Cancel. por emp."; break;
+				 	case 6: $datos_usuario .= "Aprobado"; break;
+				 	case 7: $datos_usuario .= "Pre-envío"; break;
+				 	case 8: $datos_usuario .= "Cancel. por dist."; break;
+				 	case 9: $datos_usuario .= "Rechazado por dist."; break;
+				} 
 
-			$datos_usuario .= ",".$row['fecha_entrada']." a las ".$row['hora_entrada'];
+				$datos_usuario .= ",".$row['fecha_entrada']." a las ".$row['hora_entrada'];
 
 		?>
 			<?php }

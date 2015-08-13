@@ -230,7 +230,26 @@ namespace CS101_CALLBACK_API_DEMO
             }
             else
             {
-                using (datosTraza dT = new datosTraza(Empaque, Lote))
+                using (datosTraza dT = new datosTraza(4,Empaque, Lote))
+                {
+                    dT.ShowDialog();
+                }
+            }
+        }
+
+        private void nom_dist_Click(object sender, EventArgs e)
+        {
+            if (tipo.CompareTo("1") == 0)
+            {
+                using (datosTraza dT = new datosTraza(3,Distribuidor, ordDist, enviDist, ordPv, envPv))
+                {
+                    dT.ShowDialog();
+                }
+
+            }
+            else if (tipo.CompareTo("2") == 0)
+            {
+                using (datosTraza dT = new datosTraza(Distribuidor, ordDist, enviDist))
                 {
                     dT.ShowDialog();
                 }

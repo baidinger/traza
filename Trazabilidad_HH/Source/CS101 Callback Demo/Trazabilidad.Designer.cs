@@ -102,6 +102,7 @@
             this.nom_dist.Size = new System.Drawing.Size(291, 20);
             this.nom_dist.TabIndex = 6;
             this.nom_dist.Text = "nom_dist";
+            this.nom_dist.Click += new System.EventHandler(this.nom_dist_Click);
             // 
             // label5
             // 
