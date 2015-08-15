@@ -4,7 +4,7 @@
 			$buscar = $_POST['buscar'];
 			$result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rfc_punto_venta, ".
 				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta,cp_punto_venta, telefono_punto_venta, email_punto_venta, direccion_punto_venta, ".
-				" estado_pv from empresa_punto_venta where id_usuario_que_registro = ".$_SESSION['id_usuario']."  AND nombre_punto_venta like '%$buscar%'");
+				" estado_pv from empresa_punto_venta where id_usuario_que_registro = ".$_SESSION['id_receptor']."  AND nombre_punto_venta like '%$buscar%'");
 			if(mysql_num_rows($result_productores) > 0){
 ?>
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">

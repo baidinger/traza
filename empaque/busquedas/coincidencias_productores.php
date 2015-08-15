@@ -3,7 +3,7 @@
 			$buscar = $_POST['buscar'];
 			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
 				"telefono_productor, direccion_productor, ".
-				" rfc_productor, id_usuario_fk, estado_p, nombre_usuario from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_usuario_que_registro = ".$_SESSION['id_usuario']." AND (nombre_productor like '%$buscar%' OR apellido_productor like '%$buscar%')");
+				" rfc_productor, id_usuario_fk, estado_p, nombre_usuario from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_usuario_que_registro = ".$_SESSION['id_receptor']." AND (nombre_productor like '%$buscar%' OR apellido_productor like '%$buscar%')");
 			if($result_productores){
 			if(mysql_num_rows($result_productores) > 0){
 ?>

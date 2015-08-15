@@ -115,7 +115,7 @@
 					      			</tbody>
 					      		</table>
 					      		<center>
-					      			<a href="#" onclick="goBack()" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
+					      			<a style="cursor: hand" onclick="goBack()" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
 					      		</center>
 					      	</div>
 					    </div>

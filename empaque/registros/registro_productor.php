@@ -28,7 +28,7 @@
 			if(mysql_query("INSERT INTO empresa_productores (nombre_productor, apellido_productor,".
 				" telefono_productor, direccion_productor,".
 				" rfc_productor, id_usuario_fk, id_usuario_que_registro, fecha_registro_prod, fecha_modificacion_prod) VALUES ('".$nombre."','".$apellido."',".
-				" '".$telefono."','".$direccion."','".$rfc."',".$id_usuario.",".$_SESSION['id_usuario'].",'".date("Y-m-d")."','".date("Y-m-d")."')")){
+				" '".$telefono."','".$direccion."','".$rfc."',".$id_usuario.",".$_SESSION['id_receptor'].",'".date("Y-m-d")."','".date("Y-m-d")."')")){
 				mysql_close($conexion);
 				header ("Location: ../index.php?op=".$regreso."");
 			}
