@@ -251,7 +251,7 @@
 				case '3': consulta += " AND fecha_recibo_lote > '"+$("#fecha_i").val()+"'";  break;
 				case '4': consulta += " AND fecha_recibo_lote > '"+$("#fecha_i").val()+"' AND fecha_recibo_lote < '"+$("#fecha_f").val()+"'"; break;
 			}
-			alert(consulta);
+			//alert(consulta);
 			$("#filtro").val(consulta);
 			buscar();
 		}

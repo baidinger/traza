@@ -105,7 +105,7 @@
 						      			</tbody>
 						      		</table>
 						      		<center>
-						      			<a href="index.php?op=bus_productor">
+						      			<a style="cursor: hand;" onclick="goBack()">
 						      				<button class="btn btn-primary">
 						      				<i class="glyphicon glyphicon-chevron-left"></i> Regresar
 						      			</button>

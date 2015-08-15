@@ -24,7 +24,9 @@
 				 $result_receptores = mysql_query($consulta);
 				$i=1;
 				if($result_receptores){
-					
+						$count  = mysql_num_rows($result_receptores);
+	if( $count > 0 ){
+	print "<p>Se encontraron " .  $count . " resultados.</p>";
 					 while($row = mysql_fetch_array($result_receptores)) {
 					 	
 					 	?>
@@ -74,6 +76,7 @@
 			        $i=$i+1;
 					 }
 				}
+			}
 				  ?>
 	          	</tbody>
 	        </table>

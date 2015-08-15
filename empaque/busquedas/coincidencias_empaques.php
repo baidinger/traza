@@ -2,10 +2,7 @@
 <?php 
 	include("../../mod/conexion.php");
 	$buscar = $_POST['buscar'];
-	$result_productores = mysql_query("select id_empaque, nombre_empaque, rfc_empaque, ".
-				"pais_empaque, estado_empaque, ciudad_empaque, direccion_empaque, cp_empaque, ".
-				" email_empaque, telefono1_empaque, telefono2_empaque, estado_e from empresa_empaques where id_usuario_que_registro = ".$_SESSION['id_receptor']." AND nombre_empaque like '%$buscar%'");
-	if(mysql_num_rows($result_productores) > 0){
+	
 
  ?>
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
@@ -24,7 +21,12 @@
       		</thead>
       		<tbody>
 			<?php
-			
+			$result_productores = mysql_query("select id_empaque, nombre_empaque, rfc_empaque, ".
+				"pais_empaque, estado_empaque, ciudad_empaque, direccion_empaque, cp_empaque, ".
+				" email_empaque, telefono1_empaque, telefono2_empaque, estado_e from empresa_empaques where id_usuario_que_registro = ".$_SESSION['id_receptor']." AND nombre_empaque like '%$buscar%'");
+		$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){
+	print "<p>Se encontraron " .  $count . " resultados.</p>";
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	

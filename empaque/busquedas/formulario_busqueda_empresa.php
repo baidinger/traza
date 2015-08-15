@@ -30,8 +30,5 @@
 	</div>
 
 
-<!-- -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<div style="clear: both"></div>
 <hr>
-<p>&nbsp;</p>
