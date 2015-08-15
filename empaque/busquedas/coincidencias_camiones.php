@@ -33,7 +33,7 @@
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
 		        
-			          	<td class="centro"><?php echo $row['id_camion']; ?></td>
+			          	<td class="centro"><?php echo str_pad($row['id_camion'], 7,"0",STR_PAD_LEFT); ?></td>
 			          	<td><?php echo $row['nombre_chofer']; ?></td>
 			         
 			          	<td class="centro"><?php echo $row['placas']; ?></td>

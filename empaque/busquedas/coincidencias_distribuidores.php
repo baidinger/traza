@@ -16,7 +16,7 @@
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
-		          
+		          <th class="centro">ID</th>
 		          <th>Nombre</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">Ubicación</th>
@@ -34,8 +34,8 @@
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
-		        
-			          	<td ><?php echo $row['nombre_distribuidor']; ?></td>
+		        		<td class="centro"><a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>"> <?php echo str_pad($row['id_distribuidor'], 7,"0",STR_PAD_LEFT); ?> </a></td>
+			          	<td > <a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>"> <?php echo $row['nombre_distribuidor']; ?></a></td>
 			          	<td class="centro"><?php echo $row['rfc_distribuidor']; ?></td>
 			          	<td class="centro"><?php echo "<span class='label label-info'>$row[ciudad_distribuidor]</span>";
 
@@ -99,7 +99,7 @@
 		          				<!--   - - - - - - - - - - - -  - - - - -  -->
 
 		          				<div style="width:10px; height:10px; float:left;"></div> 
-		          				<a style="float:left; cursor:pointer;"> 
+		          				<a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>" style="float:left; cursor:pointer;"> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 		          				</a>
 	          				</div>

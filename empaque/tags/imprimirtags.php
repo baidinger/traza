@@ -17,7 +17,7 @@
 		    		<select class="form-control" name="id_lote">
 		    		<?php 
 		    			include('../../mod/conexion.php');
-						$consulta = "SELECT * from lotes where id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_lote DESC";
+						$consulta = "SELECT id_lote, id_lote_fk, epc_caja, fecha_recibo_lote from LOTES left join EPC_CAJA on id_lote = id_lote_fk WHERE id_lote_fk is NULL AND id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_lote DESC";
 						$result = mysql_query($consulta);
 						if(mysql_num_rows($result) > 0 ){
 							 while($row = mysql_fetch_array($result)) {

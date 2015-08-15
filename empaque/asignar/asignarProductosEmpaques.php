@@ -40,7 +40,7 @@
 		   	 	</div>
 						   <br> 	 	
 	  		
-	  		<div style="width:800px; padding:20px; background:white; margin:0px auto;">
+	  		<div style="width:800px; padding:20px; background:white; margin:0px auto; border-radius: 5px">
 	  			<div style="width:150px; margin:0px auto;">
 	  				<button data-toggle="modal" data-target="#modalProducto" class="btn btn-primary">
 	  					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar producto
@@ -112,6 +112,8 @@
 	
 
 	  		</div>
+	  		<div style="clear: both"></div>
+	  		<p>&nbsp;</p>
 	  	</div>
 
 	  	<div class="modal fade bs-example-modal-md" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">

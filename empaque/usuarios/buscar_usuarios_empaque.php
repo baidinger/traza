@@ -9,7 +9,7 @@
 <div class="contenedor-form">
 			<?php 
 			$titulo = "Búsqueda de usuarios del empaque";
-			$placeholder="Buscar usuario / nombre";
+			$placeholder="Usuario / nombre ";
 			$imagen = "imagen.png";
 			include("../busquedas/formulario_busqueda.php"); ?>
 
@@ -60,25 +60,7 @@
 					});
 			}
 
-			function ver(id_receptor){
-
-					var params = {'id':id_receptor};
-
-					$.ajax({
-						type: 'POST',
-						url: 'usuarios/ver_receptor.php',
-						data: params,
-
-						success: function(data){
-							$('#data-child1').html(data);
-						},
-
-						beforeSend: function(data ) {
-					    $("#data-child1").html("<center><img src=\"img/cargando.gif\"></center>");
-					  }
-					  
-					});
-			}
+	
 
 			buscar();
 

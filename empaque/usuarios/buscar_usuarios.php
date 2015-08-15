@@ -10,11 +10,10 @@
 			          <th>Usuario</th>
 			          <th>Nombre </th>
 			          <th>Teléfono</th>
-			          <!--<th>Dirección</th>-->
 			          <th>Nivel autorizado</th>
 			          <th>Privilegios</th>
 			          <th>Estado</th>
-			          <th>Acción</th>
+			          <th></th>
 			        </tr>
 	      		</thead>
 	      		<tbody>
@@ -34,51 +33,47 @@
 			        		<td><?php echo $row['nombre_usuario']; ?></td>
 				          	<td><?php echo $row['nombre_receptor'] ." ". $row['apellido_receptor']; ?></td>
 				          	<td><?php echo $row['telefono_receptor']; ?></td>
-				          	<!--<td><?php echo $row['direccion_receptor']; ?></td>-->
 				          	<td><span class="label label-info"><?php echo ($row['nivel_autorizacion_usuario'] == 1) ? "ADMINISTRADOR" : "NORMAL" ?></span></td>
 				          	<td><?php echo ($row['pedidos'] == '1')  ? "pedidos" : ""; echo ($row['lotes'] == '1')  ? ",lotes" : ""; echo ($row['envios'] == '1')  ? ",envios" : "";  ?></td>
-				          	<?php 
-				          		if($row['estado_usuario'] == 1){ 
-				          	?>
-				          			<td> <span class="label label-success"> Activo </span> </td>
-				          			<td class="centro">
-
-				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $_SESSION['id_empaque']?>,<?php print $row['id_usuario'] ?>)" > 
-				          					<span data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="glyphicon glyphicon-edit"></span>
-				          				</a>&nbsp;&nbsp;
+				          	
+				          			<td> 
+							<?php if($row['estado_usuario'] == 1){ 	?>
+				          				<span class="label label-success"> Activo </span> 
+				          	 <?php 	}else{ 	?>
+									<span class="label label-danger"> Inactivo </span>
+							<?php } ?>
+									</td>
+				       	   			<td class="centro">
+				       	   				<a style="float: right" href="index.php?usuarioemp=<?php print $row['id_receptor'] ?>" data-toggle="tooltip" data-placement="top" title="Ver info.">
+				          				<span class="glyphicon glyphicon-eye-open"></span></a>				          				
+				          				<div style="width:10px; height:10px; float:right;"></div> 
 				          				<?php if($row['nivel_autorizacion_usuario'] == 2) { ?>
-				          				<a href="usuarios/habilitar_usuario.php?id=<?php echo $row['id_usuario']; ?>&status=0"> 
-				          					<span data-toggle="tooltip" data-placement="top" title="Desactivar usuario" class="glyphicon glyphicon-remove"></span>
-				          				</a>&nbsp;&nbsp;
-				          			<?php } ?>
-				          			<a onclick="ver(<?php echo $row['id_receptor'] ?>)" data-toggle="modal" data-target="#myModal1"  href="#">
-				          				<span class="glyphicon glyphicon-eye-open"></span></a>
+				          				<?php if($row['estado_usuario'] == 1){ 	?>
+				          				<a style="float: right" href="usuarios/habilitar_usuario.php?id=<?php echo $row['id_usuario']; ?>&status=0" data-toggle="tooltip" data-placement="top" title="Desactivar usuario"> 
+				          					<span class="glyphicon glyphicon-remove"></span>
+				          				</a>
+				          				
+				          				<?php 	}else{ 	?>
+				          				<a style="float: right" href="usuarios/habilitar_usuario.php?id=<?php echo $row['id_usuario']; ?>&status=1" data-toggle="tooltip" data-placement="top" title="Activar usuario"> 
+				          					<span class="glyphicon glyphicon-ok" ></span>
+				          				</a>
+				          				
+				          				<?php } ?>
+				          				<?php }else{ ?>
+				          					<div style="width:14px; height:14px; float:right;"></div> 		
+				          				<?php } ?>
+				          				<div style="width:10px; height:10px; float:right;"></div> 
+				          				<a style="float: right" href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $_SESSION['id_empaque']?>,<?php print $row['id_usuario'] ?>)" data-toggle="tooltip" data-placement="top" title="Editar" > 
+				          					<span data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-edit"></span>
+				          				</a>
 				          			</td>
-				          <?php 
-									}else{
-									?>
-										<td > <span clas="label label-danger"> Inactivo </span> </td>
-										<td class="centro"> 
-
-				          				<a href="#" onclick="editar(<?php print $row['id_receptor'] ?>,<?php print $id_empaque ?>,<?php print $row['id_usuario'] ?>)"> 
-				          					<span data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Editar" class="glyphicon glyphicon-edit" ></span>
-				          				</a> &nbsp;&nbsp;
-				          				<a href="usuarios/habilitar_usuario.php?id=<?php echo $row['id_usuario']; ?>&status=1"> 
-				          					<span data-toggle="tooltip" data-placement="top" title="Activar usuario" class="glyphicon glyphicon-ok" ></span>
-				          				</a>&nbsp;&nbsp;
-
-				          				<a onclick="ver(<?php echo $row['id_receptor'] ?>)" data-toggle="modal" data-target="#myModal1"  href="#">
-				          				<span class="glyphicon glyphicon-eye-open"></span></a>
-				          			</td>
-									<?php
-									}
-				           ?>
+				         
+							
 			        	</tr>
 			        <?php  
 			        $i=$i+1;
 					 }
 				}
-
 				  ?>
 	          	</tbody>
 	        </table>
@@ -109,28 +104,12 @@
 	       		</h3>
 		      </div>
 		      <div id="data-child" class="modal-body">
-		          <?php //include("editar_usuario_empaque.php"); ?>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 
-		<!-- Modal -->
-		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        	<h3 class="modal-title">
-	       			<img class="img-header" src="img/imagen.png">Datos de usuario
-	       		</h3>
-		      </div>
-		      <div id="data-child1" class="modal-body">
-		          <?php //include("editar_usuario_empaque.php"); ?>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+	
 			<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
 
 			<script type="text/javascript">

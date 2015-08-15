@@ -14,6 +14,7 @@
 		        <tr>
 		          <th class="centro">#</th>
 		          <th >Usuario</th>
+		          <th class="centro">ID</th>
 		          <th>Nombre  del productor</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">Teléfono</th>
@@ -30,7 +31,8 @@
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
 		        		<td><?php echo $row['nombre_usuario']; ?></td>
-			          	<td><?php echo $row['nombre_productor']." ".$row['apellido_productor']; ?></td>
+		        		<td class="centro"><a href="index.php?productor=<?php print $row['id_productor'] ?>"> <?php echo str_pad($row['id_productor'], 7,"0",STR_PAD_LEFT); ?> </a></td>
+			          	<td> <a href="index.php?productor=<?php print $row['id_productor'] ?>">  <?php echo $row['nombre_productor']." ".$row['apellido_productor']; ?> </a></td>
 			          	<td class="centro"><?php echo $row['rfc_productor']; ?></td>
 			          	<td class="centro"><?php echo $row['telefono_productor']; ?></td>
 			          	<!--<td class="centro"><?php echo $row['direccion_productor']; ?></td>-->

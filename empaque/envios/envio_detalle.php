@@ -36,19 +36,28 @@
 					      		<table class="table" style="font-size:14px">
 					      			<tbody>
 					      				<tr>
-					      					<td><strong>Distribuidor:</strong></td>
-					      					<td><?php echo $row['nombre_distribuidor'] ?></td>
+					      					<td><strong>Núm. envío:</strong></td>
+					      					<td><?php echo str_pad($id_envio, 10,"0",STR_PAD_LEFT); ?></td>
+					      					
 					      					<td><strong>Núm. orden:</strong></td>
-					      					<td><?php echo $row['id_orden']; ?></td>
+					      					<td><?php echo str_pad($row['id_orden'], 10,"0",STR_PAD_LEFT); ?></td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>RFC:</strong></td>
-					      					<td><?php echo $row['rfc_distribuidor']; ?></td>
+					      					<td><strong>Distribuidor:</strong></td>
+					      					<td><a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>"> <?php echo $row['nombre_distribuidor'] ?> </a></td>
 					      					<td><strong>fecha de orden:</strong></td>
 					      					<td>
 					      						<?php echo $row['fecha_orden']; ?>
 					      					</td>
 
+					      				</tr>
+					      				<tr>
+					      					<td><strong>RFC:</strong></td>
+					      					<td><?php echo $row['rfc_distribuidor']; ?></td>
+					      					
+											 <td><strong>Costo de la orden:</strong></td>
+					      					<td>$ <?php echo $row['costo_orden']; ?></td>
+					      					
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Productos:</strong></td>
@@ -59,18 +68,19 @@
 												}
 											}
 											 ?> </td>
-											 <td><strong>Costo de la orden:</strong></td>
-					      					<td>$ <?php echo $row['costo_orden']; ?></td>
+					      					
+					      					<td><strong>Número del camión:</strong></td>
+					      					<td><?php echo str_pad($row['id_camion_fk'], 7,"0",STR_PAD_LEFT);  ?></td>
+					      				</tr>
+					      				<tr>
 					      					
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Fecha de envío</strong></td>
 					      					<td><?php echo $row['fecha_envio'] . " a las " . $row['hora_envio'] ?></td>
-					      					<td><strong>Número del camión:</strong></td>
-					      					<td><?php echo $row['id_camion_fk']  ?></td>
-					      				</tr>
-					      				<tr>
 					      					
+										 <td><strong>(ID) Usuario que envió:</strong></td>
+					      					<td><a href="index.php?usuarioemp=<?php print $row['id_receptor'] ?>"> <?php echo "(".$row['id_receptor'].") ".$row['nombre_receptor']." ".$row['apellido_receptor']  ?></a></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Estado:</strong></td>
@@ -86,11 +96,18 @@
 					      					 	case 8: echo "<span class='label label-danger'>Cancel. por dist.</span>"; break;
 					      					 	case 9: echo "<span class='label label-danger'>Rechazado por dist.</span>"; break;
 										 } ?></td>
-										 <td><strong>(ID) Usuario que envió:</strong></td>
-					      					<td><?php echo "(".$row['id_receptor'].") ".$row['nombre_receptor']." ".$row['apellido_receptor']  ?></td>
+					      					
+						 <?php
+						$consulta = "SELECT count(epc_tarima) as num FROM distribuidor_cajas_envio, envios_empaque where id_orden_fk = $id_orden AND id_envio_fk = id_envio AND id_envio = $id_envio";
+						 $r = mysql_query($consulta);
+						 if($r != null)
+						 	if($row2 = mysql_fetch_array($r));
+						 ?>
+						 <td><strong>Núm. Cajas enviadas</strong></td>
+						 <td><?php print $row2['num'] ?></td>
 					      				</tr>
-					      				<tr>
-					      					<td><strong>Destino:</strong></td>
+					      		<tr>
+					      			<td><strong>Destino:</strong></td>
 					      					<td width="300"><?php echo $row['direccion_distribuidor'].", ".$row['ciudad_distribuidor'];
 					      					$paises = array("MEXICO","ESTADOS UNIDOS","CANADÁ","JAPÓN","AUSTRALIA");
 			          	
@@ -126,15 +143,7 @@
 			          	print ", $paises[$pais_c]";
 
 						 ?></td>
-						 <?php
-						$consulta = "SELECT count(epc_tarima) as num FROM distribuidor_cajas_envio, envios_empaque where id_orden_fk = $id_orden AND id_envio_fk = id_envio AND id_envio = $id_envio";
-						 $r = mysql_query($consulta);
-						 if($r != null)
-						 	if($row2 = mysql_fetch_array($r));
-						 ?>
-						 <td><strong>Núm. Cajas enviadas</strong></td>
-						 <td><?php print $row2['num'] ?></td>
-					      				</tr>
+					      		</tr>
 					      			</tbody>
 					      		</table>
 					      		<center>

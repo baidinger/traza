@@ -12,6 +12,7 @@
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
+		          <th class="centro">ID</th>
 		          <th class="centro">Nombre</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">País</th>
@@ -30,7 +31,8 @@
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
-			          	<td><?php echo $row['nombre_punto_venta']; ?></td>
+		        		<td class="centro"><a href="index.php?pv=<?php print $row['id_punto_venta'] ?>"> <?php echo str_pad($row['id_punto_venta'], 7,"0",STR_PAD_LEFT); ?> </a></td>
+			          	<td> <a href="index.php?pv=<?php print $row['id_punto_venta'] ?>"> <?php echo $row['nombre_punto_venta']; ?></a></td>
 			          	<td class="centro"><?php echo $row['rfc_punto_venta']; ?></td>
 			          	<td class="centro"><?php 
 
@@ -92,7 +94,7 @@
 					          			</a>
 				          				<?php } ?>
 				          				<div style="width:10px; height:10px; float:left;"></div> 
-				          				<a style="float:left; cursor:pointer;"> 
+				          				<a href="index.php?pv=<?php print $row['id_punto_venta'] ?>" style="float:left; cursor:pointer;"> 
 				          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 				          				</a>
 				          				<!--   - - - - - - - - - - - -  - - - - -  -->

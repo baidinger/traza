@@ -38,9 +38,8 @@
 	  		</div>
 
 	  	</div>
-		<br>
 
-		<div style="width:90%; margin:0px auto; " >
+		<div style="width:90%; margin:50px auto;" >
 				<div class="div-contenedor-form">
 			      		<div>
 			      			<?php
@@ -53,13 +52,17 @@
 			      				$row = mysql_fetch_array($resultado);
 			      			?>
 					      	<div>
-					      		<div style="float:left; width:45%; margin-left:5%; background: #ffffff">
+					      		<div style="float:left; width:45%; background: #ffffff; border-radius: 5px; ">
 						      		<p class="alert alert-info">DATOS DEL PRODUCTOR</p>
-
-						      		<button data-toggle="tooltip" title="Descargar reporte" style="float: right; margin-top: -15px; margin-bottom: 5px; margin-right: 10px;" class="btn btn-primary"><span class="glyphicon glyphicon-save-file"> </span></button>
+						      		<div style="padding: 30px;">
+						      		<!--<button data-toggle="tooltip" title="Descargar reporte" style="float: right; margin-top: -15px; margin-bottom: 5px;" class="btn btn-primary"><span class="glyphicon glyphicon-save-file"> </span></button>-->
 						      		
-						      		<table class="table">
+						      		<table class="table" style="font-size: 14px">
 						      			<tbody>
+						      				<tr>
+						      					<td width="200"><strong>ID:</strong></td>
+						      					<td><?php echo str_pad($row['id_productor'], 7,"0",STR_PAD_LEFT); ?></td>
+						      				</tr>
 						      				<tr>
 						      					<td width="200"><strong>Nombre:</strong></td>
 						      					<td><?php echo $row['nombre_productor']." ".$row['apellido_productor']; ?></td>
@@ -104,14 +107,15 @@
 						      		<center>
 						      			<a href="index.php?op=bus_productor">
 						      				<button class="btn btn-primary">
-						      				Regresar
+						      				<i class="glyphicon glyphicon-chevron-left"></i> Regresar
 						      			</button>
 						      			</a>
 						      		</center>
-						      		<p>&nbsp;</p>
+						      	</div>
 					      		</div>
-								<div style="float:left; width:45%; margin-left:5%;background: #ffffff">
+								<div style="float:left; width:45%; margin-left:5%;background: #ffffff; border-radius:5px">
 									<p class="alert alert-info">DATOS DE LOS PRODUCTOS</p>
+									<div style="padding: 30px;">
 		  								<div style="width:500px; margin:0px auto;" id="e" class="alert alert-danger centro hidden" role="alert">		
 		  									<strong>Ya existe ese producto asignado al productor</strong>
 			   	 						</div>
@@ -129,7 +133,7 @@
 				      					$resultado = mysql_query($consulta);
 				      					$i=1;
 									 ?>
-						      		<table class="table">
+						      		<table class="table" style="font-size: 14px">
 						      			<thead>
 						      				<tr>
 							       				<th> <strong>#</strong> </th>
@@ -177,7 +181,7 @@
 						      			</tbody>
 						      		</table>
 					      		</div>
-				
+								</div>
 					      	</div>
 					    </div>
 					<?php

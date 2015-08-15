@@ -16,7 +16,7 @@
 	</div>
 	<div style="width:80%; margin: 30px auto">
 <form name="formulario" class="form-horizontal" role="form" method="post" action="busquedas/editar_distribuidor.php">
-	<div class="modal-body" style="width:50%; float: left">
+	<div class="modal-body" style="width:50%; float: left; border-radius: 5px">
 	  	<div class="alert alert-info">DATOS DEL DISTRIBUIDOR</div>
 
 		  <div class="form-group">
@@ -53,7 +53,7 @@
          	</div>
 		  </div>
 		 </div>
-		  <div class="modal-body" style="width:40%; float: right">
+		  <div class="modal-body" style="width:40%; float: right; border-radius: 5px">
      		    <div class="alert alert-info">UBICACIÓN DEL DISTRIBUIDOR</div>
 
 		  <div class="form-group">
