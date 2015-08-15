@@ -125,7 +125,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $nombre_usuario ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="index.php?op=contrasena"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-            <li ><a href="index.php?usuarioemp=<?php print $_SESSION['id_usuario'] ?>"><span class="fui-gear"></span> &nbsp;Info. de usuario</a></li>
+            <li ><a href="index.php?usuarioemp=<?php print $_SESSION['id_receptor'] ?>"><span class="fui-gear"></span> &nbsp;Info. de usuario</a></li>
             <li class="divider"></li>
             <li><a href="../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
           </ul>
@@ -364,6 +364,11 @@ if($_GET("op") == "caja_traza") {
   epc = $_GET("epc_caja");
   $("#views").load("envios/trazabilidadCajas.php?epc_caja="+epc);
 }
+
+function goBack() {
+    window.history.back();
+}
+
 
 </script>
 <span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Sistema para la Trazabilidad Agrícola Versión: 1.4,  fec. mod. 2/08/15</span>

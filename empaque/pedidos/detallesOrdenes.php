@@ -35,11 +35,33 @@
     <td><strong>Distribuidor</strong></td>
     <td>
       <a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>">
-      <?php print $row['nombre_distribuidor'] ?></td>
+      <?php print $row['nombre_distribuidor'] ?>
     </a>
+    </td>
 
     <td><strong>Usuario que solicitó</strong></td>
     <td><?php print "(".str_pad($row['id_usuario_distribuidor'], 10,"0",STR_PAD_LEFT).") ".$row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor'];  ?></td>
+  </tr>
+   <tr>
+    <td><strong>Estado</strong></td>
+    <td>
+     <?php 
+                   switch($row['estado_orden']){
+                    case 1: echo "<span class='label label-warning'>Pendiente</span>"; break;
+                    case 2: echo "<span class='label label-danger'>Rechazado por emp.</span>"; break;
+                    case 3: echo "<span class='label label-primary'>Enviado</span>"; break;
+                    case 4: echo "<span class='label label-success'>Concretado</span>"; break;
+                    case 5: echo "<span class='label label-danger'>Cancel. por emp.</span>"; break;
+                    case 6: echo "<span class='label label-primary'>Aprobado</span>"; break;
+                    case 7: echo "<span class='label label-warning'>Pre-envío</span>"; break;
+                    case 8: echo "<span class='label label-danger'>Cancel. por dist.</span>"; break;
+                    case 9: echo "<span class='label label-danger'>Rechazado por dist.</span>"; break;
+                   } ?>
+    </td>
+
+
+    <td><strong></strong></td>
+    <td></td>
   </tr>
  </table>
 

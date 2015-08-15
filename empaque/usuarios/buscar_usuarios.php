@@ -31,7 +31,7 @@
 					 	<tr>
 			        		<td><?php echo $i; ?></td>
 			        		<td><?php echo $row['nombre_usuario']; ?></td>
-				          	<td><?php echo $row['nombre_receptor'] ." ". $row['apellido_receptor']; ?></td>
+				          	<td><a href="index.php?usuarioemp=<?php print $row['id_receptor'] ?>"><?php echo $row['nombre_receptor'] ." ". $row['apellido_receptor']; ?></a></td>
 				          	<td><?php echo $row['telefono_receptor']; ?></td>
 				          	<td><span class="label label-info"><?php echo ($row['nivel_autorizacion_usuario'] == 1) ? "ADMINISTRADOR" : "NORMAL" ?></span></td>
 				          	<td><?php echo ($row['pedidos'] == '1')  ? "pedidos" : ""; echo ($row['lotes'] == '1')  ? ",lotes" : ""; echo ($row['envios'] == '1')  ? ",envios" : "";  ?></td>

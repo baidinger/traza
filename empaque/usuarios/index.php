@@ -92,7 +92,7 @@
 					      			</tbody>
 					      		</table>
 					      		<center>
-					      			<a href="index.php?op=admon_users" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
+					      			<a href="#" onclick="goBack()" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
 					      		</center>
 					      	</div>
 					    </div>
