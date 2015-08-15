@@ -216,6 +216,26 @@
 				});
 			}
 
+			function mostrarModalOrdenes(idOrden){
+			$('#detallesOrden').html("");
+			$('#myModalOrden').modal('show');
+			var parametros = {'id_orden':idOrden};
+
+			$.ajax({
+				type:'post',
+				url:'pedidos/detallesOrdenes.php',
+				data: parametros,
+				success: function(data){
+					$('#detallesOrden').html(data);
+					
+				},
+				beforeSend: function(data ) {
+			    	$("#detallesOrden").html("<center><img src=\"img/cargando.gif\"></center>");
+				}
+
+			});
+		}
+
 		$('span').tooltip();
 	</script>
 </html>
