@@ -240,7 +240,24 @@
 			}
 
 			function generacionReportes(){
-				alert('Generación e impresión de reportes');
+				var dist = "<?php echo $idDistribuidorFK; ?>";
+				var params = {'dist': dist};
+
+				$.ajax({
+					type: 'POST',
+					url: '../../genReps/generarRelacionProductosDistribuidor.php',
+					data: params,
+
+					beforeSend: function(){
+						$('#msj-agregar').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+					},
+
+					success: function(data){
+						var urlPDF = "../../docs/productosdistribuidor" + dist + ".pdf";
+						$('#msj-agregar').html("");
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
 			}
 
 			function buscarAgregarProductos(){
