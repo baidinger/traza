@@ -17,6 +17,8 @@
 	      		<tbody>
 				<?php
 				$buscar = $_POST['buscar'];
+				$filtro = $_POST['filtro'];
+
 				include('../../mod/conexion.php');
 				$consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, 
 					cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, 
@@ -24,19 +26,24 @@
 					nombre_producto, variedad_producto from lotes, productos_productores ,empresa_productores, 
 					productos where productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND id_empaque_fk = $_SESSION[id_empaque] AND 
 					productos_productores.id_producto_fk = productos.id_producto AND productos_productores.id_productor_fk = empresa_productores.id_productor 
-					AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%') ORDER BY id_lote DESC";
+					AND (nombre_productor like '%".$buscar."%' OR apellido_productor like '%".$buscar."%' OR id_lote = '$buscar') $filtro ORDER BY id_lote DESC";
 				$result_receptores = mysql_query($consulta);
 				$i=1;
 				//$result_receptores = mysql_query("select id_receptor, id_usuario, nombre_receptor, apellido_receptor, telefono_receptor, direccion_receptor, nombre_usuario, estado_usuario, nivel_autorizacion_usuario from usuario_empaque, usuarios where usuario_empaque.id_usuario_fk = usuarios.id_usuario AND usuario_empaque.id_empaque_fk = ".$id_empaque." order by nombre_receptor ASC, apellido_receptor ASC" );
-				if(mysql_num_rows($result_receptores) > 0 ){
-					
+				$count  = mysql_num_rows($result_receptores);
+				if( $count > 0 ){
+					print "<p>Se encontraron " .  $count . " resultados.</p>";
 					 while($row = mysql_fetch_array($result_receptores)) {
 					 	
 					 	?>
 					 	<tr>
 			        		<td><?php echo $i; ?></td>
-			        		<td class="centro"><?php echo $row['id_lote']; ?></td>
-				          	<td><?php echo $row['nombre_productor'] ." ". $row['apellido_productor']; ?></td>
+			        		<td class="centro"> 
+			        			<a onclick="ver(<?php echo $row['id_lote'] ?>)" data-toggle="modal" data-target="#mimodal"  href="#">
+			        				<?php echo str_pad($row['id_lote'],3,"0", STR_PAD_LEFT) ?>
+			        			</a>
+			        		</td>
+				          	<td><a href="index.php?productor=<?php print $row['id_productor_fk'] ?>"> <?php echo $row['nombre_productor'] ." ". $row['apellido_productor']; ?></a></td>
 				          	<td><?php echo $row['nombre_producto'] . " - ". $row['variedad_producto']; ?></td>
 				          	<td><?php echo $row['cant_cajas_lote']; ?></td>
 				          	<td><?php echo $row['cant_kilos_lote']; ?></td>

@@ -1,14 +1,17 @@
 <?php 
 	
 	$buscar = $_POST['buscar'];
+	$filtro = $_POST['filtro'];
 	
 	include("../../mod/conexion.php");
-	$result_productores = mysql_query("select id_distribuidor, nombre_distribuidor, rfc_distribuidor, ".
+	
+				$result_productores = mysql_query("select id_distribuidor, nombre_distribuidor, rfc_distribuidor, ".
 		"pais_distribuidor, estado_distribuidor, ciudad_distribuidor, direccion_distribuidor, cp_distribuidor, ".
 		" email_distribuidor, tel1_distribuidor, tel2_distribuidor, estado_d from empresa_distribuidores
-		where id_usuario_que_registro = ".$_SESSION['id_usuario'] ." AND nombre_distribuidor like 
-		'%$buscar%'");
-	if(mysql_num_rows($result_productores) > 0){
+		where id_usuario_que_registro = ".$_SESSION['id_receptor'] ." AND (nombre_distribuidor like 
+		'%$buscar%' OR rfc_distribuidor like '%$buscar%' OR id_distribuidor = '$buscar') $filtro ORDER BY nombre_distribuidor ASC");
+		$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){	
  ?>
 
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
@@ -16,7 +19,7 @@
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
-		          
+		          <th class="centro">ID</th>
 		          <th>Nombre</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">Ubicación</th>
@@ -27,15 +30,16 @@
       		</thead>
       		<tbody>
 			<?php
-			
+
+	print "<p>Se encontraron " .  $count . " resultados.</p>";
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
-		        
-			          	<td ><?php echo $row['nombre_distribuidor']; ?></td>
+		        		<td class="centro"><a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>"> <?php echo str_pad($row['id_distribuidor'], 7,"0",STR_PAD_LEFT); ?> </a></td>
+			          	<td > <a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>"> <?php echo $row['nombre_distribuidor']; ?></a></td>
 			          	<td class="centro"><?php echo $row['rfc_distribuidor']; ?></td>
 			          	<td class="centro"><?php echo "<span class='label label-info'>$row[ciudad_distribuidor]</span>";
 
@@ -99,7 +103,7 @@
 		          				<!--   - - - - - - - - - - - -  - - - - -  -->
 
 		          				<div style="width:10px; height:10px; float:left;"></div> 
-		          				<a style="float:left; cursor:pointer;"> 
+		          				<a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>" style="float:left; cursor:pointer;"> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 		          				</a>
 	          				</div>

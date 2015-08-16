@@ -26,9 +26,7 @@
 		<button  data-toggle="tooltip" title="Generar reporte" class="btn btn-success"><span class="glyphicon glyphicon-save-file"></span>&nbsp;</button>
 	</div>
 
-
-<!-- -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<div style="clear: both"></div>
 <hr>
-<p>&nbsp;</p>
+
+

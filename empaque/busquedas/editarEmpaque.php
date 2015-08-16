@@ -19,7 +19,7 @@
 	</div>
 	<div style="width:80%; margin: 30px auto">
 <form name="formulario" class="form-horizontal" role="form" method="post" action="busquedas/editar_empaque.php">
-     		<div class="modal-body" style="width:50%; float: left">
+     		<div class="modal-body" style="width:50%; float: left; border-radius: 5px">
 	  	<div class="alert alert-info">DATOS DEL EMPAQUE</div>
 
 				  <div class="form-group">
@@ -57,7 +57,7 @@
 		         	</div>
 				  </div>
 				 </div>
-		  <div class="modal-body" style="width:40%; float: right">
+		  <div class="modal-body" style="width:40%; float: right; border-radius: 5px">
      		    <div class="alert alert-info">UBICACIÓN DEL EMPAQUE</div>
 
 		 	  	 <div class="form-group">
@@ -90,14 +90,14 @@
 			  	</div>
 
 				  <div class="form-group">
-			    	<label class="col-sm-2 control-label">Dirección: </label>
-			    	<div class="col-sm-10">
-			    		<input type="text"  value="<?php echo $row['direccion_empaque']; ?>" class="form-control input" name="direccion_empaque" placeholder="Dirección del empaque" required>
+			    	<label class="col-sm-3 control-label">Dirección: </label>
+			    	<div class="col-sm-8">
+			    		<textarea type="text" class="form-control input" name="direccion_empaque" placeholder="Dirección del empaque" required><?php echo $row['direccion_empaque']; ?></textarea>
 		         	</div>
 				  </div>
 				  <div class="form-group">
-			    	<label class="col-sm-2 control-label">C.P: </label>
-			    	<div class="col-sm-10">
+			    	<label class="col-sm-3 control-label">C.P: </label>
+			    	<div class="col-sm-8">
 			    		<input type="text" pattern="[0-9]{5}|[0-9]{6}|[0-9]{7}" title="Ingresa 5, 6 o 7 dígitos" value="<?php echo $row['cp_empaque']; ?>" class="form-control input" name="cp_empaque" id="" placeholder="Código postal" required>
 		         	</div>
 				  </div>

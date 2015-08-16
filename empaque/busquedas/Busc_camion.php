@@ -11,7 +11,7 @@
 	<body>
 		<?php 
 			$titulo = "Búsqueda de camiones";
-			$placeholder="Núm camión / chofer";
+			$placeholder="Núm camión / Chofer / Placas";
 			$imagen = "camion.png";
 			$ruta = "index.php?op=reg_camion";
 			include("formulario_busqueda_empresa.php"); ?>
@@ -19,11 +19,99 @@
 		<div id="data">
 
 		</div>
+		<div class="modal fade"  id="filtro" role="dialog" >
+	  <div class="modal-dialog" style="width: 700px" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="modal-title"><div>Búsqueda avanzada</div></h3>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="form-horizontal">
+		   	<div class="form-group">
+		    	<label class="col-sm-2 control-label">Estado: </label>
+			    <div class="col-sm-4">
+			      	<select id="status" class="form-control input">
+			      		<option value="-1">-- Sin filtro</option>
+			      		<option value="1">Activo</option>
+			      		<option value="0">Inactivo</option>
+			      	</select>
+			    </div>
+	  		</div>
+	  		<div class="form-group">
+		    	<label class="col-sm-2 control-label">Disponiblidad: </label>
+			    <div class="col-sm-4">
+			      	<select id="disponibilidad" class="form-control input">
+			      		<option value="-1">-- Sin filtro</option>
+			      		<option value="0">Disponible</option>
+			      		<option value="1">No Disponible</option>
+			      	</select>
+			    </div>
+	  		</div>
+	  		<div class="form-group">
+		    	<label class="col-sm-2 control-label">Modelo: </label>
+			    <div class="col-sm-4">
+			      	<input id="modelo" class="form-control input" type="number">
+			      		
+			    </div>
+	  		</div>
+<!--
+	  		<div class="form-group">
+		    	<label class="col-sm-2 control-label">Fecha de registro: </label>
+			    <div class="col-sm-3">
+			      	<select id="fecha" onchange="verificar2()" class="form-control input">
+			      		<option value="0">--- Sin filtro</option>
+			      		<option value="1">Menor que</option>
+			      		<option value="2">Igual que</option>
+			      		<option value="3">Mayor que</option>
+			      		<option value="4">Entre</option>
+			      	</select>
+			    </div>
+			    <div class="col-sm-3">
+			      	<input id="fecha_i" value="<?php print date("Y-m-d") ?>" disabled class="form-control input" type="date" min="0">
+			    </div> 
+			    <div class="col-sm-3">
+			      	<input id="fecha_f" value="<?php print date("Y-m-d") ?>" style="display:none" class="form-control input" type="date" min="0">
+			    </div> 
+
+	  		</div>
+-->
+	  		</div>
+	  		<div style="clear:both"></div>
+	  		<p>&nbsp;</p>
+		  </div>
+		  <div class="modal-footer">
+		  	<center>
+			    <button style="width: 150px" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			    <button onclick="aplicar()" style="width: 150px" class="btn btn-primary" data-dismiss="modal">Aplicar</button>
+			    <input type="hidden" id="filtro">
+		    </center>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	</body>
 
 		
 	<script type="text/javascript">
-	
+
+		function aplicar(){
+			var consulta = "";
+			if($("#status").val() == 0 || $("#status").val() == 1) 
+				consulta = " AND estado_ce = '" + $("#status").val() + "' " ;
+			else consulta = "" ;
+
+			if($("#disponibilidad").val() == 0 || $("#disponibilidad").val() == 1) 
+				consulta += " AND disponibilidad_ce = '" + $("#disponibilidad").val() + "' " ;
+			
+
+			if($("#modelo").val().length > 0)
+				consulta += " AND modelo = '"+$("#modelo").val()+"'";
+
+			$("#filtro").val(consulta);
+			buscar();
+		}
+
 		function editar(id){
 			$('#myModal').modal('show');
 				var params = {'id':id};
@@ -60,7 +148,7 @@
 
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
-					var params = {'buscar':Buscar};
+					var params = {'buscar':Buscar, 'filtro':$('#filtro').val()};
 					$.ajax({
 						type: 'POST',
 						url: 'busquedas/coincidencias_camiones.php',

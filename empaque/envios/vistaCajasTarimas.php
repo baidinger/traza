@@ -109,7 +109,7 @@
                             <td class="centro"><?php echo $row['cajas']; ?></td>
                             <td class="centro"><?php 
                               while($rowCT = mysql_fetch_array($resultCT)){ ?>
-                                <?php echo "<a href='index.php?epc_caja=".$rowCT['epc_caja']."&op=caja_traza' class='btn btn-link'>".$rowCT['epc_caja']."</a>"; ?><br>
+                                <?php echo "<a href='index.php?op=trazabilidad&epc=$row[epc_caja]' class='btn btn-link'>".$rowCT['epc_caja']."</a>"; ?><br>
                               <?php }
                              ?></td>
                           </tr>

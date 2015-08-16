@@ -55,18 +55,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-       <!-- <?php if($_SESSION['nivel_socio'] == 1){ ?>
-      	
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <span class="glyphicon glyphicon-th-large"></span>&nbsp;Registrar <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="index.php?op=reg_empaque">Empaque</a></li>
-            <li><a href="index.php?op=reg_distribuidor">Distribuidor</a></li>
-            <li><a href="index.php?op=reg_punto_venta">Punto de venta</a></li>
-          </ul>
-        </li>
-        <?php } ?>-->
          <?php if($_SESSION['nivel_socio'] == 1){ ?>
       	<!-- Administrar cuentas -->
         <li class="dropdown">
@@ -79,7 +67,7 @@
             <?php } ?>
             <li><a  href="index.php?op=bus_camion">Camiones</a></li>
             <li><a  href="index.php?op=bus_distribuidor">Distribuidores</a></li>
-            <li><a  href="index.php?op=bus_pv">Punto de venta</a></li>
+            <li><a  href="index.php?op=bus_pv">Puntos de venta</a></li>
           </ul>
         </li>
         
@@ -115,7 +103,7 @@
 
               <?php }   ?>      
               <li class="divider"></li>
-              <li><a href="index.php?op=informacion">Información</a></li>
+              <li><a href="index.php?empaque=<?php print $_SESSION['id_empaque'] ?>">Información</a></li>
             </ul>
         </li>
         <?php if($_SESSION['nivel_socio'] == 1){ ?>
@@ -137,7 +125,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fui-user"></span> &nbsp;<?php echo $nombre_usuario ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="index.php?op=contrasena"><span class="fui-new"></span> &nbsp;Cambiar contraseña</a></li>
-            <li ><a href="index.php?op=datos_generales"><span class="fui-gear"></span> &nbsp;Info. de usuario</a></li>
+            <li ><a href="index.php?usuarioemp=<?php print $_SESSION['id_receptor'] ?>"><span class="fui-gear"></span> &nbsp;Info. de usuario</a></li>
             <li class="divider"></li>
             <li><a href="../mod/logout.php"><span class="fui-power"></span> &nbsp;Cerrar sesión</a></li>
           </ul>
@@ -209,6 +197,18 @@ if($_GET("op") == "bus_camion")
 
 if($_GET("op") == "bus_distribuidor") 
   $("#views").load("busquedas/Busc_distribuidores.php");
+
+if($_GET("empaque")) 
+   $.ajax({
+      type: 'POST',
+      url: 'informacion/index.php',
+      data: {'id':$_GET("empaque")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+ 
 
 if($_GET("op") == "editar_dist") 
    $.ajax({
@@ -318,8 +318,38 @@ if($_GET("op") == "reg_lote")
 if($_GET("op") == "admon_lotes") 
   $("#views").load("lotes/buscar_lotes.php");
 
-if($_GET("op") == "datos_generales") 
-  $("#views").load("datosGenerales/index.php");
+if($_GET("usuarioemp")) 
+   $.ajax({
+      type: 'POST',
+      url: 'usuarios/index.php',
+      data: {'id':$_GET("usuarioemp")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+
+ if($_GET("distribuidor")) 
+   $.ajax({
+      type: 'POST',
+      url: 'informacion/distribuidor.php',
+      data: {'id':$_GET("distribuidor")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
+
+ if($_GET("pv")) 
+   $.ajax({
+      type: 'POST',
+      url: 'informacion/puntoventa.php',
+      data: {'id':$_GET("pv")},
+
+      success: function(data){
+        $('#views').html(data);
+      }
+    });
 
 if($_GET("op") == "envios") 
   $("#views").load("envios/index.php");
@@ -334,6 +364,11 @@ if($_GET("op") == "caja_traza") {
   epc = $_GET("epc_caja");
   $("#views").load("envios/trazabilidadCajas.php?epc_caja="+epc);
 }
+
+function goBack() {
+    window.history.back();
+}
+
 
 </script>
 <span style="float: right; position: fixed; bottom: 10px; right: 10px" class="label label-success">Sistema para la Trazabilidad Agrícola Versión: 1.4,  fec. mod. 2/08/15</span>

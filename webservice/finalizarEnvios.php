@@ -38,9 +38,12 @@
 					if($enviado == $recibido){
 
 						$query = "UPDATE envios_empaque SET estado_envio = 4 WHERE id_envio = $envio";
+
 						$r = mysql_query($query);
 
 						if($r){
+							$quer = "UPDATE camiones_empaque SET disponibilidad_ce = 0 WHERE id_camion = $carro";
+							mysql_query($quer);
 
 							$query = "SELECT id_envio FROM envios_empaque WHERE id_orden_fk = $orden AND estado_envio = 3";
 							$Enviosresult = mysql_query($query);
@@ -61,7 +64,7 @@
 
 											$datos_usuario = "Bien*El Envio y la Orden han sido Finalizados.";
 
-											$quer = "UPDATE camiones_empaques SET disponibilidad_ce = 0 WHERE id_camion = $carro";
+											
 
 											mysql_query($quer);
 										}
@@ -111,7 +114,7 @@
 
 									$datos_usuario = "Bien*El Envio y la Orden han sido Finalizados.";
 
-									$quer = "UPDATE camiones_empaques SET disponibilidad_ce = 0 WHERE id_camion = $carro";
+									$quer = "UPDATE camiones_empaque SET disponibilidad_ce = 0 WHERE id_camion = $carro";
 
 									mysql_query($quer);
 								}
@@ -153,7 +156,7 @@
 
 									$datos_usuario = "Bien*El Envio y la Orden han sido Rechazados.";
 
-									$quer = "UPDATE camiones_empaques SET disponibilidad_ce = 0 WHERE id_camion = $carro";
+									$quer = "UPDATE camiones_empaque SET disponibilidad_ce = 0 WHERE id_camion = $carro";
 
 									mysql_query($quer);
 								}

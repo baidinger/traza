@@ -37,9 +37,15 @@ namespace CS101_CALLBACK_API_DEMO
                case 2:
                     label2.Text = "Nombre del empaque:";
                     recibos_btn.Visible = false;
+                    if (datos[10].CompareTo("0") == 0)
+                        envios_btn.Visible = false;
                 break;
                case 3:
                     label2.Text = "Nombre del distribuidor:";
+                    if (datos[10].CompareTo("0") == 0)
+                        envios_btn.Visible = false;
+                    if (datos[11].CompareTo("0") == 0)
+                        recibos_btn.Visible = false;
                 break;
                case 4:
                     label2.Text = "Nombre del punto de venta:";
@@ -106,5 +112,14 @@ namespace CS101_CALLBACK_API_DEMO
                 eW.ShowDialog();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (readEpcsTrazabilidad ret = new readEpcsTrazabilidad())
+            {
+                ret.ShowDialog();
+            }
+        }
+
     }
 }

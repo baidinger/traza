@@ -2,10 +2,13 @@
 <?php 
 	include("../../mod/conexion.php");
 	$buscar = $_POST['buscar'];
+	$filtro = $_POST['filtro'];
+	
 	$result_productores = mysql_query("select id_empaque, nombre_empaque, rfc_empaque, ".
 				"pais_empaque, estado_empaque, ciudad_empaque, direccion_empaque, cp_empaque, ".
-				" email_empaque, telefono1_empaque, telefono2_empaque, estado_e from empresa_empaques where id_usuario_que_registro = ".$_SESSION['id_usuario']." AND nombre_empaque like '%$buscar%'");
-	if(mysql_num_rows($result_productores) > 0){
+				" email_empaque, telefono1_empaque, telefono2_empaque, estado_e from empresa_empaques where id_usuario_que_registro = ".$_SESSION['id_receptor']." AND (nombre_empaque like '%$buscar%' OR rfc_empaque like '%$buscar%' OR id_empaque = '$buscar') $filtro ORDER BY nombre_empaque ASC");
+		$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){
 
  ?>
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
@@ -13,6 +16,7 @@
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
+		          <th class="centro">ID</th>
 		          <th class="centro">Nombre</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">Ubicación</th>
@@ -24,13 +28,15 @@
       		<tbody>
 			<?php
 			
+	print "<p>Se encontraron " .  $count . " resultados.</p>";
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
-			          	<td><?php echo $row['nombre_empaque']; ?></td>
+		        		<td class="centro"><a href="index.php?empaque=<?php print $row['id_empaque'] ?>"> <?php echo str_pad($row['id_empaque'], 7,"0",STR_PAD_LEFT); ?> </a></td>
+			          	<td><a href="index.php?empaque=<?php print $row['id_empaque'] ?>"><?php echo $row['nombre_empaque']; ?></a></td>
 			          	<td class="centro"><?php echo $row['rfc_empaque']; ?></td>
 			          	<td class="centro"><?php echo "<span class='label label-info'>$row[ciudad_empaque]</span>";
 
@@ -98,7 +104,7 @@
 				          				<div style="width:16px; height:10px; float:left;"></div>
 				          				<?php } ?>
 				          				<div style="width:10px; height:10px; float:left;"></div>
-				          				<a style="float:left; cursor:pointer;"> 
+				          				<a href="index.php?empaque=<?php print $row['id_empaque'] ?>" style="float:left; cursor:pointer;"> 
 					          				<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="desactivar glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 					          			</a>
 			          				</div>
@@ -160,21 +166,5 @@
 		$(function () {
 			  $('[data-toggle="tooltip"]').tooltip()
 			});
-/*
-		function editar(id){
-					var params = {'id':id};
-					$.ajax({
-						type: 'POST',
-						url: 'busquedas/editarEmpaque.php',
-						data: params,
 
-						success: function(data){
-							$('#data-child').html(data);
-						},
-						beforeSend: function(data ) {
-					    $("#data-child").html("<center><img src=\"img/cargando.gif\"></center>");
-					  }
-					});
-			}
-*/
 	</script>

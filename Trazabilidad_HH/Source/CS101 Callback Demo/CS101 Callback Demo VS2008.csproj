@@ -94,6 +94,18 @@
       <DependentUpon>cargando.cs</DependentUpon>
     </Compile>
     <Compile Include="ComManager.cs" />
+    <Compile Include="datosTraza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="datosTraza.Designer.cs">
+      <DependentUpon>datosTraza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="readEpcsTrazabilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="readEpcsTrazabilidad.Designer.cs">
+      <DependentUpon>readEpcsTrazabilidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="mostrarMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +287,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="cargando.resx">
       <DependentUpon>cargando.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="datosTraza.resx">
+      <DependentUpon>datosTraza.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="readEpcsTrazabilidad.resx">
+      <DependentUpon>readEpcsTrazabilidad.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="mostrarMessage.resx">

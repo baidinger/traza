@@ -17,7 +17,7 @@ $result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rf
 </div>
 <div style="width:80%; margin: 30px auto">
 <form name="formulario" class="form-horizontal" role="form" method="post" action="busquedas/editar_punto_venta.php">
-	<div class="modal-body" style="width:50%; float: left">
+	<div class="modal-body" style="width:50%; float: left; border-radius: 5px">
 	  	<div class="alert alert-info">DATOS DEL DISTRIBUIDOR</div>
 
 	  <div class="form-group">
@@ -49,7 +49,7 @@ $result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rf
 
 	
 	</div>
-	  <div class="modal-body" style="width:40%; float: right">
+	  <div class="modal-body" style="width:40%; float: right; border-radius: 5px">
 		<div class="alert alert-info">UBICACIÓN DEL PUNTO DE VENTA</div>
 
 		 <div class="form-group">

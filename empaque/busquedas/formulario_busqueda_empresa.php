@@ -19,7 +19,7 @@
 	</div>
 	<div style="float:left; margin-top: 20px; margin-left:10px;">
 		<button  data-toggle="tooltip" class="btn btn-primary" onclick="buscar()"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-		<button  data-toggle="tooltip" title="Búsqueda avanzada" class="btn btn-primary" ><span class="glyphicon glyphicon-filter"></span>&nbsp;</button>			
+		<button  data-toggle="modal" data-target="#filtro" data-toggle="tooltip" title="Búsqueda avanzada" class="btn btn-primary" ><span class="glyphicon glyphicon-filter"></span>&nbsp;</button>			
 	</div>
 	<div style="float:right; margin-top: 20px; margin-right:50px;">
 		<?php if($_SESSION['nivel_socio'] == 1){ ?>
@@ -30,8 +30,5 @@
 	</div>
 
 
-<!-- -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<div style="clear: both"></div>
 <hr>
-<p>&nbsp;</p>

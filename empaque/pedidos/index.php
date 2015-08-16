@@ -31,7 +31,7 @@
 		    	<label class="col-sm-2 control-label">Estado: </label>
 			    <div class="col-sm-4">
 			      	<select id="status" class="form-control input">
-			      		<option value="0">-- Elige una opción</option>
+			      		<option value="0">-- Sin filtro</option>
 			      		<option value="5">Cancel. por empaque</option>
 			      		<option value="8">Cancel. por distribuidor</option>
 			      		<option value="6">Aprobada</option>
@@ -46,7 +46,7 @@
 		    	<label class="col-sm-2 control-label">Costo: </label>
 			    <div class="col-sm-3">
 			      	<select id="costo" onchange="verificar()" class="form-control input">
-			      		<option value="0">---</option>
+			      		<option value="0">--- Sin filtro</option>
 			      		<option value="1">Menor que</option>
 			      		<option value="2">Igual que</option>
 			      		<option value="3">Mayor que</option>
@@ -64,7 +64,7 @@
 		    	<label class="col-sm-2 control-label">Fecha de pedido: </label>
 			    <div class="col-sm-3">
 			      	<select id="fecha" onchange="verificar2()" class="form-control input">
-			      		<option value="0">---</option>
+			      		<option value="0">--- Sin filtro</option>
 			      		<option value="1">Menor que</option>
 			      		<option value="2">Igual que</option>
 			      		<option value="3">Mayor que</option>
@@ -150,10 +150,10 @@
 			buscar();
 
 
-		function mostrarModalOrdenes(idOrden, descripcion, total, fecha, usuario){
+		function mostrarModalOrdenes(idOrden){
 			$('#detallesOrden').html("");
 			$('#myModalOrden').modal('show');
-			var parametros = {'id_orden':idOrden, 'descripcion': descripcion,'total':total,'fecha':fecha,'usuario':usuario};
+			var parametros = {'id_orden':idOrden};
 
 			$.ajax({
 				type:'post',
@@ -207,21 +207,27 @@
 			var consulta = "";
 			if($("#status").val() == 0) 
 				consulta = "";
-			else consulta =  " AND estado_orden = '" + $("#status").val() + "' " ;
+			else consulta = " AND estado_orden = '" + $("#status").val() + "' " ;
 
 			switch($("#costo").val())
 			{
-				case 0: break;
-				case 1: consulta += " AND costo_orden > "+$("#costo_inicio").val();  break;
-				case 2: break;
-				case 3: break;
-				case 4: consulta += " AND costo_orden > "+$("#costo_inicio").val()+" AND costo_orden < "+$("#costo_fin").val(); break;
+				case '0': break;
+				case '1': consulta += " AND costo_orden < '"+$("#costo_inicio").val()+"'";  break;
+				case '2': consulta += " AND costo_orden = '"+$("#costo_inicio").val()+"'";  break;
+				case '3': consulta += " AND costo_orden > '"+$("#costo_inicio").val()+"'";  break;
+				case '4': consulta += " AND costo_orden > '"+$("#costo_inicio").val()+"' AND costo_orden < '"+$("#costo_fin").val()+"'"; break;
 			}
-				
 
-				
+			switch($("#fecha").val())
+			{
+				case '0': break;
+				case '1': consulta += " AND fecha_orden < '"+$("#fecha_i").val()+"'";  break;
+				case '2': consulta += " AND fecha_orden = '"+$("#fecha_i").val()+"'";  break;
+				case '3': consulta += " AND fecha_orden > '"+$("#fecha_i").val()+"'";  break;
+				case '4': consulta += " AND fecha_orden > '"+$("#fecha_i").val()+"' AND fecha_orden < '"+$("#fecha_f").val()+"'"; break;
+			}
 
-			$("#filtro").val(cadena);
+			$("#filtro").val(consulta);
 			buscar();
 		}
 

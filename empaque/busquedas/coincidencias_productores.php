@@ -1,11 +1,15 @@
 <?php
 			include("../../mod/conexion.php");
 			$buscar = $_POST['buscar'];
+			$filtro = $_POST['filtro'];
+
 			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
 				"telefono_productor, direccion_productor, ".
-				" rfc_productor, id_usuario_fk, estado_p, nombre_usuario from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_usuario_que_registro = ".$_SESSION['id_usuario']." AND (nombre_productor like '%$buscar%' OR apellido_productor like '%$buscar%')");
+				" rfc_productor, id_usuario_fk, estado_p, nombre_usuario from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_usuario_que_registro = ".$_SESSION['id_receptor']." AND (nombre_productor like '%$buscar%' OR apellido_productor like '%$buscar%' OR rfc_productor like '%$buscar%' OR id_productor = '$buscar') $filtro ORDER BY nombre_productor ASC, apellido_productor ASC");
 			if($result_productores){
-			if(mysql_num_rows($result_productores) > 0){
+				$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){
+		
 ?>
 
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
@@ -14,6 +18,7 @@
 		        <tr>
 		          <th class="centro">#</th>
 		          <th >Usuario</th>
+		          <th class="centro">ID</th>
 		          <th>Nombre  del productor</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">Teléfono</th>
@@ -23,14 +28,17 @@
       		</thead>
       		<tbody>
 			<?php
-				$i=1;
+					
+	print "<p>Se encontraron " .  $count . " resultados.</p>";
+	$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
 		        		<td><?php echo $row['nombre_usuario']; ?></td>
-			          	<td><?php echo $row['nombre_productor']." ".$row['apellido_productor']; ?></td>
+		        		<td class="centro"><a href="index.php?productor=<?php print $row['id_productor'] ?>"> <?php echo str_pad($row['id_productor'], 7,"0",STR_PAD_LEFT); ?> </a></td>
+			          	<td> <a href="index.php?productor=<?php print $row['id_productor'] ?>">  <?php echo $row['nombre_productor']." ".$row['apellido_productor']; ?> </a></td>
 			          	<td class="centro"><?php echo $row['rfc_productor']; ?></td>
 			          	<td class="centro"><?php echo $row['telefono_productor']; ?></td>
 			          	<!--<td class="centro"><?php echo $row['direccion_productor']; ?></td>-->

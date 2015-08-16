@@ -14,7 +14,7 @@ namespace CS101_CALLBACK_API_DEMO
     public partial class showCajas : Form
     {
         public int Socio, id_Envio, id_Orden, id_Carro, datosTabla = 0, rowIndex = -10;
-        public String Palet = "";
+        public String Palet = "", Caja="";
         public DataTable dt;
 
         public showCajas(int socio, int id_envio, int id_orden, int id_carro, String palet)
@@ -205,10 +205,87 @@ namespace CS101_CALLBACK_API_DEMO
             {
                 if (datosTabla == 1)
                 {
+                    Caja = dt.Rows[dataGrid1.CurrentRowIndex][1].ToString();
                     traza_btn.Enabled = true;
                 }
                 rowIndex = dataGrid1.CurrentRowIndex;
             }
+        }
+
+        private void traza_btn_Click(object sender, EventArgs e)
+        {
+            String r = "";
+            using (cargando c = new cargando())
+            {
+                c.Location = new Point((320 - c.Width) / 2, (240 - c.Height) / 2);
+                c.Show();
+                c.Update();
+                r = Traz();
+                //MessageBox.Show(r);
+            }
+            String[] res = r.Split('{');
+
+            if (res[0].CompareTo("Error") == 0)
+            {
+                MessageBox.Show(res[1], "Error");
+            }
+            else
+            {
+               // MessageBox.Show(res[1]);
+                using (Trazabilidad t = new Trazabilidad(res[1]))
+                {
+                    t.ShowDialog();
+                }
+            }
+        }
+
+        public String Traz()
+        {
+            string uriEnvios = Program.uri + "trazabilidad.php";
+            HttpWebRequest request;
+            byte[] postBytes;
+            Stream requestStream;
+            HttpWebResponse response;
+            Stream responseStream;
+
+            try
+            {
+                /*PETICIÓN AL WEBSERVER*/
+                request = (HttpWebRequest)WebRequest.Create(uriEnvios);
+                request.Method = "POST";
+                request.KeepAlive = false;
+                request.ProtocolVersion = HttpVersion.Version10;
+
+                postBytes = Encoding.UTF8.GetBytes("datos=" + Caja);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.AllowWriteStreamBuffering = false;
+                request.ContentLength = postBytes.Length;
+                request.AllowAutoRedirect = false;
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(postBytes, 0, postBytes.Length);
+                requestStream.Close();
+
+                /*RESPUESTA DEL WEBSERVER*/
+                response = (HttpWebResponse)request.GetResponse();
+                responseStream = response.GetResponseStream();
+
+                string jsonString = null;
+                using (StreamReader reader2 = new StreamReader(responseStream))
+                {
+                    jsonString = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                responseStream.Close();
+                response.Close();
+                return jsonString;
+
+            }
+            catch (Exception e2)
+            {
+                return "Error{Error de respuesta de json \n -No encuentra la ruta del webservice :" + e2.Message.ToString();
+            }
+
         }
     }
 }

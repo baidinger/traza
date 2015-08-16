@@ -132,6 +132,7 @@
             this.traza_btn.Size = new System.Drawing.Size(118, 29);
             this.traza_btn.TabIndex = 10;
             this.traza_btn.Text = "Ver Trazabilidad";
+            this.traza_btn.Click += new System.EventHandler(this.traza_btn_Click);
             // 
             // showCajas
             // 

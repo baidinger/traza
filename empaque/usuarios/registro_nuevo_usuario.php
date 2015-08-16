@@ -13,7 +13,7 @@
     </div>
     <div style="width:80%; margin: 30px auto">
 		<form class="form-horizontal" role="form" method="post" action="usuarios/registro_nuevo_usuario_admin.php">
-	      	<div class="modal-body" style="width:50%; float: left">
+	      	<div class="modal-body" style="width:50%; float: left; border-radius: 5px">
 	  		<div class="alert alert-info">DATOS DEL USUARIO</div>
 	      		<div class="form-group">
 			    	<label class="col-sm-3 control-label">Usuario: </label>
@@ -54,7 +54,7 @@
 		         	</div>
 				  </div>
 			  	</div>
-			  	<div class="modal-body" style="width:40%; float: right">
+			  	<div class="modal-body" style="width:40%; float: right; border-radius: 5px">
      		    <div class="alert alert-info">PRIVILEGIOS</div>
      		    
 			  	<div class="form-group alert alert-warning">

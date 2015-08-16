@@ -92,7 +92,7 @@ namespace CS101_CALLBACK_API_DEMO
                     using (FileStream fs = new FileStream("host.txt", FileMode.Create))
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
-                        sw.WriteLine("192.168.0.105");
+                        sw.WriteLine("192.168.0.102/traza");
                         sw.Flush();
                     }
 
@@ -154,9 +154,9 @@ namespace CS101_CALLBACK_API_DEMO
 
                 //Application.Run(new MenuForm());
                 //Application.Run(new TagInventoryForm());
-                //Application.Run(new sesion());
+                Application.Run(new sesion());
 
-                Application.Run(new Trazabilidad());
+               // Application.Run(new Trazabilidad("000000001000009000000005"));
 
                 ReaderCE.Disconnect();
 

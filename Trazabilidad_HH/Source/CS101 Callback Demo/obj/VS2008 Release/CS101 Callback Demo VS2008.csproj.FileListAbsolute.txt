@@ -141,3 +141,5 @@ C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\
 C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.showCajas.resources
 C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.mostrarMessage.resources
 C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Trazabilidad.resources
+C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcsTrazabilidad.resources
+C:\wamp\www\traza\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.datosTraza.resources

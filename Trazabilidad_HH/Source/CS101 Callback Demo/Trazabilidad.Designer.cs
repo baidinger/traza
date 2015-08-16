@@ -55,7 +55,7 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(3, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 20);
+            this.label2.Size = new System.Drawing.Size(78, 20);
             this.label2.Text = "Productor";
             // 
             // label3
@@ -71,9 +71,10 @@
             this.nom_ape_productor.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Underline);
             this.nom_ape_productor.Location = new System.Drawing.Point(19, 50);
             this.nom_ape_productor.Name = "nom_ape_productor";
-            this.nom_ape_productor.Size = new System.Drawing.Size(291, 20);
+            this.nom_ape_productor.Size = new System.Drawing.Size(298, 21);
             this.nom_ape_productor.TabIndex = 3;
             this.nom_ape_productor.Text = "nom_ape_productor";
+            this.nom_ape_productor.Click += new System.EventHandler(this.nom_ape_productor_Click);
             // 
             // nom_empaque
             // 
@@ -83,6 +84,7 @@
             this.nom_empaque.Size = new System.Drawing.Size(291, 20);
             this.nom_empaque.TabIndex = 4;
             this.nom_empaque.Text = "nom_empaque";
+            this.nom_empaque.Click += new System.EventHandler(this.nom_empaque_Click);
             // 
             // label4
             // 
@@ -100,6 +102,7 @@
             this.nom_dist.Size = new System.Drawing.Size(291, 20);
             this.nom_dist.TabIndex = 6;
             this.nom_dist.Text = "nom_dist";
+            this.nom_dist.Click += new System.EventHandler(this.nom_dist_Click);
             // 
             // label5
             // 
@@ -117,6 +120,7 @@
             this.nom_pv.Size = new System.Drawing.Size(291, 20);
             this.nom_pv.TabIndex = 8;
             this.nom_pv.Text = "nom_pv";
+            this.nom_pv.Click += new System.EventHandler(this.nom_pv_Click);
             // 
             // acept_btn
             // 
@@ -126,6 +130,7 @@
             this.acept_btn.Size = new System.Drawing.Size(77, 32);
             this.acept_btn.TabIndex = 9;
             this.acept_btn.Text = "Aceptar";
+            this.acept_btn.Click += new System.EventHandler(this.acept_btn_Click);
             // 
             // Trazabilidad
             // 
