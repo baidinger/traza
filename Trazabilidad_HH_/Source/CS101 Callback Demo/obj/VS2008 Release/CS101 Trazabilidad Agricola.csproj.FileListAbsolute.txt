@@ -1,0 +1,92 @@
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CommDrv.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\hhpImgrSdk.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\rfid.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\rfidb.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\rfidtx.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 Trazabilidad Agricola.exe
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 Trazabilidad Agricola.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Data.SQLite.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\System.Data.SqlServerCe.dll
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.pdb
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\ResolveAssemblyReference.cache
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.StartMenu.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.SortListView.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.ProgressBar.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcs.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Properties.Resources.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ResultForm.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.BarCodeMessage.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.cargando.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.datosTraza.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcsTrazabilidad.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.mostrarMessage.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcsEntradas.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.entradasWorgking.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.enviosWorking.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.mensajeShow.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.PowerForm.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ProfileForm.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.server.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.sesion.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ConfigOffset.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.showCajas.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.showPallets.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Trazabilidad.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.trazabilidadSplash.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.workingPlace.resources
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Trazabilidad Agricola.csproj.GenerateResource.Cache
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Trazabilidad Agricola.exe
+C:\Users\Simpus\Desktop\Trazabilidad_HH\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Trazabilidad Agricola.pdb
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CommDrv.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\hhpImgrSdk.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\rfid.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\rfidb.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\rfidtx.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 Trazabilidad Agricola.exe
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CS101 Trazabilidad Agricola.pdb
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Data.SQLite.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\System.Data.SqlServerCe.dll
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Windows.pdb
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.Diagnostics.pdb
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.pdb
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\bin\VS2008 Release\CSLibrary.MessageQueue.pdb
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\ResolveAssemblyReference.cache
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.StartMenu.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.SortListView.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\Custom.Control.ProgressBar.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcs.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Properties.Resources.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ResultForm.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.BarCodeMessage.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.cargando.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.datosTraza.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcsTrazabilidad.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.mostrarMessage.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.readEpcsEntradas.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.entradasWorgking.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.enviosWorking.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.mensajeShow.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.PowerForm.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ProfileForm.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.server.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.sesion.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.ConfigOffset.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.showCajas.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.showPallets.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.Trazabilidad.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.trazabilidadSplash.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101_CALLBACK_API_DEMO.workingPlace.resources
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Trazabilidad Agricola.csproj.GenerateResource.Cache
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Trazabilidad Agricola.exe
+C:\wamp\www\traza\Trazabilidad_HH_\Source\CS101 Callback Demo\obj\VS2008 Release\CS101 Trazabilidad Agricola.pdb
