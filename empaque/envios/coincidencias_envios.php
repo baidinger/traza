@@ -5,14 +5,12 @@
 	$filtro = $_POST['filtro'];
 
 	//PRINT $cadena = "SELECT * FROM ordenes_distribuidor, envios_empaque, usuario_empaque where ordenes_distribuidor.id_orden = envios_empaque.id_orden_fk AND usuario_empaque.id_empaque_fk = ordenes_distribuidor.id_empaque_fk AND usuario_empaque.id_usuario_fk = 51";
-	$cadena = "select * from envios_empaque, empresa_distribuidores, ordenes_distribuidor where (nombre_distribuidor like '%$buscar%' or id_orden = '$buscar' or id_envio = '$buscar') AND id_distribuidor = id_distribuidor_fk AND id_orden = id_orden_fk AND id_empaque_fk = ".$_SESSION['id_empaque']." ".$filtro." ORDER BY id_envio DESC";
-	$result_productores = mysql_query($cadena);
-	if(mysql_num_rows($result_productores) > 0){
+	
 
  ?>
 
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
-	    <table class="table table-hover">
+	    <table class="table table-hover" style="font-size: 14px">
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
@@ -30,28 +28,22 @@
       		</thead>
       		<tbody>
 			<?php
-			
+			$cadena = "select * from envios_empaque, empresa_distribuidores, ordenes_distribuidor where (nombre_distribuidor like '%$buscar%' or id_orden = '$buscar' or id_envio = '$buscar') AND id_distribuidor = id_distribuidor_fk AND id_orden = id_orden_fk AND id_empaque_fk = ".$_SESSION['id_empaque']." ".$filtro." ORDER BY id_envio DESC";
+	$result_productores = mysql_query($cadena);
+		$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){
+	print "<p>Se encontraron " .  $count . " resultados.</p>";
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
-		        		<td class="centro"> <?php echo $row['id_envio']; ?> </td>
-		        		<td class="centro"><?php print $row['id_camion_fk'] ?></td>
-		        		<td class="centro"> <?php echo $row['id_orden_fk']; ?> </td>
-			          	<td><?php echo $row['nombre_distribuidor']; ?></td>
-			        	<!--<td><?php 
-/*
-			        	$cadena = "SELECT * FROM productos, ordenes_distribuidor_detalles WHERE id_producto = id_producto_fk AND id_orden_fk = ".$row['id_orden_fk'];
-						$result = mysql_query($cadena);
-						if(mysql_num_rows($result) > 0){
-							while($row1 = mysql_fetch_array($result)) {
-			        			echo $row1['nombre_producto']. " ".$row1['variedad_producto']."<br>"; 
-			        		}
-			        	}*/
-			        	?>
-			        	</td>-->
-			        	
+		        		<td class="centro"><a href="#" onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"> <?php echo str_pad($row['id_envio'], 10,"0",STR_PAD_LEFT); ?></a> </td>
+		        		<td class="centro"><?php echo str_pad($row['id_camion_fk'], 7,"0",STR_PAD_LEFT); ?></td>
+		        		<td class="centro"> <a style="cursor:hand" onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')">
+		        				<?php echo str_pad($row['id_orden'], 10,"0",STR_PAD_LEFT); ?> </td>
+		        			</a> </td>
+			          	<td><a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>"><?php echo $row['nombre_distribuidor']; ?></a></td>
 			          	<td class="centro"><?php echo $row['fecha_envio']." a las ".$row['hora_envio']; ?></td>
 			          	<td class="centro">
 				          	<?php if($_SESSION['nivel_socio'] == 1) if($row['estado_envio'] == 3){ ?>
@@ -135,6 +127,27 @@
 			      	<div id="data-child1" style="margin:0px auto; ">
 			        	
 					</div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Modal ORDEN-->
+			<div class="modal fade" id="myModalOrden" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h3 class="modal-title" id="myModalLabel"><img class="img-header" src="../img/detalles_orden.png"> Detalles de la orden</h3>
+			      </div>
+			      <div class="modal-body fondo-blanco">
+			      	<div id="detallesOrden">
+			        	
+					</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	
 			      </div>
 			    </div>
 			  </div>

@@ -31,7 +31,7 @@
 	  		<?php 
 	  				include("../../mod/conexion.php");
 
-	  				$result = mysql_query("select id_productos_empaque, nombre_producto, variedad_producto, precio_compra, precio_venta from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk join productos on productos.id_producto = productos_empaques.id_producto_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario']);
+	  				$result = mysql_query("select id_productos_empaque, id_producto, nombre_producto, variedad_producto, precio_compra, precio_venta from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk join productos on productos.id_producto = productos_empaques.id_producto_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario']);
 	  				
 	  		 ?>
 
@@ -40,7 +40,7 @@
 		   	 	</div>
 						   <br> 	 	
 	  		
-	  		<div style="width:800px; padding:20px; background:white; margin:0px auto;">
+	  		<div style="width:800px; padding:20px; background:white; margin:0px auto; border-radius: 5px">
 	  			<div style="width:150px; margin:0px auto;">
 	  				<button data-toggle="modal" data-target="#modalProducto" class="btn btn-primary">
 	  					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar producto
@@ -53,6 +53,7 @@
 				    	<thead>
 					        <tr>
 					          <th class="centro">#</th>
+					          <th class="centro">ID</th>
 					          <th class="centro">Nombre</th>
 					          <th class="centro">Precio compra</th>
 					          <th class="centro">Precio venta</th>
@@ -68,6 +69,7 @@
 			      				while($row = mysql_fetch_array($result)){
 			      					?><tr>
 				      						<td class="centro"> <?php echo $i; ?></td>
+				      						<td class="centro"><?php echo str_pad($row['id_producto'],4,"0",STR_PAD_LEFT) ?></td>
 				      						<td class="centro"><?php echo $row['nombre_producto']." ".$row['variedad_producto']; ?></td>
 				      						<td class="centro">$ <?php echo $row['precio_compra']; ?>
 				      							<span class="btn-link" style="font-size:12px; cursor: hand" onClick="modalCostoShow(<?php echo $row['id_productos_empaque']; ?>, <?php echo $row['precio_compra']; ?>,1)">Cambiar</span>
@@ -112,6 +114,8 @@
 	
 
 	  		</div>
+	  		<div style="clear: both"></div>
+	  		<p>&nbsp;</p>
 	  	</div>
 
 	  	<div class="modal fade bs-example-modal-md" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">

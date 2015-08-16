@@ -31,7 +31,7 @@
 			if(mysql_query("INSERT INTO empresa_empaques (nombre_empaque, rfc_empaque,".
 				" pais_empaque, estado_empaque, ciudad_empaque, direccion_empaque,".
 				" cp_empaque, email_empaque, telefono1_empaque, telefono2_empaque, id_usuario_que_registro, fecha_registro_emp, fecha_modificacion_emp) VALUES ".
-				"('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$direccion."','".$cp."','".$email."','".$tel1."','".$tel2."',".$_SESSION['id_usuario'].",'".date("Y-m-d")."','".date("Y-m-d")."')"))
+				"('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$direccion."','".$cp."','".$email."','".$tel1."','".$tel2."',".$_SESSION['id_receptor'].",'".date("Y-m-d")."','".date("Y-m-d")."')"))
 			{
 				$result_empaques = mysql_query("select id_empaque from empresa_empaques where rfc_empaque = '".$rfc."'");
 				if($result_usuarios){

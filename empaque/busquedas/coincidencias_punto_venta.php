@@ -2,16 +2,20 @@
 <?php
 			include("../../mod/conexion.php");
 			$buscar = $_POST['buscar'];
+			$filtro = $_POST['filtro'];
+			
 			$result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rfc_punto_venta, ".
 				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta,cp_punto_venta, telefono_punto_venta, email_punto_venta, direccion_punto_venta, ".
-				" estado_pv from empresa_punto_venta where id_usuario_que_registro = ".$_SESSION['id_usuario']."  AND nombre_punto_venta like '%$buscar%'");
-			if(mysql_num_rows($result_productores) > 0){
+				" estado_pv from empresa_punto_venta where id_usuario_que_registro = ".$_SESSION['id_receptor']."  AND (nombre_punto_venta like '%$buscar%' OR rfc_punto_venta like '%$buscar%' OR id_punto_venta = '$buscar') $filtro ORDER BY nombre_punto_venta ASC");
+				$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){
 ?>
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
 	    <table class="table table-hover" style="font-size: 14px">
 	    	<thead>
 		        <tr>
 		          <th class="centro">#</th>
+		          <th class="centro">ID</th>
 		          <th class="centro">Nombre</th>
 		          <th class="centro">RFC</th>
 		          <th class="centro">País</th>
@@ -23,14 +27,17 @@
       		</thead>
       		<tbody>
 			
-			<?php			
+			<?php
+			
+	print "<p>Se encontraron " .  $count . " resultados.</p>";			
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	
 				 	?>
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
-			          	<td><?php echo $row['nombre_punto_venta']; ?></td>
+		        		<td class="centro"><a href="index.php?pv=<?php print $row['id_punto_venta'] ?>"> <?php echo str_pad($row['id_punto_venta'], 7,"0",STR_PAD_LEFT); ?> </a></td>
+			          	<td> <a href="index.php?pv=<?php print $row['id_punto_venta'] ?>"> <?php echo $row['nombre_punto_venta']; ?></a></td>
 			          	<td class="centro"><?php echo $row['rfc_punto_venta']; ?></td>
 			          	<td class="centro"><?php 
 
@@ -92,7 +99,7 @@
 					          			</a>
 				          				<?php } ?>
 				          				<div style="width:10px; height:10px; float:left;"></div> 
-				          				<a style="float:left; cursor:pointer;"> 
+				          				<a href="index.php?pv=<?php print $row['id_punto_venta'] ?>" style="float:left; cursor:pointer;"> 
 				          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 				          				</a>
 				          				<!--   - - - - - - - - - - - -  - - - - -  -->

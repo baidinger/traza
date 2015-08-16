@@ -150,10 +150,10 @@
 			buscar();
 
 
-		function mostrarModalOrdenes(idOrden, descripcion, total, fecha, usuario){
+		function mostrarModalOrdenes(idOrden){
 			$('#detallesOrden').html("");
 			$('#myModalOrden').modal('show');
-			var parametros = {'id_orden':idOrden, 'descripcion': descripcion,'total':total,'fecha':fecha,'usuario':usuario};
+			var parametros = {'id_orden':idOrden};
 
 			$.ajax({
 				type:'post',

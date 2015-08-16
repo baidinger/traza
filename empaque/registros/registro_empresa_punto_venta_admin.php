@@ -29,7 +29,7 @@
 
 			$cad = " INSERT INTO empresa_punto_venta (nombre_punto_venta, rfc_punto_venta,".
 				" pais_punto_venta, estado_punto_venta, ciudad_punto_venta, telefono_punto_venta, cp_punto_venta, email_punto_venta, direccion_punto_venta, id_usuario_que_registro, fecha_registro_pv, fecha_modificacion_pv) ".
-				" VALUES ('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$tel."','".$cp."','".$email."','".$direccion."',".$_SESSION['id_usuario'].",'".date("Y-m-d")."','".date("Y-m-d")."')";
+				" VALUES ('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$tel."','".$cp."','".$email."','".$direccion."',".$_SESSION['id_receptor'].",'".date("Y-m-d")."','".date("Y-m-d")."')";
 
 			if(mysql_query($cad))
 			{

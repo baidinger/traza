@@ -1,4 +1,4 @@
-<?php 
+<?php @session_start();
 	include('../../mod/conexion.php');
 	$usuario 			=	strtoupper($_POST['usuario_distribuidor']);
 	$pass 				=	$_POST['contrasena_distribuidor'];
@@ -34,7 +34,7 @@
 				" pais_distribuidor, estado_distribuidor, ciudad_distribuidor, cp_distribuidor,".
 				" email_distribuidor, tel1_distribuidor, tel2_distribuidor, direccion_distribuidor, id_usuario_que_registro, fecha_registro_dist, fecha_modificacion_dist) ".
 				" VALUES ('".$nombre."','".$rfc."','".$pais."','".$estado."','".$ciudad."','".$cp.
-					"','".$email."','".$tel1."','".$tel2."','".$direccion."',".$_SESSION['id_usuario'].",'".date("Y-m-d")."','".date("Y-m-d")."')"))
+					"','".$email."','".$tel1."','".$tel2."','".$direccion."',".$_SESSION['id_receptor'].",'".date("Y-m-d")."','".date("Y-m-d")."')"))
 			{
 				$result_distribuidores = mysql_query("select id_distribuidor from empresa_distribuidores where rfc_distribuidor = '".$rfc."'");
 				if($result_distribuidores){
