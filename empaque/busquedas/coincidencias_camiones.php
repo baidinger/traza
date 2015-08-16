@@ -1,8 +1,15 @@
 <?php 
 
 	$buscar = $_POST['buscar'];
+	$filtro = $_POST['filtro'];
 	
 	include("../../mod/conexion.php");
+
+	$result_productores = mysql_query("select * from camiones_empaque
+		where id_empaque_fk = ".$_SESSION['id_empaque'] ." AND (id_camion = '$buscar' OR nombre_chofer like 
+		'%$buscar%' OR placas like '%$buscar%') $filtro ORDER BY id_camion ASC");
+	$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){
 
  ?>
 
@@ -22,11 +29,7 @@
       		</thead>
       		<tbody>
 			<?php
-					$result_productores = mysql_query("select * from camiones_empaque
-		where id_empaque_fk = ".$_SESSION['id_empaque'] ." AND (id_camion = '$buscar' OR nombre_chofer like 
-		'%$buscar%')");
-	$count  = mysql_num_rows($result_productores);
-	if( $count > 0 ){
+					
 	print "<p>Se encontraron " .  $count . " resultados.</p>";
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
