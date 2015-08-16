@@ -191,7 +191,24 @@
 			}
 
 			function generacionReportes(){
-				alert('Generación e impresión de reportes');
+				var pv = "<?php echo $idPuntoVentaFK; ?>";
+				var params = {'pv': pv};
+
+				$.ajax({
+					type: 'POST',
+					url: '../../genReps/generarRelacionUsuariosPuntoVenta.php',
+					data: params,
+
+					beforeSend: function(){
+						$('#mensaje').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+					},
+
+					success: function(data){
+						var urlPDF = "../../docs/usuariospuntoventa" + pv + ".pdf";
+						$('#mensaje').html("");
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
 			}
 
 			function editarUsuario(usuario, usuariofk, nombre){
