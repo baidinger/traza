@@ -341,7 +341,7 @@ namespace CS101_CALLBACK_API_DEMO
             }
             else
             {
-                MessageBox.Show(res[1]);
+                //MessageBox.Show(res[1]);
                 using (Trazabilidad t = new Trazabilidad(res[1]))
                 {
                     t.ShowDialog();
