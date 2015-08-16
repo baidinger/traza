@@ -43,7 +43,7 @@
 					      					<td><?php echo str_pad($row['id_orden'], 10,"0",STR_PAD_LEFT); ?></td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Distribuidor:</strong></td>
+					      					<td><strong>Empresa destino:</strong></td>
 					      					<td><a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>"> <?php echo $row['nombre_distribuidor'] ?> </a></td>
 					      					<td><strong>fecha de orden:</strong></td>
 					      					<td>
@@ -79,7 +79,7 @@
 					      					<td><strong>Fecha de envío</strong></td>
 					      					<td><?php echo $row['fecha_envio'] . " a las " . $row['hora_envio'] ?></td>
 					      					
-										 <td><strong>(ID) Usuario que envió:</strong></td>
+										 <td><strong>(ID) Responsable de envío:</strong></td>
 					      					<td><a href="index.php?usuarioemp=<?php print $row['id_receptor'] ?>"> <?php echo "(".$row['id_receptor'].") ".$row['nombre_receptor']." ".$row['apellido_receptor']  ?></a></td>
 					      				</tr>
 					      				<tr>

@@ -32,14 +32,14 @@
     <td><?php print $row['descripcion_orden'] ?></td>
   </tr>
   <tr>
-    <td><strong>Distribuidor</strong></td>
+    <td><strong>Empresa que solicita</strong></td>
     <td>
       <a href="index.php?distribuidor=<?php print $row['id_distribuidor'] ?>">
       <?php print $row['nombre_distribuidor'] ?>
     </a>
     </td>
 
-    <td><strong>Usuario que solicitó</strong></td>
+    <td><strong>Responsable de orden</strong></td>
     <td><?php print "(".str_pad($row['id_usuario_distribuidor'], 10,"0",STR_PAD_LEFT).") ".$row['nombre_usuario_distribuidor']." ".$row['apellido_usuario_distribuidor'];  ?></td>
   </tr>
    <tr>

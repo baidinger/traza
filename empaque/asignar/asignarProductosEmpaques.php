@@ -31,7 +31,7 @@
 	  		<?php 
 	  				include("../../mod/conexion.php");
 
-	  				$result = mysql_query("select id_productos_empaque,id_producto, nombre_producto, variedad_producto, precio_compra, precio_venta from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk join productos on productos.id_producto = productos_empaques.id_producto_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario']);
+	  				$result = mysql_query("select id_productos_empaque, id_producto, nombre_producto, variedad_producto, precio_compra, precio_venta from productos_empaques join usuario_empaque on productos_empaques.id_empaque_fk = usuario_empaque.id_empaque_fk join productos on productos.id_producto = productos_empaques.id_producto_fk where usuario_empaque.id_usuario_fk =".$_SESSION['id_usuario']);
 	  				
 	  		 ?>
 

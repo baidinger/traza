@@ -2,7 +2,13 @@
 <?php
 			include("../../mod/conexion.php");
 			$buscar = $_POST['buscar'];
+			$filtro = $_POST['filtro'];
 			
+			$result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rfc_punto_venta, ".
+				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta,cp_punto_venta, telefono_punto_venta, email_punto_venta, direccion_punto_venta, ".
+				" estado_pv from empresa_punto_venta where id_usuario_que_registro = ".$_SESSION['id_receptor']."  AND (nombre_punto_venta like '%$buscar%' OR rfc_punto_venta like '%$buscar%' OR id_punto_venta = '$buscar') $filtro ORDER BY nombre_punto_venta ASC");
+				$count  = mysql_num_rows($result_productores);
+	if( $count > 0 ){
 ?>
 <div id="paginacion-resultados" style="width:95%; margin:0px auto;">
 	    <table class="table table-hover" style="font-size: 14px">
@@ -22,11 +28,7 @@
       		<tbody>
 			
 			<?php
-			$result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rfc_punto_venta, ".
-				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta,cp_punto_venta, telefono_punto_venta, email_punto_venta, direccion_punto_venta, ".
-				" estado_pv from empresa_punto_venta where id_usuario_que_registro = ".$_SESSION['id_receptor']."  AND nombre_punto_venta like '%$buscar%'");
-				$count  = mysql_num_rows($result_productores);
-	if( $count > 0 ){
+			
 	print "<p>Se encontraron " .  $count . " resultados.</p>";			
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
