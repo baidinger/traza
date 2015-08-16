@@ -28,7 +28,7 @@
 	      <div class="modal-body">
 	      	<div class="form-horizontal">
 		   	<div class="form-group">
-		    	<label class="col-sm-2 control-label">Estado: </label>
+		    	<label class="col-sm-3 control-label">Estado: </label>
 			    <div class="col-sm-4">
 			      	<select id="status" class="form-control input">
 			      		<option value="-1">-- Sin filtro</option>
@@ -37,9 +37,19 @@
 			      	</select>
 			    </div>
 	  		</div>
+	  			<div class="form-group">
+		    	<label class="col-sm-3 control-label">Nivel autorización: </label>
+			    <div class="col-sm-4">
+			      	<select id="nivel" class="form-control input">
+			      		<option value="-1">-- Sin filtro</option>
+			      		<option value="1">Administrador</option>
+			      		<option value="2">Normal</option>
+			      	</select>
+			    </div>
+	  		</div>
 
 	  		<div class="form-group">
-		    	<label class="col-sm-2 control-label">Fecha de registro: </label>
+		    	<label class="col-sm-3 control-label">Fecha de registro: </label>
 			    <div class="col-sm-3">
 			      	<select id="fecha" onchange="verificar2()" class="form-control input">
 			      		<option value="0">--- Sin filtro</option>
@@ -94,7 +104,9 @@
 				consulta = " AND estado_usuario = '" + $("#status").val() + "' " ;
 			else consulta = "" ;
 
-			
+			if($("#nivel").val() == 2 || $("#nivel").val() == 1) 
+				consulta = " AND nivel_autorizacion_usuario = '" + $("#nivel").val() + "' " ;
+						
 
 			switch($("#fecha").val())
 			{
