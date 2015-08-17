@@ -6,7 +6,7 @@
 
 		<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">-->
 		<link rel="stylesheet" type="text/css" href="css/estilos.css">
-		<?php include("../script/paises.js"); ?>
+		<?php include("script/paises.js"); ?>
 	</head>
 
 	<body>
@@ -17,7 +17,7 @@
 	</div>
 <div style="width:80%; margin: 30px auto">
 	<form name="formulario" class="form-horizontal" role="form" method="post" action="registros/registro_empresa_empaque_admin.php">
-     		<div class="modal-body" style="width:50%; float: left">
+     		<div class="modal-body" style="width:50%; float: left; border-radius: 5px">
 	  		<div class="alert alert-info">DATOS DEL EMPRESA</div>
 	      		<div class="form-group">
 			    	<label class="col-sm-3 control-label">Usuario: </label>
@@ -68,7 +68,7 @@
 		         	</div>
 				  </div>
 				 </div>
-				  <div class="modal-body" style="width:40%; float: right">
+				  <div class="modal-body" style="width:40%; float: right; border-radius: 5px">
      		    <div class="alert alert-info">UBICACIÓN DEL DISTRIBUIDOR</div>
 
 		 	  	<div class="form-group">

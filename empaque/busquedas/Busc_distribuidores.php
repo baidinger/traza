@@ -1,4 +1,4 @@
-<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; ?>
+<?php  if($_SESSION['nivel_socio'] != 1) return; ?>
 <!DOCTYPE html>
 <html>
 	<head lang="ES">
@@ -20,7 +20,7 @@
 <div id="data">
 	
 </div>
-<div class="modal fade"  id="filtro" role="dialog" >
+<div class="modal fade"  id="avanzada" role="dialog" >
 	  <div class="modal-dialog" style="width: 700px" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">

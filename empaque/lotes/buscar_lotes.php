@@ -8,7 +8,8 @@
 			$titulo = "Búsqueda de lotes";
 			$placeholder="Nombre productor / núm lote";
 			$imagen = "lotes.png";
-			include("../busquedas/formulario_busqueda.php"); ?>
+			$ruta = "index.php?op=reg_lote";
+			include("busquedas/formulario_busqueda_empresa.php"); ?>
 
 <div id="data">
 	
@@ -34,7 +35,7 @@
 	</div>
 
 	<?php 
-	include("../../mod/conexion.php");
+	include("../mod/conexion.php");
 	$consulta = "SELECT * FROM PRODUCTOS ORDER BY nombre_producto ASC, variedad_producto ASC";
 	$result = mysql_query($consulta);
 

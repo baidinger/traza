@@ -1,4 +1,4 @@
-<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; ?>
+<?php  if($_SESSION['nivel_socio'] != 1) return; ?>
 <!DOCTYPE html>
 <html>
 	<head lang="ES">
@@ -19,8 +19,8 @@
 		<div id="data">
 
 		</div>
-		<div class="modal fade"  id="filtro" role="dialog" >
-	  <div class="modal-dialog" style="width: 700px" role="document">
+		<div class="modal fade"  id="avanzada" role="dialog" >
+	  <div class="modal-dialog" style="width: 500px" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -29,7 +29,7 @@
 	      <div class="modal-body">
 	      	<div class="form-horizontal">
 		   	<div class="form-group">
-		    	<label class="col-sm-2 control-label">Estado: </label>
+		    	<label class="col-sm-4 control-label">Estado: </label>
 			    <div class="col-sm-4">
 			      	<select id="status" class="form-control input">
 			      		<option value="-1">-- Sin filtro</option>
@@ -39,7 +39,7 @@
 			    </div>
 	  		</div>
 	  		<div class="form-group">
-		    	<label class="col-sm-2 control-label">Disponiblidad: </label>
+		    	<label class="col-sm-4 control-label">Disponiblidad: </label>
 			    <div class="col-sm-4">
 			      	<select id="disponibilidad" class="form-control input">
 			      		<option value="-1">-- Sin filtro</option>
@@ -49,7 +49,7 @@
 			    </div>
 	  		</div>
 	  		<div class="form-group">
-		    	<label class="col-sm-2 control-label">Modelo: </label>
+		    	<label class="col-sm-4 control-label">Modelo: </label>
 			    <div class="col-sm-4">
 			      	<input id="modelo" class="form-control input" type="number">
 			      		

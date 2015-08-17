@@ -60,17 +60,41 @@
 				  <p class="label label-success">RENDIMIENTO</p>
 				 <br><br>
 				  <div style="clear: both"></div>
+				   <div class="form-group">
+			    	<label class="col-sm-3 control-label">Cajas chicas: </label>
+			    	<div class="col-sm-3">
+			    		<input type="number" class="form-control input" 
+			    		name="cajas_chicas" 
+			    		placeholder="Rend." required min ="0">
+		         	</div>
+		         	<label class="col-sm-3 control-label">Cajas medianas: </label>
+			    	<div class="col-sm-3">
+			    		<input type="number" class="form-control input" 
+			    		name="cajas_medianas" 
+			    		placeholder="Rend." required min ="0">
+		         	</div>
+		         </div>
+		         <div class="form-group">
+		         	<label class="col-sm-3 control-label">Cajas grandes: </label>
+			    	<div class="col-sm-3">
+			    		<input type="number" class="form-control input" 
+			    		name="cajas_grandes" 
+			    		placeholder="Rend." required min ="0">
+		         	</div>
+		         	
+		         </div>
+				  <!--
 				  <div class="form-group">
 			    	<label class="col-sm-3 control-label">Cajas 14kg: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
-			    		name="cantidad_cajas" 
+			    		name="cajas" 
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         	<label class="col-sm-3 control-label">Cajas 15kg: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
-			    		name="cantidad_cajas" 
+			    		name="cajas" 
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         </div>
@@ -78,13 +102,13 @@
 		         	<label class="col-sm-3 control-label">Cajas 16kg: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
-			    		name="cantidad_cajas" 
+			    		name="cajas" 
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         	<label class="col-sm-3 control-label">Cajas 18kg: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
-			    		name="cantidad_cajas" 
+			    		name="cajas" 
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         </div>
@@ -92,7 +116,7 @@
 		         	<label class="col-sm-3 control-label">Cajas 20kg: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
-			    		name="cantidad_cajas" 
+			    		name="cajas" 
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         	<label class="col-sm-3 control-label">Cajas 25kg: </label>
@@ -110,6 +134,7 @@
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         </div>
+		     -->
 				  <div class="form-group">
 			    	<label class="col-sm-3 control-label">Rend. kilos: </label>
 			    	<div class="col-sm-3">
@@ -141,7 +166,7 @@
 				   <p class="label label-success">ETIQUETAS</p>
 				 <br><br>
 				  <div class="form-group">
-			    	<label class="col-sm-4 control-label">Etiquetas (RFID) caja: </label>
+			    	<label class="col-sm-4 control-label">Etiquetas (RFID): </label>
 			    	<div class="col-sm-7">
 			    		<input  type="number" min="0" class="form-control input" 
 			    		name="numero_etiquetas" 
@@ -161,5 +186,3 @@
     </div>
 	
 	 </div>
-
-		<?php mysql_close(); ?>

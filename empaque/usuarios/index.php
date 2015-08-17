@@ -14,7 +14,7 @@
 		</style>
 	</head>
 
-	<body style="background: #ffffff">
+	<body>
 
 		<div style="width:100%;">	
 	  		<div class="modal-header">
@@ -24,8 +24,8 @@
 	  		</div>
 	  	</div>
 	  				      			<?php
-			      				include('../../mod/conexion.php');
-			      				$id = $_POST['id'];
+			      				include('../mod/conexion.php');
+			      				//$id = $_POST['id'];
 
 			      				$consulta = "SELECT usudist.id_receptor, usudist.id_empaque_fk, usudist.nombre_receptor, usudist.pedidos, usudist.lotes, usudist.envios, usus.nombre_usuario, usus.estado_usuario, usudist.apellido_receptor, usus.nivel_autorizacion_usuario, usus.fecha_creacion_usuario, usus.fecha_modificacion_usuario, usudist.direccion_receptor, usudist.telefono_receptor FROM usuarios AS usus, usuario_empaque AS usudist WHERE usudist.id_usuario_fk = usus.id_usuario AND usudist.id_receptor = ".$id;
 			      				$resultado = mysql_query($consulta);
