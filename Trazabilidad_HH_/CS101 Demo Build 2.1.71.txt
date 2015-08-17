@@ -1,0 +1,110 @@
+2.1.71
+------
+1. support CS101-8 (JP2012)
+
+2.1.70
+------
+1. add Philippine(PH) Frequency band in -2 machine(918.125MHz, 918.375MHz, 918.625MHz, 918.875MHz, 919.125MHz, 919.375MHz, 919.625MHz and 919.875MHz)
+
+2.1.69
+------
+1. Modify inventory save tag function to "Append tag data" instead "Overwrite tag data", when selected filename exist.
+
+2.1.68
+------
+1. Fixed "WriteAnyPC" page
+
+2.1.67
+------
+1. Added "GeigerDemo2" page. This is geiger demo, and tag number input form bardcode reader.
+
+2.1.66
+------
+1. Added new UCODE7 TID "E2806810"
+2. Change the name of menu item from "MonzaQT" to "Monza4QT"
+
+2.1.65
+------
+1. disable CS8304/05 SPI port by default and auto enable when start temp log.
+
+2.1.64
+------
+1. Change cold chain log filename to "coldchaindebuglog.txt" from "coldchainlog.txt"
+2. Save cold chain temp log data to file "coldchaindata.csv" and use csv format.
+
+2.1.63
+------
+1. Coldchain Log Demo Page : Fix wrong index number.
+
+2.1.62
+------
+1. Supported two temperature monitors in coldchain log.
+
+2.1.61
+------
+1. Fix ColdChain log show wrong temperature.
+2. Fix ColdChain log show wrong status.
+
+2.1.60
+------
+1. Fix UCODE7 inventory error.
+
+2.1.59
+------
+1. Fix wrong layout in MonzaQT demo page
+2. check one more TID number "E2806810" in UCODE7 demo page
+
+2.1.58
+------
+1. Change cold chain log record page UI
+2. add 100ms delay when write address 260 in cold chain demo page
+
+2.1.57
+------
+1. Add CSL logo
+2. Add program icon (CSL icon)
+3. Add Write Any Fix EPC Demo
+
+2.1.56
+------
+1. Delete program icon (CSL icon)
+
+2.1.55
+------
+1. Delete CSL logo
+
+2.1.54
+------
+1. Add tag count and number of tag in UDPout page
+
+2.1.53
+------
+1. Add UDPout demo page
+
+2.1.52
+------
+1. Added UCODE7 demo page
+
+2.1.51
+------
+1. Fix can not stop coldchain log records
+
+2.1.50
+------
+1. Added HK and SG frequency in -2/-4 machine
+
+2.1.49
+------
+1. Change UI of Coldchain Page.
+
+2.1.48
+------
+1. Fix inventory page no buttons problem
+
+2.1.47
+------
+1. Change UI of cold chain monitor configuration page
+
+2.1.46
+------
+1. Change cold chain tag demo page UI

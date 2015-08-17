@@ -191,7 +191,24 @@
 			}
 
 			function generacionReportes(){
-				alert('Generación e impresión de reportes');
+				var dist = "<?php echo $idDistribuidorFK; ?>";
+				var params = {'dist': dist};
+
+				$.ajax({
+					type: 'POST',
+					url: '../../genReps/generarRelacionCamionesDistribuidor.php',
+					data: params,
+
+					beforeSend: function(){
+						$('#mensaje').html("<br><center><img id='img-cargando' src='../../img/cargando.gif'></center>");
+					},
+
+					success: function(data){
+						var urlPDF = "../../docs/camionesdistribuidor" + dist + ".pdf";
+						$('#mensaje').html("");
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
 			}
 
 			function editarCamion(camion){
