@@ -42,7 +42,7 @@
 
 	?>
 
-	<div class="modal fade"  id="filtro" role="dialog" >
+	<div class="modal fade"  id="avanzada" role="dialog" >
 	  <div class="modal-dialog" style="width: 700px" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">

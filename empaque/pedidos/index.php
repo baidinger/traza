@@ -294,10 +294,11 @@
 				]);
 
         var options = {
-          title: 'Pedidos',
+          title: 'NÚMERO DE PEDIDOS CLASIFICADO POR ESTADO DEL PEDIDO',
           is3D: true,
           width: 650,
-          height: 400
+          height: 300,
+          colors: ['#eea236', '#5bc0de', '#3681C2', '#2e6da4', '#C94242', '#C83636', '#ac2925', '#A01515', '#5cb85c']
 
         };
 

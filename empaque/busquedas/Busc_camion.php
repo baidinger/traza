@@ -51,7 +51,7 @@
 	  		<div class="form-group">
 		    	<label class="col-sm-4 control-label">Modelo: </label>
 			    <div class="col-sm-4">
-			      	<input id="modelo" class="form-control input" type="number">
+			      	<input id="modelo" min="0" class="form-control input" type="number">
 			      		
 			    </div>
 	  		</div>
@@ -104,9 +104,15 @@
 			if($("#disponibilidad").val() == 0 || $("#disponibilidad").val() == 1) 
 				consulta += " AND disponibilidad_ce = '" + $("#disponibilidad").val() + "' " ;
 			
+			if($("#modelo").val() < 0){
+				alert("Ingrese un número positivo");
+				return;
+			} 			
 
-			if($("#modelo").val().length > 0)
+			if($("#modelo").val().length > 0) 
 				consulta += " AND modelo = '"+$("#modelo").val()+"'";
+
+
 
 			$("#filtro").val(consulta);
 			buscar();

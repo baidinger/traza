@@ -37,6 +37,7 @@
 	        <h3 class="modal-title"><div>Estadística</div></h3>
 	      </div>
 	      <div class="modal-body">
+	      	<div class="alert alert-success">A continuación se muestra una gráfica de pastel con la estadística de este apartado.</div>
 	      	<div id="grafica"></div>
 	  		<div style="clear:both"></div>
 	  		<p>&nbsp;</p>

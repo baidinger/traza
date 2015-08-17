@@ -25,7 +25,7 @@
 		<?php if($_SESSION['nivel_socio'] == 1){ ?>
 		<a href="<?php print $ruta ?>" data-toggle="tooltip" title="Registrar" class="btn btn-success" ><span class="glyphicon glyphicon-plus"></span>&nbsp;</a>
 		<?php } ?>
-		<button data-toggle="modal" data-target="#infoestadistica" title="Estadísticas" class="btn btn-success" ><span class="glyphicon glyphicon-stats"></span>&nbsp;</button>
+		<!--<button data-toggle="modal" data-target="#infoestadistica" title="Estadísticas" class="btn btn-success" ><span class="glyphicon glyphicon-stats"></span>&nbsp;</button>-->
 		<button  data-toggle="tooltip" title="Generar reporte" class="btn btn-success"><span class="glyphicon glyphicon-save-file"></span>&nbsp;</button>
 	</div>
 
@@ -33,7 +33,7 @@
 <div style="clear: both"></div>
 <hr>
 
-
+<!--
 <div class="modal fade"  id="infoestadistica" role="dialog" >
 	  <div class="modal-dialog" style="width: 700px" role="document">
 	    <div class="modal-content">
@@ -49,10 +49,11 @@
 		  <div class="modal-footer">
 		  	<center>
 			    <button style="width: 150px" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-		<!--	    <button onclick="aplicar()" style="width: 150px" class="btn btn-primary" data-dismiss="modal">Aplicar</button>-->
+	
 			    <input type="hidden" id="filtro">
 		    </center>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+-->
