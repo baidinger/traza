@@ -6,8 +6,8 @@
 	</div>
 
 <?php
-			include('../../mod/conexion.php');
-			$id = $_POST['id'];
+			include('../mod/conexion.php');
+			
 			$consulta = "SELECT * FROM empresa_punto_venta, usuario_empaque WHERE id_receptor = id_usuario_que_registro AND id_punto_venta = ".$id;
 			$resultado = mysql_query($consulta);
 			if(mysql_num_rows($resultado) == 0) {  ?>

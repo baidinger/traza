@@ -14,7 +14,7 @@
 			$titulo = "Búsqueda de envíos";
 			$placeholder="Nombre del distribuidor / núm. orden / núm envío";
 			$imagen = "envios.png";
-			include("../busquedas/formulario_busqueda.php"); ?>
+			include("busquedas/formulario_busqueda.php"); ?>
 
 
 <div style="clear:both"></div>
@@ -24,7 +24,7 @@
 
 </div>
 
-<div class="modal fade"  id="filtro" role="dialog" >
+<div class="modal fade"  id="avanzada" role="dialog" >
 	  <div class="modal-dialog" style="width: 700px" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -235,6 +235,81 @@
 
 			});
 		}
+
+
+	  google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+
+      <?php 
+      include("../mod/conexion.php");
+      $consulta = "SELECT count(estado_envio) as num, estado_envio from envios_empaque,ordenes_distribuidor where id_orden = id_orden_fk AND id_empaque_fk = $_SESSION[id_empaque] GROUP BY estado_envio";
+      $result = mysql_query($consulta);
+
+/*      1    PENDIENTE
+2    RECHAZADO POR EMPAQUE
+3    ENVIADO
+4    CONCRETADO
+5    CANCELADO POR EMPAQUE
+6    APROBADO
+7    PRE-ENVIO
+8    CANCELADO POR DISTRIBUIDOR
+9    RECHAZADO POR DISTRIBUIDOR
+10  CANCELADO POR PUNTO DE VENTA
+11  RECHAZADO POR PUNTO DE VENTA
+*/
+
+      $pend = 0;
+      $rech_emp = 0;
+      $enviado = 0;
+      $concretado = 0;
+      $canc_empa = 0;
+      $aprobado = 0;
+      $preenvio = 0;
+      $canc_dist = 0;
+      $rech_dist = 0;
+      $canc_pv = 0;
+      $rech_pv = 0;
+
+      while ($row = mysql_fetch_array($result)) {
+      		if($row['estado_envio'] == 1) $pend = $row['num'];
+      		if($row['estado_envio'] == 2) $rech_emp = $row['num'];
+      		if($row['estado_envio'] == 3) $enviado = $row['num'];
+      		if($row['estado_envio'] == 4) $concretado = $row['num'];
+      		if($row['estado_envio'] == 5) $canc_empa = $row['num'];
+      		if($row['estado_envio'] == 6) $aprobado = $row['num'];
+      		if($row['estado_envio'] == 7) $preenvio = $row['num'];
+      		if($row['estado_envio'] == 8) $canc_dist = $row['num'];
+      		if($row['estado_envio'] == 9) $rech_dist = $row['num'];
+      		if($row['estado_envio'] == 10) $canc_pv = $row['num'];
+      		if($row['estado_envio'] == 11) $rech_pv = $row['num'];
+      }
+
+      ?>
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+					['ESTADO',						'TOTAL'],
+					['PENDIENTES',					<?php print $pend ?>],
+					['APROBADOS',					<?php print $aprobado ?>],
+					['PRE-ENVIO',					<?php print $preenvio ?>],
+					['ENVIADO',						<?php print $enviado ?>],
+					['CANCELADO POR EMPAQUE',		<?php print $canc_empa ?>],
+					['CANCELADO POR DISTRIBUIDOR',	<?php print $canc_dist ?>],
+					['RECHAZADO POR EMPAQUE',		<?php print $rech_emp ?>],
+					['RECHAZADO POR DISTRIBUIDOR',	<?php print $rech_dist ?>],
+					['CONCRETADO',					<?php print $concretado ?>]
+				]);
+
+        var options = {
+          title: 'Envíos',
+          is3D: true,
+          width: 650,
+          height: 400
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('grafica'));
+        chart.draw(data, options);
+      }
 
 		$('span').tooltip();
 	</script>

@@ -11,14 +11,15 @@
 			$titulo = "Búsqueda de usuarios del empaque";
 			$placeholder="Usuario / nombre / teléfono / ID";
 			$imagen = "imagen.png";
-			include("../busquedas/formulario_busqueda.php"); ?>
+			$ruta = "index.php?op=reg_new_user";
+			include("busquedas/formulario_busqueda_empresa.php"); ?>
 
 <div style="clear:both"></div>
 <div id="data">
 	
 </div>
 	
-<div class="modal fade"  id="filtro" role="dialog" >
+<div class="modal fade"  id="avanzada" role="dialog" >
 	  <div class="modal-dialog" style="width: 700px" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">

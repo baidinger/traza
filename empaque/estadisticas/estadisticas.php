@@ -1,3 +1,4 @@
+
 <div class="contenido-general">
 			<div class="modal-header">
         		<h3 class="titulo-header">
@@ -18,7 +19,7 @@
 
 		<!--<script type="text/javascript" src="../lib/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="../lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>-->
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 
 		<script type="text/javascript">
 			google.load("visualization", "1", {packages:["corechart"]});

@@ -45,6 +45,7 @@
 
 		<hr>
 		  	<center>
+		  		<a href="index.php?op=bus_camion" class="btn btn-default" data-dismiss="modal" style="width:150px">Atrás</a>
 		 		<button type="submit" style="width:150px" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
 		 	</center>
 	    </div>  	

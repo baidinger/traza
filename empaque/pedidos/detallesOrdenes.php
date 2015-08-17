@@ -4,7 +4,7 @@
 
   
 
-	$result	=	mysql_query("select id_orden_detalles, cantidad_producto_od, ".
+	$result	=	mysql_query("select id_orden_detalles, id_producto, cantidad_producto_od, ".
 		"unidad_producto_od,costo_unitario_od, costo_producto_od, nombre_producto, variedad_producto ".
 		"from ordenes_distribuidor_detalles ".
 		"join productos ON productos.id_producto = ordenes_distribuidor_detalles.id_producto_fk ".
@@ -75,6 +75,7 @@
 	<thead>
 		<tr>
           <th class="centro">#</th>
+          <th class="centro">ID Producto</th>
           <th class="centro">Producto</th>
           <th class="centro">Cantidad</th>
           <th class="centro">$ unitario</th>
@@ -88,6 +89,7 @@
     	 ?>
     		<tr>
     			<td class="centro"><?php echo $i; ?> </td>
+          <td class="centro"><?php echo str_pad($row2['id_producto'],5,"0",STR_PAD_LEFT); ?> </td>
     			<td class="centro"><?php echo $row2['nombre_producto']." ".$row2['variedad_producto']; ?></td>
     			<td class="centro"><?php echo $row2['cantidad_producto_od'] . " " . $row2['unidad_producto_od']; ?></td>
     			<td class="centro"><?php echo "$".$row2['costo_unitario_od']; ?> </td>

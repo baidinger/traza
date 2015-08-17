@@ -114,6 +114,7 @@
 				  
 			  	<hr>
 			  	<center>
+			  		<a style="cursor: hand" onclick="goBack()" class="btn btn-default"><i class="glyphicon glyphicon-chevron-left"></i> Regresar</a>
 		     			<button id="guardar" class="btn btn-primary" disabled><i  class="glyphicon glyphicon-ok"></i> Registrar</button>
 		     			<input type="hidden" name="url" value="../index.php?op=admon_lotes">
 		     	</center>

@@ -1,10 +1,10 @@
-<?php session_start();  if($_SESSION['nivel_socio'] != 1 || $_SESSION['superusuario'] != 1) return; 
-			$id_empaque = $_POST['id'];
-			include("../../mod/conexion.php");
+<?php  if($_SESSION['nivel_socio'] != 1 || $_SESSION['superusuario'] != 1) return; 
+			
+			include("../mod/conexion.php");
 			$consulta = "select id_empaque, nombre_empaque, rfc_empaque, ".
 				"pais_empaque, estado_empaque, ciudad_empaque, direccion_empaque, cp_empaque, ".
 				" email_empaque, telefono1_empaque, telefono2_empaque, estado_e from empresa_empaques 
-				where id_empaque = $id_empaque";
+				where id_empaque = $id AND id_usuario_que_registro = ".$_SESSION['id_receptor'];
 
 			$result = mysql_query($consulta);
 
@@ -113,7 +113,7 @@
 	     <div style="clear:both"></div>
 	     <p>&nbsp;</p>
 	    </div>
-	     <?php include("../script/paises.js"); ?>
+	     <?php include("script/paises.js"); ?>
 	     <script type="text/javascript">
 	seleccionar(<?php print $row['pais_empaque'] .",". $row['estado_empaque']?>);
 </script> 

@@ -1,12 +1,11 @@
-<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
+<?php if($_SESSION['nivel_socio'] != 1) return; 
 
-$id = $_POST['id'];
-	include("../../mod/conexion.php");
+	include("../mod/conexion.php");
 
 $result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rfc_punto_venta, ".
 				"pais_punto_venta, estado_punto_venta, ciudad_punto_venta,cp_punto_venta, telefono_punto_venta, email_punto_venta ,direccion_punto_venta, ".
 				" estado_pv from empresa_punto_venta where 
-				id_punto_venta = $id AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
+				id_punto_venta = $id AND id_usuario_que_registro = ".$_SESSION['id_receptor']);
         	
 			$row = mysql_fetch_array($result_productores);
 ?>			   
@@ -107,7 +106,7 @@ $result_productores = mysql_query("select id_punto_venta, nombre_punto_venta, rf
 <p>&nbsp;</p>
 </div>
 
-<?php include("../script/paises.js"); ?>
+<?php include("script/paises.js"); ?>
 <script type="text/javascript">
 	seleccionar(<?php print $row['pais_punto_venta'] .",". $row['estado_punto_venta']?>);
 </script> 

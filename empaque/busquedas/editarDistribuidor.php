@@ -1,10 +1,9 @@
-<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; 
-	$id = $_POST['id'];
-	include("../../mod/conexion.php");
+<?php  if($_SESSION['nivel_socio'] != 1) return; 
+	include("../mod/conexion.php");
 	$cad = "select id_distribuidor, nombre_distribuidor, rfc_distribuidor, ".
 				"pais_distribuidor, estado_distribuidor, ciudad_distribuidor, direccion_distribuidor, cp_distribuidor, ".
 				" email_distribuidor, tel1_distribuidor, tel2_distribuidor, estado_d from empresa_distribuidores where 
-				id_distribuidor = $id AND id_usuario_que_registro = ".$_SESSION['id_usuario'];
+				id_distribuidor = $id AND id_usuario_que_registro = ".$_SESSION['id_receptor'];
 	 $result_productores = mysql_query($cad);
         	
 			$row = mysql_fetch_array($result_productores);  
@@ -109,7 +108,7 @@
 	<div style="clear: both"></div>
 	<p>&nbsp;</p>
 </div>
-<?php include("../script/paises.js"); ?>
+<?php include("script/paises.js"); ?>
 
 <script type="text/javascript">
 	seleccionar(<?php print $row['pais_distribuidor'] .",". $row['estado_distribuidor']?>);
