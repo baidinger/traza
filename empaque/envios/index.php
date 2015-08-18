@@ -139,6 +139,19 @@
 			$("#filtro").val(consulta);
 			buscar();
 		}
+
+		function lista(){
+				
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRelacionEnviosEmpaque.php',
+
+					success: function(data){
+						var urlPDF = "../docs/enviosempaque" + <?php print $_SESSION['id_empaque'] ?> + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
 		
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
