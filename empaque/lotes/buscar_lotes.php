@@ -295,7 +295,19 @@
 					  }
 					});
 			}
-			
+
+			function lista(){
+				
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRelacionLotesEmpaque.php',
+
+					success: function(data){
+						var urlPDF = "../docs/lotesempaque" + <?php print $_SESSION['id_empaque'] ?> + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
 
 			function buscar(){
 				var Buscar = $('#inputBuscar').val();

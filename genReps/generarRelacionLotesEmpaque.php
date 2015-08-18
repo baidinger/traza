@@ -121,12 +121,13 @@
 			$this->SetFillColor(28, 124, 176);
 			$this->SetFont('Arial', 'B', 9);
 
-			$this->Cell(10, 6, 'NO.', 1, 0, 'C', 1);
-			$this->Cell(25, 6, 'ID', 1, 0, 'C', 1);
-			$this->Cell(80, 6, 'NOMBRE DEL DISTRIBUIDOR', 1, 0, 'C', 1);
-			$this->Cell(26, 6, 'FECHA', 1, 0, 'C', 1);
-			$this->Cell(30, 6, 'COSTO', 1, 0, 'C', 1);
-			$this->Cell(25, 6, 'EDO.', 1, 0, 'C', 1);
+			//$this->Cell(10, 6, 'NO.', 1, 0, 'C', 1);
+			$this->Cell(10, 6, 'LOTE', 1, 0, 'C', 1);
+			$this->Cell(70, 6, 'NOMBRE DEL PRODUCTOR', 1, 0, 'C', 1);
+			$this->Cell(46, 6, 'PRODUCTO', 1, 0, 'C', 1);
+			$this->Cell(25, 6, 'CAJAS/KILOS', 1, 0, 'C', 1);
+			$this->Cell(20, 6, 'FECHA.', 1, 0, 'C', 1);
+			$this->Cell(25, 6, 'COSTO.', 1, 0, 'C', 1);
 
 			$this->SetTextColor(0, 0, 0);
 			$this->SetFont('Arial', '', 9);
@@ -136,16 +137,24 @@
 
 			$contador = 1;
 
-			$consulta = "SELECT * FROM ordenes_distribuidor, usuario_distribuidor, empresa_distribuidores WHERE id_usuario_distribuidor = id_usuario_distribuidor_fk AND id_distribuidor = id_distribuidor_fk AND id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_orden DESC";
+			$consulta = "select id_lote, id_productor_fk, id_producto_fk, cant_cajas_lote, 
+					cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, 
+					costo_lote, id_empaque_fk, nombre_productor, apellido_productor, 
+					nombre_producto, variedad_producto from lotes, productos_productores ,empresa_productores, 
+					productos where productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND id_empaque_fk = $_SESSION[id_empaque] AND 
+					productos_productores.id_producto_fk = productos.id_producto AND productos_productores.id_productor_fk = empresa_productores.id_productor 
+					 ORDER BY id_lote ASC";
 			$resultado = mysql_query($consulta);
 			while($row = mysql_fetch_array($resultado)){
 				$this->SetTextColor(0, 0, 0);
 
 				$this->Cell(10, 5, $contador, 1, 0, 'C', 0);
-				$this->Cell(25, 5, str_pad($row['id_orden'],10,"0",STR_PAD_LEFT), 1, 0, 'C', 0);
-				$this->Cell(80, 5, $row['nombre_distribuidor'], 1, 0, 'L', 0);
-				$this->Cell(26, 5, $row['fecha_orden'], 1, 0, 'C', 0);
-				$this->Cell(30, 5, "$ ".$row['costo_orden'], 1, 0, 'R', 0);
+				//$this->Cell(10, 5, str_pad($row['id_lote'],3,"0",STR_PAD_LEFT), 1, 0, 'C', 0);
+				$this->Cell(70, 5, $row['nombre_productor']." ".$row['apellido_productor'], 1, 0, 'L', 0);
+				$this->Cell(46, 5, $row['nombre_producto']." ".$row['variedad_producto'], 1, 0, 'L', 0);
+				$this->Cell(25, 5, $row['cant_cajas_lote']."/".$row['cant_kilos_lote'], 1, 0, 'R', 0);
+				$this->Cell(20, 5, $row['fecha_recibo_lote'], 1, 0, 'R', 0);
+				$this->Cell(25, 5, "$ ".$row['costo_lote'], 1, 0, 'R', 0);
 
 				if($row['estado_orden'] == 1){
 					$this->Cell(25, 5, 'PENDIENTE', 1, 0, 'C');
