@@ -3,6 +3,10 @@
 	$buscar = $_POST['buscar'];
 	$filtro = $_POST['filtro'];
 
+		$consulta = "select id_orden,id_distribuidor, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  = '$buscar' ) ".$filtro." ORDER BY id_orden DESC";
+	$result_ordenes = mysql_query($consulta);
+		$count  = mysql_num_rows($result_ordenes);
+	if( $count > 0 ){
 
 	
 
@@ -26,10 +30,7 @@
       		</thead>
       		<tbody>
 			<?php
-			$consulta = "select id_orden,id_distribuidor, nombre_distribuidor, rfc_distribuidor, id_usuario_distribuidor_fk, ciudad_distribuidor, tel1_distribuidor, email_distribuidor, direccion_distribuidor, fecha_orden,fecha_entrega_orden,estado_orden, costo_orden, descripcion_orden, descripcion_cancelacion, descripcion_rechazo from ordenes_distribuidor as od, empresa_distribuidores ed, usuario_distribuidor as ud where od.id_usuario_distribuidor_fk = ud.id_usuario_distribuidor AND ud.id_distribuidor_fk = ed.id_distribuidor AND od.id_empaque_fk = $_SESSION[id_empaque] AND (nombre_distribuidor like '%$buscar%' OR id_orden  = '$buscar' ) ".$filtro." ORDER BY id_orden DESC";
-	$result_ordenes = mysql_query($consulta);
-		$count  = mysql_num_rows($result_ordenes);
-	if( $count > 0 ){
+		
 	print "<p>Se encontraron " .  $count . " resultados.</p>";
 				$i=1;
 				 while($row = mysql_fetch_array($result_ordenes)) {

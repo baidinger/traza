@@ -1,6 +1,14 @@
 <?php 
 	@session_start();
-	$conexion = mysql_connect("localhost", "root", "");
-	mysql_select_db("trazabilidad", $conexion);
+
+	$servidor = "localhost";
+	$usuarioMySQL = "root";
+	$contrasenaMySQL = "";
+	$baseDatos = "trazabilidad";
+
+
+	$conexion = mysql_connect($servidor, $usuarioMySQL, $contrasenaMySQL);
+	mysql_select_db($baseDatos, $conexion);
+	
 	mysql_query("charset utf8");
 ?>

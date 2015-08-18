@@ -1,6 +1,3 @@
-<?php session_start();	
-
- ?>
 <div class="contenedor-form">		
 	<div class="modal-header">
 		<h3 class="modal-title">
@@ -13,8 +10,8 @@
       		<div class="alert alert-info">Electronic Product Code</div>
   			<div class="alert alert-primary">
 <?php 
-include("../../mod/conexion.php");
-$numero_etiquetas   =   $_POST['numero_etiquetas'];
+include("../mod/conexion.php");
+
 
 /*** EPC  XX XXXXXXX XXXXXX XXXXXXXXX
           HEADER EPC-MANAGER OBJECT-CLASS SERIAL-NUMBER

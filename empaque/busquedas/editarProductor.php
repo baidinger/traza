@@ -3,7 +3,7 @@
 			$id = $_POST['id'];
 			$result_productores = mysql_query("select id_productor, nombre_productor, apellido_productor, ".
 				"telefono_productor, direccion_productor, ".
-				" rfc_productor, nombre_usuario, contrasena_usuario from empresa_productores,usuarios where id_productor=$id AND id_usuario = id_usuario_fk AND id_usuario_que_registro = ".$_SESSION['id_usuario']);
+				" rfc_productor, nombre_usuario, contrasena_usuario from empresa_productores,usuarios where id_productor=$id AND id_usuario = id_usuario_fk AND id_usuario_que_registro = ".$_SESSION['id_receptor']);
         	if($result_productores)
 				if($row = mysql_fetch_array($result_productores));  
 

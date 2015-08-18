@@ -1,9 +1,6 @@
 <?php
-	if(!isset($_POST['lote'])) return;
-	$id_lote = $_POST['lote'];
-
-  include("../../mod/conexion.php");
-  $consulta = "SELECT * FROM epc_caja WHERE id_lote_fk = $id_lote ORDER BY epc_caja ASC";
+  include("../mod/conexion.php");
+  $consulta = "SELECT * FROM epc_caja WHERE id_lote_fk = $lote ORDER BY epc_caja ASC";
   $result = mysql_query($consulta);
   
 

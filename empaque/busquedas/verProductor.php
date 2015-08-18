@@ -1,4 +1,4 @@
-<?php session_start(); if($_SESSION['nivel_socio'] != 1) return; ?>
+<?php if($_SESSION['nivel_socio'] != 1) return; ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,29 +6,9 @@
 		<meta charset="UTF-8">
 		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
 		<script type="text/javascript" src="../lib/pagination/jquery-simple-pagination-plugin.js"></script>
-		<style type="text/css">
-			.centro{
-				text-align: center;
-			}
-
-			.derecha{
-				text-align: right;
-			}
-
-			.active{
-				font-weight: bold;
-				color:#0B6121;
-			}
-
-			.desactive{
-				font-weight: bold;
-				color:#8A0808;
-			}
-
-		</style>
 	</head>
 
-	<body style="background: #ffffff;">
+	<body>
 				<div class="contenedor-form" style="width:100%;">
 			
 	  		<div class="modal-header">
@@ -43,8 +23,8 @@
 				<div class="div-contenedor-form">
 			      		<div>
 			      			<?php
-			      				include('../../mod/conexion.php');
-			      				$id_productor = $_POST['id'];
+			      				include('../mod/conexion.php');
+			      				$id_productor = $id;
 			      				$consulta = "select id_productor, nombre_productor, apellido_productor, ".
 								"telefono_productor, direccion_productor, fecha_registro_prod, fecha_modificacion_prod, ".
 								" rfc_productor, id_usuario_fk, nombre_usuario, id_usuario_que_registro, estado_p from empresa_productores, usuarios where id_usuario_fk = id_usuario AND id_productor = ".$id_productor;

@@ -32,7 +32,7 @@
 	<meta charset="utf-8">
 		<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="script/bootstrap.min.js"></script>
-    <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
+    <script type="text/javascript" src="../lib/google/jsapi.js"></script>
     <link rel="icon" type="image/png" href="../img/logo_trazabilidad.png" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/settings.css">
@@ -75,8 +75,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-user"></span> &nbsp;Usuarios <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="index.php?op=reg_new_user">Nuevo usuario</a></li>
-                <li class="divider"></li>
+                <!--<li><a href="index.php?op=reg_new_user">Nuevo usuario</a></li>-->
+                <!--<li class="divider"></li>-->
                     <li><a href="index.php?op=admon_users">Administrar usuarios</a></li>
             </ul>
         </li>
@@ -87,6 +87,7 @@
             <ul class="dropdown-menu" role="menu">
               <?php if($_SESSION['nivel_socio'] == 1) { ?>
               <li><a href="index.php?op=asig_pro_empaque">Asignar productos</a></li>
+              <li class="divider"></li>
               <?php } ?>
               <?php if($_SESSION['pedidos'] == 1) {?>
               <li><a href="index.php?op=pedidos">Pedidos</a></li>
@@ -96,7 +97,7 @@
 
               if($_SESSION['lotes'] == 1){ ?>
               <li class="divider"></li>
-              <li><a href="index.php?op=reg_lote">Registrar lote</a></li>
+              <!--<li><a href="index.php?op=reg_lote">Registrar lote</a></li>-->
              
               <li><a href="index.php?op=admon_lotes">Administrar lotes</a></li>
 
@@ -113,7 +114,7 @@
             <ul class="dropdown-menu" role="menu">
                <li><a href="index.php?op=imprimir">Cajas</a></li>
                <li><a href="index.php?op=palets">Palets</a></li>
-               <li><a href="index.php?op=trazabilidad">Trazabilidad</a></li>
+               <li><a href="tags/index.php">Trazabilidad</a></li>
             </ul>
         </li>
           <li><a href="index.php?op=estadisticas">
@@ -135,236 +136,171 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div id="views" class="views"></div>
+<div id="views" class="views">
+
+<?php
+
+if(isset($_REQUEST['op']))
+{
+  $op = $_GET['op'];
+
+  switch ($op) {
+    case 'pedidos':
+      include("pedidos/index.php");
+      break;
+
+    case 'envios':
+      include("envios/index.php");
+      break;
+    
+    case 'asig_pro_empaque':
+      include("asignar/asignarProductosEmpaques.php");
+      break;
+
+    case 'admon_lotes':
+      include("lotes/buscar_lotes.php");
+      break;
+
+    case 'reg_lote':
+      include("lotes/registro_nuevo_lote.php");
+      break;
+
+    case 'bus_productor':
+      include("busquedas/Busc_productore.php");
+      break;
+
+    case 'bus_empaque':
+      include("busquedas/Busc_empaque.php");
+      break;
+
+    case 'bus_distribuidor':
+      include("busquedas/Busc_distribuidores.php");
+      break;
+
+    case 'bus_pv':
+      include("busquedas/Busc_punto_venta.php");
+      break;
+
+    case 'bus_camion':
+      include("busquedas/Busc_camion.php");
+      break;
+
+    case 'reg_camion':
+      include("registros/registro_camion.php");
+      break;
+
+    case 'reg_productor':
+      include("registros/registro_productores.php");
+      break;
+
+     case 'reg_empaque':
+      include("registros/registro_empresa_empaque.php");
+      break;
+
+    case 'reg_distribuidor':
+      include("registros/registro_empresa_distribuidor.php");
+      break;
+
+     case 'reg_punto_venta':
+      include("registros/registro_empresa_punto_venta.php");
+      break;
+
+    case 'admon_users':
+      include("usuarios/buscar_usuarios_empaque.php");
+      break;
+
+     case 'reg_new_user':
+      include("usuarios/registro_nuevo_usuario.php");
+      break;
+
+     case 'editar_pv':
+      if(isset($_REQUEST['id']))
+      {
+        $id=$_GET['id'];
+        include("busquedas/editarPuntoVenta.php");
+      }
+      break;
+
+     case 'editar_dist':
+     if(isset($_REQUEST['id']))
+     {
+        $id=$_GET['id'];
+        include("busquedas/editarDistribuidor.php");
+     }
+      break;
+
+     case 'editar_emp':
+     if(isset($_REQUEST['id']))
+     {
+      $id=$_GET['id'];
+      include("busquedas/editarEmpaque.php");
+     }
+      break;
+
+     case 'contrasena':
+      include("contrasena/index.php");
+      break;
+
+      case 'imprimir':
+      include("tags/imprimirtags.php");
+      break;
+
+      case 'epcgenerados':
+      if(isset($_REQUEST['lote']))
+     {
+      $lote=$_GET['lote'];
+      include("tags/epcgenerados.php");
+      }
+      break;
+
+      case 'palets':
+      include("tags/generaPalet.php");
+      break;
+
+      case 'estadisticas':
+      include("estadisticas/estadisticas.php");
+      break;
+
+      case 'trazabilidad':
+      if(isset($_REQUEST['lote']))
+        $epc=$_GET['epc'];
+      include("tags/traza.php");
+      
+      break;
+
+    default:
+      # code...
+      break;
+  }
+}
+
+else if(isset($_REQUEST['empaque'])){
+  $id = $_REQUEST['empaque'];
+  include("informacion/index.php");
+}
+else  if(isset($_REQUEST['distribuidor'])){
+  $id = $_REQUEST['distribuidor'];
+  include("informacion/distribuidor.php");
+}
+else  if(isset($_REQUEST['pv'])){
+  $id = $_REQUEST['pv'];
+  include("informacion/puntoventa.php");
+}
+
+else  if(isset($_REQUEST['usuarioemp'])){
+  $id = $_REQUEST['usuarioemp'];
+  include("usuarios/index.php");
+}
+else  if(isset($_REQUEST['numpalets'])){
+  $numero_etiquetas = $_REQUEST['numpalets'];
+  include("tags/paletsgenerados.php");
+}
+?>
+
+</div>
 
 
 <script>
-function $_GET(param)
-{
-	/* Obtener la url completa */
-	url = document.URL;	
-
-	/* Buscar a partir del signo de interrogación ? */
-	url = String(url.match(/\?+.+/));
-
-	/* limpiar la cadena quitándole el signo ? */
-	url = url.replace("?", "");
-
-	/* Crear un array con parametro=valor */
-	url = url.split("&");
-
-	x = 0;
-
-	while (x < url.length)
-	{
-		p = url[x].split("=");
-		if (p[0] == param)
-			return decodeURIComponent(p[1]);
-		x++;
-	}
-}
-
-/***** Francisco ****/
-if($_GET("op") == "pedidos") 
-  $("#views").load("pedidos/");
-
-if($_GET("op") == "asig_pro_empaque") 
-  $("#views").load("asignar/asignarProductosEmpaques.php");
-
-if( $_GET("op") == "reg_camion" )
-  $("#views").load("registros/registro_camion.php");
-
-if( $_GET("op") == "reg_productor" )
-	$("#views").load("registros/registro_productores.php");
-
-if($_GET("op") == "reg_empaque")
-  $("#views").load("registros/registro_empresa_empaque.php"); 
-
-if($_GET("op") == "reg_distribuidor") 
-  $("#views").load("registros/registro_empresa_distribuidor.php"); 
-
-if($_GET("op") == "reg_punto_venta") 
-  $("#views").load("registros/registro_empresa_punto_venta.php");
-
-if($_GET("op") == "bus_productor") 
-  $("#views").load("busquedas/Busc_productore.php");
-
-if($_GET("op") == "bus_empaque") 
-  $("#views").load("busquedas/Busc_empaque.php");
-
-if($_GET("op") == "bus_camion") 
-  $("#views").load("busquedas/Busc_camion.php");
-
-if($_GET("op") == "bus_distribuidor") 
-  $("#views").load("busquedas/Busc_distribuidores.php");
-
-if($_GET("empaque")) 
-   $.ajax({
-      type: 'POST',
-      url: 'informacion/index.php',
-      data: {'id':$_GET("empaque")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
- 
-
-if($_GET("op") == "editar_dist") 
-   $.ajax({
-      type: 'POST',
-      url: 'busquedas/editarDistribuidor.php',
-      data: {'id':$_GET("id")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
- if($_GET("op") == "editar_emp") 
-   $.ajax({
-      type: 'POST',
-      url: 'busquedas/editarEmpaque.php',
-      data: {'id':$_GET("id")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
-  //$("#views").load("busquedas/editarDistribuidor.php");
-
-if($_GET("op") == "bus_pv") 
-  $("#views").load("busquedas/Busc_punto_venta.php");
-
-if($_GET("op") == "editar_pv") 
-   $.ajax({
-      type: 'POST',
-      url: 'busquedas/editarPuntoVenta.php',
-      data: {'id':$_GET("id")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
-/***** Alfonso *****/
-if($_GET("op") == "contrasena") 
-  $("#views").load("contrasena/index.php");
-
-if($_GET("op") == "reg_new_user") 
-  $("#views").load("usuarios/registro_nuevo_usuario.php");
-
-if($_GET("op") == "imprimir") 
-  $("#views").load("tags/imprimirtags.php");
-
-if($_GET("op") == "epcgenerados") 
-   $.ajax({
-      type: 'POST',
-      url: 'tags/epcgenerados.php',
-      data: {'lote':$_GET("lote")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
-if($_GET("numpalets")) 
-   $.ajax({
-      type: 'POST',
-      url: 'tags/paletsgenerados.php',
-      data: {'numero_etiquetas':$_GET("numpalets")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-  //$("#views").load("tags/epcgenerados.php");
-
-
-if($_GET("op") == "trazabilidad") 
-  $.ajax({
-      type: 'POST',
-      url: 'tags/traza.php',
-      data: {'epc':$_GET("epc")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
-//  $("#views").load("tags/traza.php");
-
-
-if($_GET("productor")){
-    $.ajax({
-      type: 'POST',
-      url: 'busquedas/verProductor.php',
-      data: {'id':$_GET("productor")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-}
-  //$("#views").load("busquedas/verProductor.php?productor=".$_GET("productor"));
-
-if($_GET("op") == "admon_users") 
-  $("#views").load("usuarios/buscar_usuarios_empaque.php");
-
-if($_GET("op") == "reg_lote") 
-  $("#views").load("lotes/registro_nuevo_lote.php");
-
-if($_GET("op") == "admon_lotes") 
-  $("#views").load("lotes/buscar_lotes.php");
-
-if($_GET("usuarioemp")) 
-   $.ajax({
-      type: 'POST',
-      url: 'usuarios/index.php',
-      data: {'id':$_GET("usuarioemp")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
- if($_GET("distribuidor")) 
-   $.ajax({
-      type: 'POST',
-      url: 'informacion/distribuidor.php',
-      data: {'id':$_GET("distribuidor")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
- if($_GET("pv")) 
-   $.ajax({
-      type: 'POST',
-      url: 'informacion/puntoventa.php',
-      data: {'id':$_GET("pv")},
-
-      success: function(data){
-        $('#views').html(data);
-      }
-    });
-
-if($_GET("op") == "envios") 
-  $("#views").load("envios/index.php");
-
-if($_GET("op") == "palets") 
-  $("#views").load("tags/generaPalet.php");
-
-if($_GET("op") == "estadisticas") 
-  $("#views").load("estadisticas/estadisticas.php");
-
-if($_GET("op") == "caja_traza") {
-  epc = $_GET("epc_caja");
-  $("#views").load("envios/trazabilidadCajas.php?epc_caja="+epc);
-}
-
 function goBack() {
     window.history.back();
 }
