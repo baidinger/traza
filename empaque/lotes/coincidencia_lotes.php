@@ -39,7 +39,7 @@
 					 	<tr>
 			        		<td><?php echo $i; ?></td>
 			        		<td class="centro"> 
-			        			<a onclick="ver(<?php echo $row['id_lote'] ?>)" data-toggle="modal" data-target="#mimodal"  href="#">
+			        			<a  href="index.php?lote=<?php print $row['id_lote'] ?>">
 			        				<?php echo str_pad($row['id_lote'],3,"0", STR_PAD_LEFT) ?>
 			        			</a>
 			        		</td>

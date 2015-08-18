@@ -23,7 +23,7 @@
   				<?php 
 
   					while ($row = mysql_fetch_array($result)) {
-  						print $row['epc_caja']."<br>";
+  						print substr($row['epc_caja'],0,2)."&nbsp;&nbsp;&nbsp;".substr($row['epc_caja'],2,7)."&nbsp;&nbsp;&nbsp;".substr($row['epc_caja'],9,1)."&nbsp;&nbsp;&nbsp;".substr($row['epc_caja'],10,5)."&nbsp;&nbsp;&nbsp;".substr($row['epc_caja'],15,3)."&nbsp;&nbsp;&nbsp;".substr($row['epc_caja'],18,6)."<br>";
   					}
   				?>
   			</div>

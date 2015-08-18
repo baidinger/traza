@@ -18,7 +18,7 @@
 <?php
 		include('../mod/conexion.php');
 		$id_lote = $id;
-		$consulta = "SELECT * FROM lotes, productos_productores, empresa_productores, productos WHERE id_productos_productores = id_productos_productores_fk AND id_producto = id_producto_fk AND id_productor = id_productor_fk AND id_lote = $id_lote";
+		$consulta = "SELECT * FROM lotes, productos_productores, empresa_productores, productos, usuario_empaque WHERE id_receptor = id_receptor_fk AND id_productos_productores = id_productos_productores_fk AND id_producto = id_producto_fk AND id_productor = id_productor_fk AND id_lote = $id_lote";
 		$resultado = mysql_query($consulta);
 		$row = mysql_fetch_array($resultado);
 	?>
@@ -27,7 +27,7 @@
 			      		<div>
 			      			
 					      	<div>
-					      		<table class="table" style="font-size: 14px">
+					      		<table class="table table-hover" style="font-size: 14px">
 					      			<tbody>
 					      				<tr>
 					      					<td width="160"><strong>Núm. lote:</strong></td>
@@ -42,28 +42,47 @@
 					      					<td><?php echo $row['remitente_lote']; ?></td>
 					      				</tr>
 					      				<tr>
+					      					<td><strong>Fecha de recolección:</strong></td>
+					      					<td><?php echo $row['fecha_recoleccion']." a las ".$row['hora_recoleccion'] ?></td>
+					      					<td><strong>Fecha de compra:</strong></td>
+					      					<td><?php print $row['fecha_recibo_lote'] . " a las ".$row['hora_recibo_lote'] ?> </td>
+					      					
+					      				</tr>
+					      				<tr>
+					      					<td><strong>Fecha de caducidad:</strong></td>
+					      					<td><?php echo $row['fecha_caducidad'] ?></td>
+					      					<td><strong>Número de peones:</strong></td>
+					      					<td><?php echo $row['numero_peones']?></td>
+					      				</tr>
+					      				<tr>
 					      					<td><strong>Cant. cajas:</strong></td>
-					      					<td><?php echo $row['cant_cajas_lote'] ?></td>
+					      					<td><?php echo $row['cant_cajas_lote']." cajas" ?></td>
 					      					<td><strong>Cant. kilos recibidos:</strong></td>
-					      					<td><?php echo $row['cant_kilos_lote']?></td>
+					      					<td><?php echo $row['cant_kilos_lote']." kg"?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Rendimiento de cajas:</strong></td>
 					      					<td><?php echo "CH: ".$row['cajas_chicas']."<br>MD: ".$row['cajas_medianas']."<br>GD: ".$row['cajas_grandes']."<br>TOTAL: ".($row['cajas_medianas'] + $row['cajas_grandes'] + $row['cajas_chicas']); ?></td>
 					      					<td><strong>Rendimiento de kilos:</strong></td>
-					      					<td><?php echo $row['rendimiento_kg']; ?></td>
+					      					<td><?php echo $row['rendimiento_kg'] ." kg"; ?></td>
 					      				</tr>
 					      				<tr>
-					      					<td><strong>Fecha de compra:</strong></td>
-					      					<td><?php print $row['fecha_recibo_lote'] . " a las ".$row['hora_recibo_lote'] ?> </td>
+					      					<td><strong>Merma 1:</strong></td>
+					      					<td><?php print $row['merma1']." kg" ?> </td>
+					      					<td><strong>Merma 2:</strong></td>
+					      					<td><?php echo $row['merma2'] . " kg"; ?></td>
+					      				</tr>
+					      				<tr>
+											<td><strong>Resaga:</strong></td>
+					      					<td><?php echo $row['resaga']." kg"?></td>			      					
 					      					<td><strong>Costo del lote:</strong></td>
 					      					<td><?php echo "$ ".$row['costo_lote']; ?></td>
 					      				</tr>
 					      				<tr>
 					      					 <td><strong>EPCs.</strong></td>
 					      					 <td><a href="index.php?op=epcgenerados&lote=<?php print $row['id_lote'] ?>">ver EPCs</a></td>
-					      					 <td><strong></strong></td>
-					      					 <td></td>
+					      					 <td><strong>Responsable de recibir</strong></td>
+					      					 <td><a href="index.php?usuarioemp=<?php print $row['id_receptor'] ?>"> <?php print $row['nombre_receptor']." ".$row['apellido_receptor'] ?></a></td>
 					      				</tr>
 
 					      			</tbody>
