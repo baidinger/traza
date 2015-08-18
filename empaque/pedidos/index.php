@@ -126,7 +126,18 @@
 				$("#fecha_f").css("display","none");
 		}
 
+		function lista(){
+				
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRelacionOrdenesEmpaque.php',
 
+					success: function(data){
+						var urlPDF = "../docs/ordenesempaque" + <?php print $_SESSION['id_empaque'] ?> + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
 		
 
 		function buscar(){
