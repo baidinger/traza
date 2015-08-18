@@ -286,6 +286,10 @@ else if(isset($_REQUEST['productor'])){
   $id = $_REQUEST['productor'];
   include("busquedas/verProductor.php");
 }
+else  if(isset($_REQUEST['lote'])){
+  $id = $_REQUEST['lote'];
+  include("lotes/ver_lote.php");
+}
 else  if(isset($_REQUEST['pv'])){
   $id = $_REQUEST['pv'];
   include("informacion/puntoventa.php");

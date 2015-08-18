@@ -37,7 +37,7 @@ SERIAL-NUMBER
 $consulta = "UPDATE lotes set cajas_chicas = $cajas_chicas, cajas_medianas = $cajas_medianas, cajas_grandes = $cajas_grandes,
  rendimiento_kg = $rend_kg, resaga = $resaga, merma1 = $merma1, merma2 = $merma2 WHERE id_lote = $id_lote";
 include("../../mod/conexion.php");
-mysql_query($consulta);
+if(!mysql_query($consulta)){ print $consulta; return; }
 
 /**** OBTENER EL TIPO DE PRODUCTO DEL LOTE ***/
 

@@ -38,7 +38,7 @@
 
 		function encabezado($nomDist){
 			$this->SetFont('Arial', 'B', 18);
-			$this->Cell(196, 10, 'RELACIÓN DE PEDIDOS', 0, 0, 'C');
+			$this->Cell(196, 10, 'RELACIÓN DE LOTES', 0, 0, 'C');
 
 			$this->Ln();
 
@@ -112,7 +112,7 @@
 
 		function listaUsuarios($idDist){
 			$this->SetFont('Arial', 'B', 8);
-			$this->Cell(196, 4, 'LISTA DE ENVÍOS', 0, 0, 'L');
+			$this->Cell(196, 4, 'LISTA DE LOTES', 0, 0, 'L');
 
 			$this->Ln();
 			$this->Ln();
@@ -203,5 +203,5 @@
 	if(!file_exists($directorio))
 	    mkdir($directorio);
 
-	$pdf->Output($directorio.'ordenesempaque'.$_SESSION['id_empaque'].'.pdf', "F");
+	$pdf->Output($directorio.'lotesempaque'.$_SESSION['id_empaque'].'.pdf', "F");
  ?>
