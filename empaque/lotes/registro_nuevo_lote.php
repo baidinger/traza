@@ -220,7 +220,7 @@
 			}
 
 			function obtenerPrecio(){
-				alert("Obener");
+				//alert("Obener");
 				$.ajax({
 					type: 'POST',
 					url: 'buscar/buscar_precio_producto.php',
@@ -228,7 +228,7 @@
 
 					success: function(data){
 						$('#precio').val(data);
-						alert("obtenido" + data);
+					//	alert("obtenido" + data);
 						calcularP();
 					}
 				});	

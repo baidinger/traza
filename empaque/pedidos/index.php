@@ -32,6 +32,7 @@
 			    <div class="col-sm-4">
 			      	<select id="status" class="form-control input">
 			      		<option value="0">-- Sin filtro</option>
+			      		<option value="1">Pendiente</option>
 			      		<option value="5">Cancel. por empaque</option>
 			      		<option value="8">Cancel. por distribuidor</option>
 			      		<option value="6">Aprobada</option>
