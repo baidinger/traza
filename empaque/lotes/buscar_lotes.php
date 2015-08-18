@@ -295,6 +295,7 @@
 					  }
 					});
 			}
+			
 
 			function buscar(){
 				var Buscar = $('#inputBuscar').val();
