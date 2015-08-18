@@ -11,7 +11,7 @@
 		<?php
 			include('../../mod/conexion.php');
 			$id_lote = $_POST['id'];
-			$consulta = "SELECT id_lote, rendimiento_cajas, rendimiento_kg, telefono_productor, rfc_productor, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto FROM lotes, empresa_productores, productos, productos_productores WHERE productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND productos_productores.id_producto_fk = productos.id_producto AND productos_productores.id_productor_fk = empresa_productores.id_productor AND id_lote = $id_lote";
+			$consulta = "SELECT id_lote, cajas_chicas, cajas_medianas, cajas_grandes, rendimiento_kg, telefono_productor, rfc_productor, cant_cajas_lote, cant_kilos_lote, remitente_lote, fecha_recibo_lote, hora_recibo_lote, costo_lote, id_empaque_fk, nombre_productor, apellido_productor, nombre_producto, variedad_producto FROM lotes, empresa_productores, productos, productos_productores WHERE productos_productores.id_productos_productores = lotes.id_productos_productores_fk AND productos_productores.id_producto_fk = productos.id_producto AND productos_productores.id_productor_fk = empresa_productores.id_productor AND id_lote = $id_lote";
 			$resultado = mysql_query($consulta);
 			$row = mysql_fetch_array($resultado);
 		?>
@@ -62,7 +62,7 @@
 			    		placeholder="Cantidad de cajas" required min ="0" value="<?php print $row['cant_cajas_lote'] ?>"> <label style="float: left; margin-left: 20px">/</label> 
 			    		<input style="width: 150px; float: left; margin-left: 20px" <?php if($_SESSION['nivel_socio'] == 2) print "disabled" ?> type="number" class="form-control input" 
 			    		name="rendimiento_cajas"
-			    		placeholder="Rend. cajas" required min ="0" value="<?php print $row['rendimiento_cajas'] ?>">
+			    		placeholder="Rend. cajas" required min ="0" value="<?php print ($row['cajas_chicas'] + $row['cajas_medianas'] + $row['cajas_grandes']) ?>">
 			    	</td>
 				</tr>
 
