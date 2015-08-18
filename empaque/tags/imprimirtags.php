@@ -19,12 +19,15 @@
 						<td><strong>ID Empaque</strong></td>
 						<td>0000001</td>
 					</tr>
+				</table>
+				<p class="label label-primary">Información del lote</p>
+				<table class="table" style="font-size: 14px">
 					<tr>
-						<td><strong>ID Fruta</strong></td>
+						<td><strong>Lote</strong></td>
 						<td>0000001</td>
 					</tr>
 					<tr>
-						<td><strong>Lote</strong></td>
+						<td><strong>ID Fruta</strong></td>
 						<td>0000001</td>
 					</tr>
 				</table>
@@ -43,17 +46,15 @@
 			    		<select class="form-control" name="id_lote">
 			    			<option>--Seleccionar lote</option>
 			    		<?php 
-			    			include('../../mod/conexion.php');
-							$consulta = "SELECT hex(id_lote) as id_lote, id_lote_fk, epc_caja, fecha_recibo_lote from LOTES left join EPC_CAJA on id_lote = id_lote_fk WHERE id_lote_fk is NULL AND id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_lote DESC";
+			    			include('../mod/conexion.php');
+							$consulta = "SELECT id_lote, id_lote_fk, epc_caja, fecha_recibo_lote from LOTES left join EPC_CAJA on id_lote = id_lote_fk WHERE id_lote_fk is NULL AND id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_lote DESC";
 							$result = mysql_query($consulta);
 							if(mysql_num_rows($result) > 0 ){
 								 while($row = mysql_fetch_array($result)) {
 								 	?>
 			    					<option value="<?php print $row['id_lote'] ?>"><?php print str_pad($row['id_lote'],3,"0",STR_PAD_LEFT) . " -- " .$row['fecha_recibo_lote'] ?></option>
-						    		<?php } }else{ ?>
-						    		<option>No se encuentran lotes</option>
-
-						    		<?php } ?>
+						    		<?php } 
+						    }?>
 			    		</select>
 		         	</div>
 				  </div>
