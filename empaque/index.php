@@ -264,7 +264,7 @@ if(isset($_REQUEST['op']))
       case 'trazabilidad':
       if(isset($_REQUEST['lote']))
         $epc=$_GET['epc'];
-      include("tags/traza.php");
+      include("tags/index.php");
       
       break;
 
