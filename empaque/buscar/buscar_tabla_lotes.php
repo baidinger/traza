@@ -12,7 +12,7 @@ if(mysql_num_rows($result) > 0 ){
 <table class="table" style="font-size: 14px">
 	<tr>
 		<td width="25%"><strong>Lote</strong></td>
-		<td width="25%"><a href="../index.php?lote=<?php print $id ?>"> <?php print str_pad($id,3,"0",STR_PAD_LEFT) ?> </a></td>
+		<td width="25%"><a href="index.php?lote=<?php print $id ?>"> <?php print str_pad($id,3,"0",STR_PAD_LEFT) ?> </a></td>
 	
 		<td width="25%"><strong>ID Fruta</strong></td>
 		<td width="25%"><?php print str_pad($row['id_producto_fk'],5,"0",STR_PAD_LEFT) ?></td>

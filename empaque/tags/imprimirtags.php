@@ -173,13 +173,13 @@
 			    	<label class="col-sm-3 control-label">Merma 1: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
-			    		name="rendimiento" 
+			    		name="merma1" 
 			    		placeholder="merma1" min="0" required>
 		         	</div>
 		         	<label class="col-sm-3 control-label">Merma 2: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
-			    		name="resaga" 
+			    		name="merma2" 
 			    		placeholder="merma1" min="0" required>
 		         	</div>
 				  </div>

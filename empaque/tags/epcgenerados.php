@@ -30,7 +30,7 @@
         <?php } ?>
 		  	<hr>
 		  	<center>
-	     		<a href="index.php?op=imprimir" class="btn btn-default">Regresar</a>
+	     		<a style="cursor: hand" onclick="goBack()"  class="btn btn-default">Regresar</a>
 	     	</center>
 	     </div>
     </div>	
