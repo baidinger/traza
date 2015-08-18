@@ -16,7 +16,7 @@
 						<td width="25%"><strong>Tipo EPC</strong></td>
 						<td width="25%">01</td>
 						<td width="25%"><strong>ID Empaque</strong></td>
-						<td width="25%">0000001</td>
+						<td width="25%"><a href="index.php?empaque=<?php print $_SESSION['id_empaque'] ?>"> <?PHP print str_pad($_SESSION['id_empaque'],7,"0",STR_PAD_LEFT) ?> </a> </td>
 					</tr>
 					<tr>
 						<td><strong>Calibre</strong> </td> 
@@ -27,27 +27,29 @@
 					</tr>
 				</table>
 				<p class="label label-primary">Información del lote</p>
-				<table class="table" style="font-size: 14px">
-					<tr>
-						<td width="25%"><strong>Lote</strong></td>
-						<td width="25%"><a href=""> 0000001 </a></td>
-					
-						<td width="25%"><strong>ID Fruta</strong></td>
-						<td width="25%">0000001</td>
-					</tr>
-					<tr>
-						<td width="25%"><strong>Cajas recibidas</strong></td>
-						<td width="25%">25 cajas</td>
-						<td width="25%"><strong>Kilos recibidos</strong></td>
-						<td width="25%">10000 kilos</td>
-					</tr>
-					<tr>
-						<td width="25%"><strong>Fecha de recolección</strong></td>
-						<td width="25%">1990-08-02</td>
-						<td width="25%"><strong>Fecha de caducidad</strong></td>
-						<td width="25%">1990-09-12</td>
-					</tr>
-				</table>
+				<div id="informacion">
+					<table class="table" style="font-size: 14px">
+						<tr>
+							<td width="25%"><strong>Lote</strong></td>
+							<td width="25%"><a href=""> </a></td>
+						
+							<td width="25%"><strong>ID Fruta</strong></td>
+							<td width="25%"></td>
+						</tr>
+						<tr>
+							<td width="25%"><strong>Cajas recibidas</strong></td>
+							<td width="25%"></td>
+							<td width="25%"><strong>Kilos recibidos</strong></td>
+							<td width="25%"></td>
+						</tr>
+						<tr>
+							<td width="25%"><strong>Fecha de recolección</strong></td>
+							<td width="25%"></td>
+							<td width="25%"><strong>Fecha de caducidad</strong></td>
+							<td width="25%"></td>
+						</tr>
+					</table>
+				</div>
 				<div style="clear: both"></div>
 			</div>
 		</div>
@@ -60,8 +62,8 @@
 	      		   <div class="form-group">
 			    	<label class="col-sm-4 control-label">Número del lote: </label>
 			    	<div class="col-sm-7">
-			    		<select class="form-control" name="id_lote">
-			    			<option>--Seleccionar lote</option>
+			    		<select class="form-control" onchange="buscar()" name="id_lote" id="lote">
+			    			<option value="0">--Seleccionar lote</option>
 			    		<?php 
 			    			include('../mod/conexion.php');
 							$consulta = "SELECT id_lote, id_lote_fk, epc_caja, fecha_recibo_lote from LOTES left join EPC_CAJA on id_lote = id_lote_fk WHERE id_lote_fk is NULL AND id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_lote DESC";
@@ -81,22 +83,22 @@
 				   <div class="form-group">
 			    	<label class="col-sm-3 control-label">Cajas chicas: </label>
 			    	<div class="col-sm-3">
-			    		<input type="number" class="form-control input" 
-			    		name="cajas_chicas" 
+			    		<input type="number" value="0" onblur="calcular()" class="form-control input" 
+			    		name="cajas_chicas" id="cajas_chicas" 
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         	<label class="col-sm-3 control-label">Cajas medianas: </label>
 			    	<div class="col-sm-3">
-			    		<input type="number" class="form-control input" 
-			    		name="cajas_medianas" 
+			    		<input type="number" value="0" onblur="calcular()" class="form-control input" 
+			    		name="cajas_medianas" id="cajas_medianas" 
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         </div>
 		         <div class="form-group">
 		         	<label class="col-sm-3 control-label">Cajas grandes: </label>
 			    	<div class="col-sm-3">
-			    		<input type="number" class="form-control input" 
-			    		name="cajas_grandes" 
+			    		<input type="number" value="0" onblur="calcular()" class="form-control input" 
+			    		name="cajas_grandes" id="cajas_grandes"
 			    		placeholder="Rend." required min ="0">
 		         	</div>
 		         	
@@ -187,7 +189,7 @@
 			    	<label class="col-sm-4 control-label">Etiquetas (RFID): </label>
 			    	<div class="col-sm-7">
 			    		<input  type="number" disabled min="0" class="form-control input" 
-			    		name="numero_etiquetas" 
+			    		name="numero_etiquetas"  id="numero_etiquetas"
 			    		placeholder="No. etiquetas" required>
 		         	</div>
 				  </div>
@@ -204,3 +206,31 @@
     </div>
 	
 	 </div>
+<script type="text/javascript">
+	function calcular(){
+		if($("#cajas_chicas").val() == '') $("#cajas_chicas").val("0");
+		if($("#cajas_medianas").val() == '') $("#cajas_medianas").val("0");
+		if($("#cajas_grandes").val() == '') $("#cajas_grandes").val("0");
+		if($("#lote").val() == 0) $("#guardar").attr("disabled","disabled"); else  $("#guardar").removeAttr("disabled");
+		$("#numero_etiquetas").val( parseInt($("#cajas_chicas").val())  + parseInt($("#cajas_medianas").val()) + parseInt($("#cajas_grandes").val()) );
+	}
+
+	calcular();
+	
+	function buscar(){		
+		var params = {'id':$("#lote").val()};
+		$.ajax({
+			type: 'POST',
+			url: 'buscar/buscar_tabla_lotes.php',
+			data: params,
+
+			success: function(data){
+				$('#informacion').html(data);
+			},
+			beforeSend: function(data ) {
+		    $("#informacion").html("<center><img src=\"img/cargando.gif\"></center>");
+		  }
+		});
+		calcular();
+	}
+</script>
