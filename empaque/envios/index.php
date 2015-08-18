@@ -300,10 +300,11 @@
 				]);
 
         var options = {
-          title: 'Envíos',
+          title: 'ENVÍOS CLASIFICADOS POR EL ESTADO DEL ENVÍO',
+          colors: ['#eea236', '#5bc0de', '#3681C2', '#2e6da4', '#C94242', '#C83636', '#ac2925', '#A01515', '#5cb85c'],
           is3D: true,
           width: 650,
-          height: 400
+          height: 300
 
         };
 

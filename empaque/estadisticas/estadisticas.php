@@ -1,25 +1,22 @@
-
-<div class="contenido-general">
+<link rel="stylesheet" type="text/css" href="css/views.css">
+		<div style="background: #FFFFFF;">
 			<div class="modal-header">
         		<h3 class="titulo-header">
         			<img class="img-header" src="../img/estadisticas.png"> &nbsp;Estadísticas
         		</h3>
       		</div>
 			<div class="contenido-general-2">
-				<div style="width: 50%; float: left;">
-					<h3>Historial de Órdenes</h3>
+				<div style="width: 45%; float: left; text-align: center">
+					<h3 style="color: #000000">Historial de Órdenes</h3>
 					<div id="graficaOrdenes" style="width: 100%; height: 400px;"></div>
 				</div>
-				<div style="width: 50%; float: right;">
-					<h3>Historial de Pedidos</h3>
+				<div style="width: 45%; float: left; text-align: center">
+					<h3 style="color: #000000">Historial de Pedidos</h3>
 					<div id="graficaPedidos" style="width: 100%; height: 400px;"></div>
 				</div>
 			</div>
+			<div style="clear: both"></div>
 		</div>
-
-		<!--<script type="text/javascript" src="../lib/jquery/jquery-1.11.1.min.js"></script>
-		<script type="text/javascript" src="../lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>-->
-		<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 
 		<script type="text/javascript">
 			google.load("visualization", "1", {packages:["corechart"]});
@@ -43,7 +40,7 @@
 				]);
 
 				var options = {
-					backgroundColor: '#F8F8F8',
+					backgroundColor: '#FFFFFF',
 					is3D: true,
 					colors: ['#eea236', '#5bc0de', '#3681C2', '#2e6da4', '#C94242', '#C83636', '#ac2925', '#A01515', '#5cb85c'],
 					// colors: ['#eea236', '#5bc0de', '#5388B7', '#2e6da4', '#f0ad4e', '#EE9D2B', '#c9302c', '#ac2925', '#5cb85c'],
@@ -68,7 +65,7 @@
 				]);
 
 				var options = {
-					backgroundColor: '#F8F8F8',
+					backgroundColor: '#FFFFFF',
 					is3D: true,
 					colors: ['#eea236', '#5bc0de', '#3681C2', '#2e6da4', '#C94242', '#C83636', '#ac2925', '#A01515', '#5cb85c'],
 					// colors: ['#eea236', '#5bc0de', '#5388B7', '#2e6da4', '#f0ad4e', '#EE9D2B', '#c9302c', '#ac2925', '#5cb85c'],

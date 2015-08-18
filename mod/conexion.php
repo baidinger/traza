@@ -3,7 +3,7 @@
 
 	$servidor = "localhost";
 	$usuarioMySQL = "root";
-	$contrasenaMySQL = "";
+	$contrasenaMySQL = "simpus2124";
 	$baseDatos = "trazabilidad";
 
 

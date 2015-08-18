@@ -264,7 +264,7 @@ if(isset($_REQUEST['op']))
       case 'trazabilidad':
       if(isset($_REQUEST['lote']))
         $epc=$_GET['epc'];
-      include("tags/traza.php");
+      include("tags/index.php");
       
       break;
 
@@ -281,6 +281,10 @@ else if(isset($_REQUEST['empaque'])){
 else  if(isset($_REQUEST['distribuidor'])){
   $id = $_REQUEST['distribuidor'];
   include("informacion/distribuidor.php");
+}
+else if(isset($_REQUEST['productor'])){
+  $id = $_REQUEST['productor'];
+  include("busquedas/verProductor.php");
 }
 else  if(isset($_REQUEST['pv'])){
   $id = $_REQUEST['pv'];

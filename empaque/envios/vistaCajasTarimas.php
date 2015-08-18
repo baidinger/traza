@@ -35,7 +35,7 @@
                           <tr>
                             <td class="centro"><?php echo $i; ?></td>
                             <td class="centro"><?php echo $row['epc_tarima']; ?></td>
-                            <td class="centro"><?php echo "<a href='index.php?op=trazabilidad&epc=$row[epc_caja]' class='btn btn-link'>".$row['epc_caja']."</a>"; ?> </td>
+                            <td class="centro"><?php echo "<a href='tags/index.php?op=trazabilidad&epc=$row[epc_caja]' class='btn btn-link'>".$row['epc_caja']."</a>"; ?> </td>
                             
                               <?php if($row['enviado_dce'] == 1){ ?>
                               <td class="centro">
@@ -109,7 +109,7 @@
                             <td class="centro"><?php echo $row['cajas']; ?></td>
                             <td class="centro"><?php 
                               while($rowCT = mysql_fetch_array($resultCT)){ ?>
-                                <?php echo "<a href='index.php?op=trazabilidad&epc=$row[epc_caja]' class='btn btn-link'>".$rowCT['epc_caja']."</a>"; ?><br>
+                                <?php echo "<a href='tags/index.php?op=trazabilidad&epc=$row[epc_caja]' class='btn btn-link'>".$rowCT['epc_caja']."</a>"; ?><br>
                               <?php }
                              ?></td>
                           </tr>
