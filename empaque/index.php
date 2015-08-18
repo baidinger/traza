@@ -86,7 +86,7 @@
               <span class="glyphicon glyphicon-apple"></span> &nbsp;Mi empaque <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <?php if($_SESSION['nivel_socio'] == 1) { ?>
-              <li><a href="index.php?op=asig_pro_empaque">Asignar productos</a></li>
+              <li><a href="index.php?op=asig_pro_empaque">Catálogo de productos</a></li>
               <li class="divider"></li>
               <?php } ?>
               <?php if($_SESSION['pedidos'] == 1) {?>

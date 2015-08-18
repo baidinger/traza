@@ -66,7 +66,7 @@
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Cant. cajas / rend. cajas:</strong></td>
-					      					<td><?php echo $row['cant_cajas_lote']." / ".$row['rendimiento_cajas']; ?></td>
+					      					<td><?php echo $row['cant_cajas_lote']." / ".($row['cajas_chicas'] + $row['cajas_medianas'] + $row['cajas_grandes']); ?></td>
 					      				</tr>
 					      				<tr>
 					      					<td><strong>Cant. kilos / rend. kilos:</strong></td>
