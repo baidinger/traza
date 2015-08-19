@@ -21,7 +21,7 @@
 			      		<div>
 			      			
 					      	<div>
-					      		<table class="table" style="font-size: 14px">
+					      		<table class="table table-hover" style="font-size: 14px">
 					      			<tbody>
 					      				<tr>
 					      					<td width="160"><strong>ID:</strong></td>

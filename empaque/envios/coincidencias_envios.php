@@ -39,7 +39,7 @@
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
 		        		<td class="centro"><a href="#" onclick="detalles(<?php echo $row['id_envio'] ?>,<?php echo $row['id_orden_fk'] ?>)" data-toggle="modal" data-target="#myModal"> <?php echo str_pad($row['id_envio'], 10,"0",STR_PAD_LEFT); ?></a> </td>
-		        		<td class="centro"><?php echo str_pad($row['id_camion_fk'], 7,"0",STR_PAD_LEFT); ?></td>
+		        		<td class="centro"><a href="index.php?camion=<?php print $row['id_camion_fk'] ?>"> <?php echo str_pad($row['id_camion_fk'], 7,"0",STR_PAD_LEFT); ?></a></td>
 		        		<td class="centro"> <a style="cursor:hand" onclick="mostrarModalOrdenes(<?php echo $row['id_orden'] ?>, '<?php echo $row['descripcion_orden']; ?>','<?php print $row['costo_orden'] ?>','<?php print $row['fecha_entrega_orden'] ?>','<?php print $row['id_usuario_distribuidor_fk'] ?>')">
 		        				<?php echo str_pad($row['id_orden'], 10,"0",STR_PAD_LEFT); ?> </td>
 		        			</a> </td>
