@@ -12,7 +12,6 @@
 	if( $count > 0 ){
 
  ?>
-
 	<div id="paginacion-resultados" style="width:95%; margin:0px auto;">
 	    <table class="table table-hover" style="font-size: 14px">
 	    	<thead>
@@ -30,7 +29,7 @@
       		<tbody>
 			<?php
 					
-	print "<p>Se encontraron " .  $count . " resultados.</p>";
+				print "<p>Se encontraron " .  $count . " resultados.</p>";
 				$i=1;
 				 while($row = mysql_fetch_array($result_productores)) {
 				 	
@@ -38,7 +37,7 @@
 				 	<tr>
 		        		<td class="centro"><?php echo $i; ?></td>
 		        
-			          	<td class="centro"><?php echo str_pad($row['id_camion'], 7,"0",STR_PAD_LEFT); ?></td>
+			          	<td class="centro"><a href="index.php?camion=<?php print $row['id_camion'] ?>"> <?php echo str_pad($row['id_camion'], 7,"0",STR_PAD_LEFT); ?></a></td>
 			          	<td><?php echo $row['nombre_chofer']; ?></td>
 			         
 			          	<td class="centro"><?php echo $row['placas']; ?></td>
@@ -74,7 +73,7 @@
 		          				<!--   - - - - - - - - - - - -  - - - - -  -->
 
 		          				<div style="width:10px; height:10px; float:left;"></div> 
-		          				<a style="float:left; cursor:pointer;"> 
+		          				<a href="index.php?camion=<?php print $row['id_camion'] ?>" style="float:left; cursor:pointer;"> 
 		          					<span data-toggle="tooltip" data-placement="top" title="Ver Info." class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 		          				</a>
 	          				</div>

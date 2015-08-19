@@ -30,6 +30,7 @@
 <head>
 	<title>EMPACADORA</title>
 	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="script/bootstrap.min.js"></script>
     <script type="text/javascript" src="../lib/google/jsapi.js"></script>
@@ -285,6 +286,14 @@ else  if(isset($_REQUEST['distribuidor'])){
 else if(isset($_REQUEST['productor'])){
   $id = $_REQUEST['productor'];
   include("busquedas/verProductor.php");
+}
+else if(isset($_REQUEST['camion'])){
+  $id = $_REQUEST['camion'];
+  include("informacion/camion.php");
+}
+else if(isset($_REQUEST['camiondist'])){
+  $id = $_REQUEST['camiondist'];
+  include("informacion/camiondist.php");
 }
 else  if(isset($_REQUEST['lote'])){
   $id = $_REQUEST['lote'];
