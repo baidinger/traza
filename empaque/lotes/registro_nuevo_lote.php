@@ -4,6 +4,7 @@
 		<title>Registro - lote</title>
 		<meta charset="UTF-8">
 		<link rel='stylesheet' type='text/css' href='../lib/pagination/css.css'/>
+		<!--<link rel="stylesheet" type="text/css" href="css/views.css">-->
 		<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
 		<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
 	</head>
@@ -17,34 +18,30 @@
 	       		</h3>
     		</div>
 
-    		<div style="width:80%; margin: 30px auto">
+    		<div style="width:90%; margin: 30px auto">
     		<form id="formulario" class="form-horizontal" role="form" method="post" action="lotes/registro_nuevo_lote_admin.php">
 
-	      	<div class="modal-body" style="width:50%; float: left">
+	      	<div class="modal-body" style="width:55%; float: left; border-radius: 5px">
 	      		<div class="alert alert-info">DESCRIPCIÓN DEL LOTE</div>
-	      		<div class="form-inline">
-			    	<label class="col-sm-3 control-label">Nombre del productor </label>
-			    	<div class="col-sm-9">
+	      		<div class="form-group">
+			    	<label class="col-sm-3 control-label">RFC - Nombre del productor: </label>
+			    	<div class="col-sm-8">
 			    		<input type="hidden" name="id_productor" id="inputIdProductor">
-						<input type="text" class="form-control" style="width:80%" name="inputNombreProductor" id="inputNombreProductor" placeholder="Productor..." readOnly required>			
-						<a href="#" style="float:right" class="btn btn-primary" data-toggle="modal" data-target="#modalProductor"><i class="glyphicon glyphicon-search"></i>&nbsp;</a>
+						<input type="text" class="form-control" name="inputNombreProductor" id="inputNombreProductor" placeholder="Productor..." readonly required>			
 			    	</div>
-			    
+			    	<div class="col-sm-1">
+			    		<a href="#" style="float:right" class="btn btn-primary" data-toggle="modal" data-target="#modalProductor"><i class="glyphicon glyphicon-search"></i>&nbsp;</a>
+			    	</div>
 			  	</div>
-			  	<p>&nbsp;</p>
+			  	
 			  	<div class="form-group">
-			    	<label class="col-sm-3 control-label">Tipo de producto </label>
+			    	<label class="col-sm-3 control-label">Fruta / variedad: </label>
 			    	
 			    	<div id="contenedor-productos-productor" class="col-sm-9">
-			    		<div class="alert alert-info" role="alert"><p>Seleccione un productor para continuar</p></div>
-		         	</div>
-				  </div>
-				  <div class="form-group">
-			    	<label class="col-sm-3 control-label">Precio x kilo: </label>
-			    	<div class="col-sm-9">
-			    		<input type="number" class="form-control input" 
-			    		name="precio" id="precio" 
-			    		placeholder="precio" disabled required min ="0">
+			    		<select class="form-control">
+			    			<option>Seleccione un productor para continuar</option>
+			    		</select>
+			    		<!--<div class="alert alert-info" role="alert"><p>Seleccione un productor para continuar</p></div>-->
 		         	</div>
 				  </div>
 				  <div class="form-group">
@@ -54,15 +51,29 @@
 			    		name="cantidad_cajas" 
 			    		placeholder="Cantidad de cajas" required min ="0">
 		         	</div>
-				  </div>
-				  <div class="form-group">
-			    	<label class="col-sm-3 control-label">Cantidad de kilos: </label>
-			    	<div class="col-sm-3">
+			    	<label class="col-sm-2 control-label">Cant. kilos: </label>
+			    	<div class="col-sm-4">
 			    		<input onblur="calcularP()" value="0" type="number" class="form-control input" 
 			    		name="cantidad_kilos" id="cantidad_kilos"
 			    		placeholder="Número de kilos" min="0" required>
 		         	</div>
 				  </div>
+				  <div class="form-group">
+			    	<label class="col-sm-3 control-label">Precio x kilo: </label>
+			    	<div class="col-sm-3">
+			    		<input type="number" class="form-control input" 
+			    		name="precio" id="precio" 
+			    		placeholder="precio" value="0.00" disabled required min ="0">
+		         	</div>
+		         	<label class="col-sm-2 control-label">Costo lote: </label>
+			    	<div class="col-sm-4">
+			    		<input type="number" value="0.00" min="0" class="form-control input" 
+			    		name="costo_lote" id="costo_lote"
+			    		placeholder="Costo del lote" required>
+		         	</div>
+				  </div>
+				  
+				  <p class="label label-primary">Datos del transporte</p>
 				  <div class="form-group">
 			    	<label class="col-sm-3 control-label">Nombre del remitente: </label>
 			    	<div class="col-sm-9">
@@ -71,14 +82,28 @@
 			    		placeholder="Nombre del remitente" required>
 		         	</div>
 				  </div>
+
 				  <div class="form-group">
-			    	<label class="col-sm-3 control-label">Costo lote: </label>
-			    	<div class="col-sm-9">
-			    		<input type="number" value="0.0" min="0" class="form-control input" 
-			    		name="costo_lote" id="costo_lote"
-			    		placeholder="Costo del lote" required>
+			    	<label class="col-sm-3 control-label">Marca: </label>
+			    	<div class="col-sm-3">
+			    		<input type="text" class="form-control input" 
+			    		name="marca" 
+			    		placeholder="Marca del carro" required >
+		         	</div>
+			    	<label class="col-sm-1 control-label">Modelo: </label>
+			    	<div class="col-sm-2">
+			    		<input type="number" class="form-control input" 
+			    		name="modelo"
+			    		placeholder="Modelo del carro" min="0" required>
+		         	</div>
+		         	<label class="col-sm-1 control-label">Placas: </label>
+			    	<div class="col-sm-2">
+			    		<input type="text" class="form-control input" 
+			    		name="placas"
+			    		placeholder="Placas" required>
 		         	</div>
 				  </div>
+			
 				  
 		     	</div>
 		     	<div class="modal-body" style="width:40%; float: right">

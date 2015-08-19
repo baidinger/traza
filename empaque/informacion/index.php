@@ -1,3 +1,4 @@
+
 <div class="contenedor-form">		
 	<div class="modal-header">
 		<h3 class="modal-title">
@@ -22,7 +23,7 @@
 			      		<div>
 			      			
 					      	<div>
-					      		<table class="table" style="font-size: 14px">
+					      		<table class="table table-hover" style="font-size: 14px">
 					      			<tbody>
 					      				<tr>
 					      					<td width="160"><strong>ID:</strong></td>

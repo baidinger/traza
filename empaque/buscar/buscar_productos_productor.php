@@ -28,12 +28,19 @@
 			if($('#selectProducto').length > 0){
 				$("#guardar").removeAttr("disabled");
 
-			obtenerPrecio();
-		}
+				obtenerPrecio();
+			}
 		</script>
 		
 		<?php } else {?>
-		<div class="alert alert-danger" role="alert"><p>No hay productos asignados a este productor</p></div>
+		<select class="form-control">
+			<option>No hay productos disponibles en este productor</option>
+		</select>
+		<!--<div class="alert alert-danger" role="alert"><p>No hay productos asignados a este productor</p></div>-->
+		<script type="text/javascript">
+			$("#precio").val("0.00");
+			calcularP();
+		</script>
 		<?php } ?>
 
 		
