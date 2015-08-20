@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 20, 2015 at 04:17 AM
+-- Generation Time: Aug 20, 2015 at 04:46 AM
 -- Server version: 5.5.40
 -- PHP Version: 5.4.12
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `camiones_distribuidor` (
   `estado_camion_distribuidor` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_camion_distribuidor`),
   KEY `id_distribuidor_fk` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `camiones_empaque` (
   `estado_ce` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_camion`),
   KEY `id_empaque_fk` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `distribuidor_cajas_envio` (
   KEY `id_orden_fk` (`id_envio_fk`),
   KEY `epc_tarima` (`epc_tarima`),
   KEY `epc_caja` (`epc_caja`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `empresa_distribuidores` (
   `estado_d` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_distribuidor`),
   KEY `id_usuario_que_registro` (`id_usuario_que_registro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `empresa_empaques` (
   `estado_e` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_empaque`),
   KEY `id_usuario_que_registro` (`id_usuario_que_registro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `empresa_empaques`
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `empresa_productores` (
   PRIMARY KEY (`id_productor`),
   KEY `id_usuario_fk` (`id_usuario_fk`),
   KEY `id_usuario_que_registro` (`id_usuario_que_registro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `empresa_punto_venta` (
   `estado_pv` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_punto_venta`),
   KEY `id_usuario_que_registro` (`id_usuario_que_registro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `envios_distribuidor` (
   KEY `id_punto_venta_fk` (`id_punto_venta_fk`),
   KEY `id_usuario_distribuidor_fk` (`id_usuario_distribuidor_fk`),
   KEY `id_camion_fk` (`id_camion_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -273,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `envios_empaque` (
   KEY `id_orden_fk_idx` (`id_orden_fk`),
   KEY `id_camion_fk` (`id_camion_fk`),
   KEY `id_receptor_fk` (`id_receptor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `lotes` (
   KEY `id_productor_fk_idx` (`id_productos_productores_fk`),
   KEY `id_receptor_fk` (`id_receptor_fk`),
   KEY `id_empaque_fk` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -358,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `ordenes_distribuidor` (
   PRIMARY KEY (`id_orden`),
   KEY `id_usuario_distribuidor_fk_idx` (`id_usuario_distribuidor_fk`),
   KEY `id_empaque_fk_idx` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `ordenes_punto_venta` (
   PRIMARY KEY (`id_orden`),
   KEY `id_usuario_punto_venta_idx` (`id_usuario_punto_venta_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -505,7 +505,7 @@ CREATE TABLE IF NOT EXISTS `productos_productores` (
   PRIMARY KEY (`id_productos_productores`),
   KEY `id_productor_fk_idx` (`id_productor_fk`),
   KEY `id_producto_fk_idx` (`id_producto_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -543,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `estado_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `nombre_usuario` (`nombre_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `usuarios`
@@ -572,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `usuario_distribuidor` (
   PRIMARY KEY (`id_usuario_distribuidor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_distribuidor_fk_idx` (`id_distribuidor_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -595,7 +595,7 @@ CREATE TABLE IF NOT EXISTS `usuario_empaque` (
   PRIMARY KEY (`id_receptor`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_empaque_fk_idx` (`id_empaque_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `usuario_empaque`
@@ -621,7 +621,7 @@ CREATE TABLE IF NOT EXISTS `usuario_punto_venta` (
   PRIMARY KEY (`id_usuario_pv`),
   KEY `id_usuario_fk_idx` (`id_usuario_fk`),
   KEY `id_usuario_punto_venta_idx` (`id_punto_venta_fk`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables

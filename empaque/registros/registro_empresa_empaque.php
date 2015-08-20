@@ -6,7 +6,7 @@
 
 		<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">-->
 		<link rel="stylesheet" type="text/css" href="css/estilos.css">
-		<?php include("script/paises.js"); ?>
+		
 	</head>
 
 	<body>
@@ -146,4 +146,5 @@
 			});
 		});
 	</script>
+	<?php include("script/paises.js"); ?>
 </html>

@@ -3,7 +3,7 @@
 	<head lang="ES">
 		<title>Registro - Distribuidor</title>
 		<meta charset="UTF-8">
-		<?php include("script/paises.js"); ?>
+		
 	</head>
 
 	<body>
@@ -135,5 +135,5 @@
 			});
 		});
 	</script>
-
+	<?php include("script/paises.js"); ?>
 </html>
