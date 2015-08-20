@@ -5,6 +5,18 @@
 		</h3>
 	</div>
 
+  <?php 
+    if(strcmp($numero_etiquetas, "") == 0){ ?>
+      <div style="width:50%; margin: 30px auto">
+        <div class="modal-body" style="width:100%; float: left">
+          <div class="alert alert-info">Electronic Product Code</div>
+          <div class="alert alert-warning">
+            Se requiere información. Por favor, vaya al menú "ETIQUETAS" y seleccione la opción Palets para generar etiquetas para los palets.
+          </div>
+        </div>
+      </div>
+    <?php  return; } ?>
+  ?>
 	<div style="width:50%; margin: 30px auto">
       	<div class="modal-body" style="width:100%; float: left">
       		<div class="alert alert-info">Electronic Product Code</div>
@@ -13,35 +25,8 @@
 include("../mod/conexion.php");
 
 
-/*** EPC  XX XXXXXXX XXXXXX XXXXXXXXX
-          HEADER EPC-MANAGER OBJECT-CLASS SERIAL-NUMBER
-
-HEADER
-00 EPC CAJA
-01 EPC TARIMA
-
-EPC-MANAGER
-ID_EMPAQUE
-
-OBJECT-CLASS
-CAJA-MANGO-MANILA
-CAJA-MANGO-TOMY
-.
-.
-.
-
-SERIAL-NUMBER 
-
-*****/
-
-/**** Consultar último ID de caja /**/
-
-//print $consulta = "SELECT substring(epc_caja, 10, 6) as product_type, substring(epc_caja, 16,9) as serial_number from epc_caja, lotes, productos_productores WHERE id_lote_fk = id_lote and id_productos_productores = id_productos_productores_fk and id_producto_fk = substring(epc_caja, 10, 6) and id_empaque_fk = 14 ORDER BY serial_number DESC";
-
-//print "<br>ID_PRODUCTO: ".$id_producto."<br>";
-
 /*** OBTENER EL SERIAL NUMBER ****/
-$consulta = "SELECT substring(epc_tarima, 10, 6) as product_type, substring(epc_tarima, 16,9) as serial_number from epc_tarima ORDER BY serial_number DESC";
+$consulta = "SELECT substring(epc_tarima, 13, 5) as product_type, substring(epc_tarima, 18,7) as serial_number from epc_tarima ORDER BY serial_number DESC";
 $result = mysql_query($consulta);
 $serial_number = "0";
 $tipo = "0";
@@ -52,14 +37,14 @@ if( $row = mysql_fetch_array( $result ) ){
 
 /**** GENERAR ****/
 $epc = "";
-
+$id_empaque = $_SESSION['id_empaque'];
 while($numero_etiquetas-- > 0){
   $serial_number++;
   $epc = "01";
-  $id_empaque = $_SESSION['id_empaque'];
   $epc .= str_pad($id_empaque, 7,"0",STR_PAD_LEFT);
-  $epc .= str_pad($tipo, 6,"0", STR_PAD_LEFT);
-  $epc .= str_pad($serial_number, 9,"0", STR_PAD_LEFT);
+  $epc .= str_pad($tam, 3,"0", STR_PAD_LEFT);
+  $epc .= str_pad($id_fruta, 3,"0", STR_PAD_LEFT);
+  $epc .= str_pad($serial_number, 7,"0", STR_PAD_LEFT);
   $consulta = "INSERT INTO epc_tarima VALUES('$epc')";
   print $epc."<br>";
   mysql_query($consulta);

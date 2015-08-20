@@ -19,7 +19,7 @@
 			<?php 
 
 				while($row = mysql_fetch_array($resultado)){ ?>
-					<option value="<?php echo $row['id_producto']; ?>"><?php echo $row['nombre_producto']." ".$row['variedad_producto']." - ".$row['ubicacion_huerta']; ?></option>
+					<option value="<?php echo $row['id_productos_productores']; ?>"><?php echo $row['nombre_producto']." ".$row['variedad_producto']." - ".$row['ubicacion_huerta']; ?></option>
 				<?php }
 			?>
 		</select>

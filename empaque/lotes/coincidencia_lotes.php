@@ -54,7 +54,8 @@
 				          	</td>-->
 				          	<td>
 				          		
-				          		<a onclick="editar(<?php echo $row['id_lote'] ?>,<?php echo $row['id_productor_fk'] ?>)" data-toggle="modal" data-target="#mimodal"  href="#">
+				          		<a href="index.php?editarlote=<?php print $row['id_lote'] ?>">
+				          		<!--<a onclick="editar(<?php echo $row['id_lote'] ?>,<?php echo $row['id_productor_fk'] ?>)" data-toggle="modal" data-target="#mimodal"  href="#">-->
 				          		<span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;
 				          		
 				          		<a href="index.php?lote=<?php print $row['id_lote'] ?>">

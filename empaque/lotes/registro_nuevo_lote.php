@@ -67,7 +67,7 @@
 		         	</div>
 		         	<label class="col-sm-2 control-label">Costo lote: </label>
 			    	<div class="col-sm-4">
-			    		<input type="number" value="0.00" min="0" class="form-control input" 
+			    		<input type="text" value="0.00" min="0" class="form-control input" 
 			    		name="costo_lote" id="costo_lote"
 			    		placeholder="Costo del lote" required>
 		         	</div>

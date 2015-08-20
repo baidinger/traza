@@ -299,6 +299,10 @@ else  if(isset($_REQUEST['lote'])){
   $id = $_REQUEST['lote'];
   include("lotes/ver_lote.php");
 }
+else  if(isset($_REQUEST['editarlote'])){
+  $id = $_REQUEST['editarlote'];
+  include("lotes/editar_lote.php");
+}
 else  if(isset($_REQUEST['pv'])){
   $id = $_REQUEST['pv'];
   include("informacion/puntoventa.php");
@@ -308,9 +312,18 @@ else  if(isset($_REQUEST['usuarioemp'])){
   $id = $_REQUEST['usuarioemp'];
   include("usuarios/index.php");
 }
-else  if(isset($_REQUEST['numpalets'])){
-  $numero_etiquetas = $_REQUEST['numpalets'];
+else  if(isset($_REQUEST['paletsgenerados'])){
+  $numero_etiquetas = "";
+  $id_fruta="";
+  $tam = "";
+  if(isset($_POST['num'])){
+    $numero_etiquetas = $_POST['num'];
+    $id_fruta = $_POST['id_producto'];
+    $tam = $_POST['tam'];
+  }
+
   include("tags/paletsgenerados.php");
+
 }
 ?>
 

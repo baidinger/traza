@@ -5,11 +5,10 @@
 		</h3>
 	</div>
 
-	<div style="width:90%; margin: 30px auto">
-		<div style="width:45%; float: left">
+	<div style="width:95%; margin: 30px auto">
+		<div style="width:50%; float: left;">
 			<img width="100%" src="img/epc.png">
-			<p>&nbsp;</p>
-			<div style="width: 100%; background: #ffffff; padding: 10px">
+			<div style="width: 100%; background: #ffffff; padding: 10px; border-radius: 5px">
 				<p class="label label-primary">Información general</p>
 				<table class="table" style="font-size: 14px">
 					<tr>
@@ -53,7 +52,7 @@
 				<div style="clear: both"></div>
 			</div>
 		</div>
-		<div style="width:45%; float: right">
+		<div style="width:47%; float: right">
 			<form id="formulario" class="form-horizontal" role="form" method="post" action="tags/generarTags.php">
 
 	      	<div class="modal-body" style="width:100%; float: left; border-radius: 5px">
@@ -66,7 +65,7 @@
 			    			<option value="0">--Seleccionar lote</option>
 			    		<?php 
 			    			include('../mod/conexion.php');
-							$consulta = "SELECT id_lote, id_lote_fk, epc_caja, fecha_recibo_lote from LOTES left join EPC_CAJA on id_lote = id_lote_fk WHERE id_lote_fk is NULL AND id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_lote DESC";
+							$consulta = "SELECT id_lote, id_lote_fk, epc_caja, fecha_recibo_lote from lotes left join epc_caja on id_lote = id_lote_fk WHERE id_lote_fk is NULL AND id_empaque_fk = $_SESSION[id_empaque] ORDER BY id_lote DESC";
 							$result = mysql_query($consulta);
 							if(mysql_num_rows($result) > 0 ){
 								 while($row = mysql_fetch_array($result)) {
@@ -77,7 +76,7 @@
 			    		</select>
 		         	</div>
 				  </div>
-				  <p class="label label-success">RENDIMIENTO</p>
+				  <p class="label label-primary">RENDIMIENTO</p>
 				 <br><br>
 				  <div style="clear: both"></div>
 				   <div class="form-group">
@@ -174,16 +173,16 @@
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
 			    		name="merma1" 
-			    		placeholder="merma1" min="0" required>
+			    		placeholder="merma 1" min="0" required>
 		         	</div>
 		         	<label class="col-sm-3 control-label">Merma 2: </label>
 			    	<div class="col-sm-3">
 			    		<input type="number" class="form-control input" 
 			    		name="merma2" 
-			    		placeholder="merma1" min="0" required>
+			    		placeholder="merma 2" min="0" required>
 		         	</div>
 				  </div>
-				   <p class="label label-success">ETIQUETAS</p>
+				   <p class="label label-primary">ETIQUETAS</p>
 				 <br><br>
 				  <div class="form-group">
 			    	<label class="col-sm-4 control-label">Etiquetas (RFID): </label>
