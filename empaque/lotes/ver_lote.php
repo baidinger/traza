@@ -22,8 +22,14 @@
 		$resultado = mysql_query($consulta);
 		$row = mysql_fetch_array($resultado);
 	?>
+		<div class="modal-header">
+			<h3 class="modal-title">
+				<img class="img-header" src="img/lotes.png"> Información del lote
+			</h3>
+		</div>
 		<div style="width:800px; margin:50px auto;background:#ffffff; padding: 20px; border-radius: 5px">
 			<div class="div-contenedor-form">
+
 	      		<table class="table table-hover" style="font-size: 14px">
 	      			<tbody>
 	      				<tr>

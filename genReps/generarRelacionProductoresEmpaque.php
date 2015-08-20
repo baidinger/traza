@@ -38,7 +38,7 @@
 
 		function encabezado($nomDist){
 			$this->SetFont('Arial', 'B', 18);
-			$this->Cell(196, 10, 'RELACIÓN DE CAMIONES', 0, 0, 'C');
+			$this->Cell(196, 10, 'RELACIÓN DE PRODUCTORES', 0, 0, 'C');
 
 			$this->Ln();
 
@@ -112,7 +112,7 @@
 
 		function listaUsuarios($idDist){
 			$this->SetFont('Arial', 'B', 8);
-			$this->Cell(196, 4, 'LISTA DE CAMIONES', 0, 0, 'L');
+			$this->Cell(196, 4, 'LISTA DE PRODUCTORES', 0, 0, 'L');
 
 			$this->Ln();
 			$this->Ln();
@@ -123,9 +123,12 @@
 
 			$this->Cell(10, 6, 'NO.', 1, 0, 'C', 1);
 			$this->Cell(20, 6, 'ID', 1, 0, 'C', 1);
-			$this->Cell(86, 6, 'NOMBRE DEL CHOFER', 1, 0, 'C', 1);
-			$this->Cell(30, 6, 'PLACAS', 1, 0, 'C', 1);
-			$this->Cell(40, 6, 'MARCA / MODELO', 1, 0, 'C', 1);
+			$this->Cell(30, 6, 'USUARIO', 1, 0, 'C', 1);
+			$this->Cell(30, 6, 'RFC', 1, 0, 'C', 1);
+			$this->Cell(66, 6, 'NOMBRE DEL PRODUCTOR', 1, 0, 'C', 1);
+			$this->Cell(30, 6, 'TELÉFONO', 1, 0, 'C', 1);
+			//$this->Cell(30, 6, 'ESTADO', 1, 0, 'C', 1);
+			//$this->Cell(30, 6, 'PAIS', 1, 0, 'C', 1);
 			$this->Cell(10, 6, 'EDO', 1, 0, 'C', 1);
 
 			$this->SetTextColor(0, 0, 0);
@@ -136,18 +139,25 @@
 
 			$contador = 1;
 
-			$consulta = "SELECT * FROM camiones_empaque WHERE id_empaque_fk = $_SESSION[id_empaque] ORDER BY nombre_chofer ASC";
+			$consulta = "select id_productor, nombre_productor, apellido_productor, ".
+				"telefono_productor, direccion_productor, ".
+				" rfc_productor, id_usuario_fk, estado_p, nombre_usuario from empresa_productores, 
+				usuarios where id_usuario_fk = id_usuario AND 
+				id_usuario_que_registro = ".$_SESSION['id_receptor']." 
+				ORDER BY nombre_productor ASC, apellido_productor ASC";
 			$resultado = mysql_query($consulta);
 			while($row = mysql_fetch_array($resultado)){
 				$this->SetTextColor(0, 0, 0);
 
 				$this->Cell(10, 5, $contador, 1, 0, 'C', 0);
-				$this->Cell(20, 5, str_pad($row['id_camion'],7,"0",STR_PAD_LEFT), 1, 0, 'C', 0);
-				$this->Cell(86, 5, $row['nombre_chofer'], 1, 0, 'L', 0);
-				$this->Cell(30, 5, $row['placas'], 1, 0, 'C', 0);
-				$this->Cell(40, 5, $row['marca']." / ".$row['modelo'], 1, 0, 'C', 0);
-
-				if($row['estado_ce'] == 1){
+				$this->Cell(20, 5, str_pad($row['id_productor'],7,"0",STR_PAD_LEFT), 1, 0, 'C', 0);
+				$this->Cell(30, 5, $row['nombre_usuario'], 1, 0, 'L', 0);
+				$this->Cell(30, 5, $row['rfc_productor'], 1, 0, 'L', 0);
+				$this->Cell(66, 5, $row['nombre_productor'], 1, 0, 'L', 0);
+				$this->Cell(30, 5, $row['telefono_productor'], 1, 0, 'L', 0);
+				//$this->Cell(30, 5, $row['ciudad_distribuidor'], 1, 0, 'C', 0);
+				
+				if($row['estado_p'] == 1){
 					$this->SetTextColor(4, 180, 95);
 					$this->Cell(10, 5, 'A', 1, 0, 'C');
 				}
@@ -178,5 +188,5 @@
 	if(!file_exists($directorio))
 	    mkdir($directorio);
 
-	$pdf->Output($directorio.'camionesempaque'.$_SESSION['id_empaque'].'.pdf', "F");
+	$pdf->Output($directorio.'productoresempaque'.$_SESSION['id_empaque'].'.pdf', "F");
  ?>

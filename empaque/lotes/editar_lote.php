@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-	<head lang="ES">
-		<title>Registro - lote</title>
-		<meta charset="UTF-8">
-	</head>
 	<body>
 
 		<?php
@@ -15,11 +11,16 @@
 		?>
 	
 	<div class="contenedor-form">
+		<div class="modal-header">
+			<h3 class="modal-title">
+				<img class="img-header" src="img/lotes.png"> Editar lote: <?php print str_pad($id_lote,3,"0",STR_PAD_LEFT); ?>
+			</h3>
+		</div>
 		<form class="form-horizontal" role="form" method="post" action="lotes/editar_lote_admin.php">
 			<div class="modal-body" style="width:85%; margin: 30px auto; border-radius: 5px">
 				<div class="alert alert-warning">¡ATENCIÓN! La modificación de estos datos puede alterar significativamente la integridad del sistema. Si se generaron etiquetas para este lote, estas etiquetas conservan en el EPC datos como la fruta, calibre y lote.</div>
 				<p class="label label-primary">Datos generales</p>
-				<p>&nbsp;</p>
+				<hr>
 	      		<div class="form-group">
 			    	<label class="col-sm-2 control-label">RFC - Nombre del productor: </label>
 			    	<div class="col-sm-4">
@@ -111,7 +112,7 @@
 				  </div>
 				  <p>&nbsp;</p>
 				  <p class="label label-primary">Datos de recolección</p>
-				  <p>&nbsp;</p>
+				  <hr>
 				  <div class="form-group">
 			    	<label class="col-sm-2 control-label">Fecha de recolección: </label>
 			    	<div class="col-sm-2">
@@ -138,7 +139,7 @@
 				  </div>
 				  <p>&nbsp;</p>
 				  <p class="label label-primary">Rendimiento</p>
-				  <p>&nbsp;</p>
+				  <hr>
 				   <div class="form-group">
 			    	<label class="col-sm-2 control-label">Cajas chicas: </label>
 			    	<div class="col-sm-2">
@@ -191,7 +192,7 @@
 			  	 <hr>
 			  	 <center>		     			
 		  	 		<div onclick="goBack()" style="width: 150px" class="btn btn-default">Regresar</div>
-	     			<div type="submit" style="width: 150px" id="guardar" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Actualizar</div>
+	     			<button type="submit" style="width: 150px" id="guardar" class="btn btn-primary"><i  class="glyphicon glyphicon-ok"></i> Actualizar</button>
 	     			<input type="hidden" name="url" value="../index.php?op=admon_lotes">
 		     	 </center>
 		     	</div>

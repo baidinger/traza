@@ -1,7 +1,7 @@
 <div class="contenedor-form">		
 	<div class="modal-header">
 		<h3 class="modal-title">
-			<img class="img-header" src="img/distribuidor.png"> Información del camión
+			<img class="img-header" src="img/camion.png"> Información del camión
 		</h3>
 	</div>
 
