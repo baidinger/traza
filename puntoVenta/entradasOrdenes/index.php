@@ -37,7 +37,7 @@
 			<div class="modal-header">
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
-						<img class="img-header" src="../../img/historial_entradas.png"> &nbsp;Entrada de Órdenes
+						<img class="img-header" src="../../img/historial_entradas.png"> &nbsp;Entrada de Ordenes
 						<!-- <button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button> -->
 					</h3>
 				</h3>
@@ -266,7 +266,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h3 class="titulo-header">
-							<img class="img-header" src="../../img/detalles_orden.png"> <span id="titulo-detalles">Detalles de la Órden - Enviados y Recibidos</span>
+							<img class="img-header" src="../../img/detalles_orden.png"> <span id="titulo-detalles">Detalles de la Orden - Enviados y Recibidos</span>
 							<input type="hidden" name="idOrdenDetalles" id="idOrdenDetalles">
 							<input type="hidden" name="idEnvioDetalles" id="idEnvioDetalles">
 							<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
@@ -291,7 +291,7 @@
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h3 class="titulo-header">
-								<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado de la Órden</span>
+								<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado de la Orden</span>
 							</h3>
 						</div>
 						<div class="modal-body">
@@ -417,7 +417,7 @@
 
 			function cambiarEstadoOrden(orden){
 				$('#inputIdOrden').val(orden);
-				$('#titulo-estado').text('Cambiar Estado de la Órden ' + orden);
+				$('#titulo-estado').text('Cambiar Estado de la Orden ' + orden);
 				$('#modalEstado').modal('show');
 			}
 		</script>

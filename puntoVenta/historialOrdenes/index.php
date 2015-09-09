@@ -245,7 +245,7 @@
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h3 class="titulo-header">
-								<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado de la Órden</span>
+								<img class="img-header" src="../../img/cambiar_estado.png"> <span id="titulo-estado">Cambiar Estado de la Orden</span>
 							</h3>
 						</div>
 						<div class="modal-body">
@@ -277,7 +277,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h3 class="titulo-header">
-							<img class="img-header" src="../../img/detalles_orden.png"> <span id="titulo-detalles">Detalles de la Órden</span>
+							<img class="img-header" src="../../img/detalles_orden.png"> <span id="titulo-detalles">Detalles de la Orden</span>
 							<input type="hidden" name="idOrdenDetalles" id="idOrdenDetalles">
 							<button class="btn btn-default" id="btnReportes" onclick="generacionReportes();" data-toggle="tooltip" title="Generación e impresión de reportes"><i class="glyphicon glyphicon-print"></i> </button>
 						</h3>
@@ -375,7 +375,7 @@
 
 			function mostrarModalEstado(orden){
 				$('#inputIdOrden').val(orden);
-				$('#titulo-estado').text('Cambiar Estado de la Órden ' + orden);
+				$('#titulo-estado').text('Cambiar Estado de la Orden ' + orden);
 				$('#modalEstado').modal('show');
 			}
 
@@ -389,7 +389,7 @@
 
 					success: function(data){
 						$('#contenedor-detalles-orden').html(data);
-						$('#titulo-detalles').text('Detalles de la Órden ' + orden);
+						$('#titulo-detalles').text('Detalles de la Orden ' + orden);
 						$('#modalDetalles').modal('show');
 					}
 				});

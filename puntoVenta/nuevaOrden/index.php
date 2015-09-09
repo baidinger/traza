@@ -36,7 +36,7 @@
 			<div class="modal-header">
 				<h3 class="titulo-header">
 					<h3 class="titulo-contenido">
-						<img class="img-header" src="../../img/nueva_orden.png"> &nbsp;Nueva Órden a Distribuidor
+						<img class="img-header" src="../../img/nueva_orden.png"> &nbsp;Nueva Orden a Distribuidor
 					</h3>
 				</h3>
 			</div>
@@ -44,7 +44,7 @@
 				<?php if(isset($_REQUEST['e'])){ ?>
 			  		<div class="alert alert-danger alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<strong>Error!</strong> Error al registrar órden.
+						<strong>Error!</strong> Error al registrar orden.
 					</div>
 			  	<?php } ?>
 			  	<br>
