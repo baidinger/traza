@@ -3,7 +3,7 @@
 	<head lang="ES">
 		<title>Registro - Punto de Venta</title>
 		<meta charset="UTF-8">
-		<?php include("script/paises.js"); ?>
+		
 	</head>
 
 	<body>
@@ -134,4 +134,5 @@
 			});
 		});
 	</script>
+	<?php include("script/paises.js"); ?>
 </html>

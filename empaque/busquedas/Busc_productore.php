@@ -149,6 +149,20 @@
 					});
 		}
 
+		function lista(){
+				
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRelacionProductoresEmpaque.php',
+
+					success: function(data){
+						var urlPDF = "../docs/productoresempaque" + <?php print $_SESSION['id_empaque'] ?> + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
+
+
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
 					var params = {'buscar':Buscar, 'filtro':$('#filtro').val()};

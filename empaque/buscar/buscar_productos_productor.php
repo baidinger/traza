@@ -10,7 +10,7 @@
 
 				include('../../mod/conexion.php');
 
-			    $consulta = "SELECT prds.id_producto, prdsepqs.id_productos_productores, prdsepqs.ubicacion_huerta, prds.nombre_producto, prds.variedad_producto FROM productos AS prds, productos_productores AS prdsepqs WHERE prds.id_producto = prdsepqs.id_producto_fk AND prdsepqs.id_productor_fk = $idProductor";
+			    $consulta = "SELECT prds.id_producto, prdsepqs.id_productos_productores, prdsepqs.ubicacion_huerta, prds.nombre_producto, prds.variedad_producto FROM productos AS prds, productos_productores AS prdsepqs, productos_empaques WHERE productos_empaques.id_producto_fk = id_producto AND id_empaque_fk = $_SESSION[id_empaque] AND prds.id_producto = prdsepqs.id_producto_fk AND prdsepqs.id_productor_fk = $idProductor";
 				$resultado = mysql_query($consulta);
 
 				if(mysql_num_rows($resultado ) > 0){
@@ -28,12 +28,19 @@
 			if($('#selectProducto').length > 0){
 				$("#guardar").removeAttr("disabled");
 
-			obtenerPrecio();
-		}
+				obtenerPrecio();
+			}
 		</script>
 		
 		<?php } else {?>
-		<div class="alert alert-danger" role="alert"><p>No hay productos asignados a este productor</p></div>
+		<select class="form-control">
+			<option>No hay productos disponibles en este productor</option>
+		</select>
+		<!--<div class="alert alert-danger" role="alert"><p>No hay productos asignados a este productor</p></div>-->
+		<script type="text/javascript">
+			$("#precio").val("0.00");
+			calcularP();
+		</script>
 		<?php } ?>
 
 		

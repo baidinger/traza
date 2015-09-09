@@ -116,6 +116,20 @@
 			buscar();
 		}
 
+		function lista(){
+				
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRelacionDistribuidoresEmpaque.php',
+
+					success: function(data){
+						var urlPDF = "../docs/distribuidoresempaque" + <?php print $_SESSION['id_empaque'] ?> + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
+
+
 		function buscar(){
 				var Buscar = $('#inputBuscar').val();
 					var params = {'buscar':Buscar, 'filtro':$('#filtro').val()};

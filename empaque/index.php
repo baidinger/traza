@@ -30,6 +30,7 @@
 <head>
 	<title>EMPACADORA</title>
 	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="script/bootstrap.min.js"></script>
     <script type="text/javascript" src="../lib/google/jsapi.js"></script>
@@ -86,7 +87,7 @@
               <span class="glyphicon glyphicon-apple"></span> &nbsp;Mi empaque <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <?php if($_SESSION['nivel_socio'] == 1) { ?>
-              <li><a href="index.php?op=asig_pro_empaque">Asignar productos</a></li>
+              <li><a href="index.php?op=asig_pro_empaque">Catálogo de productos</a></li>
               <li class="divider"></li>
               <?php } ?>
               <?php if($_SESSION['pedidos'] == 1) {?>
@@ -264,7 +265,7 @@ if(isset($_REQUEST['op']))
       case 'trazabilidad':
       if(isset($_REQUEST['lote']))
         $epc=$_GET['epc'];
-      include("tags/traza.php");
+      include("tags/index.php");
       
       break;
 
@@ -282,6 +283,26 @@ else  if(isset($_REQUEST['distribuidor'])){
   $id = $_REQUEST['distribuidor'];
   include("informacion/distribuidor.php");
 }
+else if(isset($_REQUEST['productor'])){
+  $id = $_REQUEST['productor'];
+  include("busquedas/verProductor.php");
+}
+else if(isset($_REQUEST['camion'])){
+  $id = $_REQUEST['camion'];
+  include("informacion/camion.php");
+}
+else if(isset($_REQUEST['camiondist'])){
+  $id = $_REQUEST['camiondist'];
+  include("informacion/camiondist.php");
+}
+else  if(isset($_REQUEST['lote'])){
+  $id = $_REQUEST['lote'];
+  include("lotes/ver_lote.php");
+}
+else  if(isset($_REQUEST['editarlote'])){
+  $id = $_REQUEST['editarlote'];
+  include("lotes/editar_lote.php");
+}
 else  if(isset($_REQUEST['pv'])){
   $id = $_REQUEST['pv'];
   include("informacion/puntoventa.php");
@@ -291,9 +312,18 @@ else  if(isset($_REQUEST['usuarioemp'])){
   $id = $_REQUEST['usuarioemp'];
   include("usuarios/index.php");
 }
-else  if(isset($_REQUEST['numpalets'])){
-  $numero_etiquetas = $_REQUEST['numpalets'];
+else  if(isset($_REQUEST['paletsgenerados'])){
+  $numero_etiquetas = "";
+  $id_fruta="";
+  $tam = "";
+  if(isset($_POST['num'])){
+    $numero_etiquetas = $_POST['num'];
+    $id_fruta = $_POST['id_producto'];
+    $tam = $_POST['tam'];
+  }
+
   include("tags/paletsgenerados.php");
+
 }
 ?>
 

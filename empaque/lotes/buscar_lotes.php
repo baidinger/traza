@@ -17,8 +17,8 @@
 
 
 <!-- Modal -->
-	<div class="modal fade" id="mimodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
+	<div class="modal fade" id="mimodal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" style="width:85%" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -42,7 +42,7 @@
 
 	?>
 
-	<div class="modal fade"  id="filtro" role="dialog" >
+	<div class="modal fade"  id="avanzada" role="dialog" >
 	  <div class="modal-dialog" style="width: 700px" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -296,6 +296,19 @@
 					});
 			}
 
+			function lista(){
+				
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRelacionLotesEmpaque.php',
+
+					success: function(data){
+						var urlPDF = "../docs/lotesempaque" + <?php print $_SESSION['id_empaque'] ?> + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
+
 			function buscar(){
 				var Buscar = $('#inputBuscar').val();
 					var params = {'buscar':Buscar, 'filtro':$('#filtro').val()};
@@ -316,6 +329,36 @@
 
 			buscar();
 
+
+			function calcularP(){
+				//alert($("#precio").val());
+				if($("#precio").val().length > 0){
+					if($("#cantidad_kilos").val().length > 0)
+					{
+						$("#costo_lote").val( $("#precio").val() * $("#cantidad_kilos").val());
+						//alert($("#precio").val() * $("#cantidad_kilos").val());
+					}
+				}
+			}
+
+
+			function obtenerPrecio(){
+				//alert("Obener");
+				$.ajax({
+					type: 'POST',
+					url: 'buscar/buscar_precio_producto.php',
+					data: {'id':$("#selectProducto").val()},
+
+					success: function(data){
+						$('#precio').val(data);
+					//	alert("obtenido" + data);
+						calcularP();
+					}
+				});	
+
+			}
+
+		</script>
 		</script>
 
 </body>

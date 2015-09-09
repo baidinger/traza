@@ -20,6 +20,7 @@
 	<head>
 		<title>Trazabilidad</title>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="img/logo_trazabilidad.png" type='image/png'>
 
 		<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">

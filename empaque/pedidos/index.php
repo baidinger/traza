@@ -32,6 +32,7 @@
 			    <div class="col-sm-4">
 			      	<select id="status" class="form-control input">
 			      		<option value="0">-- Sin filtro</option>
+			      		<option value="1">Pendiente</option>
 			      		<option value="5">Cancel. por empaque</option>
 			      		<option value="8">Cancel. por distribuidor</option>
 			      		<option value="6">Aprobada</option>
@@ -126,7 +127,18 @@
 				$("#fecha_f").css("display","none");
 		}
 
+		function lista(){
+				
+				$.ajax({
+					type: 'POST',
+					url: '../genReps/generarRelacionOrdenesEmpaque.php',
 
+					success: function(data){
+						var urlPDF = "../docs/ordenesempaque" + <?php print $_SESSION['id_empaque'] ?> + ".pdf";
+						setTimeout(window.open(urlPDF), 1000);
+					}
+				});
+			}
 		
 
 		function buscar(){
@@ -294,10 +306,11 @@
 				]);
 
         var options = {
-          title: 'Pedidos',
+          title: 'NÚMERO DE PEDIDOS CLASIFICADO POR ESTADO DEL PEDIDO',
           is3D: true,
           width: 650,
-          height: 400
+          height: 300,
+          colors: ['#eea236', '#5bc0de', '#3681C2', '#2e6da4', '#C94242', '#C83636', '#ac2925', '#A01515', '#5cb85c']
 
         };
 
